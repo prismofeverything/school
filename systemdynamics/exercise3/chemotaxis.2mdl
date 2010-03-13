@@ -1,0 +1,156 @@
+{UTF-8}
+activation  = A FUNCTION OF( attractant,methylation of cheW,repellent)
+	~	
+	~		|
+
+methylation  = A FUNCTION OF( cheR)
+	~	
+	~		|
+
+cheZ  = A FUNCTION OF( )
+	~	
+	~		|
+
+cheB phosphorylation  = A FUNCTION OF( active cheW,cheZ)
+	~	
+	~		|
+
+cheR  = A FUNCTION OF( )
+	~	
+	~		|
+
+cheY phosphorylation  = A FUNCTION OF( active cheW,cheZ)
+	~	
+	~		|
+
+tumbling frequency  = A FUNCTION OF( phosphorylated cheY)
+	~	
+	~		|
+
+demethylation  = A FUNCTION OF( phosphorylated cheB)
+	~	
+	~		|
+
+active cheW  = A FUNCTION OF( activation)
+	~	
+	~		|
+
+phosphorylated cheB  = A FUNCTION OF( cheB phosphorylation)
+	~	
+	~		|
+
+inactive cheW  = A FUNCTION OF( -activation)
+	~	
+	~		|
+
+methylation of cheW  = A FUNCTION OF( -demethylation,methylation)
+	~	
+	~		|
+
+unphosphorylated cheB  = A FUNCTION OF( -cheB phosphorylation)
+	~	
+	~		|
+
+phosphorylated cheY  = A FUNCTION OF( cheY phosphorylation)
+	~	
+	~		|
+
+unphosphorylated cheY  = A FUNCTION OF( -cheY phosphorylation)
+	~	
+	~		|
+
+attractant  = A FUNCTION OF( )
+	~	
+	~		|
+
+repellent  = A FUNCTION OF( )
+	~	
+	~		|
+
+********************************************************
+	.Control
+********************************************************~
+		Simulation Control Parameters
+	|
+
+FINAL TIME  = 100
+	~	Month
+	~	The final time for the simulation.
+	|
+
+INITIAL TIME  = 0
+	~	Month
+	~	The initial time for the simulation.
+	|
+
+SAVEPER  = 
+        TIME STEP
+	~	Month [0,?]
+	~	The frequency with which output is stored.
+	|
+
+TIME STEP  = 1
+	~	Month [0,?]
+	~	The time step for the simulation.
+	|
+
+\\\---/// Sketch information - do not modify anything except names
+V300  Do not put anything below this section - it will be ignored
+*View 1
+$192-192-192,0,Times New Roman|12||0-0-0|0-0-0|0-0-255|-1--1--1|-1--1--1|72,72,100,0
+10,1,attractant,395,387,40,20,3,3,0,0,0,0,0,0
+10,2,repellent,396,452,40,20,3,3,0,0,0,0,0,0
+10,3,active cheW,557,349,40,20,3,3,0,0,0,0,0,0
+10,4,phosphorylated cheY,686,410,40,20,3,3,0,0,0,0,0,0
+10,5,unphosphorylated cheY,691,508,40,20,3,3,0,0,0,0,0,0
+10,6,phosphorylated cheB,785,221,72,15,3,131,0,0,0,0,0,0
+10,7,unphosphorylated cheB,783,324,70,16,3,131,0,0,0,0,0,0
+10,8,methylation of cheW,549,137,40,20,3,3,0,0,0,0,0,0
+10,9,inactive cheW,557,498,40,20,3,3,0,0,0,0,0,0
+1,10,12,3,4,0,0,22,0,0,0,-1--1--1,,1|(553,393)|
+1,11,12,9,100,0,0,22,0,0,0,-1--1--1,,1|(553,453)|
+11,12,268,553,423,8,6,33,3,0,0,4,0,0,0
+10,13,activation,587,423,26,8,40,3,0,0,-1,0,0,0
+1,14,16,4,4,0,0,22,0,0,0,-1--1--1,,1|(687,444)|
+1,15,16,5,100,0,0,22,0,0,0,-1--1--1,,1|(687,479)|
+11,16,140,687,465,8,6,33,3,0,0,4,0,0,0
+10,17,cheY phosphorylation,750,465,55,8,40,3,0,0,-1,0,0,0
+1,18,20,6,4,0,0,22,0,0,0,-1--1--1,,1|(755,254)|
+1,19,20,7,100,0,0,22,0,0,0,-1--1--1,,1|(755,296)|
+11,20,236,755,278,8,6,33,3,0,0,4,0,0,0
+10,21,cheB phosphorylation,818,278,55,8,40,3,0,0,-1,0,0,0
+12,22,48,552,46,10,8,0,3,0,0,-1,0,0,0
+1,23,25,8,4,0,0,22,0,0,0,-1--1--1,,1|(551,98)|
+1,24,25,22,100,0,0,22,0,0,0,-1--1--1,,1|(551,61)|
+11,25,48,551,74,8,6,33,3,0,0,4,0,0,0
+10,26,methylation,590,74,31,8,40,3,0,0,-1,0,0,0
+12,27,48,554,256,10,8,0,3,0,0,-1,0,0,0
+1,28,30,27,4,0,0,22,0,0,0,-1--1--1,,1|(551,227)|
+1,29,30,8,100,0,0,22,0,0,0,-1--1--1,,1|(551,175)|
+11,30,48,551,200,8,6,33,3,0,0,4,0,0,0
+10,31,demethylation,596,200,37,8,40,3,0,0,-1,0,0,0
+1,32,1,12,1,0,0,0,0,64,0,-1--1--1,,1|(484,390)|
+1,33,2,12,1,0,0,0,0,64,0,-1--1--1,,1|(484,454)|
+1,34,8,12,1,0,0,0,0,64,0,-1--1--1,,1|(459,274)|
+1,35,6,30,1,0,0,0,0,64,0,-1--1--1,,1|(651,170)|
+1,36,3,20,1,0,0,0,0,64,0,-1--1--1,,1|(644,243)|
+1,37,3,16,1,0,0,0,0,64,0,-1--1--1,,1|(609,455)|
+10,38,cheR,433,65,15,8,8,3,0,0,0,0,0,0
+10,39,cheZ,635,319,14,8,8,3,0,0,0,0,0,0
+1,40,38,25,1,0,0,0,0,64,0,-1--1--1,,1|(485,47)|
+1,41,39,20,1,0,0,0,0,64,0,-1--1--1,,1|(682,283)|
+1,42,39,16,1,0,0,0,0,64,0,-1--1--1,,1|(614,383)|
+10,43,tumbling frequency,818,401,49,8,8,3,0,0,0,0,0,0
+1,44,4,43,1,0,0,0,0,64,0,-1--1--1,,1|(745,367)|
+///---\\\
+:L<%^E!@
+9:Current
+23:0
+15:0,0,0,0,0,0
+19:100,0
+27:2,
+34:0,
+5:FINAL TIME
+24:0
+25:0
+26:0
