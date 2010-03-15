@@ -225,21 +225,24 @@ module Oscillism
       atoms.map {|atom| atom.name}
     end
 
-    def add_stock(stock)
+    def add_stock(name, level)
+      stock = Stock.new(name, level)
       @stocks[stock.name] = stock
       @history.register(stock.name)
       @atoms << stock
       stock
     end
 
-    def add_flow(flow)
+    def add_flow(name, a, b)
+      flow = Flow.new(name, a, b)
       @flows[flow.name] = flow
       @history.register(flow.name)
       @atoms << flow
       flow
     end
 
-    def add_parameter(parameter)
+    def add_parameter(name, level)
+      parameter = Parameter.new(name, level)
       @parameters[parameter.name] = parameter
       @parameter_order << parameter
       @atoms << parameter

@@ -8,25 +8,25 @@ class Chemotaxis
   def initialize(cell_width)
     @model = Oscillism::Model.new
 
-    @active_cheW = @model.add_stock(Oscillism::Stock.new('active cheW', 10.0))
-    @methylated_cheW = @model.add_stock(Oscillism::Stock.new('methylated cheW', 10.0))
-    @phosphorylated_cheB = @model.add_stock(Oscillism::Stock.new('phosphorylated cheB', 10.0))
+    @active_cheW = @model.add_stock('active cheW', 10.0)
+    @methylated_cheW = @model.add_stock('methylated cheW', 10.0)
+    @phosphorylated_cheB = @model.add_stock('phosphorylated cheB', 10.0)
     @exogenous = Oscillism::Stock.new('exogenous', 0.0)
 
-    @activation = @model.add_flow(Oscillism::Flow.new('activation', @exogenous, @active_cheW))
-    @deactivation = @model.add_flow(Oscillism::Flow.new('deactivation', @active_cheW, @exogenous))
-    @methylation = @model.add_flow(Oscillism::Flow.new('methylation', @exogenous, @methylated_cheW))
-    @demethylation = @model.add_flow(Oscillism::Flow.new('demethylation', @methylated_cheW, @exogenous))
-    @cheB_phosphorylation = @model.add_flow(Oscillism::Flow.new('cheB phosphorylation', @exogenous, @phosphorylated_cheB))
-    @cheB_dephosphorylation = @model.add_flow(Oscillism::Flow.new('cheB dephosphorylation', @phosphorylated_cheB, @exogenous))
+    @activation = @model.add_flow('activation', @exogenous, @active_cheW)
+    @deactivation = @model.add_flow('deactivation', @active_cheW, @exogenous)
+    @methylation = @model.add_flow('methylation', @exogenous, @methylated_cheW)
+    @demethylation = @model.add_flow('demethylation', @methylated_cheW, @exogenous)
+    @cheB_phosphorylation = @model.add_flow('cheB phosphorylation', @exogenous, @phosphorylated_cheB)
+    @cheB_dephosphorylation = @model.add_flow('cheB dephosphorylation', @phosphorylated_cheB, @exogenous)
 
-    @gradient = @model.add_parameter(Oscillism::Parameter.new('gradient', 0.0))
-    @activation_factor = @model.add_parameter(Oscillism::Parameter.new('activation factor', 20.0))
-    @deactivation_factor = @model.add_parameter(Oscillism::Parameter.new('deactivation factor', 0.1))
-    @demethylation_factor = @model.add_parameter(Oscillism::Parameter.new('demethylation factor', 0.002))
-    @phosphorylation_factor = @model.add_parameter(Oscillism::Parameter.new('phosphorylation factor', 1.0))
-    @cheR = @model.add_parameter(Oscillism::Parameter.new('cheR', 1.1))
-    @cheZ = @model.add_parameter(Oscillism::Parameter.new('cheZ', 0.1))
+    @gradient = @model.add_parameter('gradient', 0.0)
+    @activation_factor = @model.add_parameter('activation factor', 20.0)
+    @deactivation_factor = @model.add_parameter('deactivation factor', 0.1)
+    @demethylation_factor = @model.add_parameter('demethylation factor', 0.002)
+    @phosphorylation_factor = @model.add_parameter('phosphorylation factor', 1.0)
+    @cheR = @model.add_parameter('cheR', 1.1)
+    @cheZ = @model.add_parameter('cheZ', 0.1)
 
     @activation.define { (@methylated_cheW.level - @gradient.level) * @activation_factor.level / @active_cheW.level}
     @deactivation.define { @deactivation_factor.level * @active_cheW.level }
@@ -97,17 +97,17 @@ end
 render = SVGRender[:filename, "chemotaxis.svg", :imagesize, "30cm"]
 
 a = {
-  'name' => 'phosphorylation factor',
+  'name' => 'activation factor',
   'steps' => 5,
   'from' => 0.01,
-  'to' => 1.0
+  'to' => 100.0
 }
 
 b = {
-  'name' => 'cheR',
+  'name' => 'demethylation factor',
   'steps' => 5,
-  'from' => 0.1,
-  'to' => 50.0
+  'from' => 0.001,
+  'to' => 0.01
 }
 
 chemotaxis = Chemotaxis.new(100)

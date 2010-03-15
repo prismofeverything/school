@@ -4,13 +4,18 @@ methylation=
 	~	
 	~		|
 
-demethylation=
-	demethylation factor*phosphorylated cheB*methylated cheW
+deactivation=
+	active cheW*deactivation factor
 	~	
 	~		|
 
 phosphorylation=
 	(active cheW*phosphorylation factor)/phosphorylated cheB
+	~	
+	~		|
+
+demethylation=
+	demethylation factor*phosphorylated cheB*methylated cheW
 	~	
 	~		|
 
@@ -20,7 +25,7 @@ activation=
 	~		|
 
 activation factor=
-	20
+	25
 	~	
 	~		|
 
@@ -37,11 +42,6 @@ cheR=
 
 cheZ=
 	0.1
-	~	
-	~		|
-
-deactivation=
-	(active cheW+gradient)*deactivation factor
 	~	
 	~		|
 
@@ -89,23 +89,23 @@ phosphorylation factor=
 	|
 
 FINAL TIME  = 100
-	~	Month
+	~	Minute
 	~	The final time for the simulation.
 	|
 
 INITIAL TIME  = 0
-	~	Month
+	~	Minute
 	~	The initial time for the simulation.
 	|
 
 SAVEPER  = 
-        TIME STEP
-	~	Month [0,?]
+        TIME STEP 
+	~	Minute [0,?]
 	~	The frequency with which output is stored.
 	|
 
 TIME STEP  = 1
-	~	Month [0,?]
+	~	Minute [0,?]
 	~	The time step for the simulation.
 	|
 
@@ -163,11 +163,10 @@ $192-192-192,0,Times New Roman|12||0-0-0|0-0-0|0-0-255|-1--1--1|-1--1--1|72,72,1
 1,50,19,10,1,0,0,0,0,64,0,-1--1--1,,1|(849,491)|
 1,51,1,33,1,0,0,0,0,64,0,-1--1--1,,1|(907,289)|
 1,52,18,23,1,0,0,0,0,64,0,-1--1--1,,1|(1108,318)|
-10,53,cheR,868,546,15,8,8,3,0,0,0,0,0,0
-1,54,53,28,1,0,0,0,0,64,0,-1--1--1,,1|(906,524)|
+10,53,cheR,871,545,15,8,8,3,0,0,0,0,0,0
+1,54,53,28,1,0,0,0,0,64,0,-1--1--1,,1|(909,525)|
 10,55,gradient,788,190,22,8,8,3,0,0,0,0,0,0
 1,56,55,10,1,0,0,0,0,64,0,-1--1--1,,1|(688,278)|
-1,57,55,5,1,0,0,0,0,64,0,-1--1--1,,1|(744,244)|
 1,59,19,23,1,0,0,0,0,64,0,-1--1--1,,1|(905,442)|
 ///---\\\
 :L<%^E!@
@@ -193,7 +192,7 @@ $192-192-192,0,Times New Roman|12||0-0-0|0-0-0|0-0-255|-1--1--1|-1--1--1|72,72,1
 37:2000
 38:1
 39:1
-40:2
+40:6
 41:0
 24:0
 25:100
