@@ -1,8 +1,11 @@
 module Oscillism
+  @@infinity = 1.0/0.0
+
   class Oscillatom
     def initialize(name, level)
       @name = name
       @level = level
+      @process = Proc.new { 0.0 }
     end
 
     def name
@@ -12,12 +15,16 @@ module Oscillism
     def level
       @level
     end
+
+    def define(&block)
+      @process = block
+    end
   end
 
   class Stock < Oscillatom
     def initialize(name, level)
       super(name, level)
-      @pending = 0
+      @pending = 0.0
       @from = []
       @to = []
     end
@@ -33,6 +40,7 @@ module Oscillism
     def discern
       @pending += @from.inject(0) {|total, from| total + from.level}
       @pending -= @to.inject(0) {|total, to| total + to.level}
+      @pending += @process.call
       @pending
     end
 
@@ -47,13 +55,8 @@ module Oscillism
     def initialize(name, a, b)
       super(name, 0)
       @terminals = [a, b]
-      @process = Proc.new {0}
       a.flow_to(self)
       b.flow_from(self)
-    end
-
-    def define(&block)
-      @process = block
     end
 
     def step
@@ -64,10 +67,15 @@ module Oscillism
   class Parameter < Oscillatom
     def initialize(name, level)
       super(name, level)
+      @process = Proc.new {|level| level}
     end
 
     def assign(level)
       @level = level
+    end
+
+    def level
+      @process.call(@level)
     end
   end
 
@@ -79,16 +87,18 @@ module Oscillism
 
     def clear
       @history = []
-      @min = 11111111111
-      @max = -11111111111
+      @min = 111111111.1
+      @max = -111111111.1
       @x_lens = Proc.new {|x| x}
       @y_lens = Proc.new {|y| y}
     end
 
     def snapshot(level)
-      @history << level
-      @min = level if @min > level
-      @max = level if @max < level
+      if level and not (level.nan? or level.infinite?)
+        @history << level
+        @min = level if @min > level
+        @max = level if @max < level
+      end
     end
 
     def x_bounds
@@ -104,22 +114,26 @@ module Oscillism
       @y_lens = History.forge_lens(self.y_bounds)
     end
 
-    def render_to_field(render, color, x, y, w, h)
+    def render_to_field(render, color, x, y, width, height)
       self.bound
 
-      a = nil
-      b = V2D[0.0, 0.0]
+      apoint = nil
+      bpoint = V2D[0.0, 0.0]
       @history.each_with_index do |point, t|
-        localx = x + (@x_lens[t] * w)
-        localy = y + (@y_lens[point] * h)
+        localx = x + (@x_lens[t] * width)
+        localy = y + (@y_lens[point] * height)
 
-        b.xy = [localx, localy]
-        if a
-          render.add(Line[:points, [a, b]], Style[:stroke, color, :strokewidth, 3.0])
+        bpoint.xy = [localx, localy]
+        if apoint
+          begin
+            render.add(Line[:points, [apoint, bpoint]], Style[:stroke, color, :strokewidth, 3.0])
+          rescue
+            puts "had trouble rendering #{[[apoint.x, apoint.y], [bpoint.x, bpoint.y]].inspect}"
+          end
         else
-          a = V2D[0.0, 0.0]
+          apoint = V2D[0.0, 0.0]
         end
-        a.xy = b
+        apoint.xy = bpoint
       end
     end
   end
@@ -147,10 +161,6 @@ module Oscillism
       end
     end
 
-    def find_bounds(name)
-      self.history(name).find_bounds
-    end
-
     def self.forge_lens(bounds)
       width = bounds[1] - bounds[0]
       offset = bounds[0]
@@ -167,6 +177,7 @@ module Oscillism
 
   class Model
     def initialize
+      @time_step = 0
       @stocks = {}
       @flows = {}
       @parameters = {}
@@ -175,12 +186,17 @@ module Oscillism
       @history = History.new
     end
 
+    def time_step
+      @time_step
+    end
+
     def history
       @history
     end
 
     def clear
-      
+      @time_step = 0
+      @history.clear
     end
 
     def stock(name)
@@ -213,18 +229,21 @@ module Oscillism
       @stocks[stock.name] = stock
       @history.register(stock.name)
       @atoms << stock
+      stock
     end
 
     def add_flow(flow)
       @flows[flow.name] = flow
       @history.register(flow.name)
       @atoms << flow
+      flow
     end
 
     def add_parameter(parameter)
       @parameters[parameter.name] = parameter
       @parameter_order << parameter
       @atoms << parameter
+      parameter
     end
 
     def parameter_vector
@@ -239,6 +258,8 @@ module Oscillism
     end
 
     def step
+      @time_step += 1
+
       @flows.values.each do |flow|
         flow.step
         @history.snapshot(flow.name, flow.level)
@@ -255,7 +276,7 @@ module Oscillism
     end
 
     def run(time_steps)
-      @history.clear
+      self.clear
 
       (0..time_steps).each do |step|
         self.step

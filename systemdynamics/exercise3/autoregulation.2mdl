@@ -1,11 +1,11 @@
 {UTF-8}
 activation=
-	((methylated cheW-gradient)*activation factor)/active cheW
+	(methylated cheW*activation factor)/active cheW
 	~	
 	~		|
 
 activation factor=
-	10
+	1
 	~	
 	~		|
 
@@ -16,7 +16,7 @@ active cheW= INTEG (
 	~		|
 
 cheR=
-	10
+	0.01
 	~	
 	~		|
 
@@ -26,7 +26,7 @@ cheZ=
 	~		|
 
 deactivation=
-	(active cheW+gradient)*deactivation factor
+	active cheW*deactivation factor
 	~	
 	~		|
 
@@ -47,11 +47,6 @@ demethylation factor=
 
 dephosphorylation=
 	phosphorylated cheB*cheZ
-	~	
-	~		|
-
-gradient=
-	STEP(5,42)
 	~	
 	~		|
 
@@ -167,9 +162,6 @@ $192-192-192,0,Times New Roman|12||0-0-0|0-0-0|0-0-255|-1--1--1|-1--1--1|72,72,1
 1,62,22,28,1,0,0,0,0,64,0,-1--1--1,,1|(1108,318)|
 10,63,cheR,868,546,15,8,8,3,0,0,0,0,0,0
 1,64,63,34,1,0,0,0,0,64,0,-1--1--1,,1|(906,524)|
-10,65,gradient,788,190,22,8,8,3,0,0,0,0,0,0
-1,66,65,12,1,0,0,0,0,64,0,-1--1--1,,1|(688,278)|
-1,67,65,6,1,0,0,0,0,64,0,-1--1--1,,1|(744,244)|
 ///---\\\
 :L<%^E!@
 1:Current.vdf
@@ -188,7 +180,7 @@ $192-192-192,0,Times New Roman|12||0-0-0|0-0-0|0-0-255|-1--1--1|-1--1--1|72,72,1
 27:2,
 34:0,
 4:Time
-5:active cheW
+5:cheR
 35:Date
 36:YYYY-MM-DD
 37:2000
