@@ -106,7 +106,7 @@ module Oscillism
     end
 
     def y_bounds
-      [@min, @max]
+      [@min.to_f, @max.to_f]
     end
 
     def bound
@@ -121,7 +121,7 @@ module Oscillism
       bpoint = V2D[0.0, 0.0]
       @history.each_with_index do |point, t|
         localx = x + (@x_lens[t] * width)
-        localy = y + (@y_lens[point] * height)
+        localy = -(y + (@y_lens[point] * height))
 
         bpoint.xy = [localx, localy]
         if apoint

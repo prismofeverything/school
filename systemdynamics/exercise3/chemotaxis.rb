@@ -23,18 +23,18 @@ class Chemotaxis
     @gradient = @model.add_parameter('gradient', 0.0)
     @activation_factor = @model.add_parameter('activation factor', 20.0)
     @deactivation_factor = @model.add_parameter('deactivation factor', 0.1)
-    @demethylation_factor = @model.add_parameter('demethylation factor', 0.002)
+    @demethylation_factor = @model.add_parameter('demethylation factor', 0.00002)
     @phosphorylation_factor = @model.add_parameter('phosphorylation factor', 1.0)
-    @cheR = @model.add_parameter('cheR', 1.1)
-    @cheZ = @model.add_parameter('cheZ', 0.1)
+    @cheR = @model.add_parameter('cheR', 20.1)
+    @cheZ = @model.add_parameter('cheZ', 0.05)
 
     @activation.define { (@methylated_cheW.level - @gradient.level) * @activation_factor.level / @active_cheW.level}
     @deactivation.define { @deactivation_factor.level * @active_cheW.level }
     @methylation.define { @cheR.level / @methylated_cheW.level }
-    @demethylation.define { @phosphorylated_cheB.level * @demethylation_factor.level * @methylated_cheW.level }
+    @demethylation.define { @phosphorylated_cheB.level * @demethylation_factor.level * @methylated_cheW.level * @active_cheW.level }
     @cheB_phosphorylation.define { @active_cheW.level * @phosphorylation_factor.level / @phosphorylated_cheB.level }
     @cheB_dephosphorylation.define { @cheZ.level * @phosphorylated_cheB.level }
-    @gradient.define { @model.time_step > 42 ? 1.0 : 0.0 }
+    @gradient.define { @model.time_step > 42 ? 25.0 : 0.0 }
 
     @cell_width = cell_width
     @buffer = cell_width / 6.0
@@ -81,14 +81,15 @@ class Chemotaxis
     puts a['name']
     aparameter = @model.parameter(a['name'])
     iterate(a['steps'], a['from'], a['to']) do |anchor, index|
-      render_parameter_range(render, b['name'], b['steps'], b['from'], b['to'], offset(index))
+      aparameter.assign(anchor)
+      render_parameter_range(render, b['name'], b['steps'], b['from'], b['to'], -offset(index))
     end
   end
 
   def render(r, x, y)
     puts "#{x}, #{y}"
-    @model.history.render_to_field('active cheW', r, 'green', x, y, @cell_width, @cell_width)
-    @model.history.render_to_field('methylated cheW', r, 'red', x, y, @cell_width, @cell_width)
+    @model.history.render_to_field('active cheW', r, 'red', x, y, @cell_width, @cell_width)
+    @model.history.render_to_field('methylated cheW', r, 'green', x, y, @cell_width, @cell_width)
     @model.history.render_to_field('phosphorylated cheB', r, 'blue', x, y, @cell_width, @cell_width)
   end
 
@@ -97,21 +98,25 @@ end
 render = SVGRender[:filename, "chemotaxis.svg", :imagesize, "30cm"]
 
 a = {
-  'name' => 'activation factor',
+  'name' => 'deactivation factor',
   'steps' => 5,
   'from' => 0.01,
-  'to' => 100.0
+  'to' => 0.1
 }
 
 b = {
   'name' => 'demethylation factor',
   'steps' => 5,
-  'from' => 0.001,
-  'to' => 0.01
+  'from' => 0.000005,
+  'to' => 0.00002
 }
 
 chemotaxis = Chemotaxis.new(100)
+
 chemotaxis.render_parameter_matrix(render, a, b)
+
+# chemotaxis.run
+# chemotaxis.render(render, 0, 0)
 
 render.end
 
