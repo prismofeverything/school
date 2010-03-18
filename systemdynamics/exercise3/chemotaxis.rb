@@ -95,25 +95,25 @@ class Chemotaxis
 
 end
 
-render = SVGRender[:filename, "chemotaxis.svg", :imagesize, "30cm"]
+render = SVGRender[:filename, "chemotaxis.svg", :imagesize, "20cm"]
 
 a = {
   'name' => 'deactivation factor',
   'steps' => 5,
   'from' => 0.01,
-  'to' => 0.1
+  'to' => 0.05
 }
 
 b = {
   'name' => 'demethylation factor',
   'steps' => 5,
   'from' => 0.000005,
-  'to' => 0.00002
+  'to' => 0.000025
 }
 
-chemotaxis = Chemotaxis.new(100)
-
-chemotaxis.render_parameter_matrix(render, a, b)
+chemotaxis = Chemotaxis.new(40)
+chemotaxis.render_parameter_range(render, 'demethylation factor', 5, 0.000005, 0.00005, 0)
+# chemotaxis.render_parameter_matrix(render, a, b)
 
 # chemotaxis.run
 # chemotaxis.render(render, 0, 0)

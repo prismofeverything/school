@@ -2,44 +2,44 @@ This is BibTeX, Version 0.99c (Web2C 7.5.7)
 The top-level auxiliary file: chemotaxis.aux
 The style file: plain.bst
 Database file #1: chemotaxis.bib
-You've used 1 entry,
+You've used 2 entries,
             2118 wiz_defined-function locations,
-            503 strings with 4077 characters,
-and the built_in function-call counts, 241 in all, are:
-= -- 20
-> -- 7
+            510 strings with 4218 characters,
+and the built_in function-call counts, 558 in all, are:
+= -- 47
+> -- 30
 < -- 0
-+ -- 4
-- -- 2
-* -- 11
-:= -- 48
-add.period$ -- 3
-call.type$ -- 1
-change.case$ -- 3
++ -- 13
+- -- 10
+* -- 33
+:= -- 105
+add.period$ -- 6
+call.type$ -- 2
+change.case$ -- 9
 chr.to.int$ -- 0
-cite$ -- 1
-duplicate$ -- 12
-empty$ -- 23
-format.name$ -- 2
-if$ -- 48
+cite$ -- 2
+duplicate$ -- 24
+empty$ -- 45
+format.name$ -- 10
+if$ -- 112
 int.to.chr$ -- 0
-int.to.str$ -- 1
-missing$ -- 2
-newline$ -- 8
-num.names$ -- 2
-pop$ -- 7
+int.to.str$ -- 2
+missing$ -- 4
+newline$ -- 13
+num.names$ -- 4
+pop$ -- 17
 preamble$ -- 1
-purify$ -- 3
+purify$ -- 9
 quote$ -- 0
-skip$ -- 6
+skip$ -- 12
 stack$ -- 0
-substring$ -- 6
-swap$ -- 1
+substring$ -- 11
+swap$ -- 2
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 2
+type$ -- 4
 warning$ -- 0
-while$ -- 2
-width$ -- 2
-write$ -- 13
+while$ -- 4
+width$ -- 3
+write$ -- 24

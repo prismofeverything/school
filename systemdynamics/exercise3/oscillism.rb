@@ -126,7 +126,7 @@ module Oscillism
         bpoint.xy = [localx, localy]
         if apoint
           begin
-            render.add(Line[:points, [apoint, bpoint]], Style[:stroke, color, :strokewidth, 3.0])
+            render.add(Line[:points, [apoint, bpoint]], Style[:stroke, color, :strokewidth, 1.0])
           rescue
             puts "had trouble rendering #{[[apoint.x, apoint.y], [bpoint.x, bpoint.y]].inspect}"
           end
