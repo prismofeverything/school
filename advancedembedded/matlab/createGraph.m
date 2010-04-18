@@ -56,6 +56,6 @@ end
 % We add the base to its transpose to make the upper triangle a
 % reflection of the lower one about the empty diagonal, creating a
 % symmetric matrix which ensures the adjacency matrix is undirected.
-adjMatrix = base + base'
+adjMatrix = base + base';
 
 % END CODE
