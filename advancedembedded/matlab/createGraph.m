@@ -25,7 +25,7 @@ function adjMatrix = createGraph(N, R)
 
 % Find the number of elements in the lower triangle, using the
 % formula for triangular numbers.
-triangle = ((N - 1) * N) / 2;
+triangle = @(dim) ((dim - 1) * dim) / 2;
 
 % Find the triangle root of a given number (the inverse of
 % triangle operation defined above).
@@ -40,18 +40,27 @@ root_base = @(choice) floor(triangle_root(choice-1)) + 1;
 % elements from it.  Since these are permuted elements of a range
 % they are guaranteed unique.  These chosen elements will act as 
 % indexes into the lower triangle of the adjacency matrix.
-permuted = randperm(triangle);
+permuted = randperm(triangle(N));
 chosen = permuted(1:R/2);
 
-% Create an empty NxN matrix.
-base = zeros(N);
+% fix_root takes the triangle root precalculated from detriangle
+% below, so that the computation done by root_base does not have to
+% happen twice.
+fix_root = @(choice, root) [root + 1; mod(choice, root) + 1];
 
-% Translate linear index for lower triangle into a row and column
-% to index the adjacency matrix and assign the chosen cell to 1.
-for choice = chosen
-    root = root_base(choice);
-    base(root + 1, mod(choice, root) + 1) = 1;
-end
+% The detriangle function translates from a linear scalar index
+% into the triangle into a 1x2 index into the adjacency matrix.
+detriangle = @(choice) fix_root(choice, root_base(choice));
+
+% Detriangle the chosen indexes to get the 1x2 indexes into the
+% adjacency matrix.
+indexes = [detriangle(chosen)]';
+
+% Represent the edges as a list of R/2 ones.
+edges = [ones(1, R/2)];
+
+% Accumulate the edges at the chosen indexes.
+base = accumarray(indexes, edges, [N N]);
 
 % We add the base to its transpose to make the upper triangle a
 % reflection of the lower one about the empty diagonal, creating a
