@@ -1,21 +1,25 @@
 function grid = bindParticle(grid, index)
-particle = grid.particles(index(1), index(2))
+particle = grid.particles{index(1), index(2)};
 receptors = [3 4 1 2];
 
     function okay = checkDirection(modifier, cardinal)
-    index
-    modifier
     target = index + modifier;
     if (insideGrid(grid, target))
-        other = grid.particles(target(1), target(2))
-        if(~isequal(other, {[]}))
-            self = particle{1}.configuration(cardinal)
-            opposing = other{1}.configuration(receptors(cardinal))
+        other = grid.particles{target(1), target(2)};
+        if(~isequal(other, []))
+            self = particle.configuration(cardinal);
+            opposing = other.configuration(receptors(cardinal));
             if ((~(opposing == 0)) & (opposing + self == 0) & ...
-                ~(isequal(particle{1}.group, other{1}.group)))
-                uber = mergeGroups(particle{1}.group, other{1}.group)
-                particle{1}.group = uber;
-                other{1}.group = uber;
+                ~(isequal(particle.group, other.group)))
+                newGroups = removeGroup(grid.groups, particle.group);
+                newGroups = removeGroup(newGroups, other.group);
+
+                uber = mergeGroups(particle.group, other.group);
+
+                particle.group = uber;
+                grid.particles{index(1), index(2)}.group = uber;
+                grid.particles{target(1), target(2)}.group = uber;
+                grid.groups = cat(2, newGroups, uber);
             end
         end
     end

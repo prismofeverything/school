@@ -18,9 +18,10 @@ for n=1:N
     end
 
     particle = initParticle();
-    grid.particles{position(1), position(2)} = particle;
     group = initGroup(position);
     particle.group = group;
+
+    grid.particles{position(1), position(2)} = particle;
     grid.groups{n} = group;
 
     grid.particleMatrix(position(1), position(2)) = n;
