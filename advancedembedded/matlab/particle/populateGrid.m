@@ -23,12 +23,5 @@ for n=1:N
     particle.group = group;
     grid.groups{n} = group;
 
-    % hack in the creation of groups, for testing
-%     if (mod(n, 2) == 0)
-%         grid.groups{n/2} = mergeGroups(grid.groups{n/2}, group);
-%     else
-%         grid.groups{(n+1)/2} = group;
-%     end
-
     grid.particleMatrix(position(1), position(2)) = n;
 end
