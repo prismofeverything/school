@@ -3,11 +3,9 @@ function grid = initGrid(rowMax, colMax)
 
 grid.dimension = [rowMax, colMax];
 grid.slots = rowMax * colMax;
-grid.particles = {};
+grid.particles = cell(rowMax, colMax);
 grid.groups = {};
 grid.particleMatrix = zeros(rowMax, colMax);
-grid.spaceOpen = @(x, y) grid.particleMatrix(y, x) == 0;
 
-% function how = pathOpen(indexes)
-%     how = 
-% end
+
+

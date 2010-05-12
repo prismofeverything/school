@@ -1,4 +1,4 @@
-function group = initGroup(particle)
+function group = initGroup(particleIndex)
 % initGroup - Create a group with one particle.
 
 % inputs: 
@@ -8,4 +8,5 @@ function group = initGroup(particle)
 %   group - a group is a container of indexes to particles that
 %     have been linked together.  
 
-group.particles = [particle];
+group.indexes = {particleIndex};
+group = boundGroup(group);

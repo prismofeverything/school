@@ -7,19 +7,18 @@ if (N > grid.slots)
     N = grid.slots;
 end
 
-grid.particles = cell(1, N);
 grid.groups = cell(1, N);
 
 for n=1:N
-    grid.particles{n} = initParticle();
-    grid.groups{n} = initGroup(n);
-
+    % find a unique position within the grid, regenerating the
+    % index if there is already a particle in that position.
     position = arrayfun(@randi, grid.dimension);
     while (grid.particleMatrix(position(1), position(2)) > 0)
         position = arrayfun(@randi, grid.dimension);
     end
 
-    grid.particles{n}.position = position;
-    %    grid.particles{n}.group = grid.groups(n);
+    grid.particles{position(1), position(2)} = initParticle();
+    grid.groups{n} = initGroup(position);
+
     grid.particleMatrix(position(1), position(2)) = n;
 end
