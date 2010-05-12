@@ -7,7 +7,7 @@ if (N > grid.slots)
     N = grid.slots;
 end
 
-grid.groups = cell(1, N);
+grid.groups = cell(1, N/2);
 
 for n=1:N
     % find a unique position within the grid, regenerating the
@@ -17,8 +17,18 @@ for n=1:N
         position = arrayfun(@randi, grid.dimension);
     end
 
-    grid.particles{position(1), position(2)} = initParticle();
-    grid.groups{n} = initGroup(position);
+    particle = initParticle();
+    grid.particles{position(1), position(2)} = particle;
+    group = initGroup(position);
+    particle.group = group;
+    grid.groups{n} = group;
+
+    % hack in the creation of groups, for testing
+%     if (mod(n, 2) == 0)
+%         grid.groups{n/2} = mergeGroups(grid.groups{n/2}, group);
+%     else
+%         grid.groups{(n+1)/2} = group;
+%     end
 
     grid.particleMatrix(position(1), position(2)) = n;
 end

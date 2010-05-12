@@ -8,6 +8,6 @@ function group = boundGroup(group)
 %   group - the group with a new bounds assigned.
 
 bounds = findBounds(group.indexes);
-group.dimension = bounds(1)
+group.dim = bounds(1);
 group.row = bounds(2);
 group.col = bounds(3);

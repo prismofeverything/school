@@ -1,3 +1,5 @@
 function rotated = indexesRotated90(group)
 
-rotated = cellfun(@(index) [index(2), (group.dimension + 1) - index(1)], group.indexes);
+swap = @(index) [(index(2)-group.col) + group.row, ...
+                 (group.dim - (index(1)-group.row)) + (group.col-1)];
+rotated = cellfun(swap, group.indexes, 'UniformOutput', 0);
