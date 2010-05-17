@@ -15,7 +15,7 @@ function grid = bindParticles(grid, group)
 % Portland State University
 % -----------------------------
 
-% this function is really just a loop of bindParticle.
+% this function is really just a loop over bindParticle.
 for n=1:length(group.indexes)
     grid = bindParticle(grid, group.indexes{n});
 end

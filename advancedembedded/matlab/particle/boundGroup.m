@@ -13,6 +13,8 @@ function group = boundGroup(group)
 % Portland State University
 % -----------------------------
 
+% call findBounds to discover the bounds and then assign the
+% relevant information to the group.
 bounds = findBounds(group.indexes);
 group.dim = bounds(1);
 group.row = bounds(2);

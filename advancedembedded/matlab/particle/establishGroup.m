@@ -7,7 +7,7 @@ function grid = establishGroup(grid, group)
     
 % outputs:
 %   grid - the grid with the corresponding particles in the group
-%   notified of the new form of the group.
+%   notified of the new group it belongs to.
 
 % ---------------------------------------------------
 % author:  Ryan Spangler
@@ -16,7 +16,10 @@ function grid = establishGroup(grid, group)
 % -----------------------------
 
 for n=1:length(group.indexes)
+    % grab the index.
     index = group.indexes{n};
+
+    % notify the particle at that index that it belongs to a new group.
     grid.particles{index(1), index(2)}.group = group;
 end
 

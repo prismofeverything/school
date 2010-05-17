@@ -26,6 +26,8 @@ if (N > grid.slots)
     N = grid.slots;
 end
 
+% translate the bitstream into a Nx4 matrix to assign the
+% configurations to their corresponding particles.
 bitRows = reshape(configBitstream, 4, N)';
 
 for n=1:N
@@ -52,6 +54,8 @@ for n=1:N
     grid.groups{n} = group;
 end
 
+% get all of the indexes of the particles, in order to do an
+% initial binding.
 indexes = cellfun(@(g) g.indexes{1}, grid.groups, 'UniformOutput', 0);
 
 % bind all of the particles in all of the groups to their neighbors

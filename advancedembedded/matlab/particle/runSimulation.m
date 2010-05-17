@@ -35,8 +35,12 @@ for time=1:T
 
     if (mod(time, 40) == 0)
         gridMatrix = cellfun(@(p) ~(isequal(p, [])), grid.particles);
+
+        % add some padding around the matrix so that it displays correctly.
         gridMatrix = [gridMatrix zeros(length(gridMatrix), 1)];
         gridMatrix = [gridMatrix ; zeros(1, length(gridMatrix))];
+
+        % plot the matrix
         pcolor((gridMatrix * 2) - 1);
         M(time / 40) = getframe();
     end

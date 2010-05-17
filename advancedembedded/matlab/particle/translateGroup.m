@@ -2,6 +2,14 @@ function translation = translateGroup(vector)
 % translateGroup - given a vector, return a function that
 % translates a group according to that vector.
 
+% inputs:
+%   vector - the vector to translate every particle in the group
+%   by.
+
+% outputs:
+%   translation - a function which represents a translation by the
+%   given vector.
+
 % ---------------------------------------------------
 % author:  Ryan Spangler
 % email:  ryan.spangler@gmail.com

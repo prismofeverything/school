@@ -17,8 +17,14 @@ function bounds = findBounds(indexes)
 % Portland State University
 % -----------------------------
 
+% find all of the row values.
 rowspan = cellfun(@(index) index(1), indexes);
+
+% find all of the column values.
 colspan = cellfun(@(index) index(2), indexes);
+
+% determine the dimension of the bounding box for these indexes.
 dimension = max(max(rowspan) - min(rowspan), max(colspan) - min(colspan));
 
+% return the information as a tuple of three values.
 bounds = [dimension + 1, min(rowspan), min(colspan)];
