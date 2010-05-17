@@ -15,6 +15,12 @@ function gridMatrix = runSimulation(xMax, yMax, configBitstream, T)
 %   gridMatrix - a matrix representation of the positions of the
 %   various particles as 1's, with the rest 0's.
 
+% ---------------------------------------------------
+% author:  Ryan Spangler
+% email:  ryan.spangler@gmail.com
+% Portland State University
+% -----------------------------
+
 % create a grid of the specified size.
 grid = initGrid(xMax, yMax);
 
@@ -29,6 +35,8 @@ for time=1:T
 
     if (mod(time, 40) == 0)
         gridMatrix = cellfun(@(p) ~(isequal(p, [])), grid.particles);
+        gridMatrix = [gridMatrix zeros(length(gridMatrix), 1)];
+        gridMatrix = [gridMatrix ; zeros(1, length(gridMatrix))];
         pcolor((gridMatrix * 2) - 1);
         M(time / 40) = getframe();
     end
