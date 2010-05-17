@@ -1,8 +1,24 @@
 function grid = bindParticle(grid, index)
 % bindParticle - bind particle groups adjacent to the given index.
 
+% inputs: 
+%   grid - the grid the particle is a part of.
+%   index - the index at which the particle resides.
+
+% outputs: 
+%   grid - the grid with the given particle bound to whatever
+%   groups surrounding it have particles with complementary values
+%   on the adjacent sides.  The groups the two particles belong to
+%   are merged and the new group is placed into the grid.
+
+% ---------------------------------------------------
+% author:  Ryan Spangler
+% email:  ryan.spangler@gmail.com
+% Portland State University
+% -----------------------------
+
 % find the particle in question.
-particle = grid.particles{index(1), index(2)}
+particle = grid.particles{index(1), index(2)};
 
 % this is the list of opposing indexes into the configurations of
 % the surrounding neighbors of this particle that will be matched
@@ -27,10 +43,10 @@ for cardinal=1:4
     if (insideGrid(grid, target))
 
         % if so, get the particle the target index points to.
-        other = grid.particles{target(1), target(2)}
+        other = grid.particles{target(1), target(2)};
 
         % check to see if the target particle is empty.
-        if(~isequal(other, []))
+        if(~isequal(other, []) && ~isequal(particle, []))
 
             % find the opposing bits of the two particles'
             % configuration

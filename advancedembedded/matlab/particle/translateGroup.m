@@ -2,6 +2,12 @@ function translation = translateGroup(vector)
 % translateGroup - given a vector, return a function that
 % translates a group according to that vector.
 
+% ---------------------------------------------------
+% author:  Ryan Spangler
+% email:  ryan.spangler@gmail.com
+% Portland State University
+% -----------------------------
+
     % define a function that translates a given group along a
     % transformation defined by the original vector.
     function group = translate(group)

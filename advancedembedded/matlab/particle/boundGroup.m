@@ -7,6 +7,12 @@ function group = boundGroup(group)
 % outputs: 
 %   group - the group with a new bounds assigned.
 
+% ---------------------------------------------------
+% author:  Ryan Spangler
+% email:  ryan.spangler@gmail.com
+% Portland State University
+% -----------------------------
+
 bounds = findBounds(group.indexes);
 group.dim = bounds(1);
 group.row = bounds(2);
