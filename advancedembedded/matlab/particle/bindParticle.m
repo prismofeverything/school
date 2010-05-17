@@ -2,7 +2,7 @@ function grid = bindParticle(grid, index)
 % bindParticle - bind particle groups adjacent to the given index.
 
 % find the particle in question.
-particle = grid.particles{index(1), index(2)};
+particle = grid.particles{index(1), index(2)}
 
 % this is the list of opposing indexes into the configurations of
 % the surrounding neighbors of this particle that will be matched
@@ -27,7 +27,7 @@ for cardinal=1:4
     if (insideGrid(grid, target))
 
         % if so, get the particle the target index points to.
-        other = grid.particles{target(1), target(2)};
+        other = grid.particles{target(1), target(2)}
 
         % check to see if the target particle is empty.
         if(~isequal(other, []))
