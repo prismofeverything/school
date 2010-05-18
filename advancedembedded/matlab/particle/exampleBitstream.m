@@ -13,6 +13,10 @@ function configBitstream = exampleBitstream()
 % it is much more difficult to assemble a letter which contains many
 % types of tiles, so minimizing the number of types is desirable.  
 
+% With each set of configuration corresponding to each letter,
+% there is an example run that gives a good optimum of grid size
+% and time steps, along with an example gridMatrix for each.
+
 % ---------------------------------------------------
 % author:  Ryan Spangler
 % email:  ryan.spangler@gmail.com
@@ -32,32 +36,28 @@ r9 = [-12 -13 0 0];
 r10 = [13 0 0 14];
 r11 = [-14 -13 0 0];
 
-rBitstream = [r1 r1 r1 r1 r1 r2 r3 r3 r3 r4 r5 r5 r5 r6 r7 r7 r8 r9 r10 r10 r10 ...
+rBitstream = [r1 r1 r1 r1 r1 r1 r2 r3 r3 r3 r3 r3 r4 r5 r5 r5 r6 r7 r7 r8 r9 r10 r10 r10 ...
               r11 r11 r11];
 
-% rBitstream = [r1 r1 r1 r1 r1 r1 r1 r1 r2 r3 r3 r3 r3 r3 r4 r5 r5 r5 r6 r7 r7 r7 r8 r9 r10 r10 r10 ...
-%               r10 r10 r11 r11 r11 r11 r11 r12];
-
 % here is an example of how to run the simulation with the R bitstream:
-%   gridMatrix = runSimulation(15, 15, rBitstream, 10000);
+%   gridMatrix = runSimulation(14, 14, rBitstream, 15000);
 
 % here is one of the R's the system generated with the above conditions:
 
-%  0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
-%  0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
-%  0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
-%  0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
-%  0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
-%  0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
-%  0 0 0 1 1 1 1 1 1 1 0 0 0 0 0
-%  0 0 0 1 0 0 1 1 1 1 0 0 0 0 0
-%  0 0 0 1 0 0 0 0 1 1 0 0 0 0 0
-%  0 0 0 1 0 1 1 1 1 1 0 0 0 0 0
-%  0 0 0 1 0 0 0 0 1 1 0 0 0 0 0
-%  0 0 0 1 0 0 0 0 0 1 1 0 0 0 0
-%  0 0 0 1 0 0 0 0 0 0 1 1 0 0 0
-%  0 0 0 1 0 0 0 0 0 0 0 1 1 0 0
-%  0 0 0 1 0 0 0 0 0 0 0 0 1 0 0
+%  0 0 0 0 0 0 0 0 0 0 0 0 0 0
+%  0 0 0 0 0 0 0 0 0 0 0 0 0 0
+%  0 0 0 0 0 0 0 0 0 0 0 0 0 0
+%  0 0 0 1 1 1 1 1 1 1 0 0 0 0
+%  0 0 0 1 0 0 0 0 0 1 0 0 0 0
+%  0 0 0 1 0 0 0 0 0 1 0 0 0 0
+%  0 0 0 1 0 0 1 1 1 1 0 0 0 0
+%  0 0 0 1 0 0 0 1 1 0 0 0 0 0
+%  0 0 0 1 0 0 0 0 1 1 0 0 0 0
+%  0 0 0 1 0 0 0 0 0 1 1 0 0 0
+%  0 0 0 0 0 0 0 0 0 0 1 0 0 0
+%  1 0 0 0 0 0 0 0 0 0 0 0 0 0
+%  0 0 0 0 0 0 0 0 0 0 0 0 0 0
+%  0 0 0 0 0 0 0 0 0 0
 
 
 % here are some configuration tiles for K (my middle name is Keith).
@@ -127,9 +127,7 @@ sBitstream = [s1 s1 s1 s2 s3 s4 s4 s5 s5 s5 s5 s6 s6 ...
 
 
 % the full bitstream:
-
-% configBitstream = [rBitstream kBitstream sBitstream];
-configBitstream = rBitstream;
+configBitstream = [rBitstream kBitstream sBitstream];
 
 % This is an example of running the simulation with this bitstream
 % and some ideal conditions:
