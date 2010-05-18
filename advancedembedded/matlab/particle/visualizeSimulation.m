@@ -1,5 +1,8 @@
-function gridMatrix = runSimulation(xMax, yMax, configBitstream, T)
-% runSimulation - top level function for self-assembling particles.
+function gridMatrix = visualizeSimulation(xMax, yMax, configBitstream, T)
+% visualizeSimulation - top level function for self-assembling particles.
+
+% This is the same as runSimulation except that we visualize the
+% evolution of the particle matrix with matlab's pcolor.
 
 % inputs: 
 %   xMax - the maximum rows of the matrix.
@@ -32,6 +35,22 @@ grid = populateGrid(grid, configBitstream);
 for time=1:T
     % run one timestep of the grid.
     grid = runGrid(grid);
+
+    if (mod(time, 40) == 0)
+        gridMatrix = cellfun(@(p) ~(isequal(p, [])), grid.particles);
+
+        if (mod(time, 400) == 0)
+            gridMatrix
+        end
+
+        % add some padding around the matrix so that it displays correctly.
+        gridMatrix = [gridMatrix zeros(length(gridMatrix), 1)];
+        gridMatrix = [gridMatrix ; zeros(1, length(gridMatrix))];
+
+        % plot the matrix
+        pcolor((gridMatrix * 2) - 1);
+        M(time / 40) = getframe();
+    end
 end
 
 % extract the grid matrix from the particle layout.
