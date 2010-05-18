@@ -57,7 +57,7 @@ rBitstream = [r1 r1 r1 r1 r1 r1 r2 r3 r3 r3 r3 r3 r4 r5 r5 r5 r6 r7 r7 r8 r9 r10
 %  0 0 0 0 0 0 0 0 0 0 1 0 0 0
 %  1 0 0 0 0 0 0 0 0 0 0 0 0 0
 %  0 0 0 0 0 0 0 0 0 0 0 0 0 0
-%  0 0 0 0 0 0 0 0 0 0
+%  0 0 0 0 0 0 0 0 0 0 0 0 0 0 
 
 
 % here are some configuration tiles for K (my middle name is Keith).
@@ -133,3 +133,25 @@ configBitstream = [rBitstream kBitstream sBitstream];
 % and some ideal conditions:
 
 % gridMatrix = runSimulation(19, 19, configBitstream, 40000);
+
+% As detailed in example.m, I was not able to achieve all three
+% letters at once, though they work separately.  Here is the
+% closest attempt:
+
+%  0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+%  0 0 0 0 0 1 0 1 0 0 0 0 0 0 0 0
+%  0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+%  0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0
+%  0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0
+%  0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0
+%  0 0 0 0 0 0 0 0 1 0 0 1 0 0 0 0
+%  0 0 1 1 1 1 1 1 1 1 1 1 0 1 1 1
+%  0 1 0 0 0 1 1 0 0 0 1 0 0 1 0 0
+%  0 0 0 0 0 0 1 0 0 1 1 1 0 1 0 0
+%  0 0 0 0 0 1 0 0 0 1 0 1 1 1 0 1
+%  0 0 0 0 0 0 1 0 1 0 0 0 1 1 1 1
+%  1 1 1 1 1 1 0 0 0 0 1 0 0 0 0 1
+%  0 0 0 0 0 1 0 0 0 0 1 1 0 0 1 1
+%  0 0 0 0 0 1 0 0 0 0 0 1 1 1 1 1
+%  0 0 0 1 1 1 0 0 0 0 1 1 0 1 1 0
+

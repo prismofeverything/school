@@ -26,7 +26,7 @@ configBitstream = exampleBitstream();
 % run the simulation with the full bitstream.  visualizeSimulation
 % will use pcolor to display the matrix as a grid of red and blue
 % rectangles.  To run without the visualization, just use runSimulation.
-gridMatrix = visualizeSimulation(16, 16, configBitstream, 20000);
+gridMatrix = visualizeSimulation(16, 16, configBitstream, 40000);
 
 % The results are not entirely ideal.  Though I was able to attain
 % good results for each letter individually, a collection of all
@@ -37,6 +37,26 @@ gridMatrix = visualizeSimulation(16, 16, configBitstream, 20000);
 % period of time I am certain the letters would form, as they form
 % individually, but the runs already take quite a bit of time with
 % 40000 steps, so I have not extended it beyond this.
+
+% Here is the closest example I was able to come up with where you
+% can see the fragments in various states of completion:
+
+%  0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+%  0 0 0 0 0 1 0 1 0 0 0 0 0 0 0 0
+%  0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+%  0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0
+%  0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0
+%  0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0
+%  0 0 0 0 0 0 0 0 1 0 0 1 0 0 0 0
+%  0 0 1 1 1 1 1 1 1 1 1 1 0 1 1 1
+%  0 1 0 0 0 1 1 0 0 0 1 0 0 1 0 0
+%  0 0 0 0 0 0 1 0 0 1 1 1 0 1 0 0
+%  0 0 0 0 0 1 0 0 0 1 0 1 1 1 0 1
+%  0 0 0 0 0 0 1 0 1 0 0 0 1 1 1 1
+%  1 1 1 1 1 1 0 0 0 0 1 0 0 0 0 1
+%  0 0 0 0 0 1 0 0 0 0 1 1 0 0 1 1
+%  0 0 0 0 0 1 0 0 0 0 0 1 1 1 1 1
+%  0 0 0 1 1 1 0 0 0 0 1 1 0 1 1 0
 
 % Regardless, in exampleBitstream.m there are examples of each
 % bitstream on its own, and the resulting gridMatrix for each one.
