@@ -26,7 +26,7 @@ configBitstream = exampleBitstream();
 % run the simulation with the full bitstream.  visualizeSimulation
 % will use pcolor to display the matrix as a grid of red and blue
 % rectangles.  To run without the visualization, just use runSimulation.
-gridMatrix = visualizeSimulation(16, 16, configBitstream, 40000);
+gridMatrix = visualizeSimulation(14, 14, configBitstream, 40000);
 
 % The results are not entirely ideal.  Though I was able to attain
 % good results for each letter individually, a collection of all
