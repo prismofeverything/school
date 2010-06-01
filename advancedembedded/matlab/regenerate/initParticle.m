@@ -72,9 +72,22 @@ particle.state = 1;
 % the behavior function as described above.
 particle.behavior = behavior;
 
-% contact keeps track of the length of the strand this particle is
-% a part of, if it has found a strand yet.
+% contact represents whether or not this particle is connected
+% ultimately to one of the input or output pads.  The value is
+% stored as the length of the strand this particle is
+% a part of, if it has found a strand yet, and zero if it is unconnected.
 particle.contact = 0;
+
+% If a particle is in contact, the signal represents the state that
+% is propagated along the particle strand.  If this particle lies
+% along an input strand, the signal is the input value as detected
+% by the particle that is actually in contact with the input pad.
+% If the particle lies along an output strand, it will be in
+% contact with the output pad, and propagate its signal that way.
+% If the particle is at a junction between three strands it forms
+% the logic gate, and performs whatever logical operation depends
+% upon the two input strands, and sends that signal to the output strand.
+particle.signal = 0;
 
 % A particle can in its lifetime fail, becoming a fault.  This is
 % signified by setting particle.intact = 0.  A faulty particle will

@@ -41,7 +41,7 @@ concentration = homeConcentration;
 
 % give a default motion unless some compelling reason to move
 % elsewhere is found.
-motion = [0 0];
+motion = compassDirections(:, randi(4))';
 
 % initialize the state to the particle's current state.
 state = particle.state;
@@ -69,42 +69,10 @@ for compass=compassDirections
         % for horizontal and -3 is for vertical.
         defectOrientation = -abs(sum(defectSignals .* compass'));
 
-        % assume we are within the grid, and prove otherwise later.
-        withinGrid = 1;
-
         % see if this neighbor is actually the boundary of the medium.
-        if there(1) < 1 | there(1) > grid.rows | ... 
-                there(2) < 1 | there(2) > grid.columns
+        if inBounds(grid, there)
 
-            % we now know that this location is not in the grid.
-            withinGrid = 0;
-
-            % determine if the particle is at an input or output
-            % pad.  The only side that is not significant is the
-            % left side, whereas the top and bottom are inputs and
-            % the right side is an output.
-            if there(2) >= 1
-
-                % bind to the pad by changing to a beacon state and
-                % starting a fledgling gradient.
-                state = -defectOrientation;
-                motion = [0 0];
-                contact = 1;
-                concentration = 2;
-
-            end                
-
-            % continue seeking in case this is actually a toxic
-            % zone along the band of a defect, where the particle
-            % will have to vacate anyway.
-
-        end
-            
-        % only perform the subsequent actions if the given location
-        % actually lies within the grid.
-        if withinGrid
-
-            % find the concentration at this position.
+            % If so, find the concentration at this position.
             surroundingConcentration = grid.concentrations(there(1), there(2));
 
             % determine if another particle occupies this cell.
@@ -151,7 +119,40 @@ for compass=compassDirections
                 concentration = surroundingConcentration - 1;
                 motion = compass';
             end
+
+        % Otherwise there lies outside of the grid.  
+        else
+
+            % determine if the particle is at an input or output
+            % pad.  The only side that is not significant is the
+            % left side, whereas the top and bottom are inputs and
+            % the right side is an output.
+            if there(2) >= 1
+
+                % bind to the pad by changing to a beacon state and
+                % starting a fledgling gradient.
+                state = -defectOrientation;
+                motion = [0 0];
+                contact = 1;
+                concentration = 2;
+
+            end                
+
+            % continue seeking in case this is actually a toxic
+            % zone along the band of a defect, where the particle
+            % will have to vacate anyway.
+
         end
+    end
+
+    % find the ultimate location that the resulting motion implies.
+    going_into = particle.position + motion;
+
+    % if it lies outside of the grid or is occupied by another
+    % particle or a fault, motion is not possible that way.
+    if not(inBounds(grid, going_into)) | not( ...
+            grid.particleMatrix(going_into(1), going_into(2)) == 0)
+        motion = [0 0];
     end
 end
 
