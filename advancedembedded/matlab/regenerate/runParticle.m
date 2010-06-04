@@ -10,8 +10,7 @@ if particle.intact
 
     % apply the behavior of the particle to find the various
     % changes that will be applied to this particle and its cell.
-    [motion, concentration, state, contact] = ... 
-        particle.behavior(particle, grid)
+    [changed, concentration] = particle.behavior(particle, grid);
 
     % set the concentration at the particle's current location to
     % the value determined by the behavior.
@@ -21,18 +20,13 @@ if particle.intact
     % set the particle's new state as decided by the behavior, and
     % set the particle's behavior to the new behavior implied by
     % its new state.
-    grid.particles(chosen).state = state;
-    grid.particles(chosen).behavior = grid.behaviors{state};
+    changed.behavior = grid.behaviors{changed.state};
     
-    % Translate the particles position by the motion vector to find
-    % the new location of the particle.
-    translated = particle.position + motion;
-
-    % Determine if the new translated location actually lies within
-    % the grid.
-    if inBounds(grid, translated)
-        grid.particleMatrix(particle.position(1), particle.position(2))=0;
-        grid.particles(chosen).position = translated;
-        grid.particleMatrix(translated(1), translated(2)) = chosen;
+    if not(all(changed.position == particle.position))
+        grid.particleMatrix(particle.position(1), particle.position(2)) ...
+            = 0;
+        grid.particleMatrix(changed.position(1), changed.position(2)) = chosen;
     end
+
+    grid.particles(chosen) = changed
 end

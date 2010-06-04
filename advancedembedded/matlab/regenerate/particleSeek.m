@@ -1,4 +1,4 @@
-function [motion, concentration, state, contact] = particleSeek(particle, grid)
+function [particle, concentration] = particleSeek(particle, grid)
 % particleSeek - given the set of neighbors, find the next motion.
 
 % There are a number of functions a particle must perform as it is
@@ -15,14 +15,13 @@ function [motion, concentration, state, contact] = particleSeek(particle, grid)
 % emitting particle, attracting others to bind to it.  
 
 % inputs:
-%   neighbors - A list of neighboring particles 
+%   particle - the particle in the seeking state.
+%   grid - the grid as a whole.
 
 % outputs:
-%   motion - a two-element vector containing the next direction the
-%   particle will take.  Since it can only move horizontally or
-%   vertically, only one component may be nonzero at a time.  No
-%   motion is represented as [0 0], up as [-1 0], right as [0 1]
-%   etc.
+%   particle - the particle transformed by the seeking behavior.
+%   concentration - the concentration value the particle leaves
+%   in this location after it has gone.
 
 
 % BEGIN CODE
@@ -30,6 +29,11 @@ function [motion, concentration, state, contact] = particleSeek(particle, grid)
 % represent the four compass directions as offsets from a
 % two-dimensional position in the grid.
 compassDirections = [[-1; 0] [0; 1] [1; 0] [0; -1]];
+
+% keep the compass directions rotated randomly to ensure no direction is
+% favored over any other direction.
+offset = randi(4);
+order = [compassDirections(:, (offset+1):4), compassDirections(:, 1:offset)]
 
 % find the concentration in the grid the particle is currently occupying.
 homeConcentration = grid.concentrations(particle.position(1), ...
@@ -43,12 +47,6 @@ concentration = homeConcentration;
 % elsewhere is found.
 motion = compassDirections(:, randi(4))';
 
-% initialize the state to the particle's current state.
-state = particle.state;
-
-% whether or not the particle attains contact with a pad.
-contact = 0;
-
 % give distinct signals for defects along the horizontal and
 % vertical axes.
 defectSignals = [-2 -3];
@@ -57,7 +55,7 @@ defectSignals = [-2 -3];
 seeking = 1;
 
 % iterate through the four compass directions.
-for compass=compassDirections
+for compass=order
 
     % if we are still deciding what to do...
     if seeking
@@ -80,17 +78,21 @@ for compass=compassDirections
             
             % find if this grid cell is a defect or in a defect band.
             if (surroundingConcentration == -1 | ...
-                surroundingConcentration == defectOrientation) & ...
-                    not(homeConcentration == defectOrientation)
+                surroundingConcentration == defectOrientation)
 
-                % This condition overrides any other discovery, so
-                % terminate the search process and return the new
-                % signal concentration, state and motion direction (away from
-                % the defect, to spread the warning).
-                concentration = defectOrientation;
-                motion = -compass';
-                state = 1;
-                seeking = 0;
+                % if this cell has already been tagged as defective,
+                % move perpendicular to the band implied by the defect.
+                if homeConcentration == defectOrientation
+                    motion = compass' * [0 1 ; 1 0];
+                else
+                    % This condition overrides any other discovery, so
+                    % terminate the search process and return the new
+                    % signal concentration, state and motion direction (away from
+                    % the defect, to spread the warning).
+                    concentration = defectOrientation;
+                    motion = -compass';
+                    seeking = 0;
+                end
 
             % otherwise, if we are next to a particle that is in
             % contact with an input or output pad, affix to it and
@@ -99,17 +101,17 @@ for compass=compassDirections
 
                 % choose the state to align with whether the
                 % neighboring particle is horizontal or vertical.
-                state = -defectOrientation;
+                particle.state = -defectOrientation;
 
                 % stop moving.
                 motion = [0 0];
 
                 % adopt a contact value one greater than the neighbor.
-                contact = grid.particles(other).contact + 1;
+                particle.contact = grid.particles(other).contact + 1;
 
                 % emit a concentration proportional to the length of
                 % the strand.
-                concentration = contact + 1;
+                concentration = particle.contact + 1;
 
             % otherwise see if there is a concentration gradient to follow.
             elseif surroundingConcentration - 1 > concentration
@@ -131,9 +133,9 @@ for compass=compassDirections
 
                 % bind to the pad by changing to a beacon state and
                 % starting a fledgling gradient.
-                state = -defectOrientation;
                 motion = [0 0];
-                contact = 1;
+                particle.state = -defectOrientation;
+                particle.contact = 1;
                 concentration = 2;
 
             end                
@@ -146,13 +148,15 @@ for compass=compassDirections
     end
 
     % find the ultimate location that the resulting motion implies.
-    going_into = particle.position + motion;
+    going_into = particle.position + motion
 
     % if it lies outside of the grid or is occupied by another
     % particle or a fault, motion is not possible that way.
-    if not(inBounds(grid, going_into)) | not( ...
-            grid.particleMatrix(going_into(1), going_into(2)) == 0)
-        motion = [0 0];
+    if inBounds(grid, going_into) & ...
+       (grid.particleMatrix(going_into(1), going_into(2)) == 0)
+
+        % update the particle with its new position.
+        particle.position = going_into;
     end
 end
 
