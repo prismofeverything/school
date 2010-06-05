@@ -1,4 +1,4 @@
-function [particle, concentration] = particleSeek(particle, grid)
+function [particle, concentrations] = particleSeek(particle, grid)
 % particleSeek - given the set of neighbors, find the next motion.
 
 % There are a number of functions a particle must perform as it is
@@ -20,7 +20,7 @@ function [particle, concentration] = particleSeek(particle, grid)
 
 % outputs:
 %   particle - the particle transformed by the seeking behavior.
-%   concentration - the concentration value the particle leaves
+%   concentrations - the concentration values the particle leaves
 %   in this location after it has gone.
 
 
@@ -36,12 +36,18 @@ offset = randi(4);
 order = [compassDirections(:, (offset+1):4), compassDirections(:, 1:offset)];
 
 % find the concentration in the grid the particle is currently occupying.
-homeConcentration = grid.concentrations(particle.position(1), ...
-                                        particle.position(2));
+dim = size(grid.concentrations);
+homeConcentrations = reshape(... 
+    grid.concentrations(particle.position(1), particle.position(2), ...
+                        :), 1, dim(3))
 
-% the ultimate value for concentration, initialized to be unchanged
-% from its current value.
-concentration = homeConcentration;
+homeConcentrations = particleConcentrations(grid, particle.position);
+
+% the ultimate value for concentrations, initialized to be unchanged
+% from its current value.  We need a separate value here from
+% homeConcentrations because we will be modifying concentrations
+% while still needing to know what the original values were.
+concentrations = homeConcentrations;
 
 % give a default motion unless some compelling reason to move
 % elsewhere is found.
@@ -71,28 +77,28 @@ for compass=order
         if inBounds(grid, there)
 
             % If so, find the concentration at this position.
-            surroundingConcentration = grid.concentrations(there(1), there(2));
+            surroundingConcentrations = particleConcentrations(grid, there);
 
             % determine if another particle occupies this cell.
             other = grid.particleMatrix(there(1), there(2));
             
             % find if this grid cell is a defect or in a defect band.
-            if (surroundingConcentration == -1 | ...
-                surroundingConcentration == defectOrientation)
+            if (surroundingConcentrations(7+defectOrientation) == -1 | ...
+                surroundingConcentrations(7+defectOrientation) == defectOrientation)
 
                 % if this cell has already been tagged as defective,
                 % move perpendicular to the band implied by the defect.
-                if homeConcentration == defectOrientation
+                if homeConcentrations(7+defectOrientation) == defectOrientation
                     motion = compass' * [0 1 ; 1 0];
                 else
                     motion = -compass';
-                    seeking = 0;
                 end
 
                 % This condition overrides any other discovery, so
                 % terminate the search process and return the new
                 % motion and concentration.
-                concentration = defectOrientation;
+                concentrations(7+defectOrientation) = defectOrientation;
+                seeking = 0;
 
             % otherwise, if we are next to a particle that is in
             % contact with an input or output pad, affix to it and
@@ -111,14 +117,16 @@ for compass=order
 
                 % emit a concentration proportional to the length of
                 % the strand.
-                concentration = particle.contact + 1;
+                concentrations(particle.state) = particle.contact*12;
 
             % otherwise see if there is a concentration gradient to follow.
-            elseif surroundingConcentration - 1 > concentration
+            elseif surroundingConcentrations(-defectOrientation) - ...
+                    1 > concentrations(-defectOrientation)
 
                 % if so, seek the highest point and mark the current
                 % position with one concentration level lower.
-                concentration = surroundingConcentration - 1;
+                concentrations(-defectOrientation) = ... 
+                    surroundingConcentrations(-defectOrientation) - 1;
                 motion = compass';
             end
 
@@ -136,7 +144,7 @@ for compass=order
                 motion = [0 0];
                 particle.state = -defectOrientation;
                 particle.contact = 1;
-                concentration = 2;
+                concentrations(-defectOrientation) = 12;
                 seeking = 0;
 
             end                

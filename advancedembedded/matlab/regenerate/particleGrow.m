@@ -1,4 +1,4 @@
-function [particle, concentration] = particleGrow(particle, grid)
+function [particle, concentrations] = particleGrow(particle, grid)
 % particleGrow - grow a strand of particles in a direction given by
 % the state.
 
@@ -14,12 +14,11 @@ offset = randi(4);
 order = [compassDirections(:, (offset+1):4), compassDirections(:, 1:offset)];
 
 % find the concentration in the grid the particle is currently occupying.
-homeConcentration = grid.concentrations(particle.position(1), ...
-                                        particle.position(2));
+homeConcentrations = particleConcentrations(grid, particle.position);
 
 % the ultimate value for concentration, initialized to be unchanged
 % from its current value.
-concentration = homeConcentration;
+concentrations = homeConcentrations;
 
 % give distinct signals for defects along the horizontal and
 % vertical axes.
@@ -41,26 +40,33 @@ for compass=order
     if inBounds(grid, there)
 
         % If so, find the concentration at this position.
-        surroundingConcentration = grid.concentrations(there(1), there(2));
+        surroundingConcentrations = particleConcentrations(grid, there);
 
         % determine if another particle occupies this cell.
         other = grid.particleMatrix(there(1), there(2));
         
         if other > 0
+
             neighbor = grid.particles(other);
             if neighbor.contact > 0
                 contacts = contacts + 1;
             end
+
         end
         
         if (particle.state == -defectOrientation)
-            if (surroundingConcentration == defectOrientation) | ...
-               (surroundingConcentration == -1)
+
+            if (surroundingConcentrations(7+defectOrientation) == defectOrientation) | ...
+                    (surroundingConcentrations(7+defectOrientation) == -1) 
+
                 particle.state = 1;
-                concentration = defectOrientation;
+                concentrations(7+defectOrientation) = defectOrientation;
                 motion = compass' * [0 1 ; 1 0];
+
             elseif other == 0
-                concentration = particle.contact + 1;
+
+                concentrations(-defectOrientation) = particle.contact * 12;
+
             end
         end
     else

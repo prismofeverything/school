@@ -10,12 +10,14 @@ if particle.intact
 
     % apply the behavior of the particle to find the various
     % changes that will be applied to this particle and its cell.
-    [changed, concentration] = particle.behavior(particle, grid);
+    % The concentrations are a structure of defect concentration and
+    % terminal concentration.
+    [changed, concentrations] = particle.behavior(particle, grid);
 
     % set the concentration at the particle's current location to
     % the value determined by the behavior.
-    grid.concentrations(particle.position(1), particle.position(2)) ...
-        = concentration;
+    grid.concentrations(particle.position(1), particle.position(2), ...
+                        :) = concentrations;
 
     % set the particle's new state as decided by the behavior, and
     % set the particle's behavior to the new behavior implied by

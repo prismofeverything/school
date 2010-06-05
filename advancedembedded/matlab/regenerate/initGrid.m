@@ -59,7 +59,7 @@ grid.output_pad = 0;
 % to an input or output pad and are searching for a connection to
 % the rest of the circuit.  Unconnected particles will follow the
 % concentration gradient in search of a budding circuit to join.
-grid.concentrations = zeros(rows, columns);
+grid.concentrations = zeros(rows, columns, 5);
 
 % The particle matrix is a matrix containing indexes to the
 % particle that occupies that cell in the grid.  Since each
@@ -83,7 +83,7 @@ grid.behaviors = behaviors;
 for row=1:rows
     for column=1:columns
         if (rand(1) < defectRate)
-            grid.concentrations(row, column) = -1;
+            grid.concentrations(row, column, 4:5) = [-1 -1];
             grid.particleMatrix(row, column) = -1;
             grid.defects = grid.defects + 1;
         end
