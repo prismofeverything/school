@@ -2,7 +2,7 @@ function grid = runParticle(grid, chosen)
 % runParticle - run the grid for the chosen particle.
 
 % find the particle given by the chosen index.
-particle = grid.particles(chosen)
+particle = grid.particles(chosen);
 
 % particles which are no longer intact through simulated transient
 % fault are ignored. 
@@ -28,5 +28,17 @@ if particle.intact
         grid.particleMatrix(changed.position(1), changed.position(2)) = chosen;
     end
 
-    grid.particles(chosen) = changed
+    grid.particles(chosen) = changed;
+
+
+
+
+    % testing
+    particle
+    changed
+    grid.particleMatrix
+    grid.concentrations
+
+
+
 end

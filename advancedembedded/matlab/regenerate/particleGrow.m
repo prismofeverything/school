@@ -11,7 +11,7 @@ compassDirections = [[-1; 0] [0; 1] [1; 0] [0; -1]];
 % keep the compass directions rotated randomly to ensure no direction is
 % favored over any other direction.
 offset = randi(4);
-order = [compassDirections(:, (offset+1):4), compassDirections(:, 1:offset)]
+order = [compassDirections(:, (offset+1):4), compassDirections(:, 1:offset)];
 
 % find the concentration in the grid the particle is currently occupying.
 homeConcentration = grid.concentrations(particle.position(1), ...

@@ -33,7 +33,7 @@ compassDirections = [[-1; 0] [0; 1] [1; 0] [0; -1]];
 % keep the compass directions rotated randomly to ensure no direction is
 % favored over any other direction.
 offset = randi(4);
-order = [compassDirections(:, (offset+1):4), compassDirections(:, 1:offset)]
+order = [compassDirections(:, (offset+1):4), compassDirections(:, 1:offset)];
 
 % find the concentration in the grid the particle is currently occupying.
 homeConcentration = grid.concentrations(particle.position(1), ...
@@ -45,7 +45,7 @@ concentration = homeConcentration;
 
 % give a default motion unless some compelling reason to move
 % elsewhere is found.
-motion = compassDirections(:, randi(4))';
+motion = compassDirections(:, randi(4))'
 
 % give distinct signals for defects along the horizontal and
 % vertical axes.
@@ -85,14 +85,14 @@ for compass=order
                 if homeConcentration == defectOrientation
                     motion = compass' * [0 1 ; 1 0];
                 else
-                    % This condition overrides any other discovery, so
-                    % terminate the search process and return the new
-                    % signal concentration, state and motion direction (away from
-                    % the defect, to spread the warning).
-                    concentration = defectOrientation;
                     motion = -compass';
                     seeking = 0;
                 end
+
+                % This condition overrides any other discovery, so
+                % terminate the search process and return the new
+                % motion and concentration.
+                concentration = defectOrientation;
 
             % otherwise, if we are next to a particle that is in
             % contact with an input or output pad, affix to it and
@@ -129,7 +129,7 @@ for compass=order
             % pad.  The only side that is not significant is the
             % left side, whereas the top and bottom are inputs and
             % the right side is an output.
-            if there(2) >= 1
+            if not(compass(2) == -1)
 
                 % bind to the pad by changing to a beacon state and
                 % starting a fledgling gradient.
@@ -137,6 +137,7 @@ for compass=order
                 particle.state = -defectOrientation;
                 particle.contact = 1;
                 concentration = 2;
+                seeking = 0;
 
             end                
 
@@ -146,18 +147,18 @@ for compass=order
 
         end
     end
+end
 
-    % find the ultimate location that the resulting motion implies.
-    going_into = particle.position + motion
+% find the ultimate location that the resulting motion implies.
+going_into = particle.position + motion
 
-    % if it lies outside of the grid or is occupied by another
-    % particle or a fault, motion is not possible that way.
-    if inBounds(grid, going_into) & ...
-       (grid.particleMatrix(going_into(1), going_into(2)) == 0)
+% if it lies outside of the grid or is occupied by another
+% particle or a fault, motion is not possible that way.
+if inBounds(grid, going_into) & ...
+        (grid.particleMatrix(going_into(1), going_into(2)) == 0)
 
-        % update the particle with its new position.
-        particle.position = going_into;
-    end
+    % update the particle with its new position.
+    particle.position = going_into;
 end
 
 % END CODE
