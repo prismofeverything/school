@@ -39,8 +39,6 @@ if particle.intact
     particle
     changed
     grid.particleMatrix
-    grid.concentrations
-
-
+    grid.concentrations(:, :, 2:3) + grid.concentrations(:, :, 4:5)
 
 end

@@ -14,11 +14,15 @@ offset = randi(4);
 order = [compassDirections(:, (offset+1):4), compassDirections(:, 1:offset)];
 
 % find the concentration in the grid the particle is currently occupying.
-homeConcentrations = particleConcentrations(grid, particle.position);
+home = particleConcentrations(grid, particle.position);
+
+% particle does not move in this state unless a defect
+% concentration is sensed.
+motion = [0 0];
 
 % the ultimate value for concentration, initialized to be unchanged
 % from its current value.
-concentrations = homeConcentrations;
+concentrations = home;
 
 % give distinct signals for defects along the horizontal and
 % vertical axes.
@@ -34,13 +38,13 @@ for compass=order
 
     % what the defect signal value will be along this axis.  -2 is
     % for horizontal and -3 is for vertical.
-    defectOrientation = -abs(sum(defectSignals .* compass'));
+    orientation = -abs(sum(defectSignals .* compass'));
 
     % see if this neighbor is actually the boundary of the medium.
     if inBounds(grid, there)
 
         % If so, find the concentration at this position.
-        surroundingConcentrations = particleConcentrations(grid, there);
+        surrounding = particleConcentrations(grid, there);
 
         % determine if another particle occupies this cell.
         other = grid.particleMatrix(there(1), there(2));
@@ -54,24 +58,61 @@ for compass=order
 
         end
         
-        if (particle.state == -defectOrientation)
+        if (particle.state == -orientation)
 
-            if (surroundingConcentrations(7+defectOrientation) == defectOrientation) | ...
-                    (surroundingConcentrations(7+defectOrientation) == -1) 
+            % if the surrounding concentrations show this position
+            % lies in a defect band
+            if (surrounding(7+orientation) == orientation) ...
+                    | (surrounding(7+orientation) == -1)
 
+                % abandon this post and continue seeking.
                 particle.state = 1;
-                concentrations(7+defectOrientation) = defectOrientation;
+                particle.contact = 0;
+                concentrations(7+orientation) = orientation;
+                concentrations(-orientation) = 0;
                 motion = compass' * [0 1 ; 1 0];
+                seeking = 0;
 
-            elseif other == 0
+            % if the surrounding concentration is higher than
+            % this particle is producing on its own.
+            elseif (other == 0 & surrounding(-orientation) ...
+                    > home(-orientation))
 
-                concentrations(-defectOrientation) = particle.contact * 12;
+                % abandon this post and notify any particles
+                % further down the chain.
+                particle.state = 1;
+                particle.contact = 0;
+                concentrations(-orientation) = surrounding(-orientation) ...
+                    - 1;
+                motion = compass' * [0 1 ; 1 0];
+                seeking = 0;
+
+            elseif other > 0
+
+                
+
+            else
+
+                concentrations(-orientation) = particle.contact * 12;
 
             end
         end
     else
         
     end
+
+end
+
+% find the ultimate location that the resulting motion implies.
+going_into = particle.position + motion;
+
+% if it lies outside of the grid or is occupied by another
+% particle or a fault, motion is not possible that way.
+if inBounds(grid, going_into) & ...
+        (grid.particleMatrix(going_into(1), going_into(2)) == 0)
+
+    % update the particle with its new position.
+    particle.position = going_into;
 end
 
 % END CODE

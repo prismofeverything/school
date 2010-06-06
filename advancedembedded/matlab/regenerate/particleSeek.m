@@ -37,21 +37,21 @@ order = [compassDirections(:, (offset+1):4), compassDirections(:, 1:offset)];
 
 % find the concentration in the grid the particle is currently occupying.
 dim = size(grid.concentrations);
-homeConcentrations = reshape(... 
+home = reshape(... 
     grid.concentrations(particle.position(1), particle.position(2), ...
                         :), 1, dim(3))
 
-homeConcentrations = particleConcentrations(grid, particle.position);
+home = particleConcentrations(grid, particle.position);
 
 % the ultimate value for concentrations, initialized to be unchanged
 % from its current value.  We need a separate value here from
-% homeConcentrations because we will be modifying concentrations
+% home because we will be modifying concentrations
 % while still needing to know what the original values were.
-concentrations = homeConcentrations;
+concentrations = home;
 
 % give a default motion unless some compelling reason to move
 % elsewhere is found.
-motion = compassDirections(:, randi(4))'
+motion = compassDirections(:, randi(4))';
 
 % give distinct signals for defects along the horizontal and
 % vertical axes.
@@ -59,6 +59,12 @@ defectSignals = [-2 -3];
 
 % can be set to 0 to terminate processing by this particle.
 seeking = 1;
+
+% this is flipped when the particle finds somewhere to attach to.
+attached = 0;
+
+% signifies a defect surrounds this particle.
+defect = 0;
 
 % iterate through the four compass directions.
 for compass=order
@@ -71,43 +77,54 @@ for compass=order
 
         % what the defect signal value will be along this axis.  -2 is
         % for horizontal and -3 is for vertical.
-        defectOrientation = -abs(sum(defectSignals .* compass'));
+        orientation = -abs(sum(defectSignals .* compass'));
 
         % see if this neighbor is actually the boundary of the medium.
         if inBounds(grid, there)
 
             % If so, find the concentration at this position.
-            surroundingConcentrations = particleConcentrations(grid, there);
+            surrounding = particleConcentrations(grid, there);
 
             % determine if another particle occupies this cell.
             other = grid.particleMatrix(there(1), there(2));
             
             % find if this grid cell is a defect or in a defect band.
-            if (surroundingConcentrations(7+defectOrientation) == -1 | ...
-                surroundingConcentrations(7+defectOrientation) == defectOrientation)
+            if (surrounding(7+orientation) == -1 ...
+                | surrounding(7+orientation) == orientation)
+
+                % broadcast defect
+                defect = 1;
 
                 % if this cell has already been tagged as defective,
                 % move perpendicular to the band implied by the defect.
-                if homeConcentrations(7+defectOrientation) == defectOrientation
+                if home(7+orientation) == orientation
                     motion = compass' * [0 1 ; 1 0];
                 else
+                    % This condition overrides any other discovery, so
+                    % terminate the search process and return the new
+                    % motion and concentration.
                     motion = -compass';
+                    seeking = 0;
                 end
 
-                % This condition overrides any other discovery, so
-                % terminate the search process and return the new
-                % motion and concentration.
-                concentrations(7+defectOrientation) = defectOrientation;
-                seeking = 0;
+                concentrations(7+orientation) = orientation;
+                concentrations(particle.state) = 0;
+                particle.state = 1;
+                particle.contact = 0;
 
             % otherwise, if we are next to a particle that is in
             % contact with an input or output pad, affix to it and
             % take on the role of the terminal of the strand.
-            elseif other > 0 & grid.particles(other).state == -defectOrientation
+            elseif (other > 0) ... 
+                    & (grid.particles(other).state == -orientation) ...
+                    & (home(-orientation) < (surrounding(-orientation)))
+
+                % signify the particle is attached.
+                attached = 1
 
                 % choose the state to align with whether the
                 % neighboring particle is horizontal or vertical.
-                particle.state = -defectOrientation;
+                particle.state = -orientation;
 
                 % stop moving.
                 motion = [0 0];
@@ -120,14 +137,23 @@ for compass=order
                 concentrations(particle.state) = particle.contact*12;
 
             % otherwise see if there is a concentration gradient to follow.
-            elseif surroundingConcentrations(-defectOrientation) - ...
-                    1 > concentrations(-defectOrientation)
+            elseif not(attached) 
+                for gradient=2:3
+                    if surrounding(gradient) ...
+                            > concentrations(gradient)
 
-                % if so, seek the highest point and mark the current
-                % position with one concentration level lower.
-                concentrations(-defectOrientation) = ... 
-                    surroundingConcentrations(-defectOrientation) - 1;
-                motion = compass';
+                        % if so, seek the highest point and mark the current
+                        % position with one concentration level lower.
+                        concentrations(gradient) = ... 
+                            surrounding(gradient) - 1;
+                        motion = compass';
+
+                    elseif (surrounding(gradient) ... 
+                            < concentrations(gradient) - 1) ... 
+                            & (other == 0)
+                        motion = compass';
+                    end
+                end
             end
 
         % Otherwise there lies outside of the grid.  
@@ -136,17 +162,25 @@ for compass=order
             % determine if the particle is at an input or output
             % pad.  The only side that is not significant is the
             % left side, whereas the top and bottom are inputs and
-            % the right side is an output.
-            if not(compass(2) == -1)
+            % the right side is an output.  Only attach if there is
+            % no pre-established concentration in this location.
+            if not(defect) & not(compass(2) == -1) ...
+                    & not(home(2)) & not(home(3))
+
+                attached = 1;
 
                 % bind to the pad by changing to a beacon state and
                 % starting a fledgling gradient.
                 motion = [0 0];
-                particle.state = -defectOrientation;
+                particle.state = -orientation;
                 particle.contact = 1;
-                concentrations(-defectOrientation) = 12;
+                concentrations(-orientation) = 12;
                 seeking = 0;
 
+            else
+                away = 1
+
+                motion = -compass';
             end                
 
             % continue seeking in case this is actually a toxic
@@ -157,8 +191,9 @@ for compass=order
     end
 end
 
+
 % find the ultimate location that the resulting motion implies.
-going_into = particle.position + motion
+going_into = particle.position + motion;
 
 % if it lies outside of the grid or is occupied by another
 % particle or a fault, motion is not possible that way.
