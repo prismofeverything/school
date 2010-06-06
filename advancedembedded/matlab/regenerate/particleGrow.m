@@ -31,6 +31,8 @@ defectSignals = [-2 -3];
 % keep track of how many contacts this particle has.
 contacts = 0;
 
+inputs = 0;
+
 % iterate through the four compass directions.
 for compass=order
     % find the offset to the position in this compass direction.
@@ -40,7 +42,7 @@ for compass=order
     % for horizontal and -3 is for vertical.
     orientation = -abs(sum(defectSignals .* compass'));
 
-    % see if this neighbor is actually the boundary of the medium.
+    % see if this neighbor is actually in the boundary of the medium.
     if inBounds(grid, there)
 
         % If so, find the concentration at this position.
@@ -69,7 +71,6 @@ for compass=order
                 particle.state = 1;
                 particle.contact = 0;
                 concentrations(7+orientation) = orientation;
-                concentrations(-orientation) = 0;
                 motion = compass' * [0 1 ; 1 0];
                 seeking = 0;
 
@@ -87,13 +88,44 @@ for compass=order
                 motion = compass' * [0 1 ; 1 0];
                 seeking = 0;
 
+            elseif other == 0
+                
+                concentrations(-orientation) = particle.contact * 12;
+
             elseif other > 0
 
-                
+                inputs = inputs + 1;
+
+                neighbor = grid.particles(other);
+
+                if particle.contact < neighbor.contact - 1
+                    particle.contact = neighbor.contact - 1;
+                end
+
+                if (particle.state == 3 ...
+                    & (particle.contact < neighbor.contact)) ... 
+                        | (particle.state == 2 ...
+                           & (particle.contact > neighbor.contact))
+
+                    particle.signal = neighbor.signal;
+
+                end
 
             else
 
-                concentrations(-orientation) = particle.contact * 12;
+                
+
+            end
+        elseif particle.contact > 0 & other > 0
+            neighbor = grid.particles(other);
+            if neighbor.contact > 0 & not(neighbor.state == particle.state)
+
+                % turn into the branching logic gate
+                particle.state = 4;
+                concentrations(2) = particle.contact * 12;
+                concentrations(3) = particle.contact * 12;
+                motion = [0 0];
+                seeking = 0;
 
             end
         end
@@ -101,6 +133,10 @@ for compass=order
         
     end
 
+end
+
+if inputs > 1
+    
 end
 
 % find the ultimate location that the resulting motion implies.

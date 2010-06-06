@@ -1,7 +1,7 @@
 function grid = runSimulation(T)
 % runSimulation - top level function for particle grid.
 
-behaviors = {@particleSeek, @particleGrow, @particleGrow};
+behaviors = {@particleSeek, @particleGrow, @particleGrow, @particleGate};
 
 % create a 12x12 grid.
 grid = initGrid(12, 12, behaviors);

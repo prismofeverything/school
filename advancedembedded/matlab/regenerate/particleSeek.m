@@ -79,7 +79,7 @@ for compass=order
         % for horizontal and -3 is for vertical.
         orientation = -abs(sum(defectSignals .* compass'));
 
-        % see if this neighbor is actually the boundary of the medium.
+        % see if this neighbor is actually in the boundary of the medium.
         if inBounds(grid, there)
 
             % If so, find the concentration at this position.
@@ -90,54 +90,60 @@ for compass=order
             
             % find if this grid cell is a defect or in a defect band.
             if (surrounding(7+orientation) == -1 ...
-                | surrounding(7+orientation) == orientation)
+                | (surrounding(7+orientation) == orientation)) ...
+                & not(home(7+orientation) == orientation)
 
                 % broadcast defect
                 defect = 1;
 
-                % if this cell has already been tagged as defective,
-                % move perpendicular to the band implied by the defect.
-                if home(7+orientation) == orientation
-                    motion = compass' * [0 1 ; 1 0];
-                else
+%                 % if this cell has already been tagged as defective,
+%                 % move perpendicular to the band implied by the defect.
+%                 if home(7+orientation) == orientation
+%                     motion = compass' * [0 1 ; 1 0];
+%                 else
                     % This condition overrides any other discovery, so
                     % terminate the search process and return the new
                     % motion and concentration.
                     motion = -compass';
                     seeking = 0;
-                end
+%                 end
 
                 concentrations(7+orientation) = orientation;
-                concentrations(particle.state) = 0;
                 particle.state = 1;
                 particle.contact = 0;
 
             % otherwise, if we are next to a particle that is in
             % contact with an input or output pad, affix to it and
             % take on the role of the terminal of the strand.
-            elseif (other > 0) ... 
-                    & (grid.particles(other).state == -orientation) ...
+            elseif (other > 0) 
+                neighbor = grid.particles(other);
+
+                if ((neighbor.state == -orientation) ...
+                    | (neighbor.state == 4 & not(compass(2) == 1))) ...
                     & (home(-orientation) < (surrounding(-orientation)))
 
-                % signify the particle is attached.
-                attached = 1
+                    % signify the particle is attached.
+                    attached = 1
 
-                % choose the state to align with whether the
-                % neighboring particle is horizontal or vertical.
-                particle.state = -orientation;
+                    % choose the state to align with whether the
+                    % neighboring particle is horizontal or vertical.
+                    particle.state = -orientation;
 
-                % stop moving.
-                motion = [0 0];
+                    % stop moving.
+                    motion = [0 0];
 
-                % adopt a contact value one greater than the neighbor.
-                particle.contact = grid.particles(other).contact + 1;
+                    % adopt a contact value one greater than the neighbor.
+                    particle.contact = grid.particles(other).contact + 1;
 
-                % emit a concentration proportional to the length of
-                % the strand.
-                concentrations(particle.state) = particle.contact*12;
+                    % emit a concentration proportional to the length of
+                    % the strand.
+                    concentrations(particle.state) = particle.contact*12;
 
+                end
+
+            end
             % otherwise see if there is a concentration gradient to follow.
-            elseif not(attached) 
+            if not(attached) 
                 for gradient=2:3
                     if surrounding(gradient) ...
                             > concentrations(gradient)
