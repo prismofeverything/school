@@ -96,21 +96,14 @@ for compass=order
                 % broadcast defect
                 defect = 1;
 
-%                 % if this cell has already been tagged as defective,
-%                 % move perpendicular to the band implied by the defect.
-%                 if home(7+orientation) == orientation
-%                     motion = compass' * [0 1 ; 1 0];
-%                 else
-                    % This condition overrides any other discovery, so
-                    % terminate the search process and return the new
-                    % motion and concentration.
-                    motion = -compass';
-                    seeking = 0;
-%                 end
-
+                % This condition overrides any other discovery, so
+                % terminate the search process and return the new
+                % motion and concentration.
+                motion = -compass';
                 concentrations(7+orientation) = orientation;
                 particle.state = 1;
                 particle.contact = 0;
+                seeking = 0;
 
             % otherwise, if we are next to a particle that is in
             % contact with an input or output pad, affix to it and
@@ -119,7 +112,7 @@ for compass=order
                 neighbor = grid.particles(other);
 
                 if ((neighbor.state == -orientation) ...
-                    | (neighbor.state == 4 & not(compass(2) == 1))) ...
+                    | (neighbor.state == 4)) ...
                     & (home(-orientation) < (surrounding(-orientation)))
 
                     % signify the particle is attached.
@@ -144,21 +137,22 @@ for compass=order
             end
             % otherwise see if there is a concentration gradient to follow.
             if not(attached) 
-                for gradient=2:3
-                    if surrounding(gradient) ...
-                            > concentrations(gradient)
 
-                        % if so, seek the highest point and mark the current
-                        % position with one concentration level lower.
-                        concentrations(gradient) = ... 
-                            surrounding(gradient) - 1;
-                        motion = compass';
+                gradient=randi(2)+1;
 
-                    elseif (surrounding(gradient) ... 
-                            < concentrations(gradient) - 1) ... 
-                            & (other == 0)
-                        motion = compass';
-                    end
+                if surrounding(gradient) ...
+                        > concentrations(gradient)
+
+                    % if so, seek the highest point and mark the current
+                    % position with one concentration level lower.
+                    concentrations(gradient) = ... 
+                        surrounding(gradient) - 1;
+                    motion = compass';
+
+                elseif (surrounding(gradient) ... 
+                        < concentrations(gradient) - 1) ... 
+                        & (other == 0)
+                    motion = compass';
                 end
             end
 
@@ -184,9 +178,9 @@ for compass=order
                 seeking = 0;
 
             else
-                away = 1
 
                 motion = -compass';
+
             end                
 
             % continue seeking in case this is actually a toxic

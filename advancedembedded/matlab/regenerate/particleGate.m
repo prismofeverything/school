@@ -63,6 +63,10 @@ for compass=order
 
             neighbor = grid.particles(other);
 
+            if neighbor.contact > 0
+                contacts = contacts + 1;
+            end
+
             if neighbor.state == 2
                 inputs = inputs + 1;
                 input(inputs) = neighbor.signal;
@@ -72,10 +76,15 @@ for compass=order
     end
 end
 
-% simple conversion from binary.
+% simple conversion from two-digit binary.
 truth = input(1) + (2 * input(2));
 
 % use truth as an index into the logic function.  In the case of
 % 7, the result is zero only if both inputs are true, ie the 2^3
 % bit is not part of the binary representation of 7.  
 particle.signal = bitand(2^truth, logic) > 0;
+
+if contacts > 2
+    concentrations(2:3) = 0;
+    particle.contact = 25;
+end

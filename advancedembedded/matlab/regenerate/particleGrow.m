@@ -102,6 +102,9 @@ for compass=order
                     particle.contact = neighbor.contact - 1;
                 end
 
+                particle
+                neighbor
+                
                 if (particle.state == 3 ...
                     & (particle.contact < neighbor.contact)) ... 
                         | (particle.state == 2 ...
@@ -121,22 +124,34 @@ for compass=order
             if neighbor.contact > 0 & not(neighbor.state == particle.state)
 
                 % turn into the branching logic gate
+                concentrations(2:3) = particle.contact * 12;
+
                 particle.state = 4;
-                concentrations(2) = particle.contact * 12;
-                concentrations(3) = particle.contact * 12;
+
                 motion = [0 0];
                 seeking = 0;
 
             end
         end
-    else
-        
+
+    elseif particle.state == -orientation
+            
+        if particle.state == 2
+
+            if compass(1) > 0
+                particle.signal = grid.input_pads(2);
+            else
+                particle.signal = grid.input_pads(1);
+            end
+            
+        end
+
     end
 
 end
 
-if inputs > 1
-    
+if contacts == 2 & particle.state < 4
+    concentrations(particle.state) = 0;
 end
 
 % find the ultimate location that the resulting motion implies.
