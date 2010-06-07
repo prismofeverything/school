@@ -143,19 +143,6 @@ for compass=order
                     end
                 end
 
-%                 if (particle.state == 3 ...
-%                     & (particle.contact < neighbor.contact)) ... 
-%                         | (particle.state == 2 ...
-%                            & (particle.contact > neighbor.contact))
-
-%                     particle.signal = neighbor.signal;
-
-%                 end
-
-            else
-
-                
-
             end
         elseif particle.contact > 0 & other > 0
             neighbor = grid.particles(other);

@@ -29,8 +29,8 @@ compassDirections = [[-1; 0] [0; 1] [1; 0] [0; -1]];
 
 % keep the compass directions rotated randomly to ensure no direction is
 % favored over any other direction.
-offset = randi(4);
-order = [compassDirections(:, (offset+1):4), compassDirections(:, 1:offset)];
+% offset = randi(4);
+% order = [compassDirections(:, (offset+1):4), compassDirections(:, 1:offset)];
 
 % find the concentration in the grid the particle is currently occupying.
 home = particleConcentrations(grid, particle.position);
@@ -63,7 +63,7 @@ logic = 7;
 gating = 1;
 
 % iterate through the four compass directions.
-for compass=order
+for compass=compassDirections
 
     % find the offset to the position in this compass direction.
     there = particle.position + compass';
@@ -88,16 +88,24 @@ for compass=order
 
             if neighbor.contact > 0
                 contacts = contacts + 1;
+                modifier = sum(compass);
 
                 if neighbor.state == 2 
-                    modifier = sum(compass);
 
-                    if modifier > 0 & neighbor.signal(1) >= 0 
+                    if modifier < 0 & neighbor.signal(1) >= 0 
                         inputs = inputs + 1;
                         input(inputs) = neighbor.signal(1);
-                    elseif modifier < 0 & neighbor.signal(2) >= 0
+                    elseif modifier > 0 & neighbor.signal(2) >= 0
                         inputs = inputs + 1;
                         input(inputs) = neighbor.signal(2);
+                    end
+
+                else
+
+                    if modifier < 0 & neighbor.signal(1) >= 0 
+                        particle.signal(1) = neighbor.signal(1);
+                    elseif modifier > 0 & neighbor.signal(2) >= 0
+                        particle.signal(2) = neighbor.signal(2);
                     end
 
                 end
