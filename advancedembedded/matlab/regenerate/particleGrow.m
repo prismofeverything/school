@@ -2,6 +2,30 @@ function [particle, concentrations] = particleGrow(particle, grid)
 % particleGrow - grow a strand of particles in a direction given by
 % the state.
 
+% The grow state is very simple, the particle stays rooted where it
+% is and emits a concentration proportional to the length of the
+% wire.  As a new particle becomes attached, it notes a length one
+% longer than the particle it is attaching to, and the original one
+% stops emitting a concentration while the new one starts emitting
+% a stronger concentration.
+    
+% To avoid a multitude of particles affixing as tiny wires along
+% the length of the input or output pad, particles in the GROW
+% state also look for surrounding concentrations higher than the
+% ones they themselves are emitting.  This is a signal that a
+% larger wire exists in the environment, and triggers the GROW
+% state to revert back to SEEK.  As it reverts, this reverts the
+% next particle down, triggering the dissolution of the shorter wire. 
+
+% inputs:
+%   particle - the particle in question.
+%   grid - the grid context of the particle.
+
+% outputs:
+%   particle - the particle transformed by the behavior.
+%   concentrations - the concentrations vector the particle is
+%   leaving behind.
+
 % BEGIN CODE
 
 % represent the four compass directions as offsets from a
@@ -54,7 +78,7 @@ for compass=order
         if other > 0
 
             neighbor = grid.particles(other);
-            if neighbor.contact > 0
+            if neighbor.contact > 0 & neighbor.state == -orientation
                 contacts = contacts + 1;
             end
 
@@ -88,31 +112,45 @@ for compass=order
                 motion = compass' * [0 1 ; 1 0];
                 seeking = 0;
 
+            % if there is no particle occupying this slot
             elseif other == 0
                 
+                % start a concentration to attract particles to the terminal.
                 concentrations(-orientation) = particle.contact * 12;
 
+            % if there is a particle here
             elseif other > 0
 
                 inputs = inputs + 1;
 
                 neighbor = grid.particles(other);
 
+                % bring contact values up to the neighbors value.
                 if particle.contact < neighbor.contact - 1
                     particle.contact = neighbor.contact - 1;
                 end
 
-                particle
-                neighbor
-                
-                if (particle.state == 3 ...
-                    & (particle.contact < neighbor.contact)) ... 
-                        | (particle.state == 2 ...
-                           & (particle.contact > neighbor.contact))
+                % the signal comes from neighbors with lower
+                % contact values horizontally, and greater contact
+                % values vertically.
 
-                    particle.signal = neighbor.signal;
-
+                if neighbor.contact
+                    modifier = sum(compass);
+                    if modifier < 0
+                        particle.signal(1) = neighbor.signal(1);
+                    else
+                        particle.signal(2) = neighbor.signal(2);
+                    end
                 end
+
+%                 if (particle.state == 3 ...
+%                     & (particle.contact < neighbor.contact)) ... 
+%                         | (particle.state == 2 ...
+%                            & (particle.contact > neighbor.contact))
+
+%                     particle.signal = neighbor.signal;
+
+%                 end
 
             else
 
@@ -134,14 +172,15 @@ for compass=order
             end
         end
 
+    % get the signal if we are looking at an input pad.
     elseif particle.state == -orientation
             
         if particle.state == 2
 
             if compass(1) > 0
-                particle.signal = grid.input_pads(2);
+                particle.signal(2) = grid.input_pads(2);
             else
-                particle.signal = grid.input_pads(1);
+                particle.signal(1) = grid.input_pads(1);
             end
             
         end
@@ -150,9 +189,11 @@ for compass=order
 
 end
 
-if contacts == 2 & particle.state < 4
-    concentrations(particle.state) = 0;
-end
+% if both ends have been joined to a wire this particle no longer
+% needs to attract others.  
+% if contacts == 2 & particle.state < 4
+%     concentrations(particle.state) = 0;
+% end
 
 % find the ultimate location that the resulting motion implies.
 going_into = particle.position + motion;

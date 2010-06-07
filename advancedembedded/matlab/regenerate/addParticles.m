@@ -29,6 +29,7 @@ for n=1:N
     % can be found directly given a particular row and column in
     % the grid.
     grid.particleMatrix(position(1), position(2)) = n;
+    grid.stateMatrix(position(1), position(2)) = 1;
 
     % create a new particle at the given location and add it to the
     % grid's list of particles.

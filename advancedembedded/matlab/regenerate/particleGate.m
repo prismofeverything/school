@@ -1,6 +1,25 @@
 function [particle, concentrations] = particleGate(particle, grid)
 % particleGate - act as the gate between the three strands.
 
+% When two perpendicular wires meet, the particle at the hub
+% transitions into the GATE state.  It elevates its contact level
+% to the maximum possible value, letting the lower values propagate
+% down the wires, establishing the orientation of the wires and the
+% direction of signal flow.
+
+% It then reads the signal values of the two inputs and attains the
+% signal state of applying the gate's logical function.  This
+% signal state is later read by the particle at the base of the
+% output wire, and propagates down the wire towards the output pad.
+
+% inputs:
+%   particle - the particle in question.
+%   grid - the grid context of the particle.
+
+% outputs:
+%   particle - the particle transformed by the behavior.
+%   concentrations - the concentrations vector the particle is
+%   leaving behind.
 
 % BEGIN CODE
 
@@ -41,8 +60,11 @@ output = 0;
 % 7 represents NAND
 logic = 7;
 
+gating = 1;
+
 % iterate through the four compass directions.
 for compass=order
+
     % find the offset to the position in this compass direction.
     there = particle.position + compass';
 
@@ -61,19 +83,30 @@ for compass=order
         
         if other > 0
 
+            % find the neighboring particle.
             neighbor = grid.particles(other);
 
             if neighbor.contact > 0
                 contacts = contacts + 1;
+
+                if neighbor.state == 2 
+                    modifier = sum(compass);
+
+                    if modifier > 0 & neighbor.signal(1) >= 0 
+                        inputs = inputs + 1;
+                        input(inputs) = neighbor.signal(1);
+                    elseif modifier < 0 & neighbor.signal(2) >= 0
+                        inputs = inputs + 1;
+                        input(inputs) = neighbor.signal(2);
+                    end
+
+                end
             end
 
-            if neighbor.state == 2
-                inputs = inputs + 1;
-                input(inputs) = neighbor.signal;
-            end
         end
 
     end
+
 end
 
 % simple conversion from two-digit binary.
@@ -82,9 +115,9 @@ truth = input(1) + (2 * input(2));
 % use truth as an index into the logic function.  In the case of
 % 7, the result is zero only if both inputs are true, ie the 2^3
 % bit is not part of the binary representation of 7.  
-particle.signal = bitand(2^truth, logic) > 0;
-
-if contacts > 2
+if inputs == 2
+    particle.signal(1) = bitand(2^truth, logic) > 0;
     concentrations(2:3) = 0;
     particle.contact = 25;
 end
+

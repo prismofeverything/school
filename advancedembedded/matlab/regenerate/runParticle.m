@@ -24,21 +24,21 @@ if particle.intact
     % its new state.
     changed.behavior = grid.behaviors{changed.state};
     
+    % update the state and particle matrices with their new
+    % values if they have changed.
     if not(all(changed.position == particle.position))
-        grid.particleMatrix(particle.position(1), particle.position(2)) ...
-            = 0;
+        grid.particleMatrix(particle.position(1), particle.position(2)) = 0;
         grid.particleMatrix(changed.position(1), changed.position(2)) = chosen;
+
+        grid.stateMatrix(particle.position(1), particle.position(2)) = 0;
+        grid.stateMatrix(changed.position(1), changed.position(2)) = changed.state;
+    end
+    
+    if not(changed.state == particle.state)
+        grid.stateMatrix(particle.position(1), particle.position(2)) = 0;
+        grid.stateMatrix(changed.position(1), changed.position(2)) = changed.state;
     end
 
     grid.particles(chosen) = changed;
-
-
-
-
-    % testing
-    particle
-    changed
-    grid.particleMatrix
-    grid.concentrations(:, :, 2:3) + grid.concentrations(:, :, 4:5)
 
 end

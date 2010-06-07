@@ -36,11 +36,6 @@ offset = randi(4);
 order = [compassDirections(:, (offset+1):4), compassDirections(:, 1:offset)];
 
 % find the concentration in the grid the particle is currently occupying.
-dim = size(grid.concentrations);
-home = reshape(... 
-    grid.concentrations(particle.position(1), particle.position(2), ...
-                        :), 1, dim(3))
-
 home = particleConcentrations(grid, particle.position);
 
 % the ultimate value for concentrations, initialized to be unchanged
@@ -116,7 +111,7 @@ for compass=order
                     & (home(-orientation) < (surrounding(-orientation)))
 
                     % signify the particle is attached.
-                    attached = 1
+                    attached = 1;
 
                     % choose the state to align with whether the
                     % neighboring particle is horizontal or vertical.
@@ -138,22 +133,26 @@ for compass=order
             % otherwise see if there is a concentration gradient to follow.
             if not(attached) 
 
-                gradient=randi(2)+1;
+                % look vertically and horizontally.
+                for gradient=2:3
 
-                if surrounding(gradient) ...
-                        > concentrations(gradient)
+                    if surrounding(gradient) ...
+                            > concentrations(gradient)
 
-                    % if so, seek the highest point and mark the current
-                    % position with one concentration level lower.
-                    concentrations(gradient) = ... 
-                        surrounding(gradient) - 1;
-                    motion = compass';
+                        % if so, seek the highest point and mark the current
+                        % position with one concentration level lower.
+                        concentrations(gradient) = ... 
+                            surrounding(gradient) - 1;
+                        motion = compass';
 
-                elseif (surrounding(gradient) ... 
-                        < concentrations(gradient) - 1) ... 
-                        & (other == 0)
-                    motion = compass';
+                    elseif (surrounding(gradient) ... 
+                            < concentrations(gradient) - 1) ... 
+                            & (other == 0)
+                        motion = compass';
+                    end
+
                 end
+
             end
 
         % Otherwise there lies outside of the grid.  
@@ -179,6 +178,7 @@ for compass=order
 
             else
 
+                % this is not an input pad.  Move away from it.
                 motion = -compass';
 
             end                

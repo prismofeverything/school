@@ -68,6 +68,7 @@ grid.concentrations = zeros(rows, columns, 5);
 % that position can be obtained from the particle, creating a
 % two-way informational pathway.
 grid.particleMatrix = zeros(rows, columns);
+grid.stateMatrix = zeros(rows, columns);
 
 % The total number of defects in the grid, before the defect
 % probability has been applied.
@@ -85,6 +86,7 @@ for row=1:rows
         if (rand(1) < defectRate)
             grid.concentrations(row, column, 4:5) = [-1 -1];
             grid.particleMatrix(row, column) = -1;
+            grid.stateMatrix(row, column) = -1;
             grid.defects = grid.defects + 1;
         end
     end
