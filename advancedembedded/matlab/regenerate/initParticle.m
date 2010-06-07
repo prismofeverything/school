@@ -88,6 +88,7 @@ particle.contact = 0;
 % the logic gate, and performs whatever logical operation depends
 % upon the two input strands, and sends that signal to the output strand.
 particle.signal = [-1 -1];
+particle.output = -1;
 
 % A particle can in its lifetime fail, becoming a fault.  This is
 % signified by setting particle.intact = 0.  A faulty particle will

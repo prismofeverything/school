@@ -137,7 +137,13 @@ for compass=order
                 if neighbor.contact
                     modifier = sum(compass);
                     if modifier < 0
-                        particle.signal(1) = neighbor.signal(1);
+                        % if this is the junction between a
+                        % vertical wire and a horizontal wire.
+                        if particle.state == 3 & neighbor.state == 4
+                            particle.signal(1) = neighbor.output;
+                        else
+                            particle.signal(1) = neighbor.signal(1);
+                        end
                     else
                         particle.signal(2) = neighbor.signal(2);
                     end

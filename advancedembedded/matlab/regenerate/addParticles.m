@@ -1,6 +1,17 @@
 function grid = addParticles(grid, N)
 % addParticles - add N particles to the grid.
 
+% Initially the grid begins empty.  This function adds the given
+% number of particles to the grid, and takes care of any
+% administrative tasks necessary to keep the grid and the new
+% particles consistent with one another.
+
+% inputs:
+%   grid - the grid to add particles to.
+%   N - the number of particles to add.
+
+% outputs:
+%   grid - the grid freshly populated with N particles.
 
 % BEGIN CODE
 

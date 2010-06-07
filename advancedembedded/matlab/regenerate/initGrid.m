@@ -26,7 +26,10 @@ function grid = initGrid(rows, columns, behaviors)
 %
 %   See particle.m for more details on the arguments and outputs of
 %   this class of function.
-%     
+
+% outputs:
+%   grid - The newly initialized grid.
+     
 % BEGIN CODE
 
 defectRate = 0.02;

@@ -1,6 +1,15 @@
 function grid = runParticle(grid, chosen)
 % runParticle - run the grid for the chosen particle.
 
+% inputs:
+%   grid - the grid housing the particle.
+%   chosen - the index to the particle to be run.
+
+% outputs:
+%   grid - the grid with the given particle advanced by one timestep.
+
+% BEGIN CODE
+
 % find the particle given by the chosen index.
 particle = grid.particles(chosen);
 
@@ -42,3 +51,5 @@ if particle.intact
     grid.particles(chosen) = changed;
 
 end
+
+% END CODE

@@ -95,17 +95,21 @@ for compass=compassDirections
                     if modifier < 0 & neighbor.signal(1) >= 0 
                         inputs = inputs + 1;
                         input(inputs) = neighbor.signal(1);
+                        particle.signal(1) = neighbor.signal(1);
                     elseif modifier > 0 & neighbor.signal(2) >= 0
                         inputs = inputs + 1;
                         input(inputs) = neighbor.signal(2);
+                        particle.signal(2) = neighbor.signal(2);
                     end
 
                 else
 
                     if modifier < 0 & neighbor.signal(1) >= 0 
                         particle.signal(1) = neighbor.signal(1);
+                        particle.output = neighbor.signal(1);
                     elseif modifier > 0 & neighbor.signal(2) >= 0
                         particle.signal(2) = neighbor.signal(2);
+                        particle.output = neighbor.signal(2);
                     end
 
                 end
@@ -124,7 +128,7 @@ truth = input(1) + (2 * input(2));
 % 7, the result is zero only if both inputs are true, ie the 2^3
 % bit is not part of the binary representation of 7.  
 if inputs == 2
-    particle.signal(1) = bitand(2^truth, logic) > 0;
+    particle.output = bitand(2^truth, logic) > 0;
     concentrations(2:3) = 0;
     particle.contact = 25;
 end
