@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live/MacPorts 2009_6) (format=pdflatex 2010.10.7)  8 OCT 2010 06:44
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live/MacPorts 2009_6) (format=pdflatex 2010.10.7)  8 OCT 2010 13:28
 entering extended mode
  %&-line parsing enabled.
 **assignment1.tex
@@ -107,23 +107,31 @@ File: kconductance.png Graphic file (type png)
 File: kconductance-largescale.png Graphic file (type png)
 
 <use kconductance-largescale.png> [5 <./kconductance.png (PNG copy)> <./kconduc
-tance-largescale.png (PNG copy)>] [6] (./assignment1.aux) ) 
+tance-largescale.png (PNG copy)>]
+<nareversal.png, id=27, 452.69125pt x 379.4175pt>
+File: nareversal.png Graphic file (type png)
+ <use nareversal.png> [6]
+<nareversal-to-voltage.png, id=31, 340.27126pt x 370.38374pt>
+File: nareversal-to-voltage.png Graphic file (type png)
+
+<use nareversal-to-voltage.png> [7 <./nareversal.png (PNG copy)> <./nareversal-
+to-voltage.png (PNG copy)>] [8] (./assignment1.aux) ) 
 Here is how much of TeX's memory you used:
- 922 strings out of 495061
- 12061 string characters out of 3181964
+ 932 strings out of 495061
+ 12294 string characters out of 3181964
  61329 words of memory out of 3000000
- 4148 multiletter control sequences out of 15000+200000
+ 4156 multiletter control sequences out of 15000+200000
  6103 words of font info for 22 fonts, out of 3000000 for 9000
  28 hyphenation exceptions out of 8191
- 25i,6n,19p,529b,187s stack positions out of 5000i,500n,10000p,200000b,50000s
-</opt/local/share/te
-xmf-texlive-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></opt/local/share/te
-xmf-texlive-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></opt/local/share/tex
-mf-texlive-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></opt/local/share/texm
-f-texlive-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb>
-Output written on assignment1.pdf (6 pages, 596885 bytes).
+ 25i,6n,19p,843b,187s stack positions out of 5000i,500n,10000p,200000b,50000s
+</opt/local/share/texmf-te
+xlive-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></opt/local/share/texmf-te
+xlive-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></opt/local/share/texmf-tex
+live-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></opt/local/share/texmf-texl
+ive-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb>
+Output written on assignment1.pdf (8 pages, 758671 bytes).
 PDF statistics:
- 43 PDF objects out of 1000 (max. 8388607)
+ 53 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 31 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 41 words of extra memory for PDF output out of 10000 (max. 10000000)
 

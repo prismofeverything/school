@@ -56,7 +56,7 @@ def plot_series(time, variable, series, name='X'):
 
 class SimpleHH:
     def __init__(self):
-        self.duration = 54
+        self.duration = 1
         self.settings = {
             'celsius': 15,
             'v_init': -70,
@@ -155,10 +155,10 @@ class HHTrials:
 
         return X, Y, np.array(Z)
         
-def run_trials(steps, change, variable, rev=False):
+def run_trials(steps, change, variable, reverse=False):
     trials = HHTrials(steps, change)
     X, Y, Z = trials.run()
-    if rev:
+    if reverse:
         Z = list(Z)
         Z.reverse()
         Z = np.array(Z)
@@ -179,6 +179,15 @@ def change_clamp(begin, end, steps):
         return simple
 
     run_trials(np.linspace(begin, end, steps), change, 'Stimulus Amplitude (nA)')
+
+def change_vinit(begin, end, steps):
+    def change(simple, value):
+        simple.soma.v = value
+        simple.soma.gkbar_hh = 0
+        simple.soma.gl_hh = 0
+        return simple
+
+    run_trials(np.linspace(begin, end, steps), change, 'Membrane Potential (mV)')
 
 def change_gna(begin, end, steps):
     def change(simple, value):

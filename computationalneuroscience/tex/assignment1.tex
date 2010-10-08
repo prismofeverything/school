@@ -69,20 +69,29 @@ Another interesting effect is noticed if you look at the voltage curves at a tim
 
 \includegraphics[scale=0.6]{kconductance-largescale.png}
 
-As the potassium conductance becomes very low, the potential continues to spike, even in the absence of a current stimulus.  Then, when there is no potassium flowing at all, the potential never even falls back to depolarization, with the sodium reversal potential ultimately balanced by the leakage reversal potential to hover endlessly around zero.  
+As the potassium conductance becomes very low, the neuron continues to spike, even in the absence of a current stimulus.  Then, when there is no potassium flowing at all, the potential never even falls back to depolarization, with the sodium reversal potential ultimately balanced by the leakage reversal potential to hover endlessly around zero.  
 
 This makes very strikingly clear the role of potassium in action potentials.
 
 \section{Hypothesis 5}
 
-\emph{Describe the effect of reducing the Nernst reversal potential for sodium.  Test the hypothesis that the current through the voltage-dependent sodium channels reverses when membrane potential exceeds the Nernst reversal potential for sodium ions.  Describe the dependence of the maximal sodium conductance on the testing level of membrane potential}
+\emph{Describe the effect of reducing the Nernst reversal potential for sodium.  Test the hypothesis that the current through the voltage-dependent sodium channels reverses when membrane potential exceeds the Nernst reversal potential for sodium ions.}
 
-\section{Hypothesis 6}
+\vspace{10pt}
 
-\emph{Test the hypothesis that prior depolarization inactivates voltage-gated sodium channels.}
+When sodium is triggering a spike, it does so because of the potential difference between the voltage inside the cell and the Nernst potential, or reversal potential of sodium.  Sodium rushes into the cell in order to restore the voltage balance between the inside and outside of the cell, offset by the natural thermodynamic diffusion.  This current can only exist (outside of external pumping) as long as the cell body has not yet reached equilibrium with the reversal potential of sodium.  Once that happens, there is no more motive force compelling sodium to enter, and the action potential falls off.  It is at this point of hyperpolarization that the potassium currents most make their presence known, quickly reducing the potential back to a depolarized state in a process essentially opposite of the sodium current.  
 
-\section{Hypothesis 7}
+When the Nernst potential for sodium is lowered therefore, the action potentials should be correspondingly lower, as it takes less hyperpolarization to reach sodium's reversal potential.  This is shown in the graph below.
 
-\emph{Test the hypothesis that the potassium channels DO NOT inactivate following prior depolarization.}
+\includegraphics[scale=0.5]{nareversal.png}
+
+Here, sodium reversal potential is shown in 20 trials from -100 mV to 100 mV.  As is clear, the height of the action potential increases almost linearly with the increase of sodium potential, as expected.  
+
+In order to test the hypothesis that the current through voltage-dependent sodium channels reverses when the membrane potential exceeds the Nernst potential, it was helpful to clamp the potassium current at zero to clearly examine the sodium channel dynamics.  
+
+\includegraphics[scale=0.65]{nareversal-to-voltage.png}
+
+Here, we see the action of the sodium current acting entirely alone.  The initial membrane voltage goes from -70 mV to 100 mV, and the potential rises to the sodium reversal potential until around 50 mV (the z-axis of the graph are labeled "Voltage + 80 mV", as the graphing utility would not display negative numbers on the 3d axes, so this is about where the axis is labeled 130 mV, or 130 - 80 = 50 mV), which is the reversal potential for sodium.  At and above this point, the membrane potential falls.  This can be seen as an overarching principle that any particular current will seek its reversal potential, whether from above or below.  Indeed, this is where the reversal potential found its name.  
+
 
 \end{document} 
