@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live/MacPorts 2009_6) (format=pdflatex 2010.10.7)  8 OCT 2010 03:42
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live/MacPorts 2009_6) (format=pdflatex 2010.10.7)  8 OCT 2010 06:44
 entering extended mode
  %&-line parsing enabled.
 **assignment1.tex
@@ -84,31 +84,46 @@ LaTeX Font Info:    External font `cmex10' loaded for size
  [1
 
 {/opt/local/var/db/texmf/fonts/map/pdftex/updmap/pdftex.map}]
-<stimulusamp-headon.png, id=9, 384.43625pt x 318.18875pt>
+<stimulusamp-headon.png, id=9, 333.245pt x 272.01625pt>
 File: stimulusamp-headon.png Graphic file (type png)
 
 <use stimulusamp-headon.png>
-<stimulusamp-side.png, id=10, 484.81125pt x 381.425pt>
+<stimulusamp-side.png, id=10, 450.68375pt x 353.32pt>
 File: stimulusamp-side.png Graphic file (type png)
 
 <use stimulusamp-side.png> [2 <./stimulusamp-headon.png (PNG copy)> <./stimulus
-amp-side.png (PNG copy)>] [3] (./assignment1.aux) ) 
+amp-side.png (PNG copy)>] <frequency.png, id=14, 456.70625pt x 363.3575pt>
+File: frequency.png Graphic file (type png)
+
+<use frequency.png> [3 <./frequency.png (PNG copy)>]
+<naconductance.png, id=18, 352.31625pt x 349.305pt>
+File: naconductance.png Graphic file (type png)
+ <use naconductance.png>
+<kconductance.png, id=19, 360.34625pt x 357.335pt>
+File: kconductance.png Graphic file (type png)
+ <use kconductance.png>
+[4 <./naconductance.png (PNG copy)>]
+<kconductance-largescale.png, id=23, 466.74374pt x 380.42125pt>
+File: kconductance-largescale.png Graphic file (type png)
+
+<use kconductance-largescale.png> [5 <./kconductance.png (PNG copy)> <./kconduc
+tance-largescale.png (PNG copy)>] [6] (./assignment1.aux) ) 
 Here is how much of TeX's memory you used:
- 902 strings out of 495061
- 11620 string characters out of 3181964
+ 922 strings out of 495061
+ 12061 string characters out of 3181964
  61329 words of memory out of 3000000
- 4132 multiletter control sequences out of 15000+200000
+ 4148 multiletter control sequences out of 15000+200000
  6103 words of font info for 22 fonts, out of 3000000 for 9000
  28 hyphenation exceptions out of 8191
  25i,6n,19p,529b,187s stack positions out of 5000i,500n,10000p,200000b,50000s
-</opt/local/share/texmf-texl
-ive-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></opt/local/share/texmf-texl
-ive-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></opt/local/share/texmf-texli
-ve-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></opt/local/share/texmf-texliv
-e-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb>
-Output written on assignment1.pdf (3 pages, 298274 bytes).
+</opt/local/share/te
+xmf-texlive-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></opt/local/share/te
+xmf-texlive-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></opt/local/share/tex
+mf-texlive-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></opt/local/share/texm
+f-texlive-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb>
+Output written on assignment1.pdf (6 pages, 596885 bytes).
 PDF statistics:
- 30 PDF objects out of 1000 (max. 8388607)
+ 43 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 11 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 31 words of extra memory for PDF output out of 10000 (max. 10000000)
 

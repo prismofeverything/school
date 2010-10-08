@@ -33,17 +33,49 @@ From another angle it is more clear that the first few trials no action potentia
 
 \emph{Test the hypothesis that the frequency (i.e. number per unit time) of action potentials is determined by the stimulus amplitude.  Draw a graph of the frequency of action potentials vs. the amplitude of the stimulus.}
 
+\vspace{10pt}
+
+If the stimulus to the soma is applied for an extended period of time, the neuron will continue to spike.  The higher the amplitude of the stimulus, the closer to threshhold the membrane potential will rest, and the swifter it will recover from previous spiking.  This means that it will take less time to cross threshhold, and the frequency of the spikes should be higher.  Experiment bears this intuition out:
+
+\includegraphics[scale=0.6]{frequency.png}
+
+In this diagram the stimulus was applied for the entire 40 ms of the experiment.  The lower amplitude stimuli (in blue) are at a lower frequency (further distance between spikes) than those with higher stimuli (in red), just as predicted.
+
 \section{Hypothesis 3}
 
 \emph{Test the hypothesis that the density of sodium channels determines the rate of rise and amplitude of the action potential.}
 
+\vspace{10pt}
+
+The more sodium channels present in the membrane, the more quickly the action potential should come about, as the increased conductance would lead to a swifter intake of sodium in the case of a rise in potential.  Also, the more embedded sodium channels the higher the amplitude of the ultimate spike, since there is a greater total capacity of sodium current flowing at a given time.  
+
+\includegraphics[scale=0.6]{naconductance.png}
+
+Here the sodium conductance is run from 0.0 to 0.24 (twice the default value).  As is seen, the onset of the action potential is later for lower conductances.  Also, there is a dramatic increase in the ultimate spiking potential as the conductance increases.  
+
 \section{Hypothesis 4}
 
-\emph{Test the hypothesis that the density of potassium channels determines the rate at which the action potential falls.  Describe the effect of reducing the Nernst reversal potential for sodium.}
+\emph{Test the hypothesis that the density of potassium channels determines the rate at which the action potential falls.}
+
+\vspace{10pt}
+
+The potassium channels act in balance to the sudden spikes driven by the sodium channels.  It seems reasonable to expect that in the face of falling potassium conductance it would take longer for the spike to restore to a depolarized state.  This is indeed what we see in the simulation:
+
+\includegraphics[scale=0.6]{kconductance.png}
+
+Here blue is the behavior under higher potassium conductance, fading to red as conductance falls.  As there are less and less potassium channels, the spike takes longer and longer to fall back to a resting state from its sudden hyperpolarization.
+
+Another interesting effect is noticed if you look at the voltage curves at a timescale larger than 50 milliseconds, and towards a conductance brought entirely to zero.  
+
+\includegraphics[scale=0.6]{kconductance-largescale.png}
+
+As the potassium conductance becomes very low, the potential continues to spike, even in the absence of a current stimulus.  Then, when there is no potassium flowing at all, the potential never even falls back to depolarization, with the sodium reversal potential ultimately balanced by the leakage reversal potential to hover endlessly around zero.  
+
+This makes very strikingly clear the role of potassium in action potentials.
 
 \section{Hypothesis 5}
 
-\emph{Test the hypothesis that the current through the voltage-dependent sodium channels reverses when membrane potential exceeds the Nernst reversal potential for sodium ions.  Describe the dependence of the maximal sodium conductance on the testing level of membrane potential}
+\emph{Describe the effect of reducing the Nernst reversal potential for sodium.  Test the hypothesis that the current through the voltage-dependent sodium channels reverses when membrane potential exceeds the Nernst reversal potential for sodium ions.  Describe the dependence of the maximal sodium conductance on the testing level of membrane potential}
 
 \section{Hypothesis 6}
 

@@ -3,6 +3,7 @@ import numpy as np
 from mpl_toolkits.mplot3d import axes3d
 
 from matplotlib import cm
+from matplotlib.collections import PolyCollection
 from matplotlib import pyplot as plt
 
 from itertools import chain
@@ -23,14 +24,39 @@ def xy3d(Z):
 def plot_layered(X, Y, Z, variable='X'):
     figure = plt.figure()
     ax = figure.add_subplot(111, projection='3d')
-    ax.plot_surface(X, Y, Z, rstride=1, cstride=1, cmap=cm.jet)
+    ax.plot_surface(X, Y, Z, rstride=2, cstride=2, cmap=cm.jet)
     ax.set_xlabel('Time (ms)')
     ax.set_ylabel(variable)
     ax.set_zlabel('Voltage (mV)')
     
+def plot_series(time, variable, series, name='X'):
+    minimum = -80
+    figure = plt.figure()
+    ax = figure.gca(projection='3d')
+
+    def stub(tri):
+        trial = map(lambda x: x - minimum, np.array(tri))
+        trial[0] = 0
+        trial[-1] = 0
+        return trial
+
+    verts = map(lambda trial: zip(time, stub(trial)), series)
+
+    poly = PolyCollection(np.array(verts), facecolors=map(lambda n: cm.jet(n), np.linspace(0, 1, len(series))))
+    poly.set_alpha(0.7)
+
+    ax.add_collection3d(poly, zs=variable, zdir='y')
+    ax.set_xlim3d(time[0], time[-1])
+    ax.set_ylim3d(variable[0], variable[-1])
+    ax.set_zlim3d(0, 80 - minimum)
+
+    ax.set_xlabel('Time (ms)')
+    ax.set_ylabel(name)
+    ax.set_zlabel('Voltage + 80 (mV)')
+
 class SimpleHH:
     def __init__(self):
-        self.duration = 4
+        self.duration = 54
         self.settings = {
             'celsius': 15,
             'v_init': -70,
@@ -121,18 +147,24 @@ class HHTrials:
         self.hh = SimpleHH()
 
     def run(self):
-        Z = map(lambda x: np.array(self.change(self.hh.base(), x).volts()), self.trials)
+        Z = map(lambda x: self.change(self.hh.base(), x).volts(), self.trials)
 
         timeline = np.array(self.hh.records['time'])
         X = np.array(map(lambda y: timeline, self.trials))
         Y = np.array(map(lambda y: map(lambda x: y, timeline), self.trials))
 
-        return np.array(X), np.array(Y), np.array(Z)
+        return X, Y, np.array(Z)
         
-def run_trials(many, change, variable):
-    trials = HHTrials(many, change)
+def run_trials(steps, change, variable, rev=False):
+    trials = HHTrials(steps, change)
     X, Y, Z = trials.run()
-    plot_layered(X, Y, Z, variable)
+    if rev:
+        Z = list(Z)
+        Z.reverse()
+        Z = np.array(Z)
+
+    plot_series(np.array(trials.hh.records['time']), steps, Z, variable)
+#    plot_layered(X, Y, Z, variable)
 
 def change_ena(begin, end, steps):
     def change(simple, value):
@@ -147,3 +179,17 @@ def change_clamp(begin, end, steps):
         return simple
 
     run_trials(np.linspace(begin, end, steps), change, 'Stimulus Amplitude (nA)')
+
+def change_gna(begin, end, steps):
+    def change(simple, value):
+        simple.soma.gnabar_hh = value
+        return simple
+
+    run_trials(np.linspace(begin, end, steps), change, 'Na Conductance (S/cm^2)')
+
+def change_gk(begin, end, steps):
+    def change(simple, value):
+        simple.soma.gkbar_hh = value
+        return simple
+
+    run_trials(np.linspace(begin, end, steps), change, '0.08 - K Conductance (S/cm^2)', True)
