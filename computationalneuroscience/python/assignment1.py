@@ -20,14 +20,17 @@ def xy3d(Z):
 
     return X, Y
 
-def plot_layered(Z):
-    X, Y = xy3d(Z)
+def plot_layered(X, Y, Z, variable='X'):
     figure = plt.figure()
     ax = figure.add_subplot(111, projection='3d')
     ax.plot_surface(X, Y, Z, rstride=1, cstride=1, cmap=cm.jet)
+    ax.set_xlabel('Time (ms)')
+    ax.set_ylabel(variable)
+    ax.set_zlabel('Voltage (mV)')
     
 class SimpleHH:
     def __init__(self):
+        self.duration = 4
         self.settings = {
             'celsius': 15,
             'v_init': -70,
@@ -86,11 +89,61 @@ class SimpleHH:
         init()
 
     def go(self):
-        self.initialize()
-        run(20)
+        run(self.initialize().duration)
 
+    def base(self):
+        self.initialize()
+        return self
+
+    def volts(self):
+        run(self.duration)
+        return np.array(self.records['voltage'])
+
+    def time(self):
+        return self.records['time']
+
+    def voltage(self):
+        return self.records['voltage']
+
+    def plot(self):
         self.plot_records('Membrane Voltage', ['time', 'voltage'])
 
+class HHTrials:
+    def __init__(self, trials, change):
+        self.trials = trials
+        self.change = change
 
+        if not self.change:
+            def change(soma, value):
+                return soma
+            self.change = change
 
+        self.hh = SimpleHH()
 
+    def run(self):
+        Z = map(lambda x: np.array(self.change(self.hh.base(), x).volts()), self.trials)
+
+        timeline = np.array(self.hh.records['time'])
+        X = np.array(map(lambda y: timeline, self.trials))
+        Y = np.array(map(lambda y: map(lambda x: y, timeline), self.trials))
+
+        return np.array(X), np.array(Y), np.array(Z)
+        
+def run_trials(many, change, variable):
+    trials = HHTrials(many, change)
+    X, Y, Z = trials.run()
+    plot_layered(X, Y, Z, variable)
+
+def change_ena(begin, end, steps):
+    def change(simple, value):
+        simple.soma.ena = value
+        return simple
+
+    run_trials(np.linspace(begin, end, steps), change, 'Na Reversal Potential (mV)')
+
+def change_clamp(begin, end, steps):
+    def change(simple, value):
+        simple.clamp.amp = value
+        return simple
+
+    run_trials(np.linspace(begin, end, steps), change, 'Stimulus Amplitude (nA)')
