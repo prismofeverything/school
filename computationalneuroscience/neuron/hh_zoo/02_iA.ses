@@ -1,0 +1,108 @@
+load_file("nrngui.hoc")
+objectvar save_window_, rvp_
+objectvar scene_vector_[6]
+objectvar ocbox_, ocbox_list_, scene_, scene_list_
+{ocbox_list_ = new List()  scene_list_ = new List()}
+{pwman_place(0,0,0)}
+
+//Begin I/V Clamp Electrode
+{
+load_file("electrod.hoc")
+}
+{
+ocbox_=new Electrode(0)
+execute("can_locate=1 sec=\"soma\" xloc=0.5 locate(0)", ocbox_)
+execute("vc.dur[0]=0.1 vc.amp[0]=-65", ocbox_)
+execute("vc.dur[1]=2.5 vc.amp[1]=10", ocbox_)
+execute("vc.dur[2]=100 vc.amp[2]=-65", ocbox_)
+execute("stim.del=100 stim.dur=200 stim.amp=0.3", ocbox_)
+execute("vcsteps=5", ocbox_)
+execute("samp=stim.amp  store_vclamp() glyph()", ocbox_)
+ocbox_ = ocbox_.v1
+ocbox_.map("I/V Clamp Electrode", 2, 564, 264.96, 260.16)
+}
+objref ocbox_
+//End I/V Clamp Electrode
+
+{
+xpanel("RunControl", 0)
+v_init = -70
+xvalue("Init","v_init", 1,"stdinit()", 1, 1 )
+xbutton("Init & Run","run()")
+xbutton("Stop","stoprun=1")
+runStopAt = 5
+xvalue("Continue til","runStopAt", 1,"{continuerun(runStopAt) stoprun=1}", 1, 1 )
+runStopIn = 1
+xvalue("Continue for","runStopIn", 1,"{continuerun(t + runStopIn) stoprun=1}", 1, 1 )
+xbutton("Single Step","steprun()")
+t = 500
+xvalue("t","t", 2 )
+tstop = 500
+xvalue("Tstop","tstop", 1,"tstop_changed()", 0, 1 )
+dt = 0.025
+xvalue("dt","dt", 1,"setdt()", 0, 1 )
+steps_per_ms = 40
+xvalue("Points plotted/ms","steps_per_ms", 1,"setdt()", 0, 1 )
+xcheckbox("Quiet",&stdrun_quiet,"")
+realtime = 1
+xvalue("Real Time","realtime", 0,"", 0, 1 )
+xpanel(7,168)
+}
+{
+save_window_ = new Graph(0)
+save_window_.size(0,500,-80,40)
+scene_vector_[3] = save_window_
+{save_window_.view(0, -80, 500, 120, 295, 170, 300.48, 200.32)}
+graphList[0].append(save_window_)
+save_window_.save_name("graphList[0].")
+save_window_.addexpr("v(.5)", 1, 1, 0.8, 0.9, 2)
+}
+{
+save_window_ = new Graph(0)
+save_window_.size(0,500,-0.17,0.16)
+scene_vector_[4] = save_window_
+{save_window_.view(0, -0.17, 500, 0.33, 296, 429, 300.48, 153.28)}
+graphList[1].append(save_window_)
+save_window_.save_name("graphList[1].")
+save_window_.addvar("soma.ik_iA( 0.5 )", 7, 1, 0.8, 0.9, 2)
+save_window_.addvar("soma.ik_HH( 0.5 )", 2, 1, 0.8, 0.9, 2)
+save_window_.addvar("soma.ina_HH( 0.5 )", 3, 1, 0.8, 0.9, 2)
+}
+{
+xpanel("soma(0 - 1) (Parameters)", 0)
+xlabel("soma(0 - 1) (Parameters)")
+xlabel("nseg = 1")
+soma.L = 92.31
+xvalue("L","soma.L", 1,"define_shape()", 0, 0 )
+soma.diam = 100
+xvalue("diam","soma.diam", 1,"", 0, 0 )
+soma.cm = 1
+xvalue("cm","soma.cm", 1,"", 0, 0 )
+soma.gnabar_HH = 0.05
+xvalue("gnabar_HH","soma.gnabar_HH", 1,"", 0, 0 )
+soma.gkbar_HH = 0.01
+xvalue("gkbar_HH","soma.gkbar_HH", 1,"", 0, 0 )
+soma.gl_HH = 3e-05
+xvalue("gl_HH","soma.gl_HH", 1,"", 0, 0 )
+soma.el_HH = -70
+xvalue("el_HH","soma.el_HH", 1,"", 0, 0 )
+soma.ena = 50
+xvalue("ena","soma.ena", 1,"", 0, 0 )
+soma.gkbar_iA = 0.007
+xvalue("gkbar_iA","soma.gkbar_iA", 1,"", 0, 0 )
+soma.ek = -77
+xvalue("ek","soma.ek", 1,"", 0, 0 )
+xpanel(621,176)
+}
+{
+save_window_ = new Graph(0)
+save_window_.size(0,500,-1,1)
+scene_vector_[5] = save_window_
+{save_window_.view(0, -1, 500, 2, 298, 633, 300.48, 200.32)}
+graphList[1].append(save_window_)
+save_window_.save_name("graphList[1].")
+save_window_.addvar("soma.h1_iA( 0.5 )", 4, 1, 0.8, 0.9, 2)
+save_window_.addvar("soma.m1_iA( 0.5 )", 7, 1, 0.8, 0.9, 2)
+}
+objectvar scene_vector_[1]
+{doNotify()}

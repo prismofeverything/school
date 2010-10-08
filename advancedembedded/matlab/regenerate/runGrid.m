@@ -17,7 +17,7 @@ function grid = runGrid(grid)
 for chosen = 1:50
 
     % if we happen to roll below the fault rate.
-    if rand() < 0.001
+    if rand() < 0.0001
 
         % this is a transient fault.  Remove this particle from the grid.
         grid = transientFault(grid, chosen);

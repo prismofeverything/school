@@ -40,4 +40,20 @@ for timestep=1:T
     M(timestep) = getframe();
 end
 
+gifname = 'spanglernand.gif';
+delayTime = 0.05;
+disposal = 'leaveInPlace';
+
+img = frame2im(M(1));
+[X, map] = rgb2ind(img, 24);
+imwrite(X, map, gifname, 'GIF', 'WriteMode', 'overwrite', ...
+        'DelayTime', delayTime, 'DisposalMethod', disposal);
+
+for i=2:length(M)
+    img = frame2im(M(i));
+    [X, map] = rgb2ind(img, 24);
+    imwrite(X, map, gifname, 'GIF', 'WriteMode', 'append', ...
+            'DelayTime', delayTime, 'DisposalMethod', disposal);
+end
+
 % END CODE

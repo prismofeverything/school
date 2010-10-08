@@ -1,0 +1,15 @@
+/* Sample hoc code: I_A (transient potassium) current * * Simple soma, with stimulator. * @author Patrick D. Roberts, Neuro. Sci. Inst. OHSU, 01/07 
+ * (Supported in part by NSF-IOB-0445648) *   
+*//* The following command loads the standard run library functions into NEURON.   * These library functions are used to initialize NEURON, * begin and end simulations, and plot variables during a simulation. 
+*/// load_proc("nrnmainmenu")xopen("$(NEURONHOME)/lib/hoc/noload.hoc")nrnmainmenu()tstop = 50			/* Sets the time run the simulation */proc init_globals() {		/* Function definition to initialize the global variables */	/* membrane defaults */	celsius		= 23.5		/* temperature correction value */	v_init		= -65		/* initial voltage */	erev_pas	= -70		/* the leak (K) reversal potential */}
+init_globals()		/* Initializes the global variables */create soma     	/* Create all of the cell's sections */
+access soma
+
+/* Initializes the morphology of the neuron */soma {			nseg = 1		/* # of compartments */        //* total membrane area of 29000 uM^2        
+        diam = 100		/* Set the diameter of the soma section (in um) */	L = 290/PI			/* Set the length of the soma section (in um) */}/* Set membrane parameters and insert the channels into each section. */
+soma {			insert HH		/* Insert Hodgkin-Huxley type channels in the soma. */	insert iA		/* Insert transient potassium current (A-current) in the soma. *///	insert iNaP		/* Insert persistent sodium current in the soma. */	Ra = 35.5		/* Set the axial resistivity */	gnabar_HH = 0.05
+	gkbar_HH = 0.01
+	gl_HH = 0.00003
+	gkbar_iA = 0.009
+}
+/* Declare the object variable for the current pulse stimulus */ 	objectvar stim			soma {	stim = new IClamp(0)		stim.del = 0				stim.dur = 1				stim.amp = 0	}xopen("02_iA.ses")	/* Open the session file that contains the windows and parameters */

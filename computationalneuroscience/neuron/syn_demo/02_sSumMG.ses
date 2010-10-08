@@ -1,0 +1,100 @@
+load_file("nrngui.hoc")
+objectvar save_window_, rvp_
+objectvar scene_vector_[5]
+objectvar ocbox_, ocbox_list_, scene_, scene_list_
+{ocbox_list_ = new List()  scene_list_ = new List()}
+{pwman_place(0,0,0)}
+{
+xpanel("RunControl", 0)
+v_init = -70
+xvalue("Init","v_init", 1,"stdinit()", 1, 1 )
+xbutton("Init & Run","run()")
+xbutton("Stop","stoprun=1")
+runStopAt = 5
+xvalue("Continue til","runStopAt", 1,"{continuerun(runStopAt) stoprun=1}", 1, 1 )
+runStopIn = 1
+xvalue("Continue for","runStopIn", 1,"{continuerun(t + runStopIn) stoprun=1}", 1, 1 )
+xbutton("Single Step","steprun()")
+t = 20
+xvalue("t","t", 2 )
+tstop = 20
+xvalue("Tstop","tstop", 1,"tstop_changed()", 0, 1 )
+dt = 0.025
+xvalue("dt","dt", 1,"setdt()", 0, 1 )
+steps_per_ms = 40
+xvalue("Points plotted/ms","steps_per_ms", 1,"setdt()", 0, 1 )
+xcheckbox("Quiet",&stdrun_quiet,"")
+realtime = 14
+xvalue("Real Time","realtime", 0,"", 0, 1 )
+xpanel(6,129)
+}
+{
+save_window_ = new Graph(0)
+save_window_.size(0,20,-80,40)
+scene_vector_[2] = save_window_
+{save_window_.view(0, -80, 20, 120, 573, 97, 300.48, 200.32)}
+graphList[0].append(save_window_)
+save_window_.save_name("graphList[0].")
+save_window_.addexpr("v(.5)", 1, 1, 0.8, 0.9, 2)
+}
+{
+xpanel("AlphaSynapse[0] at d1_1(0.35)", 0)
+xlabel("AlphaSynapse[0] at d1_1(0.35)")
+synExcite1.onset = 1
+xvalue("onset","synExcite1.onset", 1,"", 0, 1 )
+synExcite1.tau = 0.5
+xvalue("tau","synExcite1.tau", 1,"", 0, 1 )
+synExcite1.gmax = 0.1
+xvalue("gmax","synExcite1.gmax", 1,"", 0, 1 )
+synExcite1.e = 15
+xvalue("e","synExcite1.e", 1,"", 0, 1 )
+synExcite1.i = -0
+xvalue("i","synExcite1.i", 0,"", 0, 1 )
+xpanel(296,146)
+}
+{
+xpanel("AlphaSynapse[1] at d2_112(0.35)", 0)
+xlabel("AlphaSynapse[1] at d2_112(0.35)")
+synExcite2.onset = 1
+xvalue("onset","synExcite2.onset", 1,"", 0, 1 )
+synExcite2.tau = 0.5
+xvalue("tau","synExcite2.tau", 1,"", 0, 1 )
+synExcite2.gmax = 0.1
+xvalue("gmax","synExcite2.gmax", 1,"", 0, 1 )
+synExcite2.e = 15
+xvalue("e","synExcite2.e", 1,"", 0, 1 )
+synExcite2.i = -0
+xvalue("i","synExcite2.i", 0,"", 0, 1 )
+xpanel(294,370)
+}
+{
+save_window_ = new Graph(0)
+save_window_.size(-120.777,782.315,-80,40)
+scene_vector_[3] = save_window_
+{save_window_.view(-120.777, -80, 903.092, 120, 573, 364, 300.48, 200.32)}
+flush_list.append(save_window_)
+save_window_.save_name("flush_list.")
+objectvar rvp_
+rvp_ = new RangeVarPlot("v")
+axon rvp_.begin(1)
+d1_1 rvp_.end(1)
+rvp_.origin(7.5)
+save_window_.addobject(rvp_, 2, 1, 0.8, 0.9)
+objectvar rvp_
+rvp_ = new RangeVarPlot("v")
+axon rvp_.begin(1)
+d2_112 rvp_.end(1)
+rvp_.origin(7.5)
+save_window_.addobject(rvp_, 3, 1, 0.8, 0.9)
+}
+{
+save_window_ = new PlotShape(0)
+save_window_.size(-419.776,372.026,-79.6135,712.189)
+save_window_.variable("v")
+scene_vector_[4] = save_window_
+{save_window_.view(-419.776, -79.6135, 791.802, 791.802, 10, 517, 200.64, 200.32)}
+fast_flush_list.append(save_window_)
+save_window_.save_name("fast_flush_list.")
+}
+objectvar scene_vector_[1]
+{doNotify()}

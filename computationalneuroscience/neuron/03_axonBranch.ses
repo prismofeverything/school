@@ -1,0 +1,85 @@
+load_file("nrngui.hoc")
+objectvar save_window_, rvp_
+objectvar scene_vector_[4]
+objectvar ocbox_, ocbox_list_, scene_, scene_list_
+{ocbox_list_ = new List()  scene_list_ = new List()}
+{pwman_place(0,0,0)}
+{
+xpanel("RunControl", 0)
+v_init = -70
+xvalue("Init","v_init", 1,"stdinit()", 1, 1 )
+xbutton("Init & Run","run()")
+xbutton("Stop","stoprun=1")
+runStopAt = 5
+xvalue("Continue til","runStopAt", 1,"{continuerun(runStopAt) stoprun=1}", 1, 1 )
+runStopIn = 1
+xvalue("Continue for","runStopIn", 1,"{continuerun(t + runStopIn) stoprun=1}", 1, 1 )
+xbutton("Single Step","steprun()")
+t = 17.675
+xvalue("t","t", 2 )
+tstop = 20
+xvalue("Tstop","tstop", 1,"tstop_changed()", 0, 1 )
+dt = 0.025
+xvalue("dt","dt", 1,"setdt()", 0, 1 )
+steps_per_ms = 40
+xvalue("Points plotted/ms","steps_per_ms", 1,"setdt()", 0, 1 )
+xcheckbox("Quiet",&stdrun_quiet,"")
+realtime = 21
+xvalue("Real Time","realtime", 0,"", 0, 1 )
+xpanel(7,124)
+}
+{
+save_window_ = new Graph(0)
+save_window_.size(20,10020,-80,40)
+scene_vector_[2] = save_window_
+{save_window_.view(20, -80, 10000, 120, 312, 146, 598.08, 176.32)}
+flush_list.append(save_window_)
+save_window_.save_name("flush_list.")
+objectvar rvp_
+rvp_ = new RangeVarPlot("v")
+axon rvp_.begin(0)
+branch rvp_.end(0)
+rvp_.origin(20)
+save_window_.addobject(rvp_, 2, 1, 0.8, 0.9)
+objectvar rvp_
+rvp_ = new RangeVarPlot("v")
+axon rvp_.begin(0)
+axon rvp_.end(1)
+rvp_.origin(20)
+save_window_.addobject(rvp_, 3, 1, 0.8, 0.9)
+}
+{
+save_window_ = new PlotShape(0)
+save_window_.size(407.08,9604.92,-979.276,5971.27)
+save_window_.variable("v")
+scene_vector_[3] = save_window_
+{save_window_.view(407.08, -979.276, 9197.84, 6950.55, 296, 383, 366.72, 277.12)}
+fast_flush_list.append(save_window_)
+save_window_.save_name("fast_flush_list.")
+}
+{
+xpanel("branch(0 - 1) (Parameters)", 0)
+xlabel("branch(0 - 1) (Parameters)")
+xlabel("nseg = 100")
+branch.L = 5000
+xvalue("L","branch.L", 1,"define_shape()", 0, 0 )
+branch.cm = 1
+xvalue("cm","branch.cm", 1,"", 0, 0 )
+branch.diam = 4
+xvalue("diam","branch.diam", 1,"", 0, 0 )
+branch.gnabar_hh = 0.12
+xvalue("gnabar_hh","branch.gnabar_hh", 1,"", 0, 0 )
+branch.gkbar_hh = 0.036
+xvalue("gkbar_hh","branch.gkbar_hh", 1,"", 0, 0 )
+branch.gl_hh = 0.0003
+xvalue("gl_hh","branch.gl_hh", 1,"", 0, 0 )
+branch.el_hh = -70
+xvalue("el_hh","branch.el_hh", 1,"", 0, 0 )
+branch.ena = 50
+xvalue("ena","branch.ena", 1,"", 0, 0 )
+branch.ek = -77
+xvalue("ek","branch.ek", 1,"", 0, 0 )
+xpanel(691,383)
+}
+objectvar scene_vector_[1]
+{doNotify()}

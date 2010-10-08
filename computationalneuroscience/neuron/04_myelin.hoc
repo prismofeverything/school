@@ -1,0 +1,56 @@
+/* myelin.hoc * * Hoc code of a myelinated axon. * @author Patrick D. Roberts, Neuro. Sci. Inst. OHSU, 03/04 
+ * (Supported in part by NSF-IBN0114558 & NIH-R01-MH60364) *   
+*/xopen("$(NEURONHOME)/lib/hoc/noload.hoc")
+nrnmainmenu()tstop = 20			/* Sets the time run the simulation */proc init_globals() {		/* Function definition to initialize the global variables *//* membrane defaults */celsius		= 22		/* temperature correction value */v_init		= -64		/* initial voltage */g_passive	= .0003		/* the standard leak conductance */erev_passive	= -70		/* the leak (K) reversal potential */gnaHH		= .12		/* the Hodgkin-Huxley Na conductance */gkHH		= .036		/* the Hodgkin-Huxley K conductance */glHH		= .0003		/* the Hodgkin-Huxley leak conductance */
+global_ra=150
+mywraps=150
+myeldiam=10
+}
+init_globals()		/* Initializes the global variables */
+
+create soma, myelin[10], node[11]
+
+/* Initializes the morphology of the neuron */soma {			nseg = 1		/* # of compartments */	diam = 20		/* Set the diameter of the soma section (in um) */	L = 20			/* Set the length of the soma section (in um) */}
+connect node[0](0), soma(1)
+
+/*  connect segments to construct axon  (things flow from 0 to 1)  */
+for i=0, 9   {   myelin [i].nseg=10    node [i].nseg=1
+        connect myelin[i](0), node[i](1)
+        connect node[i+1](0), myelin[i](1)
+}
+
+
+//morphology assignment
+proc morph() {
+	{myelen=1000       nodelen=3.2    nodediam=10   }
+	for i=0, 9{     
+		myelin[i] {L=myelen diam=myeldiam  cm=.01  Ra = global_ra}
+	}
+	for i=0, 10 {     
+		node[i] {L=nodelen   diam=nodediam  Ra = global_ra}
+	}
+}
+// now assign morphology
+morph()
+
+//channel assignments
+
+for i=0, 9 {node[i] insert hh   
+     	node[i].gnabar_hh=1.2 node[i].gkbar_hh=.36
+	node[i].gl_hh=.003
+	myelin[i] insert hh
+	}
+
+proc wrapmyelin() {
+	for i=0, 9	{
+		myelin[i].cm=1/(mywraps+1)
+		myelin[i].gnabar_hh=.12/(mywraps+1)
+		myelin[i].gkbar_hh=.036/(mywraps+1)
+		myelin[i].gl_hh=.0003/(mywraps+1)
+	}
+}
+wrapmyelin()
+
+/* Declare the object variable for the current pulse stimulus */ 	objectvar stim			soma {	stim = new IClamp(0)		stim.del = 0				stim.dur = 1				stim.amp = 0.3	}
+access soma
+xopen("04_myelin.ses")

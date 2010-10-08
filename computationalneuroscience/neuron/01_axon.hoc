@@ -1,0 +1,75 @@
+/* Sample hoc code #2
+*
+* Simple soma and axon, with stimulator.
+* @author Patrick D. Roberts, Neuro. Sci. Inst. OHSU, 03/04 
+* (Supported in part by NSF-IBN0114558 & NIH-R01-MH60364)
+*   
+*/
+
+/* The following command loads the standard run library functions into NEURON.  
+* These library functions are used to initialize NEURON,
+* begin and end simulations, and plot variables during a simulation. 
+*/
+// load_proc("nrnmainmenu")
+xopen("$(NEURONHOME)/lib/hoc/noload.hoc")
+nrnmainmenu()
+
+tstop = 20			/* Sets the time run the simulation */
+
+proc init_globals() {		/* Function definition to initialize the global variables */
+    /* membrane defaults */
+    celsius		= 15		/* temperature correction value */
+    v_init		= -70		/* initial voltage */
+    erev_pas	= -70		/* the leak (K) reversal potential */
+}
+
+init_globals()		/* Initializes the global variables */
+
+create soma, axon     	/* Create all of the cell's sections */
+access soma
+
+/* Initializes the morphology of the neuron */
+soma {		
+	nseg = 1		/* # of compartments */
+	diam = 20		/* Set the diameter of the soma section (in um) */
+	L = 20			/* Set the length of the soma section (in um) */
+}
+axon {
+    nseg = 500		/* # of compartments */
+    diam = 4		/* Set the diameter of the axon section (in um) */
+    L = 10000			/* Set the length of the axon section (in um) */
+}
+
+
+soma connect axon (0), 1
+
+/* Set membrane parameters and insert the channels into each section. */
+
+soma {		
+	insert hh		/* Insert Hodgkin-Huxley type channels in the in the soma. */
+	el_hh = erev_pas
+	Ra = 100			/* Set the axial resistivity */
+}
+axon {
+    insert hh		/* Insert Hodgkin-Huxley type channels in the in the axon. */
+    el_hh = erev_pas
+    Ra = 100			/* Set the axial resistivity */
+}
+
+
+/* Declare the object variable for the current pulse stimulus */ 	
+objectvar stim, stim2			
+soma {
+	stim = new IClamp(0)	
+	stim.del = 0			
+	stim.dur = 1			
+	stim.amp = 0.8	
+}
+/*axon {
+    stim2 = new IClamp(0.99)	
+    stim2.del = 0			
+    stim2.dur = 1			
+    stim2.amp = 0.8	
+}*/
+
+xopen("01_axon.ses")	/* Open the session file that contains the windows and parameters */

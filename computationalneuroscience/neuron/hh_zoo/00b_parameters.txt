@@ -1,0 +1,43 @@
+Parameters for the class demonstrations:
+
+Persistent sodium current (01_NaP.hoc)
+a) Boost repetitive spiking:
+   gkbar_iNaP = 0.0 --> 0.005
+b) Increase sensitivity to input:
+   Set IClamp(delay) = 10, IClamp(duration) = 30, IClamp(amplitude) = 0.05, 
+   gkbar_iNaP = 0.0 --> 0.002
+
+Transient potassium current (02_IA.hoc)
+a) Delayed response
+   Set gkbar_iA = 0.0, then several spikes during stimulation
+   gkbar_iA -> 0.007  latency to first spike increases
+b) Slow spike rate
+   Set  IClamp(amplitude) = 0.0, 
+   Set el_HH = 0.0
+   Set Tstop = 1500
+   gkbar_iA = 0.007 -> 0.021,  slows spike rate to 2 Hz.
+
+Slowly activating (03_IM.hoc)
+gkbar_iM = 0.0 -> 0.0003, reduces # of spikes until only 1st spike remains.
+
+Calcium Dynamics (04_Ca.hoc)
+Ca bursting
+a) IClamp(amplitude) = 200-> 50 ms; burst outlasts stim
+b) gcabar_iT = 0.0001 -> 0; no Ca burst
+   gcabar_iL = 0.0003 -> 0 (gcabar_iT = 0.0001); not enough Ca to repolarize
+      gkbar_HH --> 0.02 : repolarize neuron to terminate burst
+c) gkbar_iC = 0.007 -> 0.07; reduce # of spikes in burst
+   gkbar_iAHP 0 --> 0.001; reduce burst duration
+
+d) Ca oscillation
+   Set gcabar_iL = 0.0006
+       gcabar_iT = 0.0006
+       gkbar_iC = 0.007
+       gkbar_iAHP = 0.0005
+
+
+I_h oscillation (insert ih current into 04_Ca.hoc) (not shown in class)
+  Tstop = 3000
+  gkbar_iC = 0
+  gkbar_iAHP = 0.0001
+ghbar_ih = 0.0003

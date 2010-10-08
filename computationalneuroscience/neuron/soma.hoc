@@ -1,0 +1,51 @@
+/* Soma code #1
+ *
+ * Simple soma, with stimulator.
+ * @author Patrick D. Roberts, Neuro. Sci. Inst. OHSU, 03/04 
+ * (Supported in part by NSF-IBN0114558 & NIH-R01-MH60364)
+ *   
+*/
+
+/* The following command loads the standard run library functions into NEURON.  
+ * These library functions are used to initialize NEURON,
+ * begin and end simulations, and plot variables during a simulation. */
+// load_proc("nrnmainmenu")
+xopen("$(NEURONHOME)/lib/hoc/noload.hoc")
+
+//nrnmainmenu()
+
+tstop = 20			/* Sets the time run the simulation */
+
+proc init_globals() {		/* Function definition to initialize the global variables */
+
+/* membrane defaults */
+celsius		= 15		/* temperature correction value */
+v_init		= -70		/* initial voltage */
+g_passive	= .0003		/* the standard leak conductance */
+erev_passive	= -70		/* the leak (K) reversal potential */
+gnaHH		= .12		/* the Hodgkin-Huxley Na conductance */
+gkHH		= .036		/* the Hodgkin-Huxley K conductance */
+glHH		= .0003		/* the Hodgkin-Huxley leak conductance */
+}
+
+init_globals()		/* Initializes the global variables */
+
+create soma     	/* Create all of the cell's sections */
+access soma		/* All subsequent references are to soma */
+nseg = 1		/* # of compartments */
+diam = 20		/* Set the diameter of the soma (in um) */
+L = 20			/* Set the length of the soma (in um) */
+Ra = 100
+
+insert hh			
+
+/* Declare the object variable for the current pulse stimulus */ 	
+objectvar stim			
+soma {
+	stim = new IClamp(0)	
+	stim.del = 0			
+	stim.dur = 1			
+	stim.amp = 0.4	
+	}
+
+xopen("01_soma.ses")	/* Open the session file that contains the windows and parameters */
