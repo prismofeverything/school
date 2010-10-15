@@ -4,14 +4,18 @@ from neuron import *
 
 import plot
 
+#load_mechanisms('/Users/rspangler/school/computationalneuroscience/neuron/hh_zoo')
+h.nrn_load_dll('/Users/rspangler/school/computationalneuroscience/neuron/hh_zoo/x86_64/.libs/libnrnmech.so')
+
 def assign_hoc_globals(hoc):
     for key in hoc.keys():
         h(key + ' = ' + str(hoc[key]))
 
-# a basic class for the hodgkin-huxley neuron model.
-class SimpleHH:
+# the hodgkin-huxley neuron model extended by a transient calcium channel
+# and a calcium-gated potassium channel.
+class ExtendedHH:
     def __init__(self):
-        self.duration = 5
+        self.duration = 50
         self.settings = {
             'celsius': 15,
             'v_init': -70,
@@ -23,19 +27,24 @@ class SimpleHH:
         }
 
     def build_soma(self):
-        soma = h.Section()
+        h('create soma')
+        h('access soma')
+        soma = h.soma
         soma.nseg = 1
         soma.diam = 20
         soma.L = 20
         soma.Ra = 100
-        soma.insert('hh')
+        h('insert hh')
+        h('insert cadyn')
+        h('insert iT')
+        h('insert iC')
         
         return soma
     
     def build_clamp(self, soma):
         clamp = h.IClamp(soma(0.5))
         clamp.delay = 0
-        clamp.dur = 1
+        clamp.dur = 50
         clamp.amp = 0.4
         
         return clamp
@@ -85,8 +94,8 @@ class SimpleHH:
         self.plot_records('Membrane Voltage', ['time', 'voltage'])
 
 # a class to manage running several trials with a single changing variable over the given range.
-class HHTrials:
-    def __init__(self, trials, change):
+class Trials:
+    def __init__(self, model, trials, change):
         self.trials = trials
         self.change = change
 
@@ -95,12 +104,12 @@ class HHTrials:
                 return soma
             self.change = change
 
-        self.hh = SimpleHH()
+        self.model = model
 
     def run(self):
-        Z = map(lambda x: self.change(self.hh.base(), x).volts(), self.trials)
+        Z = map(lambda x: self.change(self.model.base(), x).volts(), self.trials)
 
-        timeline = np.array(self.hh.records['time'])
+        timeline = np.array(self.model.records['time'])
         X = np.array(map(lambda y: timeline, self.trials))
         Y = np.array(map(lambda y: map(lambda x: y, timeline), self.trials))
 
@@ -114,7 +123,7 @@ class HHTrials:
 # reverse, if True, will reverse the sequence of trials.
 # layered determines whether the resulting graph is a parametric surface or a series of trials.
 def run_trials(steps, change, variable, reverse=False, layered=False):
-    trials = HHTrials(steps, change)
+    trials = Trials(ExtendedHH(), steps, change)
     X, Y, Z = trials.run()
     if reverse:
         Z = list(Z)
@@ -124,7 +133,7 @@ def run_trials(steps, change, variable, reverse=False, layered=False):
     if layered:
         plot.plot_layered(X, Y, Z, variable)
     else:
-        plot.plot_series(np.array(trials.hh.records['time']), steps, Z, variable)
+        plot.plot_series(np.array(trials.model.records['time']), steps, Z, variable)
 
 
 
@@ -172,6 +181,17 @@ def change_gk(begin, end, steps):
         return simple
 
     run_trials(np.linspace(begin, end, steps), change, '0.08 - K Conductance (S/cm^2)', True)
+
+# potassium conductance
+def change_gkca(begin, end, steps):
+    def change(simple, value):
+        h('soma.pcabar_iT = ' + str(value / 70))
+        h('soma.gkbar_iC = ' + str(value))
+        # simple.soma.pcabar_iT = (value / 70)
+        # simple.soma.gkbar_iC = value
+        return simple
+
+    run_trials(np.linspace(begin, end, steps), change, 'Ca Conductance (S/cm^2)', True)
 
 
 # example -----------------------
