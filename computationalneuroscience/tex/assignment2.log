@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live/MacPorts 2009_6) (format=pdflatex 2010.10.7)  15 OCT 2010 04:36
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live/MacPorts 2009_6) (format=pdflatex 2010.10.7)  15 OCT 2010 11:36
 entering extended mode
  %&-line parsing enabled.
 **assignment2.tex
@@ -142,32 +142,34 @@ LaTeX Font Info:    ... okay on input line 12.
 <transientcalcium.png, id=19, 275.0275pt x 244.915pt>
 File: transientcalcium.png Graphic file (type png)
 
-<use transientcalcium.png> [3 <./transientcalcium.png (PNG copy)>] [4] [5]
-(./assignment2.aux) ) 
+<use transientcalcium.png> [3 <./transientcalcium.png (PNG copy)>] [4]
+<kca.png, id=27, 358.33875pt x 354.32375pt>
+File: kca.png Graphic file (type png)
+ <use kca.png> [5 <./kca.png (PNG copy)>] (./assignment2.aux) ) 
 Here is how much of TeX's memory you used:
- 1619 strings out of 495061
- 19312 string characters out of 3181964
+ 1624 strings out of 495061
+ 19366 string characters out of 3181964
  76494 words of memory out of 3000000
- 4820 multiletter control sequences out of 15000+200000
+ 4824 multiletter control sequences out of 15000+200000
  9666 words of font info for 35 fonts, out of 3000000 for 9000
  28 hyphenation exceptions out of 8191
  34i,6n,22p,519b,189s stack positions out of 5000i,500n,10000p,200000b,50000s
-</opt/local/share/texmf-texlive-dist/fonts/type1/public/am
-sfonts/cm/cmbx12.pfb></opt/local/share/texmf-texlive-dist/fonts/type1/public/am
-sfonts/cm/cmex10.pfb></opt/local/share/texmf-texlive-dist/fonts/type1/public/am
-sfonts/cm/cmmi12.pfb></opt/local/share/texmf-texlive-dist/fonts/type1/public/am
-sfonts/cm/cmmi6.pfb></opt/local/share/texmf-texlive-dist/fonts/type1/public/ams
-fonts/cm/cmmi8.pfb></opt/local/share/texmf-texlive-dist/fonts/type1/public/amsf
-onts/cm/cmr12.pfb></opt/local/share/texmf-texlive-dist/fonts/type1/public/amsfo
-nts/cm/cmr17.pfb></opt/local/share/texmf-texlive-dist/fonts/type1/public/amsfon
-ts/cm/cmr8.pfb></opt/local/share/texmf-texlive-dist/fonts/type1/public/amsfonts
-/cm/cmsy10.pfb></opt/local/share/texmf-texlive-dist/fonts/type1/public/amsfonts
-/cm/cmsy6.pfb></opt/local/share/texmf-texlive-dist/fonts/type1/public/amsfonts/
-cm/cmsy8.pfb></opt/local/share/texmf-texlive-dist/fonts/type1/public/amsfonts/c
-m/cmti12.pfb>
-Output written on assignment2.pdf (5 pages, 161076 bytes).
+</opt/local/shar
+e/texmf-texlive-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></opt/local/shar
+e/texmf-texlive-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></opt/local/shar
+e/texmf-texlive-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></opt/local/shar
+e/texmf-texlive-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></opt/local/share
+/texmf-texlive-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></opt/local/share/
+texmf-texlive-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></opt/local/share/t
+exmf-texlive-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></opt/local/share/te
+xmf-texlive-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></opt/local/share/texm
+f-texlive-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></opt/local/share/texm
+f-texlive-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></opt/local/share/texmf
+-texlive-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></opt/local/share/texmf-
+texlive-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb>
+Output written on assignment2.pdf (5 pages, 264025 bytes).
 PDF statistics:
- 67 PDF objects out of 1000 (max. 8388607)
+ 68 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 6 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 11 words of extra memory for PDF output out of 10000 (max. 10000000)
 

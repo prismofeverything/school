@@ -27,17 +27,15 @@ class ExtendedHH:
         }
 
     def build_soma(self):
-        h('create soma')
-        h('access soma')
-        soma = h.soma
+        soma = h.Section()
         soma.nseg = 1
         soma.diam = 20
         soma.L = 20
         soma.Ra = 100
-        h('insert hh')
-        h('insert cadyn')
-        h('insert iT')
-        h('insert iC')
+        soma.insert('hh')
+        soma.insert('cadyn')
+        soma.insert('iT')
+        soma.insert('iC')
         
         return soma
     
@@ -185,13 +183,11 @@ def change_gk(begin, end, steps):
 # potassium conductance
 def change_gkca(begin, end, steps):
     def change(simple, value):
-        h('soma.pcabar_iT = ' + str(value / 70))
-        h('soma.gkbar_iC = ' + str(value))
-        # simple.soma.pcabar_iT = (value / 70)
-        # simple.soma.gkbar_iC = value
+        simple.soma.pcabar_iT = (value / 70)
+#        simple.soma.gkbar_iC = value
         return simple
 
-    run_trials(np.linspace(begin, end, steps), change, 'Ca Conductance (S/cm^2)', True)
+    run_trials(np.linspace(begin, end, steps), change, 'K(Ca) Conductance (S/cm^2)', True)
 
 
 # example -----------------------
