@@ -53,6 +53,8 @@ class ExtendedHH:
         records['time'].record(h._ref_t)
         records['voltage'] = h.Vector()
         records['voltage'].record(soma(0.5)._ref_v)
+        records['calcium_current'] = h.Vector()
+        records['calcium_current'].record(soma(0.5)._ref_gkbar_iC)
 
         return records
 
@@ -184,7 +186,7 @@ def change_gk(begin, end, steps):
 def change_gkca(begin, end, steps):
     def change(simple, value):
         simple.soma.pcabar_iT = (value / 70)
-#        simple.soma.gkbar_iC = value
+        simple.soma.gkbar_iC = value
         return simple
 
     run_trials(np.linspace(begin, end, steps), change, 'K(Ca) Conductance (S/cm^2)', True)

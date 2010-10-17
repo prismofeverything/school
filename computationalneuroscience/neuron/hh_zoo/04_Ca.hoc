@@ -1,14 +1,54 @@
-/* Sample hoc code: Calcium currents * * Simple soma, with stimulator. * @author Patrick D. Roberts, Neuro. Sci. Inst. OHSU, 01/07 
- * (Supported in part by NSF-IOB-0445648) *   
-*//* The following command loads the standard run library functions into NEURON.   * These library functions are used to initialize NEURON, * begin and end simulations, and plot variables during a simulation. 
-*/// load_proc("nrnmainmenu")xopen("$(NEURONHOME)/lib/hoc/noload.hoc")nrnmainmenu()tstop = 300			/* Sets the time run the simulation */proc init_globals() {		/* Function definition to initialize the global variables */	/* membrane defaults */	celsius		= 23.5		/* temperature correction value */	v_init		= -85		/* initial voltage */	erev_pas	= -70		/* the leak (K) reversal potential */}
-init_globals()		/* Initializes the global variables */create soma     	/* Create all of the cell's sections */
+/* Sample hoc code: Calcium currents
+*
+* Simple soma, with stimulator.
+* @author Patrick D. Roberts, Neuro. Sci. Inst. OHSU, 01/07 
+* (Supported in part by NSF-IOB-0445648)
+*   
+*/
+
+/* The following command loads the standard run library functions into NEURON.  
+* These library functions are used to initialize NEURON,
+* begin and end simulations, and plot variables during a simulation. 
+*/
+// load_proc("nrnmainmenu")
+xopen("$(NEURONHOME)/lib/hoc/noload.hoc")
+nrnmainmenu()
+
+tstop = 300			/* Sets the time run the simulation */
+
+proc init_globals() {		/* Function definition to initialize the global variables */
+    /* membrane defaults */
+    celsius		= 23.5		/* temperature correction value */
+    v_init		= -85		/* initial voltage */
+    erev_pas	= -70		/* the leak (K) reversal potential */
+}
+
+init_globals()		/* Initializes the global variables */
+
+create soma     	/* Create all of the cell's sections */
 access soma
 
-/* Initializes the morphology of the neuron */soma {			nseg = 1		/* # of compartments */        //* total membrane area of 29000 uM^2        
-        diam = 100		/* Set the diameter of the soma section (in um) */	L = 290/PI			/* Set the length of the soma section (in um) */}/* Set membrane parameters and insert the channels into each section. */
-soma {			insert HH		/* Insert Hodgkin-Huxley type channels in the soma. */	insert iA		/* Insert transient potassium current (A-current). */	insert iM		/* Insert slowly activating potassium current (M-current). */	insert iL		/* Insert high threshold calcium current (L-current). */	insert iT		/* Insert transient, low threshold calcium current (T-current). */	insert iC		/* Insert Ca-dependent potassium current (C-current). */	insert iAHP		/* Insert slow Ca-dependent potassium current (AHP-current). */
-	insert cadyn		/* Insert Ca-dynamics. */	Ra = 35.5		/* Set the axial resistivity */	gnabar_HH = 0.05
+/* Initializes the morphology of the neuron */
+soma {		
+	nseg = 1		/* # of compartments */
+    //* total membrane area of 29000 uM^2        
+    diam = 100		/* Set the diameter of the soma section (in um) */
+    L = 290/PI			/* Set the length of the soma section (in um) */
+}
+
+/* Set membrane parameters and insert the channels into each section. */
+
+soma {		
+	insert HH		/* Insert Hodgkin-Huxley type channels in the soma. */
+	insert iA		/* Insert transient potassium current (A-current). */
+	insert iM		/* Insert slowly activating potassium current (M-current). */
+	insert iL		/* Insert high threshold calcium current (L-current). */
+	insert iT		/* Insert transient, low threshold calcium current (T-current). */
+	insert iC		/* Insert Ca-dependent potassium current (C-current). */
+	insert iAHP		/* Insert slow Ca-dependent potassium current (AHP-current). */
+	insert cadyn		/* Insert Ca-dynamics. */
+	Ra = 35.5		/* Set the axial resistivity */
+	gnabar_HH = 0.05
 	gkbar_HH = 0.007
 	gkbar_iA = 0.005
 	gkbar_iM = 0.0
@@ -24,5 +64,19 @@ soma {			insert HH		/* Insert Hodgkin-Huxley type channels in the soma. */	ins
 	kt_cadyn= 0.0 
 	kd_cadyn= 5e-5
 }
-/* Declare the object variable for the current pulse stimulus */ 	objectvar stim, stim_base			soma {	stim = new IClamp(0)		stim.del = 25				stim.dur = 200				stim.amp = 0.1	
-	stim_base = new IClamp(0)		stim_base.del = 0				stim_base.dur = 9999				stim_base.amp = -0.145	}xopen("04_Ca.ses")	/* Open the session file that contains the windows and parameters */
+
+/* Declare the object variable for the current pulse stimulus */ 	
+objectvar stim, stim_base			
+soma {
+	stim = new IClamp(0)	
+	stim.del = 25			
+	stim.dur = 200			
+	stim.amp = 0.1	
+    
+    stim_base = new IClamp(0)	
+    stim_base.del = 0			
+    stim_base.dur = 9999			
+    stim_base.amp = -0.145	
+}
+
+xopen("04_Ca.ses")	/* Open the session file that contains the windows and parameters */
