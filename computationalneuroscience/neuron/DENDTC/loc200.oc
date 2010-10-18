@@ -1,0 +1,89 @@
+/*----------------------------------------------------------------------
+
+  Procedure for localizing T-current in distal dendrites
+
+	- Reconstructed TC cell with 200 compartments (tc200)
+	- currents must be inserted everywhere
+	- GHK
+
+	first parameter: somatic and proximal dendritic conductance
+	secnd parameter: medial dendritic conductance
+	third parameter: distal dendritic conductance
+
+----------------------------------------------------------------------*/
+
+proc localize() {
+
+	/* CHANGE ALL : */
+
+		forall { pcabar_itGHK = $3 }
+
+
+
+	/* CHANGE SOMA : */
+
+		soma.pcabar_itGHK = $1
+
+
+	/* CHANGE PROXIMAL SEGMENTS : (idem soma) */
+
+		dend3[0].pcabar_itGHK = $1
+		dend4[0].pcabar_itGHK = $1
+		dend6[0].pcabar_itGHK = $1
+		dend7[0].pcabar_itGHK = $1
+		dend8[0].pcabar_itGHK = $1
+		dend9[0].pcabar_itGHK = $1
+		dend10[0].pcabar_itGHK = $1
+		dend11[0].pcabar_itGHK = $1
+
+
+
+	/* CHANGE MEDIAL SEGMENTS : */
+
+		dend2[0].pcabar_itGHK = $1
+
+		dend3[1].pcabar_itGHK = $2
+		dend3[8].pcabar_itGHK = $2
+
+		dend4[1].pcabar_itGHK = $2
+		dend4[4].pcabar_itGHK = $2
+
+		dend6[1].pcabar_itGHK = $2
+		dend6[2].pcabar_itGHK = $2
+		dend6[3].pcabar_itGHK = $2
+		dend6[8].pcabar_itGHK = $2
+		dend6[13].pcabar_itGHK = $2
+		dend6[20].pcabar_itGHK = $2
+
+		dend7[1].pcabar_itGHK = $2
+		dend7[4].pcabar_itGHK = $2
+		dend7[5].pcabar_itGHK = $2
+
+		dend8[1].pcabar_itGHK = $2
+		dend8[14].pcabar_itGHK = $2
+		dend8[24].pcabar_itGHK = $2
+
+		dend9[7].pcabar_itGHK = $2
+		dend9[8].pcabar_itGHK = $2
+		dend9[22].pcabar_itGHK = $2
+		dend9[26].pcabar_itGHK = $2
+
+		dend10[2].pcabar_itGHK = $2
+		dend10[6].pcabar_itGHK = $2
+		dend10[7].pcabar_itGHK = $2
+		dend10[8].pcabar_itGHK = $2
+		dend10[11].pcabar_itGHK = $2
+		dend10[16].pcabar_itGHK = $2
+
+		dend11[1].pcabar_itGHK = $2
+		dend11[10].pcabar_itGHK = $2
+		dend11[13].pcabar_itGHK = $2
+		dend11[14].pcabar_itGHK = $2
+		dend11[15].pcabar_itGHK = $2
+		dend11[16].pcabar_itGHK = $2
+		dend11[18].pcabar_itGHK = $2
+
+}
+
+
+

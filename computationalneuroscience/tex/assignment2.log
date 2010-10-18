@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live/MacPorts 2009_6) (format=pdflatex 2010.10.7)  15 OCT 2010 11:36
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live/MacPorts 2009_6) (format=pdflatex 2010.10.7)  17 OCT 2010 18:20
 entering extended mode
  %&-line parsing enabled.
 **assignment2.tex
@@ -143,33 +143,45 @@ LaTeX Font Info:    ... okay on input line 12.
 File: transientcalcium.png Graphic file (type png)
 
 <use transientcalcium.png> [3 <./transientcalcium.png (PNG copy)>] [4]
-<kca.png, id=27, 358.33875pt x 354.32375pt>
+<transientcalciumthreshhold.png, id=27, 351.3125pt x 273.02pt>
+File: transientcalciumthreshhold.png Graphic file (type png)
+
+<use transientcalciumthreshhold.png> [5]
+<calciumcurrent.png, id=31, 360.34625pt x 285.065pt>
+File: calciumcurrent.png Graphic file (type png)
+ <use calciumcurrent.png>
+[6 <./transientcalciumthreshhold.png (PNG copy)>]
+<kca.png, id=35, 372.39125pt x 384.43625pt>
 File: kca.png Graphic file (type png)
- <use kca.png> [5 <./kca.png (PNG copy)>] (./assignment2.aux) ) 
+ <use kca.png> [7 <./calciumcurrent.png (PNG copy)>] <burst.png, id=40, 591.208
+76pt x 447.6725pt>
+File: burst.png Graphic file (type png)
+ <use burst.png>
+[8 <./kca.png (PNG copy)>] [9 <./burst.png (PNG copy)>] (./assignment2.aux) ) 
 Here is how much of TeX's memory you used:
- 1624 strings out of 495061
- 19366 string characters out of 3181964
+ 1639 strings out of 495061
+ 19708 string characters out of 3181964
  76494 words of memory out of 3000000
- 4824 multiletter control sequences out of 15000+200000
+ 4836 multiletter control sequences out of 15000+200000
  9666 words of font info for 35 fonts, out of 3000000 for 9000
  28 hyphenation exceptions out of 8191
- 34i,6n,22p,519b,189s stack positions out of 5000i,500n,10000p,200000b,50000s
-</opt/local/shar
-e/texmf-texlive-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></opt/local/shar
-e/texmf-texlive-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></opt/local/shar
-e/texmf-texlive-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></opt/local/shar
-e/texmf-texlive-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></opt/local/share
-/texmf-texlive-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></opt/local/share/
-texmf-texlive-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></opt/local/share/t
-exmf-texlive-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></opt/local/share/te
-xmf-texlive-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></opt/local/share/texm
-f-texlive-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></opt/local/share/texm
-f-texlive-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></opt/local/share/texmf
--texlive-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></opt/local/share/texmf-
-texlive-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb>
-Output written on assignment2.pdf (5 pages, 264025 bytes).
+ 34i,6n,22p,1096b,189s stack positions out of 5000i,500n,10000p,200000b,50000s
+</
+opt/local/share/texmf-texlive-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></
+opt/local/share/texmf-texlive-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></
+opt/local/share/texmf-texlive-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></
+opt/local/share/texmf-texlive-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></o
+pt/local/share/texmf-texlive-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></op
+t/local/share/texmf-texlive-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></opt
+/local/share/texmf-texlive-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></opt/
+local/share/texmf-texlive-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></opt/lo
+cal/share/texmf-texlive-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></opt/lo
+cal/share/texmf-texlive-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></opt/loc
+al/share/texmf-texlive-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></opt/loca
+l/share/texmf-texlive-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb>
+Output written on assignment2.pdf (9 pages, 372086 bytes).
 PDF statistics:
- 68 PDF objects out of 1000 (max. 8388607)
+ 85 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 11 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 26 words of extra memory for PDF output out of 10000 (max. 10000000)
 

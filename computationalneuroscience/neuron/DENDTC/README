@@ -1,0 +1,81 @@
+
+ NEURON TUTORIAL FOR IMPLEMENTING SIMULATIONS OF THALAMIC RELAY NEURONS
+
+                          Alain Destexhe
+
+            Department of Physiology, Laval University,
+                      Quebec G1K 7P4, Canada
+
+Present address: CNRS, UNIC (Bat-33), Avenue de la Terrasse,
+                 91198 Gif-sur-Yvette, France
+
+                      Destexhe@iaf.cnrs-gif.fr
+                     http://cns.iaf.cnrs-gif.fr
+
+
+This package is running with the NEURON simulation program written by Michael
+Hines and available on internet at:
+  http://www.neuro.duke.edu/neuron/home.html
+
+The package contains mechanisms (.mod files) and programs (.oc files) needed
+to simulate different models of thalamocortical (TC) relay neurons, relative
+to the paper:
+
+   Destexhe A, Neubig M, Ulrich D and Huguenard JR.  
+   Dendritic low-threshold calcium currents in thalamic relay cells.  
+   Journal of Neuroscience 18: 3574-3588, 1998.
+
+An electronic version of this paper is available at http://cns.iaf.cnrs-gif.fr
+
+
+  PROGRAMS
+  ========
+
+tc1_cc.o c  : current clamp in 1-compartment TC cell
+tc3_cc.oc   : current clamp in 3-compartment TC cell
+tc200_cc.oc : current clamp in 200-compartment TC cell (intact cell)
+tc200_vc.oc : voltage clamp in 200-compartment TC cell (intact cell)
+tcD_cc.oc   : current clamp in 8-compartment TC cell (dissociated cell)
+tcD_vc.oc   : voltage clamp in 8-compartment TC cell (dissociated cell)
+
+
+  MECHANISMS
+  ==========
+
+ hh2.mod		: fast sodium spikes (Na and K currents)
+ ITGHK.mod		: T-type calcium current of TC cells
+ cadecay.mod		: intracellular calcium dynamics
+ VClamp.mod		: mechanism for single-electrode voltage-clamp
+
+
+  HOW TO RUN
+  ==========
+
+To compile the demo, NEURON and INTERVIEWS must be installed and working on
+the machine you are using.  Just type "nrnivmodl" to compile the mechanisms
+given in the mod files.
+
+Then, execute the main demo program by typing:
+
+special rundemo.hoc -
+
+Once the menu and graphics interface has appeared, click on "Init and Run"
+button to start the simulation...
+
+For more information about how to get NEURON and how to install it, please
+refer to the following sites:
+  http://www.neuro.duke.edu/neuron/home.html
+  http://www.nnc.yale.edu/HTML/YALE/NNC/neuron/neuron.html
+
+
+For further information, please contact:
+
+Alain Destexhe
+
+CNRS, UNIC (Bat-33), 
+Avenue de la Terrasse,
+91198 Gif-sur-Yvette, 
+France
+
+email: Destexhe@iaf.cnrs-gif.fr
+http://cns.iaf.cnrs-gif.fr

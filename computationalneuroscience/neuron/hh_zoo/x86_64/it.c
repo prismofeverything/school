@@ -29,7 +29,7 @@ extern double hoc_Exp();
 #define t _nt->_t
 #define dt _nt->_dt
 #define pcabar _p[0]
-#define iCa _p[1]
+#define ica _p[1]
 #define tau_m _p[2]
 #define tau_h _p[3]
 #define m_inf _p[4]
@@ -46,8 +46,8 @@ extern double hoc_Exp();
 #define _g _p[15]
 #define _ion_cai	*_ppvar[0]._pval
 #define _ion_cao	*_ppvar[1]._pval
-#define _ion_iCa	*_ppvar[2]._pval
-#define _ion_diCadv	*_ppvar[3]._pval
+#define _ion_ica	*_ppvar[2]._pval
+#define _ion_dicadv	*_ppvar[3]._pval
  
 #if MAC
 #if !defined(v)
@@ -91,7 +91,7 @@ extern int nrn_get_mechtype();
 };
  static HocParmUnits _hoc_parm_units[] = {
  "pcabar_iT", "cm/s",
- "iCa_iT", "mA/cm2",
+ "ica_iT", "mA/cm2",
  "tau_m_iT", "ms",
  "tau_h_iT", "ms",
  0,0
@@ -117,7 +117,7 @@ static int _ode_count();
 "iT",
  "pcabar_iT",
  0,
- "iCa_iT",
+ "ica_iT",
  "tau_m_iT",
  "tau_h_iT",
  "m_inf_iT",
@@ -128,7 +128,6 @@ static int _ode_count();
  0,
  0};
  static Symbol* _ca_sym;
- static Symbol* _Ca_sym;
  
 static void nrn_alloc(_prop)
 	Prop *_prop;
@@ -147,9 +146,8 @@ static void nrn_alloc(_prop)
  nrn_promote(prop_ion, 1, 0);
  	_ppvar[0]._pval = &prop_ion->param[1]; /* cai */
  	_ppvar[1]._pval = &prop_ion->param[2]; /* cao */
- prop_ion = need_memb(_Ca_sym);
- 	_ppvar[2]._pval = &prop_ion->param[3]; /* iCa */
- 	_ppvar[3]._pval = &prop_ion->param[4]; /* _ion_diCadv */
+ 	_ppvar[2]._pval = &prop_ion->param[3]; /* ica */
+ 	_ppvar[3]._pval = &prop_ion->param[4]; /* _ion_dicadv */
  
 }
  static _initlists();
@@ -157,10 +155,8 @@ static void nrn_alloc(_prop)
  _it_reg() {
 	int _vectorized = 1;
   _initlists();
- 	ion_reg("ca", -10000.);
- 	ion_reg("Ca", 2.0);
+ 	ion_reg("ca", 2.0);
  	_ca_sym = hoc_lookup("ca_ion");
- 	_Ca_sym = hoc_lookup("Ca_ion");
  	register_mech(_mechanism, nrn_alloc,nrn_cur, nrn_jacob, nrn_state, nrn_init, hoc_nrnpointerindex, 1);
  _mechtype = nrn_get_mechtype(_mechanism[1]);
      _nrn_thread_reg(_mechtype, 2, _update_ion_pointer);
@@ -257,8 +253,8 @@ static int _ode_count(_type)int _type; { hoc_execerror("iT", "cannot be used wit
  static void _update_ion_pointer(Datum* _ppvar) {
    nrn_update_ion_pointer(_ca_sym, _ppvar, 0, 1);
    nrn_update_ion_pointer(_ca_sym, _ppvar, 1, 2);
-   nrn_update_ion_pointer(_Ca_sym, _ppvar, 2, 3);
-   nrn_update_ion_pointer(_Ca_sym, _ppvar, 3, 4);
+   nrn_update_ion_pointer(_ca_sym, _ppvar, 2, 3);
+   nrn_update_ion_pointer(_ca_sym, _ppvar, 3, 4);
  }
 
 static void initmodel(double* _p, Datum* _ppvar, Datum* _thread, _NrnThread* _nt) {
@@ -302,9 +298,9 @@ for (_iml = 0; _iml < _cntml; ++_iml) {
  }}
 
 static double _nrn_current(double* _p, Datum* _ppvar, Datum* _thread, _NrnThread* _nt, double _v){double _current=0.;v=_v;{ {
-   iCa = pcabar * m * m * h * ghk ( _threadargscomma_ v , cai , cao , 2.0 ) ;
+   ica = pcabar * m * m * h * ghk ( _threadargscomma_ v , cai , cao , 2.0 ) ;
    }
- _current += iCa;
+ _current += ica;
 
 } return _current;
 }
@@ -331,13 +327,13 @@ for (_iml = 0; _iml < _cntml; ++_iml) {
   cai = _ion_cai;
   cao = _ion_cao;
  _g = _nrn_current(_p, _ppvar, _thread, _nt, _v + .001);
- 	{ double _diCa;
-  _diCa = iCa;
+ 	{ double _dica;
+  _dica = ica;
  _rhs = _nrn_current(_p, _ppvar, _thread, _nt, _v);
-  _ion_diCadv += (_diCa - iCa)/.001 ;
+  _ion_dicadv += (_dica - ica)/.001 ;
  	}
  _g = (_g - _rhs)/.001;
-  _ion_iCa += iCa ;
+  _ion_ica += ica ;
 #if CACHEVEC
   if (use_cachevec) {
 	VEC_RHS(_ni[_iml]) -= _rhs;

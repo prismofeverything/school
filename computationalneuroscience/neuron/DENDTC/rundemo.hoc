@@ -1,0 +1,24 @@
+
+//----------------------------------------------------------------------------
+//  define a panel to run the different demos
+//----------------------------------------------------------------------------
+
+proc run_tc1_cc() { xopen("tc1_cc.oc") }
+proc run_tc3_cc() { xopen("tc3_cc.oc") }
+proc run_tc200_cc() { xopen("tc200_cc.oc") }
+proc run_tc200_vc() { xopen("tc200_vc.oc") }
+proc run_tcD_vc() { xopen("tcD_vc.oc") }
+
+proc make_demopanel() {
+	xpanel("Simulations of TC cells")
+	xbutton("Burst behavior in single-compartment model","run_tc1_cc()")
+	xbutton("Burst behavior in 3-compartment model","run_tc3_cc()")
+        xbutton("Burst behavior in detailed cell model","run_tc200_cc()")
+        xbutton("Voltage-clamp in detailed cell model","run_tc200_vc()")
+        xbutton("Voltage-clamp in dissociated cell model","run_tcD_vc()")
+	xpanel()
+}
+
+make_demopanel()
+
+ismenu=0

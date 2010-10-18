@@ -1,0 +1,208 @@
+/*----------------------------------------------------------------------------
+
+	VOLTAGE-CLAMP SIMULATIONS OF TC CELLS
+	=====================================
+
+	Simulations of a detailed compartmental model of thalamic relay
+	cell, reconstructed from a ventrobasal neuron from a young rat,
+	recorded in slices by John Huguenard.  The reconstruction was done
+	by Alain Destexhe on a Eutectic tracing system and the 3-dim 
+	information was integrated into the NEURON simulation environment.
+
+	This model is described in the following paper:
+	   Destexhe A, Neubig M, Ulrich D and Huguenard JR.  Dendritic
+	   low-threshold calcium currents in thalamic relay cells.  
+	   Journal of Neuroscience 18: 3574-3588, 1998.
+
+	Please cite this reference if use that model.
+
+	All details about the morphology and the physiology of that cell,
+	its passive cable properties and its intrinsic (burst) firing 
+	properties, are described in this article.
+
+	The present program reproduces a voltage-clamp experiment on
+	the TC cell (as shown in Fig. 6 of the paper)
+
+	See also:
+	     http://cns.iaf.cnrs-gif.fr
+
+
+	Alain Destexhe, Laval University, 1997
+
+----------------------------------------------------------------------------*/
+
+
+
+//----------------------------------------------------------------------------
+//  load and define general graphical procedures
+//----------------------------------------------------------------------------
+
+xopen("$(NEURONHOME)/lib/hoc/stdrun.hoc")
+
+objectvar g[20]			// max 20 graphs
+ngraph = 0
+
+proc addgraph() { local ii	// define subroutine to add a new graph
+				// addgraph("variable", minvalue, maxvalue)
+	ngraph = ngraph+1
+	ii = ngraph-1
+	g[ii] = new Graph()
+	g[ii].size(tstart,tstop,$2,$3)
+	g[ii].xaxis()
+	g[ii].yaxis()
+	g[ii].addvar($s1,1,0)
+	g[ii].save_name("graphList[0].")
+	graphList[0].append(g[ii])
+}
+
+proc addshape() { local ii	// define subroutine to add a new shape
+				// addshape()
+	ngraph = ngraph+1
+	ii = ngraph-1
+	g[ii] = new PlotShape()
+	g[ii].scale(-130,50)
+}
+
+if(ismenu==0) {
+  nrnmainmenu()			// create main menu
+  nrncontrolmenu()		// create control menu
+}
+
+
+
+
+//----------------------------------------------------------------------------
+//  transient time
+//----------------------------------------------------------------------------
+
+trans = 1000
+
+print " "
+print ">> Transient time of ",trans," ms"
+print " "
+
+
+
+
+
+//----------------------------------------------------------------------------
+//  create multi-compartment geometry and insert currents
+//----------------------------------------------------------------------------
+
+xopen("cells/tc200.geo")		// read geometry file
+
+corrD = 1			// no dendritic surface correction
+
+G_pas = 3.79e-5
+E_pas = -73			// to fit current-clamp data (was -71 to -73)
+E_pas = -76.5			// within 3 mV error
+
+forall { 			// insert passive current everywhere
+	insert pas
+	g_pas = G_pas * corrD
+	e_pas = E_pas
+	cm = 0.88 * corrD
+	Ra = 173
+	L = L
+}
+
+soma {
+	g_pas = G_pas
+	cm = 0.88
+}
+
+
+forall {
+	insert itGHK		// T-current everywhere
+	cai = 2.4e-4 
+	cao = 2 
+	eca = 120 
+	shift_itGHK = -1	// screening charge shift + 3 mV error
+	gcabar_itGHK = corrD * 0.0002
+	qm_itGHK = 2.5
+	qh_itGHK = 2.5
+
+	insert cad		// calcium diffusion everywhere
+	depth_cad = 0.1 * corrD
+	kt_cad = 0		// no pump
+	kd_cad = 1e-4
+	taur_cad = 5
+	cainf_cad = 2.4e-4	
+}
+
+
+
+xopen("loc200.oc")		// load procedures for localizing T-current
+
+
+// uniform T-current with same density as in dissociated cells (Fig 6A)
+// localize(1.7e-5,corrD*1.7e-5,corrD*1.7e-5)
+
+// high distal density of T-current (Fig 6B)
+localize(1.7e-5,corrD*8e-5,corrD*8e-5)
+
+
+//----------------------------------------------------------------------------
+//  insert electrodes in the soma
+//----------------------------------------------------------------------------
+
+if(ismenu==0) {
+  xopen("El.oc")		// Electrode with series resistance
+  ismenu = 1
+}
+
+access soma
+
+objectvar El			// insert electrode
+El = new Electrode()
+
+
+//
+// VOLTAGE-CLAMP MODE
+//
+
+	forall { g_pas = 0 }		// remove passive current everywhere
+
+	soma El.vc.loc(0.5)		// put electrode in voltage-clamp mode
+	El.vc.dur[0] = trans
+	El.vc.dur[1] = 1000
+	El.vc.dur[2] = 1000
+	El.vc.amp[0] = -115
+	El.vc.amp[1] = -65
+	El.vc.amp[2] = -65
+	El.vc.rs = 5	 		// series resistance
+
+
+
+
+
+//----------------------------------------------------------------------------
+//  setup simulation parameters
+//----------------------------------------------------------------------------
+
+Dt = 0.2
+npoints = 1000
+
+dt = 0.1			// must be submultiple of Dt
+tstart = trans
+tstop = trans + npoints * Dt
+runStopAt = tstop
+steps_per_ms = 1/Dt
+
+celsius = 24			// temperature of John's experiments in VC
+v_init = -70
+
+
+
+
+
+
+//----------------------------------------------------------------------------
+//  add graphs
+//----------------------------------------------------------------------------
+
+addgraph("El.vc.i",-10,0.001)		// current
+addgraph("soma.v(0.5)",-120,40)		// soma voltage
+addgraph("dend10[26].v(0.5)",-120,40)	// distal voltage
+
+

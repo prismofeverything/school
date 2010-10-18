@@ -124,7 +124,19 @@ You will notice that the state variable n depends on both the voltage and the ca
 
 \vspace{10pt}
 
+The equations for steady-state are much like the dynamic equations, with all change set to zero.  Here is the full equation at steady-state:
 
+$$ I-\overline{g}_Tr^3s(V-E_T)-g_{K_{Ca}}n(V,[Ca^{++}]_i)(V-E_K)-g_L(V-E_L)=0 $$
+
+The equation for calcium when the concentration is not changing:
+
+$$ \frac{1}{\tau_{Ca}}([Ca^{++}]_{\infty}-[Ca^{++}]_i)=0 $$
+
+And the corresponding state variables are also at rest:
+
+$$ \alpha_r(V)(1-r)-\beta_r(V)r=0 $$
+$$ \alpha_s(V)(1-s)-\beta_s(V)s=0 $$
+$$ \alpha_n(V,[Ca^{++}]_i)(1-n)-\beta_n(V,[Ca^{++}]_i)n=0 $$
 
 \vspace{10pt}
 
@@ -132,10 +144,36 @@ You will notice that the state variable n depends on both the voltage and the ca
 
 \vspace{10pt}
 
-Varying only the calcium-dependent potassium channel without activating the transient calcium channel has no effect, as no calcium is flowing in to activate the potassium channel.  
+In order to make sense of this problem, it was necessary to get a feeling for all of the dynamics separately at first.  This made the collective dynamics much more approachable.  In that vein, here is the dynamics of the transient calcium current alone:
 
-Varying both the transient calcium channel and calcium-dependent potassium channel conductances in tandem produces the following behavior:
+\includegraphics[scale=0.8]{transientcalciumthreshhold.png}
 
-\includegraphics[scale=0.7]{kca.png}
+In this case the stimulus was present for 50 ms of the total 200 ms period the trial was run, while the amplitude was raised from 0.0 to 0.03 nA over the course of all trials.  This graph is of the membrane potential of the cell.  So the first trial (darkest blue) had no current stimulus at all, yet still rose to about +20mV entirely on its own, as the influx of calcium slowly compounded upon itself, bringing the potential up.  As it rose however the calcium gate began inactivation, slowing growth until an equilibrium was reached around +20mV.  At this point there was no other mechanism to balance the level of calcium in the cell, and the potential remained constant.  Successive trials show a quicker onset of membrane potential growth, but there is a tell-tale break when the stimulus is released.  Above a certain point the gate is inactivated and no further change in potential is possible through the calcium gate alone, so the final level represents how much charge was able to be acquired by the cell's capacitance before the stimulus was released.  
+
+Here is another view of the transient calcium current in the face of rising stimulus amplitude, this time with respect to the actual calcium current flowing.  The foremost red plot is under no stimulus at all.  As can be seen, the current rises as calcium flows into the cell, then levels off again as the cell becomes saturated with calcium and triggers calcium channel inactivation.  
+
+\includegraphics[scale=0.8]{calciumcurrent.png}
+
+Further trials of rising amplitude give quicker onset of calcium dynamics, but overall current (the area of the colored regions) remains mostly constant.
+
+Varying only the calcium-dependent potassium channel without activating the transient calcium channel has no effect, as no calcium is flowing in to activate the potassium channel.  Thus, it was added directly to the previous model with only a transient calcium current to see what the interactions were.  
+
+The calcium current in some ways resembles the sodium current of the Hodgkin-Huxley model.  It is a positive ion current with a large concentration outside of the cell, which opening of the corresponding channels produces a depolarization.  The transient calcium current also has an inactivation state, much like the sodium channel, which occurs when the cell becomes adequately depolarized.  The main difference between them is their timescale, with the calcium channel acting over a much broader time period than the sodium current.  
+
+In this way we would expect that the calcium-dependent potassium channel would act towards the calcium channel in the same manner as the voltage-gated potassium channel acts towards the sodium channel, balancing the depolarization of the influx of calcium by repolarizing the cell.  Since this potassium current works only in the presence of calcium, each set of dynamics can vary independently, even though potassium is involved in both.  
+
+Here is the result of the combination of these two currents:
+
+\includegraphics[scale=0.8]{kca.png}
+
+In this series, potassium conductance is increased from 0.00345 to 0.0345 (one order of magnitude) in 20 trials over a period of 500 ms.  Membrane potential is relative to -75 mV, so really this starts at -70 mV and depolarizes down as far as -74 mV and as high as -67 mV.  At its base level (in blue), the calcium current and the potassium current balance in a long oscillation (period of almost 250 ms).  As potassium current increases, the period shortens until the oscillation is damped entirely.  
+
+Ultimately, in conjunction with the original Hodgkin-Huxley model, these currents provoke a bursting of action potentials, followed by a period of silence.  This is due to the subtle depolarization provided by the transient calcium current, followed by the hyperpolarization of the calcium-dependent potassium current.  The neuron bursts while the calcium current holds sway, and then falls silent once the potassium current kicks in.  
+
+This can be seen below:
+
+\includegraphics[scale=0.6]{burst.png}
+
+This is a single trial over a period of 50 ms.  The initial burst lasts only for the first 15 ms, after which it cannot overcome the hyperpolarizing influence of the calcium-dependent potassium current.
 
 \end{document}

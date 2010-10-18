@@ -1,0 +1,20 @@
+/*----------------------------------------------------------------------
+
+  Procedure to localize T-current differentially in soma and dendrites
+
+	- Simplified TC cell with 3 compartments (tc3)
+	- currents must be inserted everywhere
+	- GHK
+
+	first parameter: somatic and proximal conductance
+	second parameter: distal dendritic conductance
+
+----------------------------------------------------------------------*/
+
+proc localize() {
+
+	soma.pcabar_itGHK = $1		// soma
+	dend1[0].pcabar_itGHK = $1	// proximal
+	dend1[1].pcabar_itGHK = $2 	// distal
+}
+

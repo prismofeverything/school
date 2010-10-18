@@ -1,0 +1,206 @@
+/*----------------------------------------------------------------------------
+
+	CURRENT-CLAMP SIMULATIONS OF TC CELLS
+	=====================================
+
+	Simulations of a single-compartment model of thalamic relay cell.
+
+	This model is described in the following paper:
+
+	   Destexhe A, Neubig M, Ulrich D and Huguenard JR.  Dendritic
+	   low-threshold calcium currents in thalamic relay cells.  
+	   Journal of Neuroscience 18: 3574-3588, 1998.
+
+	Please cite this reference if use that model.
+
+	All details about the morphology and the physiology of that cell,
+	its passive cable properties and its intrinsic (burst) firing 
+	properties, are described in this article.
+
+	The present program reproduces the burst firing of the TC cell
+	(as shown in Fig. 11 of the paper)
+
+	See also:
+	     http://cns.iaf.cnrs-gif.fr
+
+
+	Alain Destexhe, Laval University, 1997
+
+----------------------------------------------------------------------------*/
+
+
+
+//----------------------------------------------------------------------------
+//  load and define general graphical procedures
+//----------------------------------------------------------------------------
+
+xopen("$(NEURONHOME)/lib/hoc/stdrun.hoc")
+
+objectvar g[20]			// max 20 graphs
+ngraph = 0
+
+proc addgraph() { local ii	// define subroutine to add a new graph
+				// addgraph("variable", minvalue, maxvalue)
+	ngraph = ngraph+1
+	ii = ngraph-1
+	g[ii] = new Graph()
+	g[ii].size(tstart,tstop,$2,$3)
+	g[ii].xaxis()
+	g[ii].yaxis()
+	g[ii].addvar($s1,1,0)
+	g[ii].save_name("graphList[0].")
+	graphList[0].append(g[ii])
+}
+
+proc addshape() { local ii	// define subroutine to add a new shape
+				// addshape()
+	ngraph = ngraph+1
+	ii = ngraph-1
+	g[ii] = new PlotShape()
+	g[ii].scale(-130,50)
+}
+
+if(ismenu==0) {
+  nrnmainmenu()			// create main menu
+  nrncontrolmenu()		// create control menu
+}
+
+
+
+
+//----------------------------------------------------------------------------
+//  transient time
+//----------------------------------------------------------------------------
+
+trans = 00
+
+print " "
+print ">> Transient time of ",trans," ms"
+print " "
+
+
+
+
+
+//----------------------------------------------------------------------------
+//  create multi-compartment geometry and insert currents
+//----------------------------------------------------------------------------
+
+xopen("cells/tc1.geo")		// read geometry file
+
+G_pas = 3.79e-5
+E_pas = -73			// to fit current-clamp data (was -71 to -73)
+E_pas = -76.5			// within 3 mV error
+
+forall { 			// insert passive current everywhere
+	insert pas
+	g_pas = G_pas
+	e_pas = E_pas
+	cm = 0.88
+	Ra = 173
+}
+
+soma {
+	insert hh2		// insert fast spikes
+	ena = 50
+	ek = -100
+	vtraub_hh2 = -52
+	gnabar_hh2 = 0.01		// adapted to single-compartment
+	gkbar_hh2 = 0.01 		// adapted to single-compartment
+}
+
+
+forall {
+	insert itGHK		// T-current everywhere
+	cai = 2.4e-4 
+	cao = 2 
+	eca = 120 
+	shift_itGHK = -1	// screening charge shift + 3 mV error
+	gcabar_itGHK = 0.0002
+	qm_itGHK = 2.5
+	qh_itGHK = 2.5
+
+	insert cad		// calcium diffusion everywhere
+	depth_cad = 0.1
+	kt_cad = 0		// no pump
+	kd_cad = 1e-4
+	taur_cad = 5
+	cainf_cad = 2.4e-4	
+}
+
+
+
+// closest IV curve to detailed model wih dendritic density of 8.5e-5
+// (total of 1.4434978)
+// soma.pcabar_itGHK = 6e-5
+
+
+// same amount of T-channels as the intact-cell model 
+// (total of 1.7928243)
+// soma.pcabar_itGHK = 7.452e-5
+
+// increased density in order to get correct bursting behavior
+// (total of 1.9246637)
+soma.pcabar_itGHK = 8e-5
+
+
+
+
+//----------------------------------------------------------------------------
+//  insert electrodes in the soma
+//----------------------------------------------------------------------------
+
+if(ismenu==0) {
+  xopen("El.oc")		// Electrode with series resistance
+  ismenu = 1
+}
+
+access soma
+
+objectvar El			// insert electrode
+El = new Electrode()
+
+
+//
+// CURRENT-CLAMP MODE
+//
+
+	soma El.stim.loc(0.5)		// put electrode in current-clamp mode
+	El.stim.del = 480
+	El.stim.dur = 900
+	El.stim.amp = 0.075		// 0.05 = 1 spike, 0.075 = 2 spikes
+
+
+
+
+
+//----------------------------------------------------------------------------
+//  setup simulation parameters
+//----------------------------------------------------------------------------
+
+Dt = 0.2
+npoints = 4000
+
+dt = 0.1			// must be submultiple of Dt
+tstart = trans
+tstop = trans + npoints * Dt
+runStopAt = tstop
+steps_per_ms = 1/Dt
+
+celsius = 34			// temperature of John's experiments
+
+v_init = -74			// approximate resting Vm
+
+
+
+
+
+
+//----------------------------------------------------------------------------
+//  add graphs
+//----------------------------------------------------------------------------
+
+addgraph("soma.v(0.5)",-120,40)		// soma
+addshape()
+
+

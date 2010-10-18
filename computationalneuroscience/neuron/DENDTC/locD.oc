@@ -1,0 +1,32 @@
+/*----------------------------------------------------------------------
+
+  Procedure to localize T-current differentially in soma and dendrites
+
+	- Dissociated TC cell with 9 compartments (tcD)
+	- currents must be inserted everywhere
+	- GHK
+
+	first parameter: somatic and proximal conductance
+	second parameter: distal dendritic conductance
+
+----------------------------------------------------------------------*/
+
+proc localize() {
+
+	/* CHANGE ALL : */
+
+		forall { pcabar_itGHK = $2 }
+
+
+	/* CHANGE SOMA : */
+
+		soma.pcabar_itGHK = $1
+
+
+	/* CHANGE PROXIMAL SEGMENTS : */
+
+		dend1[0].pcabar_itGHK = $1
+		dend2[0].pcabar_itGHK = $1
+
+}
+

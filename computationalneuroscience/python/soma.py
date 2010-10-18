@@ -12,10 +12,17 @@ def assign_hoc_globals(hoc):
     for key in hoc.keys():
         neuron.h(key + ' = ' + str(hoc[key]))
 
-# the hodgkin-huxley neuron model extended by a transient calcium channel
-# and a calcium-gated potassium channel.
+# hoc_labels = {
+#     'gna': 'Sodium Conductance (uS)'
+# }
+
+# mechanisms is a list of mechanism strings (such as 'hh' or 'iC')
+# recordings is a dict with sub-entries 'global' and 'soma', pointing to the various
+#   attributes to record during this soma's runs
+# settings is a hash containing any other initial values for hoc
 class Soma:
     def __init__(self, mechanisms=[], recording={}, settings={}):
+        self.dt = settings['dt'] if settings.has_key('dt') else 0.025
         self.settings = {
             'celsius': 15,
             'v_init': -70,
@@ -32,12 +39,12 @@ class Soma:
         self.recording = {}
         self.recording.update(recording)
 
-        default_locations = [('global', 't'), ('soma', 'v')]
-        for location, parameter in default_locations:
+        default_locations = [('global', 't', 'Time (ms)'), ('soma', 'v', 'Membrane Potential (mV)')]
+        for location, parameter, label in default_locations:
             if not location in self.recording:
-                self.recording[location] = []
+                self.recording[location] = {}
             if not parameter in self.recording[location]:
-                self.recording[location].append(parameter)
+                self.recording[location][parameter] = label
         
         self.soma = self.build_soma()
         self.clamp = self.build_clamp(self.soma)
@@ -59,35 +66,43 @@ class Soma:
     def build_clamp(self, soma):
         clamp = neuron.h.IClamp(soma(0.5))
         clamp.delay = 0
-        clamp.dur = 50
+        clamp.dur = 500
         clamp.amp = 0.4
         
         return clamp
     
+    def find_label(self, key):
+        for recording in self.recording.values():
+            if key in recording.keys():
+                return recording[key]
+
+        # if key in hoc_labels:
+        #     return hoc_labels[key]
+
+        return ''
+
     def build_records(self, soma):
         records = {}
         location = {'global': neuron.h, 'soma': soma(0.5)}
 
         for recording in self.recording.keys():
-            for parameter in self.recording[recording]:
+            for parameter in self.recording[recording].keys():
                 records[parameter] = neuron.h.Vector()
                 records[parameter].record(getattr(location[recording], '_ref_'+parameter))
 
         return records
 
     def plot_records(self, title, which):
-        to_plot = map(lambda x: numpy.array(self.records[x]), which)
-        plot.plot_line(to_plot)
+        to_plot = map(lambda x: np.array(self.records[x]), which)
+        plot.plot_line(to_plot, title, map(lambda w: self.find_label(w), which))
 
     def initialize(self):
         self.records = self.build_records(self.soma)
         
         assign_hoc_globals(self.settings)
         
-        neuron.h.dt = 0.025
+        neuron.h.dt = self.dt
         neuron.h.finitialize(self.settings['v_init'])
-
-        # neuron init method
         neuron.init()
 
     def run(self, duration):
@@ -98,25 +113,14 @@ class Soma:
         self.run(duration)
         return np.array(self.records[which])
 
-    def volts(self, duration):
-        run(duration)
-        return np.array(self.records['v'])
-
-    def time(self):
-        return np.array(self.records['t'])
-
-    def voltage(self):
-        return np.array(self.records['v'])
-
     def plot(self):
-        self.plot_records('Membrane Voltage', ['t', 'v'])
+        self.plot_records('Membrane Voltage (mV)', ('t', 'v'))
 
 # a class to represent a parameter and the range between which it should be varied.
 class Parameter:
-    def __init__(self, parameter, between, label=''):
+    def __init__(self, parameter, between):
         self.parameter = parameter
         self.begin, self.end = between
-        self.label = label
 
     def series(self, steps):
         return np.linspace(self.begin, self.end, steps)
@@ -133,7 +137,7 @@ class Parameter:
 class Trials:
     def __init__(self, model, parameters):
         self.model = model
-        self.parameters = map(lambda p: Parameter(p[1], (p[2], p[3]), p[0]), parameters)
+        self.parameters = map(lambda p: Parameter(p[0], (p[1], p[2])), parameters)
 
     def apply_parameters(self, values):
         for parameter, value in zip(self.parameters, values):
@@ -155,67 +159,15 @@ class Trials:
         
 
 # actually run some trials.   -----------------
-def vary_parameters(model, parameters, watch, duration, steps, reverse=False, layered=False):
+def vary_parameters(model, parameters, watch, duration, steps, fromzero=False, layered=False):
     trials = Trials(model, parameters)
     X, Y, Z = trials.run(duration, steps, watch)
 
-    if reverse:
-        Z = list(Z)
-        Z.reverse()
-        Z = np.array(Z)
+    ylabel = model.find_label(trials.parameters[0].parameter[-1])
+    zlabel = model.find_label(watch)
 
-    label = trials.parameters[0].label
     if layered:
-        plot.plot_layered(X, Y, Z, label)
+        plot.plot_layered(X, Y, Z, ylabel, zlabel)
     else:
-        plot.plot_series(np.array(trials.model.records['t']), trials.parameters[0].series(steps), Z, label)
-
-
-# specific change functions.  Each one is called with a beginning and ending value for that parameter 
-# and how many steps in the series of trials.
-
-# sodium reversal potential
-def change_ena(duration, begin, end, steps):
-    soma = Soma(['hh', 'cadyn'])
-    vary_parameters(soma, [('Na Reversal Potential (mV)', ('soma', 'ena'), begin, end)], 'v', duration, steps)
-
-# stimulus amplitude
-def change_clamp(duration, begin, end, steps):
-    soma = Soma(['hh', 'cadyn'])
-    vary_parameters(soma, [('Stimulus Amplitude (nA)', ('clamp', 'amp'), begin, end)], 'v', duration, steps)
-
-# membrane potential
-def change_vinit(begin, end, steps):
-    def change(simple, value):
-        simple.soma.v = value
-        simple.soma.gkbar_hh = 0
-        simple.soma.gl_hh = 0
-        return simple
-
-    run_trials(np.linspace(begin, end, steps), change, 'Membrane Potential (mV)')
-
-# sodium conductance
-def change_gna(begin, end, steps):
-    def change(simple, value):
-        simple.soma.gnabar_hh = value
-        return simple
-
-    run_trials(np.linspace(begin, end, steps), change, 'Na Conductance (S/cm^2)')
-
-# potassium conductance
-def change_gk(begin, end, steps):
-    def change(simple, value):
-        simple.soma.gkbar_hh = value
-        return simple
-
-    run_trials(np.linspace(begin, end, steps), change, '0.08 - K Conductance (S/cm^2)', True)
-
-# potassium conductance
-def change_gkca(begin, end, steps):
-    def change(simple, value):
-        simple.soma.pcabar_iT = (value / 70)
-        simple.soma.gkbar_iC = value
-        return simple
-
-    run_trials(np.linspace(begin, end, steps), change, 'K(Ca) Conductance (S/cm^2)', True)
+        plot.plot_series(np.array(trials.model.records['t']), trials.parameters[0].series(steps), Z, ylabel, zlabel, fromzero)
 
