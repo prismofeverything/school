@@ -1,0 +1,39 @@
+\begin{thebibliography}{1}
+
+\bibitem{Cock}
+Peter J.~A. Cock, Tiago Antao, Jeffrey~T. Chang, Brad~A. Chapman, Cymon~J. Cox,
+  Andrew Dalke, Iddo Friedberg, Thomas Hamelryck, Frank Kauff, Bartek
+  Wilczynski, and Michiel J.~L. de~Hoon.
+\newblock Biopython: freely available python tools for computational molecular
+  biology and bioinformatics.
+\newblock {\em Oxford Journals | Bioinformatics}, 25:1422--1423, 2009.
+
+\bibitem{Destexhe}
+Alain Destexhe.
+\newblock Spike-and-wave oscillations based on the properties of gaba-b
+  receptors.
+\newblock {\em The Journal of Neuroscience}, 18:9099--9111, 1998.
+
+\bibitem{Friston}
+Karl Friston.
+\newblock The free-energy principle: a unified brain theory?
+\newblock {\em Nature Reviews | Neuroscience}, 11:127--138, 2010.
+
+\bibitem{Hodgkin}
+A.~L. Hodgkin and A.~F. Huxley.
+\newblock A quantitative description of membrane current and its application to
+  conduction and excitation in nerve cells.
+\newblock {\em Journal of Physiology}, 117:500--544, 1952.
+
+\bibitem{Marder}
+Eve Marder and Astrid~A. Prinz.
+\newblock Modeling stability in neuron and network function: the role of
+  activity in homeostasis.
+\newblock {\em BioEssays}, 24:1145--1154, 2002.
+
+\bibitem{Schutter}
+Erik~De Schutter.
+\newblock Why are computational neuroscience and systems biology so separate?
+\newblock {\em PLoS Computational Biology}, 4, 2008.
+
+\end{thebibliography}

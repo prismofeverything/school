@@ -1,0 +1,46 @@
+\title{Models in Science - Literature Review}
+\author{Ryan Spangler}
+\date{\today}
+
+\documentclass[12pt]{article}
+
+\usepackage{commath}
+\usepackage{graphicx}
+
+\linespread{1.6}
+
+\setcounter{secnumdepth}{0}
+
+\begin{document}
+\maketitle
+
+\section{Computational Neuroscience and Systems Biology}
+
+One great thing about this literature review is that it showed me once again how much I have to learn.  I included both the fields of computational neuroscience and systems biology because each one is getting at the idea from a different angle.  Both fields are young and tumultuous, neither has wholly defined really what it is it studies yet.  Both have more questions than answers, and more hopes than achievements.  
+
+Basically no one really has a clue how it all works yet, or even where to start looking, so they have started with what they already have:  modeling the cell as an electrical capacitor, modeling axons as telegraphic cables, modeling genes as binary sequences.  These are the reassuring familiar tools that have been so effective in computational and physical fields.  As time goes on though the tools are adapting to the subject, and people are discovering how \emph{different} these systems are from the idealized systems of physics and chemistry.  
+
+Here is a good example.  The birth of computational neuroscience so to speak (though it was not called that at the time) was a landmark article by Hodgkin and Huxley \cite{Hodgkin} in 1952 detailing a model of a neuronal spike, or action potential, in terms of various ionic channels embedded in the cell membrane.  They did all of their work with a giant squid axon, which was the largest and therefore most experimentable axon around.  The model explained how to simulate a spiking neuron using three currents: a sodium current to bring the onset of the action potential, a potassium current to clamp the membrane potential back to negative after the spike, and a small leakage current to stand in for everything else going on.  This model was so successful it is still basically in use today, though more currents have been added and further terms and refinements made.  
+
+The Hodgkin and Huxley model is fundamentally an extension of physical models onto the concept of the cell.  The cell membrane itself is modelled using the same equations people had been using for a century to describe electrical capacitors.  Charge is stored across the membrane, current flows in proportion to the voltage with respect to resistance etc.  Hodgkin and Huxley gave everyone a model that they could relate to.  Its extensive application in a variety of fields attests to its utility.  Its basis was mathematical, only later did the computational neuroscientists adopt and extend it for themselves.  An article along this vein is \cite{Destexhe} from 1998, which attempts to describe epileptic seizures in terms of models of neurons from both the cortex and the thalamus forming a loop.  All of the elaborate channels and conductances in this model are still of the original form Hodgkin and Huxley put down almost 50 years earlier.
+
+This is why around the turn of the millenia the computational neuroscience community was in for a shock.  In trying to comprehend the activity of neurons, people were looking at various types of neurons and mapping out what kind of channels they could find.  So pyramidal neurons had a certain portion of sodium channels, and a certain number of calcium-dependent potassium channels and so on.  They would gather as many examples as they could find and write out the characteristic compositions of these neuron varieties based on an average of all the ones they had found.  Armed with these descriptions they translated them into Hodgkin Huxley models, and found themselves consistently disappointed over and over again.  The models just did not match the activity they found in the neurons they were comparing to their models.  
+
+It was discovered ultimately that neurons did not have a static composition of channel varieties.  Really, these cells are constantly adjusting and swapping out the channels embedded in the membrane, pulling out ones and replacing them with others as signals demanded \cite{Marder}.  There is no such thing as a characteristic channel composition for a neuron.  Marder and others discovered that neurons modulated these channel concentrations in order to maintain a specific firing pattern.  So a stimulus would knock a neuron out of its customary firing pattern, and it would adjust its channel composition in order to return to that firing pattern.  Each one is an adaptive homeostatic unit, constantly changing and morphing to fit its needs.
+
+So here everyone had not even realized they were assuming something about their subject, that neurons had static channel compositions, and finally discover that not only had they been missing something all along, but that it actually implied that their field was far more complex than they had originally assumed.  I'm sure this is only the first of many eye-opening realizations about just how complex neural dynamics is.  
+
+More recently, Schutter \cite{Schutter} published an article titled "Why are computational neuroscience and systems biology so separate?"  It is an interesting review of these fields in comparison to one another, and the issues facing both.  Systems biology is gaining momentum as the overwhelming glut of biophysical data has confounded the biological community to make sense of it.  Greatly needed are models to make sense of all of this data, which is what systems biology is trying to do.  Systems biology is in relation to all of biological phenomena, as opposed to computational neuroscience which focuses on electrical and informational approaches to neurons specifically.  Both extensively use modelling to understand their subject, though in different ways.  Systems biology is focused more on systems, rather than isolated units.  For this reason it is full of things like graph theory and parallelized algorithms.  
+
+One of the more recent approaches to understanding brain dynamics comes from Friston \cite{Friston}, and is gaining a lot of attention.  His claim is that the brain represents a massively parallel mechanism for minimizing ``free energy'' in the informational content of the brain.  Comparing expectations with perceptions provides a measure of discrepancy between the implicit predictions entailed by the structure of the brain and what actually happens.  This discrepancy is the free energy to be minimized in the process of learning and modulating synaptic correlations.  If true, this could mean a unification of various attempts so far to describe the overall function of the brain. 
+
+A great feature of the systems biology is its early and committed development of useful software tools to encourage the manipulation and large-scale sharing of biological information.  One such project is Biopython \cite{Cock}, a software package that uses the general-purpose Python programming language to integrate a number of disparate pre-existing computational biology and bioinformatics software systems and databases into a single coherent framework.  It is open source and free to use by anyone, anywhere.  Contributors are all over the globe.  There is truly a community of human beings trying to understand this mystery of life.  
+
+All in all, there is much more to come from these fields as everyone works to make sense of and face this great enigma.  
+
+\vspace{300pt}
+
+\bibliographystyle{plain}
+\bibliography{litreview}
+
+\end{document}

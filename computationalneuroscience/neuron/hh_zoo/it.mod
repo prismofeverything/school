@@ -14,7 +14,7 @@ INDEPENDENT {t FROM 0 TO 1 WITH 1 (ms)}
 NEURON {
 	SUFFIX iT
 	USEION ca READ cai,cao WRITE ica VALENCE 2
-	: USEION ca READ cai,cao WRITE cai
+	: USEION ca READ cai,cao 
     : USEION Ca WRITE iCa VALENCE 2
 	: The T-current does not activate calcium-dependent currents.
 	: The construction with dummy ion Ca prevents the updating of the 
