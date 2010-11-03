@@ -1,0 +1,32 @@
+\title{Models in Science - Project Proposal}
+\author{Ryan Spangler}
+\date{\today}
+
+\documentclass[12pt]{article}
+
+\usepackage{commath}
+\usepackage{graphicx}
+
+\linespread{1.6}
+
+\setcounter{secnumdepth}{0}
+
+\begin{document}
+\maketitle
+
+\section{Modeling Neural Connectivity}
+
+One of the challenges of studying neural dynamics is the plethora of connections between each node.  Each node can be simple in isolation, but when each node sends out signals to several other nodes (and in real networks this is thousands or more) things get complex very fast.  I have long wanted a tool that allowed me to explore the way the interconnectedness of the nodes in neural systems affects the network dynamics.  This is my proposal, to develop a simple system to allow someone to construct a network graph by hand, node by node, craft the various interconnections between them and ultimately run the simulation to see what the overall effect is.  The system could then be further tweaked and modified, allowing a measure of experimentation with how different connections and types of connections influence the behavior of the network as a whole.
+
+Neurons have many excitatory connections, but the main source of variability in dynamic networks is the inhibitory connections.  If all connections were excitatory, the network would quickly overload activity, maxxing out immediately with no variability or discernable distinctions in behavior.  Inhibitory connections allow the network to regulate itself, to temper excitatory activity into something resembling coherent behavior.  The network as a whole can remain sensitive to arbitrary stimuli, and not spiral into a useless firing party.  Using a tool like I propose will allow someone to introduce inhibitory nodes among excitatory ones and gain an understanding of how inhibitory interconnections contribute to network behavior.
+
+This proposal also has the upside that many biological phenomena can be described in terms of networks, and could be explored in a similar way with a generalized network tool.  Genetic transcription networks, cytoplasmic protein circuits, intercellular communication, hormone regulation and a number of other phenomena can be viewed as networks of nodes connected by various excitatory or inhibitory influences.  Any of these biological systems could be studied in a generalized framework that emphasizes dynamics over whatever particular instantiation it happened to come in.
+
+Uri Alon \cite{Alon} has done a good deal of work characterizing what he calls ``network motifs'', which are small functional groups of nodes interconnected in a characteristic way.  What he did was compare the structure of mathematically random networks to the biological networks that are described by experimental results, drawing from a variety of sources including transcription networks and protein circuits as well as neural connection.  He shows for instance that out of all possible connection patterns of three nodes (of which there are 13), only two occur more often than they do in totally random networks: feedforward and feedback connection patterns.  These patterns could be explored using this tool.  
+
+In addition, there have been discovered a number of network patterns of excitatory and inhibitory connections that exhibit plausible biological behavior.  Any of these could be reconstructed and experimented with in the context of a node and connection simulation environment.  If I have time it would be nice to allow the saving of models and something akin to a library of pre-existing models to test out. 
+
+\bibliographystyle{plain}
+\bibliography{projectproposal}
+
+\end{document}
