@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live/MacPorts 2009_6) (format=pdflatex 2010.10.7)  29 OCT 2010 01:41
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live/MacPorts 2009_6) (format=pdflatex 2010.10.7)  5 NOV 2010 05:54
 entering extended mode
  %&-line parsing enabled.
 **assignment3.tex
@@ -22,13 +22,73 @@ File: size12.clo 2007/10/19 v1.4h Standard LaTeX file (size option)
 \abovecaptionskip=\skip41
 \belowcaptionskip=\skip42
 \bibindent=\dimen102
+) (./commath.sty (/opt/local/share/texmf-texlive-dist/tex/latex/base/ifthen.sty
+Package: ifthen 2001/05/26 v1.1c Standard LaTeX ifthen package (DPC)
 )
+(/opt/local/share/texmf-texlive-dist/tex/latex/amsmath/amsmath.sty
+Package: amsmath 2000/07/18 v2.13 AMS math features
+\@mathmargin=\skip43
+
+For additional information on amsmath, use the `?' option.
+(/opt/local/share/texmf-texlive-dist/tex/latex/amsmath/amstext.sty
+Package: amstext 2000/06/29 v2.01
+
+(/opt/local/share/texmf-texlive-dist/tex/latex/amsmath/amsgen.sty
+File: amsgen.sty 1999/11/30 v2.0
+\@emptytoks=\toks14
+\ex@=\dimen103
+))
+(/opt/local/share/texmf-texlive-dist/tex/latex/amsmath/amsbsy.sty
+Package: amsbsy 1999/11/29 v1.2d
+\pmbraise@=\dimen104
+)
+(/opt/local/share/texmf-texlive-dist/tex/latex/amsmath/amsopn.sty
+Package: amsopn 1999/12/14 v2.01 operator names
+)
+\inf@bad=\count87
+LaTeX Info: Redefining \frac on input line 211.
+\uproot@=\count88
+\leftroot@=\count89
+LaTeX Info: Redefining \overline on input line 307.
+\classnum@=\count90
+\DOTSCASE@=\count91
+LaTeX Info: Redefining \ldots on input line 379.
+LaTeX Info: Redefining \dots on input line 382.
+LaTeX Info: Redefining \cdots on input line 467.
+\Mathstrutbox@=\box26
+\strutbox@=\box27
+\big@size=\dimen105
+LaTeX Font Info:    Redeclaring font encoding OML on input line 567.
+LaTeX Font Info:    Redeclaring font encoding OMS on input line 568.
+\macc@depth=\count92
+\c@MaxMatrixCols=\count93
+\dotsspace@=\muskip10
+\c@parentequation=\count94
+\dspbrk@lvl=\count95
+\tag@help=\toks15
+\row@=\count96
+\column@=\count97
+\maxfields@=\count98
+\andhelp@=\toks16
+\eqnshift@=\dimen106
+\alignsep@=\dimen107
+\tagshift@=\dimen108
+\tagwidth@=\dimen109
+\totwidth@=\dimen110
+\lineht@=\dimen111
+\@envbody=\toks17
+\multlinegap=\skip44
+\multlinetaggap=\skip45
+\mathdisplay@stack=\toks18
+LaTeX Info: Redefining \[ on input line 2666.
+LaTeX Info: Redefining \] on input line 2667.
+))
 (/opt/local/share/texmf-texlive-dist/tex/latex/graphics/graphicx.sty
 Package: graphicx 1999/02/16 v1.0f Enhanced LaTeX Graphics (DPC,SPQR)
 
 (/opt/local/share/texmf-texlive-dist/tex/latex/graphics/keyval.sty
 Package: keyval 1999/03/16 v1.13 key=value parser (DPC)
-\KV@toks@=\toks14
+\KV@toks@=\toks19
 )
 (/opt/local/share/texmf-texlive-dist/tex/latex/graphics/graphics.sty
 Package: graphics 2009/02/05 v1.0o Standard LaTeX Graphics (DPC,SPQR)
@@ -43,62 +103,74 @@ Package graphics Info: Driver file: pdftex.def on input line 91.
 
 (/opt/local/share/texmf-texlive-dist/tex/latex/pdftex-def/pdftex.def
 File: pdftex.def 2009/08/25 v0.04m Graphics/color for pdfTeX
-\Gread@gobject=\count87
+\Gread@gobject=\count99
 ))
-\Gin@req@height=\dimen103
-\Gin@req@width=\dimen104
+\Gin@req@height=\dimen112
+\Gin@req@width=\dimen113
 )
-No file assignment3.aux.
+(./assignment3.aux)
 \openout1 = `assignment3.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 11.
-LaTeX Font Info:    ... okay on input line 11.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 11.
-LaTeX Font Info:    ... okay on input line 11.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 11.
-LaTeX Font Info:    ... okay on input line 11.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 11.
-LaTeX Font Info:    ... okay on input line 11.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 11.
-LaTeX Font Info:    ... okay on input line 11.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 11.
-LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 12.
+LaTeX Font Info:    ... okay on input line 12.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 12.
+LaTeX Font Info:    ... okay on input line 12.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 12.
+LaTeX Font Info:    ... okay on input line 12.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 12.
+LaTeX Font Info:    ... okay on input line 12.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 12.
+LaTeX Font Info:    ... okay on input line 12.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 12.
+LaTeX Font Info:    ... okay on input line 12.
+
 (/opt/local/share/texmf-texlive-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count88
-\scratchdimen=\dimen105
-\scratchbox=\box26
-\nofMPsegments=\count89
-\nofMParguments=\count90
-\everyMPshowfont=\toks15
-\MPscratchCnt=\count91
-\MPscratchDim=\dimen106
-\MPnumerator=\count92
-\everyMPtoPDFconversion=\toks16
-)
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <14.4> on input line 12.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 12.
- [1
+\scratchcounter=\count100
+\scratchdimen=\dimen114
+\scratchbox=\box28
+\nofMPsegments=\count101
+\nofMParguments=\count102
+\everyMPshowfont=\toks20
+\MPscratchCnt=\count103
+\MPscratchDim=\dimen115
+\MPnumerator=\count104
+\everyMPtoPDFconversion=\toks21
+) [1
 
 {/opt/local/var/db/texmf/fonts/map/pdftex/updmap/pdftex.map}]
-(./assignment3.aux) ) 
+<static.png, id=10, 545.03625pt x 419.5675pt>
+File: static.png Graphic file (type png)
+ <use static.png>
+<staticgrowth.png, id=11, 556.0775pt x 418.56375pt>
+File: staticgrowth.png Graphic file (type png)
+ <use staticgrowth.png>
+[2 <./static.png (PNG copy)>] <sliding.png, id=17, 538.01pt x 426.59375pt>
+File: sliding.png Graphic file (type png)
+
+<use sliding.png> [3 <./staticgrowth.png (PNG copy)> <./sliding.png (PNG copy)>
+] <halfrate.png, id=21, 551.05875pt x 438.63875pt>
+File: halfrate.png Graphic file (type png)
+ <use halfrate.png> [4 <./halfrate.png (PNG copy)>] [5] (./assignment3.aux) ) 
 Here is how much of TeX's memory you used:
- 887 strings out of 495061
- 11315 string characters out of 3181964
- 60329 words of memory out of 3000000
- 4123 multiletter control sequences out of 15000+200000
- 5756 words of font info for 21 fonts, out of 3000000 for 9000
+ 1637 strings out of 495061
+ 19546 string characters out of 3181964
+ 74494 words of memory out of 3000000
+ 4834 multiletter control sequences out of 15000+200000
+ 10247 words of font info for 37 fonts, out of 3000000 for 9000
  28 hyphenation exceptions out of 8191
- 25i,6n,19p,562b,187s stack positions out of 5000i,500n,10000p,200000b,50000s
-</opt/local/share/texmf-texlive-dist/fonts/type1/public/am
-sfonts/cm/cmbx12.pfb></opt/local/share/texmf-texlive-dist/fonts/type1/public/am
-sfonts/cm/cmr12.pfb></opt/local/share/texmf-texlive-dist/fonts/type1/public/ams
-fonts/cm/cmr17.pfb>
-Output written on assignment3.pdf (1 page, 37941 bytes).
+ 34i,6n,22p,717b,189s stack positions out of 5000i,500n,10000p,200000b,50000s
+</
+opt/local/share/texmf-texlive-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></
+opt/local/share/texmf-texlive-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></
+opt/local/share/texmf-texlive-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></o
+pt/local/share/texmf-texlive-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></op
+t/local/share/texmf-texlive-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></opt
+/local/share/texmf-texlive-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></opt/l
+ocal/share/texmf-texlive-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
+Output written on assignment3.pdf (5 pages, 210581 bytes).
 PDF statistics:
- 18 PDF objects out of 1000 (max. 8388607)
+ 50 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 1 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 21 words of extra memory for PDF output out of 10000 (max. 10000000)
 
