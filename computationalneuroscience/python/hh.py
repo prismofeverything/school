@@ -109,11 +109,6 @@ class HodgkinHuxley:
                       alpha = lambda soma: (0.01 * (soma.voltage + 55)) / (1 - exp(-0.1 * (soma.voltage + 55))),
                       beta  = lambda soma: 0.125 * exp(-0.0125 * (soma.voltage + 65)))
 
-        # calcium-gated potassium activation
-        self.c = Gate(level = 0.1,   power = 4,
-                      inf   = lambda soma: (soma.calcium / (soma.calcium + 3)) * (1.0 / (1 + exp(-(soma.voltage + 28.3) / 12.6))),
-                      tau   = lambda soma: 90.3 - (75.1 / (1 + exp(-(soma.voltage + 46) / 22.7))))
-
         # transient calcium activation
         self.l = Gate(level = 0.48,  power = 2,
                       inf   = lambda soma: 1.0 / (1 + exp(-(soma.voltage + 57) / 62)),
@@ -124,10 +119,15 @@ class HodgkinHuxley:
                       inf   = lambda soma: 1.0 / (1 + exp((soma.voltage + 81) / 4)),
                       tau   = lambda soma: exp((soma.voltage + 467) / 66.6) if soma.voltage < -80 else 28 + exp(-(soma.voltage + 22) / 10.5))
 
+        # calcium-gated potassium activation
+        self.c = Gate(level = 0.1,   power = 4,
+                      inf   = lambda soma: (soma.calcium / (soma.calcium + 3)) * (1.0 / (1 + exp(-(soma.voltage + 28.3) / 12.6))),
+                      tau   = lambda soma: 90.3 - (75.1 / (1 + exp(-(soma.voltage + 46) / 22.7))))
+
         self.na   = Current(reversal = 50,    conductance = 120, gates = [self.m, self.h])
         self.k    = Current(reversal = -77,   conductance = 36,  gates = [self.n])
-        self.kca  = Current(reversal = -77,   conductance = 36,   gates = [self.c])
         self.cat  = Current(reversal = 120,   conductance = 1.3,  gates = [self.l, self.g])
+        self.kca  = Current(reversal = -77,   conductance = 36,   gates = [self.c])
 
         self.leak = Current(reversal = -54.4, conductance = 0.3)
         self.stimulus = Stimulus(5, 6, 0.1)
@@ -135,7 +135,8 @@ class HodgkinHuxley:
 
         # self.currents = [self.na, self.k, self.leak, self.stimulus]
         # self.currents = [self.na, self.k, self.leak, self.kca, self.cat, self.hyper]
-        self.currents = [self.na, self.k, self.leak, self.kca, self.cat]
+        self.currents = [self.na, self.leak]
+#         self.currents = [self.na, self.k, self.leak, self.kca, self.cat]
         self.reset()
 
     def reset(self):
