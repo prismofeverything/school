@@ -129,14 +129,15 @@ class HodgkinHuxley:
         self.cat  = Current(reversal = 120,   conductance = 1.3,  gates = [self.l, self.g])
         self.kca  = Current(reversal = -77,   conductance = 36,   gates = [self.c])
 
-        self.leak = Current(reversal = -54.4, conductance = 0.3)
-        self.stimulus = Stimulus(5, 6, 0.1)
+#        self.leak = Current(reversal = -54.4, conductance = 0.3)
+        self.leak = Current(reversal = -77, conductance = 0.3)
+        self.stimulus = Stimulus(15, 16, 0.3)
         self.hyper = Stimulus(80, 90, -0.2)
 
         # self.currents = [self.na, self.k, self.leak, self.stimulus]
         # self.currents = [self.na, self.k, self.leak, self.kca, self.cat, self.hyper]
-        self.currents = [self.na, self.leak]
-#         self.currents = [self.na, self.k, self.leak, self.kca, self.cat]
+        self.currents = [self.na, self.leak, self.stimulus]
+        # self.currents = [self.na, self.k, self.leak, self.kca, self.cat]
         self.reset()
 
     def reset(self):
