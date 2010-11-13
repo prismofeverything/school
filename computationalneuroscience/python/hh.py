@@ -8,14 +8,13 @@ from matplotlib import pyplot as plt
 class Gate:
     def __init__(self, level=0, power=1, alpha=lambda x: 0, beta=lambda x: 0, inf=None, tau=None):
         self.levelinit = level
-        self.level = level
         self.power = power
         self.alpha = alpha
         self.beta = beta
         self.inf = inf
         self.tau = tau
 
-        self.level_delta = 0
+        self.reset()
 
     def gate(self):
         return pow(self.level, self.power)
@@ -36,6 +35,17 @@ class Gate:
     def reset(self):
         self.level = self.levelinit
         self.level_delta = 0
+
+class AlphaSynapse(Gate):
+    def discern(self, soma, t):
+        self.next_level = self.alpha(soma, t)
+
+    def step(self, dt):
+        self.level = self.next_level
+
+    def reset(self):
+        self.level = 1.0
+        self.next_level = self.level
 
 class Current:
     def __init__(self, reversal=0, conductance=1, gates=[]):
@@ -67,14 +77,17 @@ class Current:
             gate.reset()
 
 class Stimulus:
-    def __init__(self, begin, end, amp):
+    def __init__(self, begin, dur, amp):
         self.begin = begin
-        self.end = end
+        self.dur = dur
         self.amp = amp
         self.area = 1.26e-2
 
+    def end(self):
+        return self.begin + self.dur
+
     def delta(self, soma, t):
-        if t >= self.begin and t <= self.end:
+        if t >= self.begin and t <= self.end():
             return self.amp / self.area
         else:
             return 0
@@ -89,10 +102,11 @@ class Stimulus:
         pass
 
 class HodgkinHuxley:
-    def __init__(self, dt=0.1, vinit = -65, tau_calcium = 0.03):
+    def __init__(self, dt=0.1, vinit = -77, tau_calcium = 0.03, clamping=False):
         self.dt = dt
         self.vinit = vinit
         self.tau_calcium = tau_calcium
+        self.clamping = clamping
 
         # sodium activation
         self.m = Gate(level = 0.053, power = 3, 
@@ -124,20 +138,26 @@ class HodgkinHuxley:
                       inf   = lambda soma: (soma.calcium / (soma.calcium + 3)) * (1.0 / (1 + exp(-(soma.voltage + 28.3) / 12.6))),
                       tau   = lambda soma: 90.3 - (75.1 / (1 + exp(-(soma.voltage + 46) / 22.7))))
 
+        self.alpha = AlphaSynapse(level = 1.0, power = 1,
+                                  alpha = lambda soma, t: exp(-t / 1.0))
+
         self.na   = Current(reversal = 50,    conductance = 120, gates = [self.m, self.h])
         self.k    = Current(reversal = -77,   conductance = 36,  gates = [self.n])
         self.cat  = Current(reversal = 120,   conductance = 1.3,  gates = [self.l, self.g])
         self.kca  = Current(reversal = -77,   conductance = 36,   gates = [self.c])
+        self.leak = Current(reversal = -54.4,   conductance = 0.3)
 
-#        self.leak = Current(reversal = -54.4, conductance = 0.3)
-        self.leak = Current(reversal = -77, conductance = 0.3)
-        self.stimulus = Stimulus(15, 16, 0.3)
-        self.hyper = Stimulus(80, 90, -0.2)
+        self.stimulus = Stimulus(5, 1, 0.233)
+        self.hyper = Stimulus(80, 10, -0.2)
+        self.GABAa = Current(reversal = -89, conductance = 10, gates = [self.alpha])
 
+        self.currents = [self.na, self.k, self.leak]
         # self.currents = [self.na, self.k, self.leak, self.stimulus]
-        # self.currents = [self.na, self.k, self.leak, self.kca, self.cat, self.hyper]
-        self.currents = [self.na, self.leak, self.stimulus]
+        # self.currents = [self.na, self.leak]
+        # self.currents = [self.na, self.k, self.leak, self.GABAa]
+        # self.currents = [self.na, self.leak, self.stimulus]
         # self.currents = [self.na, self.k, self.leak, self.kca, self.cat]
+        # self.currents = [self.na, self.k, self.leak, self.kca, self.cat, self.hyper]
         self.reset()
 
     def reset(self):
@@ -165,8 +185,12 @@ class HodgkinHuxley:
         for current in self.currents:
             current.discern(self, t)
 
-    def step(self):
-        self.voltage = self.voltage + (self.voltage_delta * self.dt)
+    def step(self, t):
+        if t < 15 and self.clamping:
+            self.voltage = -90
+        else:
+            self.voltage = self.voltage + (self.voltage_delta * self.dt)
+
         self.calcium = self.calcium + (self.calcium_delta * self.dt)
 
         for current in self.currents:
@@ -200,16 +224,16 @@ class HodgkinHuxley:
         time = arange(begin, end, step)[1:]
         for t in time:
             self.discern(t)
-            self.step()
+            self.step(t)
             self.record()
 
-    def plot(self, begin, end, step, variables=['V']):
+    def plot(self, begin, end, step, variables=['V'], loc="upper right"):
         time = arange(begin, end, step)
         self.run(begin, end, step)
 
         self.figure.clear()
         for variable in variables:
             plt.plot(time, self.traces[variable])
-        plt.legend(variables, loc="upper right")
+        plt.legend(variables, loc=loc)
 
 
