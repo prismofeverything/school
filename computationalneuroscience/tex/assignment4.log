@@ -1,8 +1,8 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live/MacPorts 2009_6) (format=pdflatex 2010.10.7)  12 NOV 2010 23:57
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live/MacPorts 2009_6) (format=pdflatex 2010.10.7)  18 NOV 2010 15:16
 entering extended mode
  %&-line parsing enabled.
-**exam1.tex
-(./exam1.tex
+**assignment4.tex
+(./assignment4.tex
 LaTeX2e <2009/09/24>
 Babel <v3.8l> and hyphenation patterns for english, usenglishmax, dumylang, noh
 yphenation, loaded.
@@ -108,8 +108,8 @@ File: pdftex.def 2009/08/25 v0.04m Graphics/color for pdfTeX
 \Gin@req@height=\dimen112
 \Gin@req@width=\dimen113
 )
-(./exam1.aux)
-\openout1 = `exam1.aux'.
+No file assignment4.aux.
+\openout1 = `assignment4.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 12.
 LaTeX Font Info:    ... okay on input line 12.
@@ -123,7 +123,6 @@ LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 12.
 LaTeX Font Info:    ... okay on input line 12.
 LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 12.
 LaTeX Font Info:    ... okay on input line 12.
-
 (/opt/local/share/texmf-texlive-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count100
@@ -136,68 +135,33 @@ LaTeX Font Info:    ... okay on input line 12.
 \MPscratchDim=\dimen115
 \MPnumerator=\count104
 \everyMPtoPDFconversion=\toks21
-) <nopotassium.png, id=1, 575.14874pt x 422.57875pt>
-File: nopotassium.png Graphic file (type png)
- <use nopotassium.png>
-Overfull \hbox (12.97247pt too wide) in paragraph at lines 20--21
-[][] 
+) <integratefirespikes.png, id=1, 557.08125pt x 423.5825pt>
+File: integratefirespikes.png Graphic file (type png)
+
+<use integratefirespikes.png>
+Overfull \hbox (5.53046pt too wide) in paragraph at lines 21--22
+[] 
  []
 
 [1
 
-{/opt/local/var/db/texmf/fonts/map/pdftex/updmap/pdftex.map} <./nopotassium.png
- (PNG copy)>] <leakequilibrium.png, id=9, 547.04375pt x 431.6125pt>
-File: leakequilibrium.png Graphic file (type png)
-
-<use leakequilibrium.png> <naequilibrium.png, id=10, 542.025pt x 424.58624pt>
-File: naequilibrium.png Graphic file (type png)
-
-<use naequilibrium.png> [2 <./leakequilibrium.png (PNG copy)>]
-<nacurrent.png, id=16, 550.055pt x 429.605pt>
-File: nacurrent.png Graphic file (type png)
- <use nacurrent.png> [3 <./naequilibrium.png (PNG copy)> <./nacurrent.png (PNG 
-copy)>]
-<risingh.png, id=20, 548.0475pt x 426.59375pt>
-File: risingh.png Graphic file (type png)
- <use risingh.png>
-<hyperspike.png, id=21, 586.19pt x 425.59pt>
-File: hyperspike.png Graphic file (type png)
- <use hyperspike.png> [4 <./risingh.png (PNG copy)>] <mhnhyper.png, id=25, 573.
-14125pt x 426.59375pt>
-File: mhnhyper.png Graphic file (type png)
-
-<use mhnhyper.png> [5 <./hyperspike.png (PNG copy)> <./mhnhyper.png (PNG copy)>
-] <nonhypernonspike.png, id=29, 592.2125pt x 431.6125pt>
-File: nonhypernonspike.png Graphic file (type png)
-
-<use nonhypernonspike.png> <mhnnonhyper.png, id=30, 572.1375pt x 422.57875pt>
-File: mhnnonhyper.png Graphic file (type png)
-
-<use mhnnonhyper.png> [6 <./nonhypernonspike.png (PNG copy)> <./mhnnonhyper.png
- (PNG copy)>] <gaba.png, id=34, 596.2275pt x 425.59pt>
-File: gaba.png Graphic file (type png)
- <use gaba.png> [7 <./gaba.png (PNG copy)>] [8] (./exam1.aux) ) 
+{/opt/local/var/db/texmf/fonts/map/pdftex/updmap/pdftex.map} <./integratefiresp
+ikes.png (PNG copy)>] [2] (./assignment4.aux) ) 
 Here is how much of TeX's memory you used:
- 1663 strings out of 495061
- 20043 string characters out of 3181964
- 73494 words of memory out of 3000000
- 4856 multiletter control sequences out of 15000+200000
- 9626 words of font info for 35 fonts, out of 3000000 for 9000
+ 1597 strings out of 495061
+ 19086 string characters out of 3181964
+ 72494 words of memory out of 3000000
+ 4808 multiletter control sequences out of 15000+200000
+ 6207 words of font info for 23 fonts, out of 3000000 for 9000
  28 hyphenation exceptions out of 8191
- 34i,6n,22p,661b,189s stack positions out of 5000i,500n,10000p,200000b,50000s
-</opt/local/shar
-e/texmf-texlive-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></opt/local/shar
-e/texmf-texlive-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></opt/local/shar
-e/texmf-texlive-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></opt/local/share
-/texmf-texlive-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></opt/local/share/
-texmf-texlive-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></opt/local/share/t
-exmf-texlive-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></opt/local/share/tex
-mf-texlive-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></opt/local/share/tex
-mf-texlive-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></opt/local/share/texm
-f-texlive-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb>
-Output written on exam1.pdf (8 pages, 303613 bytes).
+ 34i,6n,22p,331b,189s stack positions out of 5000i,500n,10000p,200000b,50000s
+</opt/local/share/texmf-texlive-
+dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></opt/local/share/texmf-texlive-
+dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></opt/local/share/texmf-texlive-d
+ist/fonts/type1/public/amsfonts/cm/cmr17.pfb>
+Output written on assignment4.pdf (2 pages, 61825 bytes).
 PDF statistics:
- 75 PDF objects out of 1000 (max. 8388607)
+ 22 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 51 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 6 words of extra memory for PDF output out of 10000 (max. 10000000)
 
