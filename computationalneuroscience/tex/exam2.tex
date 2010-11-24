@@ -1,0 +1,35 @@
+\title{Computational Neurophysiology - Exam 2}
+\author{Ryan Spangler}
+\date{\today}
+
+\documentclass[12pt]{article}
+
+\usepackage{commath}
+\usepackage{graphicx}
+
+\setcounter{secnumdepth}{0}
+
+\begin{document}
+\maketitle
+
+\section{4. Course Review}
+
+\subsection{A. Calcium Channels}
+
+
+
+\subsection{B. Phase Locking}
+
+When given two mutually inhibitory neurons, an oscillation or phase locking is almost inevitable.  To see this, imagine that both are innervated, one slightly before the other (this is realistic because no two signals are ever {\em exactly} simultaneous).  The one that is ahead of the game will inhibit the other before it has time to reciprocate.  The second will therefore fall silent as it labors under the inhibitory influence of the first.  When the activity of the first neuron inevitably falls, the second has been primed by hyperpolarization and rises to inhibit the first, which then falls silent.  The roles have reversed directly, and it is easy to see how this mutual back and forth interaction will perpetuate indefinitely, giving rise to oscillatory dynamics.
+
+\subsection{C. Inhibition}
+
+
+
+\subsection{D. Stochastic Firing}
+
+There are many possible explanations for the perceived stochasticity in the firing patterns of neurons.  The simplest, and most friendly, is that neurons work in rates and not individual spikes, and that the stochastic probability-correlation nature of the firing patterns allows a level of robustness in the face of environmental and internal noise.  The Poisson process of generating simulated spike trains is the canonical idealization of this explanation.  In it, the timing of each spike has no relation to the timing of any other spike.  If you squint, it almost looks like neurons follow this rule.  At least, no other obvious pattern is discernible most of the time, so the Poisson process is a pretty reasonable estimate in those cases.  
+
+The other, more ominous explanation is that they appear to spike at random intervals because we don't actually understand why they are firing then.  Lacking an accurate explanation of the perceived spike timing of neurons, randomness is the only other alternative.  The interval between spikes is dependent on so many factors across so many time scales and involving so many other spikes generated from other neurons that teasing apart all of the relations into a comprehensible explanation is almost intractable.  At least at the moment.  Poisson at its heart fails to account for this myriad network of relationships inherent in neuronal structure (or even the mutual information between spike times), and therefore will never actually describe network dynamics in an explanatory way.  
+
+\end{document} 
