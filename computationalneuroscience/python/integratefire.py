@@ -45,7 +45,6 @@ class IntegrateFire(Integration):
     def reset(self):
         self.V = self.base
         self.spikes = 0
-        self.traces = reduce(lambda traces, key: dict(traces, **{key: []}), self.snapshot().keys(), {})
 
     def step(self, t):
         self.V = self.V_next(t)
@@ -68,3 +67,4 @@ class Trials:
             self.spikes.append(self.fire.spikes)
 
         plt.plot(self.amps, self.spikes)
+        plt.legend(['Firing Rate (Hz) vs Stimulus Amplitude (nA)'], loc='bottom right')

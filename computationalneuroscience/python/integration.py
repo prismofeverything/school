@@ -1,6 +1,3 @@
-from IPython.Debugger import Tracer; debug = Tracer()
-
-from math import exp
 import numpy as np
 from scipy import *
 from matplotlib import pyplot as plt
@@ -10,7 +7,7 @@ class Integration:
         self.dt = dt
         self.figure = plt.figure()
 
-        self.reset()
+        self.setup()
 
     def snapshot(self):
         return {} 
@@ -18,8 +15,12 @@ class Integration:
     def setup_traces(self):
         self.traces = reduce(lambda traces, key: dict(traces, **{key: []}), self.snapshot().keys(), {})        
 
-    def reset(self):
+    def setup(self):
+        self.reset()
         self.setup_traces()
+
+    def reset(self):
+        pass
 
     def discern(self, t):
         pass
@@ -33,7 +34,7 @@ class Integration:
             self.traces[key].append(snap[key])
 
     def run(self, begin, end, step):
-        self.reset()
+        self.setup()
         self.record()
 
         self.dt = step

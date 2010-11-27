@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live/MacPorts 2009_6) (format=pdflatex 2010.10.7)  24 NOV 2010 05:08
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live/MacPorts 2009_6) (format=pdflatex 2010.10.7)  27 NOV 2010 04:05
 entering extended mode
  %&-line parsing enabled.
 **assignment4.tex
@@ -139,35 +139,52 @@ LaTeX Font Info:    ... okay on input line 12.
 ) [1
 
 {/opt/local/var/db/texmf/fonts/map/pdftex/updmap/pdftex.map}]
-<integratefirespikes.png, id=11, 557.08125pt x 423.5825pt>
+<integratefirespikes.png, id=11, 570.13pt x 431.6125pt>
 File: integratefirespikes.png Graphic file (type png)
 
 <use integratefirespikes.png>
-Overfull \hbox (5.53046pt too wide) in paragraph at lines 57--58
-[] 
+Overfull \hbox (32.41995pt too wide) in paragraph at lines 72--74
+[][]
  []
 
-[2] [3 <./integratefirespikes.png (PNG copy)>] (./assignment4.aux) ) 
+[2] <integratefiretrials.png, id=17, 581.17125pt x 422.57875pt>
+File: integratefiretrials.png Graphic file (type png)
+
+<use integratefiretrials.png>
+Overfull \hbox (40.2593pt too wide) in paragraph at lines 82--84
+[][]
+ []
+
+[3 <./integratefirespikes.png (PNG copy)>] [4 <./integratefiretrials.png (PNG c
+opy)>] <poissonapprox.png, id=24, 592.2125pt x 423.5825pt>
+File: poissonapprox.png Graphic file (type png)
+
+<use poissonapprox.png>
+Overfull \hbox (48.09863pt too wide) in paragraph at lines 107--109
+[][]
+ []
+
+[5] [6 <./poissonapprox.png (PNG copy)>] (./assignment4.aux) ) 
 Here is how much of TeX's memory you used:
- 1617 strings out of 495061
- 19306 string characters out of 3181964
+ 1629 strings out of 495061
+ 19575 string characters out of 3181964
  74494 words of memory out of 3000000
- 4819 multiletter control sequences out of 15000+200000
- 9319 words of font info for 34 fonts, out of 3000000 for 9000
+ 4829 multiletter control sequences out of 15000+200000
+ 9853 words of font info for 36 fonts, out of 3000000 for 9000
  28 hyphenation exceptions out of 8191
- 34i,6n,22p,331b,189s stack positions out of 5000i,500n,10000p,200000b,50000s
-</opt/local
-/share/texmf-texlive-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></opt/local
-/share/texmf-texlive-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></opt/local
-/share/texmf-texlive-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></opt/local/
-share/texmf-texlive-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></opt/local/s
-hare/texmf-texlive-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></opt/local/sh
-are/texmf-texlive-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></opt/local/sha
-re/texmf-texlive-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></opt/local/sha
-re/texmf-texlive-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb>
-Output written on assignment4.pdf (3 pages, 114504 bytes).
+ 34i,6n,22p,612b,189s stack positions out of 5000i,500n,10000p,200000b,50000s
+</opt/local/share
+/texmf-texlive-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></opt/local/share
+/texmf-texlive-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></opt/local/share
+/texmf-texlive-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></opt/local/share/
+texmf-texlive-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></opt/local/share/t
+exmf-texlive-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></opt/local/share/te
+xmf-texlive-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></opt/local/share/tex
+mf-texlive-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></opt/local/share/tex
+mf-texlive-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb>
+Output written on assignment4.pdf (6 pages, 213548 bytes).
 PDF statistics:
- 45 PDF objects out of 1000 (max. 8388607)
+ 56 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 6 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 16 words of extra memory for PDF output out of 10000 (max. 10000000)
 
