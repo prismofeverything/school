@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live/MacPorts 2009_6) (format=pdflatex 2010.10.7)  24 NOV 2010 01:38
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live/MacPorts 2009_6) (format=pdflatex 2010.10.7)  29 NOV 2010 02:05
 entering extended mode
  %&-line parsing enabled.
 **exam2.tex
@@ -138,24 +138,44 @@ LaTeX Font Info:    ... okay on input line 12.
 \everyMPtoPDFconversion=\toks21
 ) [1
 
-{/opt/local/var/db/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2]
-(./exam2.aux) ) 
+{/opt/local/var/db/texmf/fonts/map/pdftex/updmap/pdftex.map}]
+<phaseplane.png, id=12, 584.1825pt x 422.57875pt>
+File: phaseplane.png Graphic file (type png)
+ <use phaseplane.png>
+Overfull \hbox (42.39728pt too wide) in paragraph at lines 49--51
+[][]
+ []
+
+[2] [3 <./phaseplane.png (PNG copy)>]
+<phaseplanethreshhold.png, id=19, 566.115pt x 421.575pt>
+File: phaseplanethreshhold.png Graphic file (type png)
+
+<use phaseplanethreshhold.png>
+Overfull \hbox (29.56927pt too wide) in paragraph at lines 57--59
+[][]
+ []
+
+[4 <./phaseplanethreshhold.png (PNG copy)>] [5] [6] (./exam2.aux) ) 
 Here is how much of TeX's memory you used:
- 1596 strings out of 495061
- 18964 string characters out of 3181964
- 74488 words of memory out of 3000000
- 4806 multiletter control sequences out of 15000+200000
- 6861 words of font info for 25 fonts, out of 3000000 for 9000
+ 1625 strings out of 495061
+ 19384 string characters out of 3181964
+ 75488 words of memory out of 3000000
+ 4825 multiletter control sequences out of 15000+200000
+ 9973 words of font info for 36 fonts, out of 3000000 for 9000
  28 hyphenation exceptions out of 8191
  34i,6n,22p,802b,189s stack positions out of 5000i,500n,10000p,200000b,50000s
-</opt/local/share/texmf-texlive-dist/fonts/type1/public/amsfonts
-/cm/cmbx12.pfb></opt/local/share/texmf-texlive-dist/fonts/type1/public/amsfonts
-/cm/cmr12.pfb></opt/local/share/texmf-texlive-dist/fonts/type1/public/amsfonts/
-cm/cmr17.pfb></opt/local/share/texmf-texlive-dist/fonts/type1/public/amsfonts/c
-m/cmti12.pfb>
-Output written on exam2.pdf (2 pages, 54479 bytes).
+</opt/local/
+share/texmf-texlive-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></opt/local/
+share/texmf-texlive-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></opt/local/
+share/texmf-texlive-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></opt/local/s
+hare/texmf-texlive-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></opt/local/sh
+are/texmf-texlive-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></opt/local/sha
+re/texmf-texlive-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></opt/local/share
+/texmf-texlive-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></opt/local/share
+/texmf-texlive-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb>
+Output written on exam2.pdf (6 pages, 198103 bytes).
 PDF statistics:
- 25 PDF objects out of 1000 (max. 8388607)
+ 55 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 1 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 11 words of extra memory for PDF output out of 10000 (max. 10000000)
 

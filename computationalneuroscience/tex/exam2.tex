@@ -16,11 +16,50 @@
 
 \subsection{A. Equilibrium}
 
+The particular incarnation of the Fitzhugh-Nagumo model of the action potential for this problem is of the form
 
+$$ \od{V}{t}=\frac{1}{\tau}(V-\frac{V^3}{3}-R+I_{input}) $$
+$$ \od{R}{t}=\frac{1}{\tau_R}(1.25V-R+1.5) $$
+
+where $\tau=0.1$ and $\tau_R=0.5$ (not 1.25 as is written.  0.5 is the value in the matlab simulation given and it is the one that has a distinction between I=1.0 and I=1.1).  
+
+To determine the equilibrium points for a given stimulus amplitude we can find the roots of the equations that result from setting $\od{V}{t}=0$ and $\od{R}{t}=0$.  This amounts to solving the equation (after substituting R)
+
+$$ \frac{V^3}{3}+.25V+1.5+I $$
+
+For $I=0$ this turns out to be $[V,R]=[-1.5,-.375]$, $I=1.0$ gives $[V,R]=[-9.29,.338]$ and $I=1.1$ produces $[V,R]=[-.832,.459]$.  
+
+In order to discover the behavior around the equilibrium points we must find the eigenvalues of the system at those points.  Deriving the Jacobian matrix from the original model and subtracting the as yet unknown eigenvalues multiplied by the identity $A-\lambda I$ from it gives a characteristic equation of 
+
+$$ \lambda^2+(10V^2-8)\lambda+20V^2=0 $$
+
+Finding the roots of this equation gives the eigenvalues of the various stimulus amplitudes as
+
+$$ \lambda_{I=0}=-10,-4.5 $$
+$$ \lambda_{I=1.0}=-.32+4.14\imath,-.32-4.14\imath $$
+$$ \lambda_{I=1.1}=.54+3.68\imath,.54-3.68\imath $$
+
+For $I=0$, the eigenvalues are both negative, meaning the equilibrium is a stable node.  When $I=1.0$ the eigenvalues are a complex conjugate pair with negative real parts, meaning the dynamics will spiral asymptotically towards the equilibrium point.  When $I=1.1$ the eigenvalues are also a complex conjugate pair, but this time the real part is positive, which means the behavior will spiral outwards from this point, and that it is ultimately unstable.  This does not mean however that there is not a limit cycle the equilibrium spirals towards asymptotically, which as it turns out is exactly what is happening.  For $I=1.0$ the model spikes once before settling into equilibrium.  For $I=1.1$, the system spikes recurrently about a limit cycle.
 
 \subsection{B. Simulation}
 
+The simulation of the Fitzhugh-Nagumo model reveals the validity of these conclusions.  When $I=1.0$, the variables spiral towards equilibrium.  When $I=1.1$, the spiral towards a limit cycle of spiking, no matter where they are in the phase plane.  This could be seen as due to the interaction between the linear R-nullcline and the cubic V-nullcline.  Increasing I raises the V-nullcline with respect to the R-nullcline, which remains constant, as can be seen in the next diagram:
 
+\vspace{15pt}
+\includegraphics[scale=0.71]{phaseplane.png}
+\vspace{5pt}
+
+In this diagram, V (horizontal) is graphed relative to R (vertical).  The R-nullcline is red and the V-nullcline is cyan when $I=1.1$ and pink when $I=1.0$.  The intersection between the nullclines are the equilibrium points.  The green line is spiraling towards the intersection between the R-nullcline and the pink V-nullcline.  The intersection of the R-nullcline and the cyan V-nullcline provides a center to the action potential limit cycle.  The points at which the trajectories cross the nullclines the motion of that variable in that direction reverses.  To the right of the R-nullcline R is rising, but to the left it is falling.  Likewise, below the V-nullcline V is rising, but above it is falling.  This is where the oscillatory dynamics come from.  
+
+So essentially, raising the stimulus current raises the V-nullcline, which means that more of the time the trajectory spends rising in V.  Since V is the activity, at a certain point (when the eigenvalues at the equilibrium point change from being negative real numbers to complex conjugate pairs) this translates from stable equilibrium points into single spikes.  This occurs for this system at $I=0.7$, a kind of tipping point into spiking behavior.  This threshhold is illustrated in the next diagram:
+
+\vspace{15pt}
+\includegraphics[scale=0.71]{phaseplanethreshhold.png}
+\vspace{5pt}
+
+In the non-spiking trajectory colored green, it does not gain enough V to escape the curl of the pink V-nullclines valley, and is quickly reabsorbed into the rest equilibrium.  The blue trajectory on the other hand corresponds to the higher cyan V-nullcline.  This trajectory clears the valley of the nullcline and travels all the way to the other side of the hill before crossing.  This is interpreted as a spike.  
+
+Another phase shift occurs when the real part of the eigenvalues become positive, creating a limit cycle which translates into recurrent spiking.  
 
 \section{4. Course Review}
 
