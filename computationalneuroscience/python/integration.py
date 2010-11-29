@@ -1,32 +1,52 @@
-import numpy as np
 from scipy import *
 from matplotlib import pyplot as plt
 
+class Variable:
+    def __init__(self, label, delta=lambda xi, t: 0, zero=0):
+        self.label = label
+        self.delta = delta
+        self.zero = zero
+
+    def reset(self, system):
+        self.level = self.zero
+        self.next = self.zero
+        setattr(system, self.label, self.level)
+
+    def discern(self, system, dt, t):
+        self.next = self.level + (self.delta(system, t) * dt)
+
+    def step(self, system, t):
+        self.level = self.next
+        setattr(system, self.label, self.level)
+
 class Integration:
-    def __init__(self, dt=1):
-        self.dt = dt
+    def __init__(self, variables):
+        self.variables = variables
         self.figure = plt.figure()
 
         self.setup()
 
     def snapshot(self):
-        return {} 
+        return reduce(lambda snap, var: dict(snap, **{var.label: var.level}), self.variables, {})
 
     def setup_traces(self):
-        self.traces = reduce(lambda traces, key: dict(traces, **{key: []}), self.snapshot().keys(), {})        
+        self.traces = reduce(lambda traces, key: dict(traces, **{key: []}), self.snapshot().keys(), {})
 
     def setup(self):
         self.reset()
         self.setup_traces()
 
     def reset(self):
-        pass
+        for variable in self.variables:
+            variable.reset(self)
 
-    def discern(self, t):
-        pass
+    def discern(self, dt, t):
+        for variable in self.variables:
+            variable.discern(self, dt, t)
 
     def step(self, t):
-        pass
+        for variable in self.variables:
+            variable.step(self, t)
 
     def record(self):
         snap = self.snapshot()
@@ -37,10 +57,9 @@ class Integration:
         self.setup()
         self.record()
 
-        self.dt = step
         time = arange(begin, end, step)[1:]
         for t in time:
-            self.discern(t)
+            self.discern(step, t)
             self.step(t)
             self.record()
 

@@ -1,10 +1,10 @@
 from IPython.Debugger import Tracer; debug = Tracer()
 
-from math import exp
-import numpy as np
-from scipy import *
+# from math import exp
+# import numpy as np
+# from scipy import *
+from integration import *
 from matplotlib import pyplot as plt
-from integration import Integration
 
 class IntegrateFire(Integration):
     def __init__(self, dt=1, resistance=10.0, tau=10.0, threshhold=5.0, spike=70.0, base=0, leak=0.0, amp=1.0, on=10, dur=50, span=100):
@@ -19,7 +19,9 @@ class IntegrateFire(Integration):
         self.dur = dur
         self.span = span
 
-        Integration.__init__(self, dt)
+        self.Vvar = Variable('V', lambda xi, t: xi.V_next(t) - xi.V, self.base)
+
+        Integration.__init__(self, [self.Vvar])
 
     def current(self, t):
         if t >= self.on and t < (self.on + self.dur):
@@ -39,15 +41,9 @@ class IntegrateFire(Integration):
         else:
             return self.V + self.delta(t)
 
-    def snapshot(self):
-        return {'V': self.V}
-
     def reset(self):
-        self.V = self.base
         self.spikes = 0
-
-    def step(self, t):
-        self.V = self.V_next(t)
+        Integration.reset(self)
 
 class Trials:
     def __init__(self, dt=0.1):
@@ -59,7 +55,7 @@ class Trials:
 
     def run(self, begin, end, step):
         self.spikes = []
-        self.amps = np.arange(begin, end, step)
+        self.amps = arange(begin, end, step)
         for amp in self.amps:
             self.fire.reset()
             self.fire.amp = amp

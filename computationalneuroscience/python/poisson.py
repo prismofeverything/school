@@ -19,26 +19,21 @@ class Poisson:
         return map(lambda t: self.tick(t), range(ticks))
 
 class Approximate(Integration):
-    def __init__(self, dt=1, tau=1, ticks=1000):
+    def __init__(self, tau=1, ticks=1000):
         self.tau = tau
-        self.itau = 1.0 / tau
         self.poisson = Poisson(osc_rate)
         self.ticks = ticks
         self.spikes = self.poisson.generate(self.ticks)
 
-        Integration.__init__(self, dt)
+        def deltarate(xi, t):
+            if xi.spikes[t] > 0:
+                return 1.0 / xi.tau
+            else:
+                return -xi.rate * (1.0 / xi.tau)
 
-    def reset(self):
-        self.rate = 0
+        self.ratevar = Variable('rate', deltarate)
 
-    def snapshot(self):
-        return {'rate': self.rate}
-
-    def step(self, t):
-        if self.spikes[t] > 0:
-            self.rate += self.itau
-        else:
-            self.rate -= self.rate * self.itau
+        Integration.__init__(self, [self.ratevar])
 
 class CompareApproximation:
     def __init__(self):
@@ -51,7 +46,7 @@ class CompareApproximation:
         errors = []
 
         for tau in self.taus:
-            self.approx.itau = 1.0 / tau
+            self.approx.tau = tau
             self.approx.run(0, self.approx.ticks, 1)
 
             error = sum(pow(self.true - array(self.approx.traces['rate']), 2))
@@ -63,12 +58,12 @@ class CompareApproximation:
         errors = self.calculate_error()
 
         plt.figure()
-        plt.plot(self.taus[10:], errors[10:])
+        plt.plot(self.taus, errors)
 
     def plot_all(self):
         errors = self.calculate_error()
-        min_tau = argmin(errors)
-        self.approx.itau = 1.0 / min_tau
+        min_tau = self.taus[argmin(errors)]
+        self.approx.tau = min_tau
         self.approx.run(0, self.approx.ticks, 1)
 
         plt.figure()
