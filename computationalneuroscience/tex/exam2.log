@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live/MacPorts 2009_6) (format=pdflatex 2010.10.7)  30 NOV 2010 02:54
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live/MacPorts 2009_6) (format=pdflatex 2010.10.7)  30 NOV 2010 04:01
 entering extended mode
  %&-line parsing enabled.
 **exam2.tex
@@ -150,7 +150,7 @@ ror.png (PNG copy)>] [3] [4] <phaseplane.png, id=23, 584.1825pt x 422.57875pt>
 File: phaseplane.png Graphic file (type png)
 
 <use phaseplane.png>
-Overfull \hbox (42.39728pt too wide) in paragraph at lines 86--88
+Overfull \hbox (42.39728pt too wide) in paragraph at lines 96--98
 [][]
  []
 
@@ -159,7 +159,7 @@ Overfull \hbox (42.39728pt too wide) in paragraph at lines 86--88
 File: phaseplanethreshhold.png Graphic file (type png)
 
 <use phaseplanethreshhold.png>
-Overfull \hbox (29.56927pt too wide) in paragraph at lines 94--96
+Overfull \hbox (29.56927pt too wide) in paragraph at lines 104--106
 [][]
  []
 
@@ -167,11 +167,11 @@ Overfull \hbox (29.56927pt too wide) in paragraph at lines 94--96
 Here is how much of TeX's memory you used:
  1635 strings out of 495061
  19612 string characters out of 3181964
- 75488 words of memory out of 3000000
+ 76488 words of memory out of 3000000
  4833 multiletter control sequences out of 15000+200000
  9973 words of font info for 36 fonts, out of 3000000 for 9000
  28 hyphenation exceptions out of 8191
- 34i,6n,22p,802b,189s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 34i,6n,22p,947b,189s stack positions out of 5000i,500n,10000p,200000b,50000s
 </opt/local/
 share/texmf-texlive-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></opt/local/
 share/texmf-texlive-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></opt/local/
@@ -181,7 +181,7 @@ are/texmf-texlive-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></opt/local/sha
 re/texmf-texlive-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></opt/local/share
 /texmf-texlive-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></opt/local/share
 /texmf-texlive-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb>
-Output written on exam2.pdf (8 pages, 267699 bytes).
+Output written on exam2.pdf (8 pages, 270217 bytes).
 PDF statistics:
  65 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
