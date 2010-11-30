@@ -12,6 +12,53 @@
 \begin{document}
 \maketitle
 
+\section{1. Spiking Neuron Models}
+
+\subsection{A. Spike-Rate Adaptation}
+
+
+
+\subsection{B. Refractory Periods}
+
+
+
+\section{2. Population Decoding}
+
+\subsection{A. Simulation}
+
+The cercal system in the cricket is a population of four neurons whose relative firing rates encode wind direction.  Each is most responsive to a different orthogonal or opposite direction (a neuron is needed for each opposite direction because there is no encoding of a negative firing rate).  Together, these four neurons encode a cartesian plane.  
+
+To encode the firing rates for a given angle the following formula is used:
+
+$$ \langle r_i \rangle=[50cos(\theta-\theta_i)]_+ \text{ where}$$
+$$ \theta_i=[\frac{\pi}{4},\frac{3\pi}{4},\frac{5\pi}{4},\frac{7\pi}{4}] $$
+
+To obtain the firing rates we add a gaussian noise of 5hz to the these rates (to emulate the stochasticity of real neurons).  
+
+To decode the wind direction from these relative firing rates, we can scale each neuron's preferred direction $\theta_i$ by its respective rate of firing $r_i$ to glean each components contribution to the overall encoding for wind direction.  
+
+Plotting true wind direction to the estimated wind direction produces the following graph:
+
+\vspace{15pt}
+\includegraphics[scale=0.5]{truevsestimated.png}
+\vspace{5pt}
+
+The jumps at the end are because this is actually a cyclic number line, with $-\pi$ meeting up with $+\pi$ to form a continuous cycle.  The estimate is stochastic but follows pretty closely with the original angle.
+
+For 1000 trials against each wind direction, the average error relative to each direction is
+
+\vspace{15pt}
+\includegraphics[scale=0.5]{estimationerror.png}
+\vspace{5pt}
+
+The large dips are around $-\frac{\pi}{4}$ and $\frac{\pi}{4}$, exactly where the neurons are most sensitive.  
+
+\subsection{B. Discussion}
+
+What is the source of the error?  Well, a large portion of it comes from the gaussian noise we added, the conditions are admittedly contrived.  But also, the dips in the second graph speak to another source of error, that of the ambiguity of the neuronal response when the stimulus lies between the sensitivites for each.  The response is least ambiguous when the stimulus is centered on one of the neuron's sensitivies, as this is the area where its response is strongest and the difference of firing between it and its neighbors is most marked.  When the stimulus is between sensitivies, both responses are noticeable yet equivalent, giving any noise inherent in the encoding process far more impact on the ultimate encoded direction.  
+
+A number of things could be done to reduce the error.  First would be to add more neurons, subdividing the circle more times and providing a wider array of sensitivies to be accurate for.  This of course takes more space, and something maybe lost in clarity and applicability of representation what is added in granularity.  Another could be to reduce the field at which each neuron is responsive, or more closely fit the curve of sensitivity dropoff to what maximizes the difference between responses.  For areas between sensitivites this could enhance the distinction between neighboring neuron's firing strength.  Finally, adding two more neurons for the z-plane, or third dimension (up and down), could enhance the effective responsiveness in all directions.   .
+
 \section{3. Phase Plane Analysis}
 
 \subsection{A. Equilibrium}
@@ -65,7 +112,7 @@ Another phase shift occurs when the real part of the eigenvalues become positive
 
 \subsection{A. Calcium Channels}
 
-
+L-type high-threshhold calcium channels function as activity monitors.  Since they only open at high potentials and deactivate in the presence of calcium, they raise the level of calcium to a particular saturation point when activity is high.  Since calcium is always being removed from the cytoplasm, calcium levels can only get to a certain point under the influence of heavy firing.  This makes calcium useful as a barometer of the general activity level of the cell at that point in time.  T-type low-threshhold calcium channels act as a slow sodium current, depolarizing enough to allow bursts of spikes before being counteracted by some other current, possibly a calcium-dependent potassium current.  L-type channels are closer to the soma so that they can have a more general effect on the activity of the neuron, whereas L-type channels are more distal in order to offer fine-grained impact onto the dynamics of each synapse.  
 
 \subsection{B. Phase Locking}
 
@@ -73,12 +120,12 @@ When given two mutually inhibitory neurons, an oscillation or phase locking is a
 
 \subsection{C. Inhibition}
 
-
+When an inhibitory synapse has a reversal potential very close to the resting potential of a cell, it can have a variety of effects.  Any activity poised to spike will be reduced towards rest, but if the cell is already hyperpolarized it could even have an excitatory effect.  Its main function is to neutralize the action of other excitatory or inhibitory connections, and has its greatest impact when located near the soma or proximal dentritic tree. 
 
 \subsection{D. Stochastic Firing}
 
-There are many possible explanations for the perceived stochasticity in the firing patterns of neurons.  The simplest, and most friendly, is that neurons work in rates and not individual spikes, and that the stochastic probability-correlation nature of the firing patterns allows a level of robustness in the face of environmental and internal noise.  The Poisson process of generating simulated spike trains is the canonical idealization of this explanation.  In it, the timing of each spike has no relation to the timing of any other spike.  If you squint, it almost looks like neurons follow this rule.  At least, no other obvious pattern is discernible most of the time, so the Poisson process is a pretty reasonable estimate in those cases.  
+There are many possible explanations for the perceived stochasticity in the firing patterns of neurons.  The simplest, and most friendly, is that neurons work in rates and not individual spikes because the environment is inherently noisy, and the stochastic probability-correlation nature of the firing patterns allows a level of robustness in the face of environmental and internal noise.  The Poisson process of generating simulated spike trains is the canonical idealization of this explanation.  In it, the timing of each spike has no relation to the timing of any other spike.  If you squint, it almost looks like neurons follow this rule.  At least, no other obvious pattern is discernible most of the time, so the Poisson process is a pretty reasonable estimate in those cases.  
 
-The other, more ominous explanation is that they appear to spike at random intervals because we don't actually understand why they are firing then.  Lacking an accurate explanation of the perceived spike timing of neurons, randomness is the only other alternative.  The interval between spikes is dependent on so many factors across so many time scales and involving so many other spikes generated from other neurons that teasing apart all of the relations into a comprehensible explanation is almost intractable.  At least at the moment.  Poisson at its heart fails to account for this myriad network of relationships inherent in neuronal structure (or even the mutual information between spike times), and therefore will never actually describe network dynamics in an explanatory way.  
+The other, more ominous explanation is that they appear to spike at random intervals because we don't actually understand why they are firing then.  Lacking an accurate explanation of the perceived spike timing of neurons, randomness is the comforting alternative.  The interval between spikes is dependent on so many factors across so many time scales and involving so many other spikes generated from other neurons that teasing apart all of the relations into a comprehensible explanation is almost intractable.  At least at the moment.  Poisson at its heart fails to account for this myriad network of relationships inherent in neuronal structure (or even the mutual information between spike times), and therefore will never actually describe network dynamics in an explanatory way.  
 
 \end{document} 

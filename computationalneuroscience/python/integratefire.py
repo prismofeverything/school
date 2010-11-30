@@ -1,8 +1,5 @@
 from IPython.Debugger import Tracer; debug = Tracer()
 
-# from math import exp
-# import numpy as np
-# from scipy import *
 from integration import *
 from matplotlib import pyplot as plt
 

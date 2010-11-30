@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live/MacPorts 2009_6) (format=pdflatex 2010.10.7)  29 NOV 2010 02:05
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live/MacPorts 2009_6) (format=pdflatex 2010.10.7)  30 NOV 2010 02:54
 entering extended mode
  %&-line parsing enabled.
 **exam2.tex
@@ -136,31 +136,39 @@ LaTeX Font Info:    ... okay on input line 12.
 \MPscratchDim=\dimen115
 \MPnumerator=\count104
 \everyMPtoPDFconversion=\toks21
-) [1
+) <truevsestimated.png, id=1, 595.22375pt x 437.635pt>
+File: truevsestimated.png Graphic file (type png)
 
-{/opt/local/var/db/texmf/fonts/map/pdftex/updmap/pdftex.map}]
-<phaseplane.png, id=12, 584.1825pt x 422.57875pt>
+<use truevsestimated.png> [1
+
+{/opt/local/var/db/texmf/fonts/map/pdftex/updmap/pdftex.map}] <estimationerror.
+png, id=13, 594.22pt x 439.6425pt>
+File: estimationerror.png Graphic file (type png)
+
+<use estimationerror.png> [2 <./truevsestimated.png (PNG copy)> <./estimationer
+ror.png (PNG copy)>] [3] [4] <phaseplane.png, id=23, 584.1825pt x 422.57875pt>
 File: phaseplane.png Graphic file (type png)
- <use phaseplane.png>
-Overfull \hbox (42.39728pt too wide) in paragraph at lines 49--51
+
+<use phaseplane.png>
+Overfull \hbox (42.39728pt too wide) in paragraph at lines 86--88
 [][]
  []
 
-[2] [3 <./phaseplane.png (PNG copy)>]
-<phaseplanethreshhold.png, id=19, 566.115pt x 421.575pt>
+[5 <./phaseplane.png (PNG copy)>]
+<phaseplanethreshhold.png, id=27, 566.115pt x 421.575pt>
 File: phaseplanethreshhold.png Graphic file (type png)
 
 <use phaseplanethreshhold.png>
-Overfull \hbox (29.56927pt too wide) in paragraph at lines 57--59
+Overfull \hbox (29.56927pt too wide) in paragraph at lines 94--96
 [][]
  []
 
-[4 <./phaseplanethreshhold.png (PNG copy)>] [5] [6] (./exam2.aux) ) 
+[6 <./phaseplanethreshhold.png (PNG copy)>] [7] [8] (./exam2.aux) ) 
 Here is how much of TeX's memory you used:
- 1625 strings out of 495061
- 19384 string characters out of 3181964
+ 1635 strings out of 495061
+ 19612 string characters out of 3181964
  75488 words of memory out of 3000000
- 4825 multiletter control sequences out of 15000+200000
+ 4833 multiletter control sequences out of 15000+200000
  9973 words of font info for 36 fonts, out of 3000000 for 9000
  28 hyphenation exceptions out of 8191
  34i,6n,22p,802b,189s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -173,9 +181,9 @@ are/texmf-texlive-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></opt/local/sha
 re/texmf-texlive-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></opt/local/share
 /texmf-texlive-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></opt/local/share
 /texmf-texlive-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb>
-Output written on exam2.pdf (6 pages, 198103 bytes).
+Output written on exam2.pdf (8 pages, 267699 bytes).
 PDF statistics:
- 55 PDF objects out of 1000 (max. 8388607)
+ 65 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 11 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 21 words of extra memory for PDF output out of 10000 (max. 10000000)
 
