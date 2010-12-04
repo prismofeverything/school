@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live/MacPorts 2009_6) (format=pdflatex 2010.10.7)  30 NOV 2010 04:01
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live/MacPorts 2009_6) (format=pdflatex 2010.10.7)  4 DEC 2010 14:52
 entering extended mode
  %&-line parsing enabled.
 **exam2.tex
@@ -136,54 +136,63 @@ LaTeX Font Info:    ... okay on input line 12.
 \MPscratchDim=\dimen115
 \MPnumerator=\count104
 \everyMPtoPDFconversion=\toks21
-) <truevsestimated.png, id=1, 595.22375pt x 437.635pt>
+) <adaptation.png, id=1, 573.14125pt x 425.59pt>
+File: adaptation.png Graphic file (type png)
+ <use adaptation.png> [1
+
+{/opt/local/var/db/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2 <./adaptation.
+png (PNG copy)>] <vanillaif.png, id=16, 576.1525pt x 425.59pt>
+File: vanillaif.png Graphic file (type png)
+ <use vanillaif.png>
+<refractory.png, id=17, 576.1525pt x 427.5975pt>
+File: refractory.png Graphic file (type png)
+ <use refractory.png> [3 <./vanillaif.png (PNG copy)> <./refractory.png (PNG co
+py)>]
+<truevsestimated.png, id=21, 595.22375pt x 437.635pt>
 File: truevsestimated.png Graphic file (type png)
 
-<use truevsestimated.png> [1
-
-{/opt/local/var/db/texmf/fonts/map/pdftex/updmap/pdftex.map}] <estimationerror.
-png, id=13, 594.22pt x 439.6425pt>
+<use truevsestimated.png> [4]
+<estimationerror.png, id=26, 594.22pt x 439.6425pt>
 File: estimationerror.png Graphic file (type png)
-
-<use estimationerror.png> [2 <./truevsestimated.png (PNG copy)> <./estimationer
-ror.png (PNG copy)>] [3] [4] <phaseplane.png, id=23, 584.1825pt x 422.57875pt>
+ <use estimationerror.png>
+[5 <./truevsestimated.png (PNG copy)> <./estimationerror.png (PNG copy)>]
+[6] [7] <phaseplane.png, id=37, 584.1825pt x 422.57875pt>
 File: phaseplane.png Graphic file (type png)
-
-<use phaseplane.png>
-Overfull \hbox (42.39728pt too wide) in paragraph at lines 96--98
+ <use phaseplane.png>
+Overfull \hbox (42.39728pt too wide) in paragraph at lines 134--136
 [][]
  []
 
-[5 <./phaseplane.png (PNG copy)>]
-<phaseplanethreshhold.png, id=27, 566.115pt x 421.575pt>
+[8 <./phaseplane.png (PNG copy)>]
+<phaseplanethreshhold.png, id=41, 566.115pt x 421.575pt>
 File: phaseplanethreshhold.png Graphic file (type png)
 
 <use phaseplanethreshhold.png>
-Overfull \hbox (29.56927pt too wide) in paragraph at lines 104--106
+Overfull \hbox (29.56927pt too wide) in paragraph at lines 142--144
 [][]
  []
 
-[6 <./phaseplanethreshhold.png (PNG copy)>] [7] [8] (./exam2.aux) ) 
+[9 <./phaseplanethreshhold.png (PNG copy)>] [10] [11] (./exam2.aux) ) 
 Here is how much of TeX's memory you used:
- 1635 strings out of 495061
- 19612 string characters out of 3181964
+ 1650 strings out of 495061
+ 19874 string characters out of 3181964
  76488 words of memory out of 3000000
- 4833 multiletter control sequences out of 15000+200000
+ 4845 multiletter control sequences out of 15000+200000
  9973 words of font info for 36 fonts, out of 3000000 for 9000
  28 hyphenation exceptions out of 8191
  34i,6n,22p,947b,189s stack positions out of 5000i,500n,10000p,200000b,50000s
-</opt/local/
-share/texmf-texlive-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></opt/local/
-share/texmf-texlive-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></opt/local/
-share/texmf-texlive-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></opt/local/s
-hare/texmf-texlive-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></opt/local/sh
-are/texmf-texlive-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></opt/local/sha
-re/texmf-texlive-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></opt/local/share
-/texmf-texlive-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></opt/local/share
-/texmf-texlive-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb>
-Output written on exam2.pdf (8 pages, 270217 bytes).
+</opt/loca
+l/share/texmf-texlive-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></opt/loca
+l/share/texmf-texlive-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></opt/loca
+l/share/texmf-texlive-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></opt/local
+/share/texmf-texlive-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></opt/local/
+share/texmf-texlive-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></opt/local/s
+hare/texmf-texlive-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></opt/local/sha
+re/texmf-texlive-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></opt/local/sha
+re/texmf-texlive-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb>
+Output written on exam2.pdf (11 pages, 381236 bytes).
 PDF statistics:
- 65 PDF objects out of 1000 (max. 8388607)
+ 77 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 21 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 36 words of extra memory for PDF output out of 10000 (max. 10000000)
 

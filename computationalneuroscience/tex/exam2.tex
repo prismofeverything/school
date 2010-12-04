@@ -16,11 +16,49 @@
 
 \subsection{A. Spike-Rate Adaptation}
 
+Given an extra conductance in the integrate and fire model, more complex behavior can be attained, and some of the inherent limitations of the integrate and fire model can be mitigated.  One of the shortcomings of the integrate and fire model is the inability to adapt its firing rate.  Given a constant current, the integrate and fire model will fire at a constant rate, story over.  Adding another term corresponding to a activity-based damping current provides the necessary mechanism to model spike-rate adaptation.
 
+Here is the form of the integrate and fire equation with the newly introduced adaptation term:
+
+$$ \tau_m\od{V(t)}{t}=E_{leak}-V(t)-r_mg_{rsa}(V-E_k)+R_mI(t),\text{ where}$$
+
+$$ \tau_{rsa}\od{g_{rsa}}{t}=-g_{rsa} $$
+
+The conductance is modeled as a decaying exponential.  The other component to this is that whenever the model undergoes a spike, in addtion to setting $V=V_{spike}$, that 
+
+$$ g_{rsa}=g_{rsa}+\Delta g_{rsa}$$
+
+The model works if $\tau_{rsa}$ is slow enough to allow $g_{rsa}$ time to accumulate during periods of prolonged spiking.  If the input current quiets again the exponential decay will take over and reset $g_{rsa}$ back to zero.  
+
+Here is the model in action, using $\Delta g_{rsa}=1$, $r_m=1$ and $tau_{rsa}=30$:
+
+\vspace{15pt}
+\includegraphics[scale=0.63]{adaptation.png}
+\vspace{5pt}
+
+The current is added at $t=10$ and sustained for the rest of the trial.  As is evident, the spike interval is initially short and lengthens as time goes on.  $g_{rsa}$ starts initially low, but during the period of high spiking rises more quickly than the decay governed by $\tau_{rsa}$.  Eventually the rate of firing balances the rate of decay, and $g_{rsa}$ hovers around a small range.  
+
+This mechanism has the biological effect of adapting the firing rate to stimuli that do not change, and emphasizing {\em change} of stimuli rather than strength.  
 
 \subsection{B. Refractory Periods}
 
+Another shortcoming of the integrate and fire model is the inability to emulate a refractory period, one of the main features of neural spiking behavior.  The same kind of conductance as was used for spike rate adaptation could be used to model refractory periods as well.  A simple change to the values of the parameters is enough to model refractory periods: a rise in the height of $\Delta g_{rsa}$ and a lower $tau_{rsa}$ to make the decay more swiftly.  
 
+Here is the behavior of the integrate and fire model with and without a refractory period, under a continuous stimulus amplitude of 5 nA:
+
+\vspace{15pt}
+\includegraphics[scale=0.5]{vanillaif.png}
+\vspace{5pt}
+
+Here is the same neuron with a refractory period given by the same equations as the spike-rate adaptation current above, but this time with $\Delta g_{rsa}=20$ and $\tau_{rsa}=5$:
+
+\vspace{15pt}
+\includegraphics[scale=0.5]{refractory.png}
+\vspace{5pt}
+
+The behavior of the two models reveals that the refractory-period version is less responsive directly after a spike, while the original continues unfazed.  This results in a much more attenuated interspike interval in the model with the refractory current included, and thus a lower firing rate.
+
+To model an absolute refractory period it would only be necessary to clamp $V=0$ for a given time span $t_{absolute}$.  This would not be any more contrived than the spike mechanism already is.  
 
 \section{2. Population Decoding}
 

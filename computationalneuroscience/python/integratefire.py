@@ -4,11 +4,15 @@ from integration import *
 from matplotlib import pyplot as plt
 
 class IntegrateFire(Integration):
-    def __init__(self, dt=1, resistance=10.0, tau=10.0, threshhold=5.0, spike=70.0, base=0, leak=0.0, amp=1.0, on=10, dur=50, span=100):
+    def __init__(self, dt=1, resistance=10.0, tau=10.0, taursa=1.0, rofm=1.0, kreversal=0.0, threshhold=5.0, spike=70.0, base=0, leak=0.0, amp=1.0, on=10, dur=90, span=100, deltagrsa=1.0):
         self.resistance = resistance
         self.tau = tau
+        self.taursa = taursa
+        self.kreversal = kreversal
+        self.rofm = rofm
         self.threshhold = threshhold
         self.spike = spike
+        self.deltagrsa = deltagrsa
         self.base = base
         self.leak = leak
         self.amp = amp
@@ -17,8 +21,11 @@ class IntegrateFire(Integration):
         self.span = span
 
         self.Vvar = Variable('V', lambda xi, t: xi.V_next(t) - xi.V, self.base)
+        self.grsavar = Variable('grsa', lambda xi, t: 0 if xi.spiking else -xi.grsa / xi.taursa)
 
-        Integration.__init__(self, [self.Vvar])
+        self.spiking = False
+
+        Integration.__init__(self, [self.Vvar, self.grsavar])
 
     def current(self, t):
         if t >= self.on and t < (self.on + self.dur):
@@ -26,16 +33,23 @@ class IntegrateFire(Integration):
         else:
             return 0
 
+    def potassium(self):
+        return self.rofm * self.grsa * (self.V - self.kreversal)
+
     def delta(self, t):
-        return (self.leak - self.V + (self.resistance * self.current(t))) / self.tau
+        return (self.leak - self.V - self.potassium() + (self.resistance * self.current(t))) / self.tau
 
     def V_next(self, t):
         if self.V == self.spike:
+            self.spiking = False
             return self.base
         elif self.V > self.threshhold:
+            self.spiking = True
             self.spikes += 1
+            self.grsavar.level += self.deltagrsa
             return self.spike
         else:
+            self.spiking = False
             return self.V + self.delta(t)
 
     def reset(self):

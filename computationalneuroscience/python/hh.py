@@ -81,14 +81,13 @@ class Stimulus:
         self.begin = begin
         self.dur = dur
         self.amp = amp
-        self.area = 1.26e-2
 
     def end(self):
         return self.begin + self.dur
 
     def delta(self, soma, t):
         if t >= self.begin and t <= self.end():
-            return self.amp / self.area
+            return self.amp
         else:
             return 0
 
@@ -102,7 +101,7 @@ class Stimulus:
         pass
 
 class HodgkinHuxley:
-    def __init__(self, dt=0.1, vinit = -77, tau_calcium = 0.03, clamping=False):
+    def __init__(self, dt=0.1, vinit = -65, tau_calcium = 0.03, clamping=False):
         self.dt = dt
         self.vinit = vinit
         self.tau_calcium = tau_calcium
@@ -147,12 +146,12 @@ class HodgkinHuxley:
         self.kca  = Current(reversal = -77,   conductance = 36,   gates = [self.c])
         self.leak = Current(reversal = -54.4,   conductance = 0.3)
 
-        self.stimulus = Stimulus(5, 1, 0.233)
+        self.stimulus = Stimulus(5, 1, 23.33)
         self.hyper = Stimulus(80, 10, -0.2)
         self.GABAa = Current(reversal = -89, conductance = 10, gates = [self.alpha])
 
-        self.currents = [self.na, self.k, self.leak]
-        # self.currents = [self.na, self.k, self.leak, self.stimulus]
+        # self.currents = [self.na, self.k, self.leak]
+        self.currents = [self.na, self.k, self.leak, self.stimulus]
         # self.currents = [self.na, self.leak]
         # self.currents = [self.na, self.k, self.leak, self.GABAa]
         # self.currents = [self.na, self.leak, self.stimulus]
