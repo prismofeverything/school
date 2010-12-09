@@ -1,5 +1,4 @@
 from pylab import *
-
 tau = 2 * pi
 
 class Kuramoto:
@@ -7,7 +6,7 @@ class Kuramoto:
         self.N = N
         self.K = K
         self.order = order
-        self.inverseN = 1.0 / N
+        self.scale = K / N
 
         self.reset()
 
@@ -19,15 +18,17 @@ class Kuramoto:
         self.phases = self.phase
 
     def deltax(self, x):
-        return self.intrinsic[x] + self.K * self.inverseN * sum(sin(self.phase - self.phase[x]))
+        differences = sum(sin(self.phase - self.phase[x]))
+        return self.intrinsic[x] + self.scale * differences
 
     def delta(self):
         return array(map(lambda x: self.deltax(x), range(self.N)))
 
     def step(self):
         self.phase += self.delta()
-        self.spikes = vstack([self.spikes, where(self.phase >= tau, 1, 0)])
-        self.phase = where(self.phase >= tau, self.phase - tau, self.phase)
+        spiking = (self.phase >= tau)
+        self.spikes = vstack([self.spikes, where(spiking, 1, 0)])
+        self.phase = where(spiking, self.phase - tau, self.phase)
         self.phases = vstack([self.phases, self.phase])
 
     def run(self, steps):

@@ -1,0 +1,103 @@
+\documentclass{article}
+\usepackage{color}
+\usepackage{listings}
+\usepackage{textcomp}
+\usepackage{setspace}
+\usepackage{palatino}
+
+\renewcommand{\lstlistlistingname}{Code Listings}
+\renewcommand{\lstlistingname}{Code Listing}
+\definecolor{gray}{gray}{0.5}
+\definecolor{green}{rgb}{0,0.5,0}
+
+\lstnewenvironment{python}[1][]{
+\lstset{
+language=python,
+basicstyle=\ttfamily\small\setstretch{1},
+stringstyle=\color{red},
+showstringspaces=false,
+alsoletter={1234567890},
+otherkeywords={\ , \}, \{},
+keywordstyle=\color{blue},
+emph={access,and,break,class,continue,def,del,elif,else,%
+except,exec,finally,for,from,global,if,import,in,is,%
+lambda,not,or,pass,print,raise,return,try,while},
+emphstyle=\color{black}\bfseries,
+emph={[2]True, False, None, self},
+emphstyle=[2]\color{green},
+emph={[3]from, import, as},
+emphstyle=[3]\color{blue},
+upquote=true,
+morecomment=[s]{"""}{"""},
+commentstyle=\color{gray}\slshape,
+emph={[4]1, 2, 3, 4, 5, 6, 7, 8, 9, 0},
+emphstyle=[4]\color{blue},
+literate=*{:}{{\textcolor{blue}:}}{1}%
+	{=}{{\textcolor{blue}=}}{1}%
+	{-}{{\textcolor{blue}-}}{1}%
+	{+}{{\textcolor{blue}+}}{1}%
+	{*}{{\textcolor{blue}*}}{1}%
+	{!}{{\textcolor{blue}!}}{1}%
+	{(}{{\textcolor{blue}(}}{1}%
+	{)}{{\textcolor{blue})}}{1}%
+	{[}{{\textcolor{blue}[}}{1}%
+	{]}{{\textcolor{blue}]}}{1}%
+	{<}{{\textcolor{blue}<}}{1}%
+	{>}{{\textcolor{blue}>}}{1}%
+%framexleftmargin=1mm, framextopmargin=1mm, frame=shadowbox, rulesepcolor=\color{blue},#1
+}}{}
+
+\begin{document}
+
+We can see in Code Listing~\ref{ex1} that... And compared to Code Listing~\ref{ex2} something else.
+
+\begin{python}[moreemph={[4]42},caption={Simple python example No. 1},label=ex1]
+#!/usr/bin/env python3
+
+class MyClass(MyOtherClass):
+  """
+  Some Docstring ()
+  """
+  a = 3
+  b5 = -42
+  q = (3, 5, j)
+  SIGNAL('clicked()'),
+  "A String"
+\end{python}
+
+\begin{python}[moreemph={[4], 46, 48},caption={Simple python example No. 2},label=ex2]
+#!/usr/bin/env python 
+#-*- coding: utf-8 -*- 
+ 
+class MyClass(MyOtherClass):
+  """ 
+  Some Docstring 
+  """ 
+  def __init__(self):
+    fruitbowl = ["pear", "peach", "banana"]
+    for fruit in fruitbowl:
+      print fruit
+      if fruit is "pear":
+        continue
+      else:
+        pass
+    if fruitbowl is not None:
+      var = True
+    else:
+      var = False
+    a = 3
+    b = -46
+    c = 3.48
+    someDict = {'one':1, 'two':2, "three":3}
+    aTuple = (1, 2, 3, 4, 5)
+    string = "one-two=3"
+    name = "Username: "
+    self.button1.connect(self.button1,
+        SIGNAL('clicked()'),
+        self.login)
+    return
+\end{python}
+
+\lstlistoflistings
+
+\end{document}
