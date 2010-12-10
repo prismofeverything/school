@@ -71,7 +71,7 @@ class Sompolinsky:
         self.phases = self.phase
 
     def J(self, r, r_):
-        self.V(r)
+        self.V(r) * self.W(r, r_) * self.V(r_)
 
     def deltax(self, x):
         return self.intrinsic[x] + self.K * self.inverseN * sum(sin(self.phase - self.phase[x]))
