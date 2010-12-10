@@ -1,5 +1,4 @@
 from pylab import *
-from IPython.Debugger import Tracer; debug = Tracer()
 
 class Sompolinsky:
     def __init__(self, fields=3, dimensions=3, granularity=4, topology=[[1, 1, 0], [1, 1, 1], [0, 1, 1]], tau=0.1, sigma=1.0, strong=1.0, weak=1.0, base=0.04, order=0.01):
