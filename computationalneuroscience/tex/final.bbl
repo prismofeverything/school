@@ -28,6 +28,11 @@ Geraint Rees, Gabriel Kreiman, and Christof Koch.
 \newblock Neural correlates of consciousness in humans.
 \newblock {\em Nature Reviews | Neuroscience}, 3, 2002.
 
+\bibitem{Poggio}
+Maximilian Riesenhuber and Tomaso Poggio.
+\newblock Hierarchical models of object recognition in cortex.
+\newblock {\em Nature Neuroscience}, 2, 1999.
+
 \bibitem{Sompolinsky}
 H.~Sompolinsky, D.~Golomb, and D.~Kleinfeld.
 \newblock Phase coherence and computation in a neural network of coupled

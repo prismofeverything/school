@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.11 (TeX Live 2010/MacPorts 2010_0) (format=pdflatex 2010.12.8)  10 DEC 2010 05:24
+This is pdfTeX, Version 3.1415926-1.40.11 (TeX Live 2010/MacPorts 2010_0) (format=pdflatex 2010.12.8)  10 DEC 2010 06:33
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -321,18 +321,17 @@ Overfull \hbox (19.4992pt too wide) in paragraph at lines 117--118
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
-<kuramoto.png, id=18, 589.20125pt x 437.635pt>
+[3] <kuramoto.png, id=21, 589.20125pt x 437.635pt>
 File: kuramoto.png Graphic file (type png)
  <use kuramoto.png>
-Overfull \hbox (22.38759pt too wide) in paragraph at lines 137--138
-[][] 
+Overfull \hbox (22.38759pt too wide) in paragraph at lines 138--140
+[][]
  []
 
-[3] <synchronization.png, id=22, 572.1375pt x 421.575pt>
+<synchronization.png, id=22, 572.1375pt x 421.575pt>
 File: synchronization.png Graphic file (type png)
-
-<use synchronization.png>
-Overfull \hbox (10.95494pt too wide) in paragraph at lines 141--142
+ <use synchronization.png>
+Overfull \hbox (10.95494pt too wide) in paragraph at lines 143--144
 [][] 
  []
 
@@ -355,34 +354,34 @@ File: betweenfields.png Graphic file (type png)
 <desynchronize.png, id=60, 580.1675pt x 437.635pt>
 File: desynchronize.png Graphic file (type png)
  <use desynchronize.png>
-(./final.bbl [13 <./desynchronize.png (PNG copy)>]) [14] (./final.aux) ) 
+[13 <./desynchronize.png (PNG copy)>] (./final.bbl [14]) [15] (./final.aux) ) 
 Here is how much of TeX's memory you used:
- 4023 strings out of 495074
- 55574 string characters out of 3182082
- 158826 words of memory out of 3000000
- 7145 multiletter control sequences out of 15000+200000
+ 4024 strings out of 495074
+ 55582 string characters out of 3182082
+ 159847 words of memory out of 3000000
+ 7146 multiletter control sequences out of 15000+200000
  11238 words of font info for 41 fonts, out of 3000000 for 9000
  14 hyphenation exceptions out of 8191
  38i,6n,41p,1732b,1690s stack positions out of 5000i,500n,10000p,200000b,50000s
-</opt/l
-ocal/share/texmf-texlive-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></opt/l
-ocal/share/texmf-texlive-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb></opt/lo
-cal/share/texmf-texlive-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></opt/lo
-cal/share/texmf-texlive-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></opt/lo
-cal/share/texmf-texlive-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></opt/loc
-al/share/texmf-texlive-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></opt/loca
-l/share/texmf-texlive-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></opt/local
-/share/texmf-texlive-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></opt/local/s
-hare/texmf-texlive-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></opt/local/sha
-re/texmf-texlive-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></opt/local/sha
-re/texmf-texlive-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></opt/local/shar
-e/texmf-texlive-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></opt/local/share
-/texmf-texlive-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></opt/local/share
-/texmf-texlive-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
-Output written on final.pdf (14 pages, 1158823 bytes).
+</
+opt/local/share/texmf-texlive-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></
+opt/local/share/texmf-texlive-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb></o
+pt/local/share/texmf-texlive-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></o
+pt/local/share/texmf-texlive-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></o
+pt/local/share/texmf-texlive-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></op
+t/local/share/texmf-texlive-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></opt
+/local/share/texmf-texlive-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></opt/
+local/share/texmf-texlive-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></opt/lo
+cal/share/texmf-texlive-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></opt/loca
+l/share/texmf-texlive-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></opt/loca
+l/share/texmf-texlive-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></opt/local
+/share/texmf-texlive-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></opt/local/
+share/texmf-texlive-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></opt/local/
+share/texmf-texlive-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
+Output written on final.pdf (15 pages, 1161922 bytes).
 PDF statistics:
- 113 PDF objects out of 1000 (max. 8388607)
- 75 compressed objects within 1 object stream
+ 116 PDF objects out of 1000 (max. 8388607)
+ 77 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  36 words of extra memory for PDF output out of 10000 (max. 10000000)
 

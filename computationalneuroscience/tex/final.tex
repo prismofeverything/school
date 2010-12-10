@@ -71,7 +71,7 @@ The role of synchronization in the binding of perception has slowly come into ap
 
 The physical mechanism for consciousness is still unknown, but that has not stopped several researchers from searching for what they call ``neuronal correlates to consciousness'', or NCC \cite{Rees}.  Regardless of whether they can explain what exactly is happening, they can say that when a subject claims to experience a conscious percept, there is a corresponding and measurable activity of some variety in the nervous system.  One of the most compelling NCC is that of transient synchronization of neural assemblies in the cortex.  One question from all this is: why synchronization?  How does synchronization in particular help the cortex to perceive whole things, when these perceptions are composed of more or less atomic features?  
 
-One way to approach this problem is to start with basic models of synchronization.  How can synchronization be usefully modeled in a way that is applicable to neural dynamics?  We explore a simple model of synchronization, the Kuramoto model, and then one of its applications to the connectivity and function of the primary visual cortex, given by Sompolinsky \cite{Sompolinsky}.  Ultimately we will elaborate on the Sompolinsky model by providing a means of differing connection topologies between receptive fields, and varying dimensions of sensory stimuli.
+One way to approach this problem is to start with basic models of synchronization.  How can synchronization be usefully modeled in a way that is applicable to neural dynamics?  We explore a simple model of synchronization, the Kuramoto model, and then one of its applications to the connectivity and function of the primary visual cortex, given by Sompolinsky \cite{Sompolinsky}.  Ultimately we will elaborate on the Sompolinsky model by providing a means of differing connection topologies between receptive fields, and adding varying dimensions of sensory stimuli.
 
 \section{Models of Synchronization}
 
@@ -81,7 +81,7 @@ One of the most successful models of general mathematical synchronization is the
 
 $$ \od{\theta_i}{t}=\omega_i+\sum\limits_{j=1}^N K_{ij}\sin(\theta_j-\theta_i)$$
 
-where $i=1,...,N$.  So basically, this equation is a sum over the sine of all of the differences between a particular element and all of the other elements, scaled by the connection matrix.  The sine plays the functional role of emphasizing the differences between the phases.  The more different are the phases of each of the oscillators to the one in question, the more that element's phase $\theta_i$ will be adjusted.  If all of the elements happen to be in the same phase then the summing term would vanish and we would be left with the $\omega_i$, which is the element's natural frequency.  Left entirely to its own devices, the phase $\theta_i$ would be adjusted by its natural frequency $\omega_i$ each time step, and the phase would march merrily along a constant cycle.  
+where $i=1,...,N$.  So basically, this equation is a sum over the sine of all of the differences between a particular element and all of the other elements, scaled by the connection matrix.  The sine plays the functional role of emphasizing the differences between the phases.  The more different are the phases of each of the oscillators to the one in question, the more that element's phase $\theta_i$ will be adjusted.  If all of the elements happen to be in the same phase then the summing term would vanish (sine of 0 is 0) and we would be left with the $\omega_i$, which is the element's natural frequency.  Left entirely to its own devices, the phase $\theta_i$ would be adjusted by its natural frequency $\omega_i$ each time step, and the phase would march merrily along a constant cycle.  
 
 The Kuramoto model displays remarkable robustness of synchronization, and if no other factors come into play the elements will be swiftly phase-locked.  This model is straightforward to implement.  Here is the python code for a basic implementation of the Kuramoto model:
 
@@ -134,9 +134,11 @@ plot(model.phases)
 
 This is a direct implementation of the above equations for the Kuramoto model.  N is the number of elements and K is a universal connection factor (all elements are coupled equally to one another). For this simulation the intrinsic frequencies are generated as random variables between 0.0 and 0.1, and the initial phase for each oscillator is somewhere between $0$ and $2\pi$.  The behavior is striking:
 
+\vspace{15pt}
 \includegraphics[scale=0.67]{kuramoto.png}
+\vspace{5pt}
 
-This is a plot of the phase of each element against time.  In the space of about 100 time steps the model was completely synchronized.  It can synchronize even more quickly if $K$ (the coupling) is raised.  What else is remarkable is that each of these oscillators has a different innate phase, and the system seeks a common frequency that is a balance of all of the elements at once.  Here is the same model at 300 time steps to emphasize the strengh of the synchronization.
+This is a plot of the phase of each element against time.  In the space of about 100 time steps the model was completely synchronized.  It can synchronize even more quickly if $K$ (the coupling) is raised.  What else is remarkable is that each of these oscillators has a different innate phase, and the system seeks a common frequency that is a balance of all of the elements at once.  Here is the same model at 300 time steps to emphasize the strengh of the synchronization:
 
 \includegraphics[scale=0.67]{synchronization.png}
 
@@ -146,7 +148,7 @@ One of the neural systems we know quite a bit about is the primary visual cortex
 
 In addition to this action {\em within} a receptive field, there is also action {\em between} receptive fields.  This takes the character of synchronization between neurons which discriminate the same feature, but in neighboring receptive fields.  If the same vertical bar is detected in the neighboring field both vertical bar neurons will synchronize.  If the bar is broken, each vertical bar neuron will fire, but they may not synchronize.  Synchronization between receptive fields is accomplished through a system of weak coupling between corresponding neurons of similar sensitivity, whereas the coupling between neurons within a field are strongly coupled.  
 
-All of this points to the functional role of synchronization in neural and cortical bases of perception.  Now that we know that synchronization is an important mechanism in the generation of experience, this leads to the question: how can synchronization be modeled?
+All of this points to the functional role of synchronization in neural and cortical bases of perception.  Now that we know that synchronization is an important mechanism in the generation of experience, this leads to the question: how can synchronization be modeled in the context of these aspects of the visual system?  
 
 \subsection{Sompolinsky's Model}
 
@@ -178,7 +180,7 @@ $$ J(\mathbf{r},\mathbf{r'})=V(\mathbf{r})W(\mathbf{r},\mathbf{r'})V(\mathbf{r'}
 
 where the $V$ terms represent the activity of each neuron and $W$ is the connections matrix.  This means that if either of the neurons are inactive the effect will be greatly reduced.  For any real effect to take place, both neurons must be active at the same time.  
 
-The function $W_{RR}(\theta,\theta')$ is different depending on whether the neurons occupy the same receptive field or different ones.  For neurons in the same field, $W$ is simply
+The function $W(\theta,\theta')$ is different depending on whether the neurons occupy the same receptive field or different ones.  For neurons in the same field, $W$ is simply
 
 $$ W_{RR}(\theta,\theta')=\frac{W_S}{N} $$
 
@@ -192,7 +194,7 @@ where $F(\theta-\theta')$ is a function which ensures that the difference betwee
 
 For the simulation, some simplifications and some enhancements were made.  The first simplification is that rather than firing stochastically based on the phase value we do away with the firing entirely, and retain only the phase.  The second is that no noise term is added.  Sompolinsky claims that the noise is vital for the synchronizing and desynchronizing dynamics, but I saw no evidence for this.  In all cases the model behaved identically and as expected, noise or not.  I see this more to mean that the system is noise-tolerant, and functions in the face of noise, but does not inherently require noise to function.  
 
-Some enhancements to the model that were not in the original is the ability to add any number of sensory dimensions and the ability to specify and arbitrary receptive field topology.  In a real receptive field there are clusters of disjoint sensory perceptors, each responding to both a specific kind of stimulus and a specific variety of that kind.  This is seen most clearly in the distinction between orientation and color responsive cells.  Beyond responding to entirely different modalities, there are a number of neurons within a modality devoted to different qualities within that modality.  So for orientation there are an array of perceptors for each angle of orientation.  For color, there is a different neuron or neuronal group for each hue, brightness and saturation.  In the simulation developed here, the number of dimensions of stimuli can be specified, and stimuli take the form of a vector for each receptive field of the size given by the dimension of the model.  The stimuli ranges within a dimension are subdivided by a given granularity.  This model assumes all stimulus modalities are cyclic in value, ie, that there is no greatest or smallest but just an angle around a circle, but other stimulus dynamics could be included if desired.
+Some enhancements to the model that were not in the original is the ability to add any number of sensory dimensions and the ability to specify an arbitrary receptive field topology.  In a real receptive field there are clusters of disjoint sensory perceptors, each responding to both a specific modality of stimulus and a specific value within that modality.  This is seen most clearly in the distinction between orientation and color responsive cells.  Beyond responding to entirely different modalities, there are a number of neurons within a modality devoted to different qualities within that modality.  So for orientation there are an array of perceptors for each angle of orientation.  For color, there is a different neuron or neuronal group for each hue, brightness and saturation.  In the simulation developed here, the number of dimensions of stimuli can be specified, and stimuli take the form of a vector for each receptive field of the size given by the dimension of the model.  The stimulus ranges within a dimension are subdivided by a given granularity.  This model assumes all stimulus modalities are cyclic in value, ie, that there is no greatest or smallest but just an angle around a circle, but other stimulus dynamics could be included if desired.
 
 In Sompolinsky's model, all connections within a receptive field were identical and all connections between similar discriminators in other fields were identical.  In the simulation here, any connection graph between fields can be specified.  Strong connections are always assumed between neurons in the same field, but weak connections can be given or withheld at will.  In the configuration provided there are three fields, one of which is connected to the other two, acting as a ``bridge'' between them.  It is my aim to see whether synchronization can occur between the two fields that are otherwise unconnected, through a synchronization with the bridge between them.  
 
@@ -202,7 +204,7 @@ $$ S_1=[\pi,0,\pi] $$
 $$ S_2=[0,0,\pi] $$
 $$ S_3=[\pi,\pi,\pi] $$
 
-These were selected because they represent different kinds of relationships between the three sensory dimensions.  In this simulation, the second field acts as the bridge between the first and the third.  The first dimension (the first column, if you look at the three stimuli for the three different receptive fields as a matrix) represents a broken band of $\pi$ (whatever the dimension actually encodes is left unspecified, as the scheme could work with any generalized sensory apparatus).  It would be expected that the neurons responding to the first $\pi$ would not synchronize with the neurons in the third field even though they are both responsive to the same stimulus, because the stimulus at the bridge is $0$.  In the third sensory dimension all of the values are $\pi$, so we would expect all of these neurons to synchronize (signifying the unity of the band of $\pi$ for this modality).  
+These were selected because they represent different kinds of relationships between the three sensory dimensions.  In this simulation, the second field acts as the bridge between the first and the third.  The first dimension (the first column, if you look at the three stimuli for the three different receptive fields as a matrix) represents a broken band of $\pi$ (whatever the dimension actually encodes is left unspecified, as the scheme could work with any generalized sensory apparatus).  It would be expected that the neurons responding to the first $\pi$ would not synchronize with the neurons in the third field even though they are both responsive to the same stimulus, because the stimulus at the bridge is $0$.  In the third sensory dimension all of the values are $\pi$, so we would expect all of these neurons to synchronize (signifying the unity of the band of $\pi$ for this modality across all receptive fields).  
 
 Here is the total activity of the model, including neurons both responding to and indifferent to the given stimulus.  
 
@@ -226,7 +228,7 @@ Between fields it is harder to synchronize, since the effect within the field is
 \vspace{10pt}
 \includegraphics[scale=0.6]{betweenfields.png}
 
-Since these are all neurons in different receptive fields, this shows that the neural groups are able to synchronize even without being directly connected.  
+Since these are neurons from all different receptive fields, this shows that they are able to synchronize even without being directly connected.  
 
 The next step is to examine the behavior with a changing stimulus.  In the next trials the same constant stimulus is provided as before for the first 900 time steps, and then switched to another stimulus for 900 more time steps.  
 
@@ -243,7 +245,17 @@ The neurons are highly synchronized for the first 900 time steps, and quickly dr
 
 \section{Discussion}
 
+There are many more aspects of the model that could be explored.  For instance, rather than long periods of constant stimulus, allow time-varying stimuli or stochastic stimuli.  An interesting setup would be to have the stimulus be stochastic yet skewed, and see if the model is able to discern what orientation is implied behind the noisy foreground.  
 
+Another extension would be to have leveled stimulus dimensions in addition to the cyclic dimension dynamics provided.  Leveled stimulus dimensions could use the logarithmic scale to represent characteristics like brightness or frequency which have ``more'' or ``less'' of the given stimulus modality, rather than orientation or hue which form a cyclic continuum.  
+
+Given a realistic set of sensitivities, it would be instructive to attempt to model actual features used in the visual system to discriminate incoming sensory stimuli and apply it to arbitrary video data.  Another would be to incorporate a hierarchy of fields above these direct sensory receptive fields to provide another level of discrimination and synchronization.  They could act as a receptive field of signals produced by the lower receptive fields.  There is much evidence to suggest that the cortex is organized in a hierarchy of fields in this manner \cite{Poggio}.  Really, as a basis for extended models of visual and perceptual mechanisms it could be extended in any number of ways.
+
+\section{Conclusion}
+
+Synchronization as a mechanism could be seen as a way to bring order to a noisy phase-based system.  Neurons are natural phase oscillators, and there is such a flood of sensory activity coarsing through the nervous system that in consideration it seems one of the only ways to make sense of it at all is if different parts of it are able to synchronize, rise above the chaos and din and coordinate to produce a collective coherent effect.  Phase and the noisiness of events in a temporal landscape provide an environment where synchrony is a rare source of order.  Synchronous firing allows the myriad discrete and individual events taking place throughout the nervous system a way to quickly and distributedly give rise to a bundled image that reflects the nature of the world outside of this system of spiking and electrical coupling.  If the stochastic and transient nature of synchrony as it is manifested in the cortex could be harnessed it could provide a means to emulate a new kind of dynamics in programs and machines, a dynamics that could prove to be more adaptive and forgiving in noisy and essentially chaotic environments than traditional logical approaches.
+
+Also, on the neurophysiological side, synchronization and phase models offer a powerful way to model the activity of networks and populations of neurons in a realistic manner.  In these models there is no averaged out firing rate, the temporal characteristics of the activity is embedded in the relationships between the actual timing of events throughout the nervous system.  Temporality, as in real life, is inherent. 
 
 \bibliographystyle{plain}
 \bibliography{final}
