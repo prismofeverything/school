@@ -140,7 +140,7 @@ This is a plot of the phase of each element against time.  In the space of about
 
 \includegraphics[scale=0.67]{synchronization.png}
 
-\section{Synchronization and the Visual System}
+\subsection{Synchronization and the Visual System}
 
 One of the neural systems we know quite a bit about is the primary visual cortex, the initial gateway of direct visual information into the cortex \cite{Tanaka}.  There are findings that reveal potential mechanisms for perception based on synchronization between populations of coordinating neural groups.  Some of these findings are nicely summarized by \cite{Sompolinsky}.  The subject of Sompolinsky's work is the orientation of bars that span a receptive field and the responsiveness of various neural assemblies in the presence of these bars.  A receptive field Sompolinsky defines to be a set of neurons that discriminate different features of the same spatial area.  These receptive regions are spatially vaguely defined, but are mostly circular and include much overlap with neighboring regions.  Within a receptive field the neurons each respond to a different stimulus.  One responds to horizontal bars say, and others vertical ones, with a spectrum of various angles in between.  Some code for red, some for green.  Some are responsive to motion in one direction, some motion in another (motion alone can be decomposed into direction, speed, rotation or expansion/contraction).  All of these neurons belonging to a common receptive field are clustered together, each firing fairly specifically to a single modality and a single flavor of that modality, but interacting with each other through synaptic coupling.  If there is a vertical bar that is green for example, the neurons that fire when there is only a vertical bar will synchronize with the neurons that fire in response to green.  This synchrony between mutually activated neurons is characteristic of activity within a receptive field.  
 
@@ -186,11 +186,60 @@ where $W_S$ is the weighting constant for short range.  For neurons coding the s
 
 $$ W_{RR'}(\theta,\theta')=\frac{W_L}{N^2}F(\theta-\theta') $$
 
-where $F(\theta-\theta')$ is a function which ensures that the difference between selectivities of coupled neurons is small.  
+where $F(\theta-\theta')$ is a function which ensures that the difference between the selectivities of coupled neurons is small.  At the limit, $F(\theta-\theta')$ is exactly 1 when the selectivities are identical, and 0 otherwise.  
 
 \section{Simulation}
 
+For the simulation, some simplifications and some enhancements were made.  The first simplification is that rather than firing stochastically based on the phase value we do away with the firing entirely, and retain only the phase.  The second is that no noise term is added.  Sompolinsky claims that the noise is vital for the synchronizing and desynchronizing dynamics, but I saw no evidence for this.  In all cases the model behaved identically and as expected, noise or not.  I see this more to mean that the system is noise-tolerant, and functions in the face of noise, but does not inherently require noise to function.  
 
+Some enhancements to the model that were not in the original is the ability to add any number of sensory dimensions and the ability to specify and arbitrary receptive field topology.  In a real receptive field there are clusters of disjoint sensory perceptors, each responding to both a specific kind of stimulus and a specific variety of that kind.  This is seen most clearly in the distinction between orientation and color responsive cells.  Beyond responding to entirely different modalities, there are a number of neurons within a modality devoted to different qualities within that modality.  So for orientation there are an array of perceptors for each angle of orientation.  For color, there is a different neuron or neuronal group for each hue, brightness and saturation.  In the simulation developed here, the number of dimensions of stimuli can be specified, and stimuli take the form of a vector for each receptive field of the size given by the dimension of the model.  The stimuli ranges within a dimension are subdivided by a given granularity.  This model assumes all stimulus modalities are cyclic in value, ie, that there is no greatest or smallest but just an angle around a circle, but other stimulus dynamics could be included if desired.
+
+In Sompolinsky's model, all connections within a receptive field were identical and all connections between similar discriminators in other fields were identical.  In the simulation here, any connection graph between fields can be specified.  Strong connections are always assumed between neurons in the same field, but weak connections can be given or withheld at will.  In the configuration provided there are three fields, one of which is connected to the other two, acting as a ``bridge'' between them.  It is my aim to see whether synchronization can occur between the two fields that are otherwise unconnected, through a synchronization with the bridge between them.  
+
+In the trials that follow there are three dimensions with a granularity of four levels of distinction.  I provided constant stimulus of a variety of orientations to the three different fields.  The stimuli used were
+
+$$ S_1=[\pi,0,\pi] $$
+$$ S_2=[0,0,\pi] $$
+$$ S_3=[\pi,\pi,\pi] $$
+
+These were selected because they represent different kinds of relationships between the three sensory dimensions.  In this simulation, the second field acts as the bridge between the first and the third.  The first dimension (the first column, if you look at the three stimuli for the three different receptive fields as a matrix) represents a broken band of $\pi$ (whatever the dimension actually encodes is left unspecified, as the scheme could work with any generalized sensory apparatus).  It would be expected that the neurons responding to the first $\pi$ would not synchronize with the neurons in the third field even though they are both responsive to the same stimulus, because the stimulus at the bridge is $0$.  In the third sensory dimension all of the values are $\pi$, so we would expect all of these neurons to synchronize (signifying the unity of the band of $\pi$ for this modality).  
+
+Here is the total activity of the model, including neurons both responding to and indifferent to the given stimulus.  
+
+\vspace{15pt}
+\includegraphics[scale=0.6]{totalactivity.png}
+\vspace{15pt}
+
+The spread of phase is fairly heterogenous, as would be expected from a population of oscillators provided a random intrinsic frequency and random initial phase.  However, there is a band which is thicker that the background.  As we will discover, this is the synchronizing component of the model, representing the neurons that happen to respond to the stimuli as presented.  
+
+Here is the behavior of neurons within a field that all respond to the given stimulus:
+
+\includegraphics[scale=0.5]{withinfield.png}
+
+The phases start out all over the cycle, but quickly converge as these neurons synchronize in the face of common stimuli.  The strong connections between neurons in the same receptive field make this an inevitability.  However, synchronization only occurs between neurons that are activated by the stimulus.  Inspection of the total activity of a receptive field reveal a general lack of coherency:
+
+\vspace{10pt}
+\includegraphics[scale=0.5]{totalfield.png}
+
+Between fields it is harder to synchronize, since the effect within the field is so strong.  However, if the two opposing forces are balanced the common features between receptive fields are able to synchronize these neurons too.  Here is some behavior of neurons between fields that all respond to the same stimulus.  Notice this does not synchronize so tightly as there are so many other forces pulling them in other directions, but still the synchronization is unmistakable.  
+
+\vspace{10pt}
+\includegraphics[scale=0.6]{betweenfields.png}
+
+Since these are all neurons in different receptive fields, this shows that the neural groups are able to synchronize even without being directly connected.  
+
+The next step is to examine the behavior with a changing stimulus.  In the next trials the same constant stimulus is provided as before for the first 900 time steps, and then switched to another stimulus for 900 more time steps.  
+
+$$ S_4=[\frac{\pi}{2},\pi,\frac{3\pi}{2}] $$
+$$ S_5=[\pi,0,\pi] $$
+$$ S_6=[0,\pi,\frac{\pi}{2}] $$
+
+Here is the behavior of the model from the perspective of all neurons receptive to the original stimulus, regardless of field:
+
+\vspace{10pt}
+\includegraphics[scale=0.55]{desynchronize.png}
+
+The neurons are highly synchronized for the first 900 time steps, and quickly drift due to variances in intrinsic frequency when there is no longer an external force compelling them to synchronize.  
 
 \section{Discussion}
 
