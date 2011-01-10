@@ -135,3 +135,7 @@ class Sompolinsky:
         for step in steps:
             self.step(step)
 
+
+
+
+
