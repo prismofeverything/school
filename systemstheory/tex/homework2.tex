@@ -1,0 +1,55 @@
+\title{Systems Theory - Homework 2}
+\author{Ryan Spangler}
+\date{\today}
+
+\documentclass[12pt]{article}
+
+\usepackage{commath}
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage{amsfonts}
+
+\setcounter{secnumdepth}{0}
+
+\begin{document}
+\maketitle
+
+\section{Exercise 2.7}
+
+The system of all alphabetic characters we can call $A(G, O)$ where $G$ is the set of the 26 glyphs of the alphabet $\{a,b,c,...y,z\}$, and $O$ is the natural successor relation $\{(a,b),(b,c),...(y,z)\}$.  We could have chosen the full ordering relation where, for instance, $(a,c)$ would also be included, or a variety of other relations and arrived at the same results.  The other system is $T(N, S)$ where $N$ is the bounded set of numerals $\{10,11,...35\}$ and $S$ is the numeric successor relation $\{(10,11),(11,12),...(34,35)\}$.  What we want to show is that $A$ and $T$ are isomorphic.  
+
+The first observation is that $|G|=|N|$, so the cardinality of the two sets is the same.  Next, we construct a function $h$ such that $$h(a)=10,$$ 
+$$h(b)=11,$$ 
+$$...$$ 
+$$h(z)=35$$
+
+For every $(g_1,g_2) \in G \times G$ if $(g_1,g_2) \in O$, then $(h(g_1),h(g_2)) \in S$.  Also, for every $(n_1,n_2) \in N \times N$, if $(n_1,n_2) \in S$ then $(h^{-1}(n_1),h^{-1}(n_2)) \in O$.  
+
+Therefore, the two systems are isomorphic.
+
+\section{Exercise 2.8}
+
+A helpful way to compare the relation graphs is to identify the number of inward and outward connections each node makes.  This is a signature that provides a means to determine equivalence between the nodes.  Looking at the graphs this way, each instance has a node with the greatest total connection count.  The last is like none of the others since it has 6 total connections, while the largest of the other graphs each has 5.  Comparing the edges of the first two graphs reveals they are isomorphic, with the function $h=\{(d,h),(b,g),(c,e),(a,f)\}$.  The next two have the same shape, but the directedness differs.  The third and the fifth have the same shape and the same directedness, with an isomorphism of $h=\{(i,u),(j,r),(k,t),(l,s)\}$.  So there are two pairs of isomorphisms $\{(R_1,R_2),(R_3,R_5)\}$ and two graphs $\{R_4,R_6\}$ lacking any isomorphic counterpart.
+
+\section{Exercise 3.1}
+
+The binary relations resulting from the trinary XOR relation (represented in terms of the values (L,H) for CH1, CH2, and CPU) really represent every possible combination of pairs of values for the three variables.  Using the more natural binary numeral isomorphism where $h(L)=0$ and $h(H)=1$, the four-element trinary relation we are examining is $XOR=\{(0,0,0),(0,1,1),(1,0,1),(1,1,0)\}$.  The question is how many of the $2^8$ possible trinary relations project the same characteristic set of binary relations between any pair of values in the trinary relation?  
+
+There are 8 possible triples of the binary digits (0,1) we call $B$, so every relation must be a subset of $B$.  No three-element subset of $B$ generate every possible binary pair, so starting with $XOR$ as a four-element subset of $B$ there is one other four-element subset that generates the same binary pairs, namely the inverse $NXOR$ (also known as the equivalence function).  So there is 2.  
+
+For five-element subsets of $B$, every one must have one of the original four-element relations as a subset, of which there are 8.  
+
+For six-element relations, there are 6 relations each which have the original four-element relations as subsets, but there are also 4 relations that generate the same characteristic set of binary relations, but do not have either of the original two XOR/NXOR relations as a subset.  These are each missing a complimentary pair of triples from the full set $\{(0,0,1) and (1,1,0)\}$ for example) which means that the pairs from the binary relations that compose these missing triples are necessarily covered by the other triples in the relation.  So there are a total of 16 (12+4) six-element relations that work.  
+
+There are 8 seven-element relations that fit, one for each possible missing triple.  All of these contain every possible binary pair.  Same goes for the eight-element relations, but there is only 1.  
+
+$$ 2 + 8 + 16 + 8 + 1 = 35 $$
+
+total trinary relations that satisfy the condition. 
+
+\section{Exercise 3.2}
+
+This exercise is much the same as the previous example, with a different trinary relation.  If my combinatoric powers were greater I could formulate a statement that would enumerate all of the possible combinations, yet as of now the process is tedious and error-prone.  Therefore I will say only that there is a number, greater than 0 and less than $2^8$, and leave the enumeration as an exercise for the reader.  
+
+\end{document} 
+
