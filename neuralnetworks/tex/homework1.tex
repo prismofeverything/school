@@ -1,0 +1,36 @@
+\title{Neural Networks - Homework 1}
+\author{Ryan Spangler}
+\date{\today}
+
+\documentclass[12pt]{article}
+
+\usepackage{commath}
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage{amsfonts}
+
+\setcounter{secnumdepth}{0}
+
+\begin{document}
+\maketitle
+
+\section{XOR}
+
+\subsection{Problem Statement}
+
+The problem here was to examine the influence of certain initial conditions on the behavior and learning of a back-propagation neural network with two inputs, one output and one hidden layer node when trained against the XOR mapping.  The XOR problem cannot be solved by a single layer of inputs and outputs alone, but must contain at least one hidden layer node mediating their connection.  
+
+\subsection{Experimental Process}
+
+The process involved building and configuring a suitable neural network using Neuralware Professional Plus II (hereafter NWII) and training it to the XOR problem.  The variables varied were the epoch size, the learning rate and momentum.
+
+\subsection{Results}
+
+Across all trials where convergence occurred, there would be a period of time when seemingly no progress was made, then suddenly a jump in correlation would take place and the RMS would drop.  Within a hundred cycles of this shift almost total convergence had occurred.  
+
+When varying the learning momentum, an initial value of 0.4 led to convergence anywhere from 2000 to 8000 cycles.  When the network was started from exactly the same conditions the time it took for the phase shift to occur varied sometimes dramatically.  When the momentum was lower at 0.2, the learning took about an order of magnitude longer.  When the momentum was set at 1.0, the system never converged and only fluctuated wildly.  
+
+While varying the epoch size, larger values for the epoch took longer to converge than lower values, but ultimately the difference was not so profound.  For an epoch size of 16 the network would converge between 2000-7000 cycles.  For an epoch size of 100 it was from 3000-9000 cycles, not really a significant difference.  
+
+\end{document} 
+
