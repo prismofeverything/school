@@ -1,0 +1,54 @@
+\title{Systems Theory - Homework 3}
+\author{Ryan Spangler}
+\date{\today}
+
+\documentclass[12pt]{article}
+
+\usepackage{commath}
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage{amsfonts}
+
+\setcounter{secnumdepth}{0}
+
+\begin{document}
+\maketitle
+
+\section{Exercise 4.2}
+
+For a source system, the only things that really need to be specified are the variables and the relations that apply within a single variable.  No relations between variables are yet specified, even though the sets that these relations eventually will be a subset of can be named.  
+
+For a data system, the source system is specified along with a body of actual values the original system in question has exhibited.  No relations have yet been inferred based on these ``data'' values, and there are still no relations between any of the separate objects of the system.
+
+In a generative system the relations have also been specified, so that a body of data could be generated based on any given initial conditions of the system from these relations between the original objects of the source system.  
+
+When a system is structured there are multiple subsystems each of which can be one of the varieties of systems outlined above, including a structure system itself.  
+
+For a metasystem, there must be some kind of specification of which systems apply to which values for the given objects of the system, ie the support set, or an overarching rule for how the system changes based on the values of the support set.  This in itself could take the form of an overarching system where each facet of the metasystem is an object in this larger umbrella.  
+
+\section{Exercise 4.5}
+
+To extend the lattice of epistemological systems is simply an exercise in permutation: Each possible system quality (S or M) can be placed in front of the existing maxima of the lattice (of which there are 4) $S^2G$, $MSG$, $SMG$, $M^2G$, resulting in:
+
+$$ S^3G,MS^2G,SMSG,M^2SG,S^2MG,MSMG,SM^2G,M^3G $$
+
+\section{Exercise 4.6}
+
+\subsection{(a) $\dot{x}+2x-1=0$}
+
+This is a differential equation on a single variable which forms a relation between x and x.  This makes it a generative system.
+
+\subsection{(b) $\dot{x}+2x-1=0$; $\dot{y}-2x+y=0$}
+
+This is a structure generative system because the x variable forms a subsystem which the y variable refers to.  
+
+\subsection{(c) $x=t-\ln{(1+t)}$}
+
+This is a generative system because there is a relation between two of the variables in the system, x and t.  
+
+\subsection{(d) $x^2-t\dot{x}-1=0$}
+
+This is a meta generative system, as the system changes based on the value of t (meta), and data can be generated given various initial conditions (generative).  
+
+\end{document} 
+
