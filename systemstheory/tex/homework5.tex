@@ -1,0 +1,122 @@
+\title{Systems Theory - Homework 5}
+\author{Ryan Spangler}
+\date{\today}
+
+\documentclass[12pt]{article}
+
+\usepackage{commath}
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage{amsfonts}
+
+% python highlighting ----------
+\usepackage{color}
+\usepackage{listings}
+\usepackage{textcomp}
+\usepackage{setspace}
+%\usepackage{palatino}
+
+\renewcommand{\lstlistlistingname}{Code Listings}
+\renewcommand{\lstlistingname}{Code Listing}
+\definecolor{gray}{gray}{0.6}
+\definecolor{green}{rgb}{0.1,0.6,0.3}
+\definecolor{orange}{rgb}{0.9,0.7,0.1}
+\definecolor{blue}{rgb}{0,0.6,0.8}
+
+\lstnewenvironment{python}[1][]{
+\lstset{
+language=python,
+basicstyle=\ttfamily\footnotesize\setstretch{1},
+stringstyle=\color{red},
+showstringspaces=false,
+alsoletter={1234567890},
+otherkeywords={\ , \}, \{},
+keywordstyle=\color{blue},
+emph={access,and,break,class,continue,def,del,elif,else,%
+except,exec,finally,for,from,global,if,import,in,is,%
+lambda,not,or,pass,print,raise,return,try,while},
+emphstyle=\color{gray}\bfseries,
+emph={[2]True, False, None, self},
+emphstyle=[2]\color{orange},
+emph={[3]from, import, as},
+emphstyle=[3]\color{blue},
+upquote=true,
+morecomment=[s]{"""}{"""},
+commentstyle=\color{gray}\slshape,
+emph={[4]1, 2, 3, 4, 5, 6, 7, 8, 9, 0},
+emphstyle=[4]\color{blue},
+literate=*{:}{{\textcolor{blue}:}}{1}%
+	{=}{{\textcolor{blue}=}}{1}%
+	{-}{{\textcolor{blue}-}}{1}%
+	{+}{{\textcolor{blue}+}}{1}%
+	{*}{{\textcolor{blue}*}}{1}%
+	{!}{{\textcolor{blue}!}}{1}%
+	{(}{{\textcolor{blue}(}}{1}%
+	{)}{{\textcolor{blue})}}{1}%
+	{[}{{\textcolor{blue}[}}{1}%
+	{]}{{\textcolor{blue}]}}{1}%
+	{<}{{\textcolor{blue}<}}{1}%
+	{>}{{\textcolor{blue}>}}{1},%
+    frame=fullbox, rulesepcolor=\color{gray},#1
+%framexleftmargin=1mm, framextopmargin=1mm, frame=shadowbox, rulesepcolor=\color{blue},#1
+}}{}
+
+\setcounter{secnumdepth}{0}
+
+\begin{document}
+\maketitle
+
+\section{Exercise 8.2}
+
+The system from figure 5.3 is rather simple, with a connection matrix of
+
+\[ \left( \begin{array}{cccc}
+0.5 & 0 & 0 & 0.5 \cr
+0.5 & 0 & 0 & 0.5 \cr
+0.5 & 0 & 0 & 0.5 \cr
+0 & 0 & 1 & 0 \end{array} \right)\]
+
+The first three states are identical in what their next possible states are, and the last has only one next state.  In terms of Hartley uncertainty
+
+$$ I(A)=K\log_b|A| $$
+
+So, for time t+1 the uncertainty for each state is $[1,1,1,0]$ (in bits per the base 2), as there are 2 states for each except the last, which is with utmost certainty transitioning to c.
+
+For time t+2 and beyond, all 3 reachable states are possible from all starting states except d, so the uncertainty is $\log_2(3)=1.5849625$.  For d at t+2 it can only reach a or d, but not c, so its uncertainty is 1 bit.  From that point onward it is the same as the others.  State d can be seen as identical to the others in uncertainty except for being one time step delayed.
+
+Each sequence of states for $[t,t+1,t+2...t+n]$ has an uncertainty according to 
+
+$$ \sum_{k=1}^n{\log_2(s_{t+k})} $$
+
+for $s \in [a,b,c,d]$.  For a this is 
+
+$$ t+1=1 $$
+$$ t+2=1.5849625 $$
+$$ t+3=1.5849625 $$ 
+
+and so on.  This turns out to be the simple formula 
+
+$$ 1+1.5849625(n-1) $$ 
+
+All the others are the same except d, which is once again delayed by one step.  Its uncertainty is given by 
+
+$$ 1+1.5849625(n-2) $$ 
+
+\section{Exercise 8.3}
+
+This exercise is much the same as the last one, except instead of Hartley uncertainty we have Shannon uncertainty, with different probabilities for each next time step.  This connection matrix is given by
+
+\[ \left( \begin{array}{cccc}
+0.2 & 0 & 0.8 & 0 \cr
+0 & 0 & 0 & 1 \cr
+0 & 0.9 & 0 & 0.1 \cr
+0.5 & 0.3 & 0.2 & 0 \end{array} \right)\]
+
+For a, the uncertainty for the next time step is 
+
+$$ -\sum{p(x)\log_2{p(x)}}=0.2*\log_2{0.2}+0.8*\log_2{0.8}=0.7219281 $$
+
+So, not quite one bit.  The rest of the uncertainties can be found in a similar fashion.
+
+\end{document} 
+
