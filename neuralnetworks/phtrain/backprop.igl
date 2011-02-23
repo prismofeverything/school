@@ -1,0 +1,6 @@
+rmserr,RMS Error,0,1
+corrout,Correlation,0,1
+nwghthst,Network Weights,0,1
+clssrate,Classification Rate,0,1
+cnfusmat,Confusion Matrices,1,1
+contrinp,Input Contribution,0,1
