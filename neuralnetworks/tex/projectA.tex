@@ -1,0 +1,95 @@
+\title{Neural Networks - Project: Part A}
+\author{Ryan Spangler}
+\date{\today}
+
+\documentclass[12pt]{article}
+
+\usepackage{commath}
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage{amsfonts}
+
+% python highlighting ----------
+\usepackage{color}
+\usepackage{listings}
+\usepackage{textcomp}
+\usepackage{setspace}
+%\usepackage{palatino}
+
+\renewcommand{\lstlistlistingname}{Code Listings}
+\renewcommand{\lstlistingname}{Code Listing}
+\definecolor{gray}{gray}{0.6}
+\definecolor{green}{rgb}{0.1,0.6,0.3}
+\definecolor{orange}{rgb}{0.9,0.7,0.1}
+\definecolor{blue}{rgb}{0,0.6,0.8}
+
+\lstnewenvironment{python}[1][]{
+\lstset{
+language=python,
+basicstyle=\ttfamily\footnotesize\setstretch{1},
+stringstyle=\color{red},
+showstringspaces=false,
+alsoletter={1234567890},
+otherkeywords={\ , \}, \{},
+keywordstyle=\color{blue},
+emph={access,and,break,class,continue,def,del,elif,else,%
+except,exec,finally,for,from,global,if,import,in,is,%
+lambda,not,or,pass,print,raise,return,try,while},
+emphstyle=\color{gray}\bfseries,
+emph={[2]True, False, None, self},
+emphstyle=[2]\color{orange},
+emph={[3]from, import, as},
+emphstyle=[3]\color{blue},
+upquote=true,
+morecomment=[s]{"""}{"""},
+commentstyle=\color{gray}\slshape,
+emph={[4]1, 2, 3, 4, 5, 6, 7, 8, 9, 0},
+emphstyle=[4]\color{blue},
+literate=*{:}{{\textcolor{blue}:}}{1}%
+	{=}{{\textcolor{blue}=}}{1}%
+	{-}{{\textcolor{blue}-}}{1}%
+	{+}{{\textcolor{blue}+}}{1}%
+	{*}{{\textcolor{blue}*}}{1}%
+	{!}{{\textcolor{blue}!}}{1}%
+	{(}{{\textcolor{blue}(}}{1}%
+	{)}{{\textcolor{blue})}}{1}%
+	{[}{{\textcolor{blue}[}}{1}%
+	{]}{{\textcolor{blue}]}}{1}%
+	{<}{{\textcolor{blue}<}}{1}%
+	{>}{{\textcolor{blue}>}}{1},%
+    frame=fullbox, rulesepcolor=\color{gray},#1
+%framexleftmargin=1mm, framextopmargin=1mm, frame=shadowbox, rulesepcolor=\color{blue},#1
+}}{}
+
+\setcounter{secnumdepth}{0}
+
+\begin{document}
+\maketitle
+
+\section{Familiarization with Land-Use Data}
+
+\subsection{Problem Statement}
+
+The purpose of this phase of the project was to become familiar with the land-use data from 1974, and use the data to train a backpropagation network under various experimental conditions.  Once the networks are trained, find a way to evaluate the effectiveness of the training on this data by plotting the performance over the training period for each experimental approach relative to one another.
+
+\subsection{Experimental Process}
+
+The results I was looking for were the percentages of correct matches over the training process for each set of parameters given to the network.  In order to obtain results for this data set a number of steps were necessary:
+
+\begin{enumerate}
+\item Train the network on the training set for 2000 cycles.
+\item Take a snapshot of the network.
+\item Repeat training process.
+\item Go through all the snapshots and test the performance using both recall and generalization of unseen i/o pairs, outputting the results to a .nnr file.
+\item Parse and analyze the each set of .nnr files for each set of network parameters, identifying correct matches for each one.
+\item Plot all of the learning curves for each network, so that their performance can be compared relative to one another.
+\end{enumerate}
+
+For the last two items I wrote a python program using python's numerical matrix and plotting libraries provided by pylab.  
+
+\subsection{Results}
+
+
+
+\end{document}  
+
