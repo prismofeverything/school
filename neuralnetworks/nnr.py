@@ -30,25 +30,27 @@ class NNR:
         return float(sum(self.loose)) / float(len(self.loose))
 
 class Series:
-    def __init__(self, base, steps):
+    def __init__(self, base, steps, desc):
         self.base = base
         self.steps = steps
+        self.desc = desc
 
         self.nnr = map(lambda x: NNR(base+suffix(x)+'.nnr'), range(steps))
         self.data = array(map(lambda d: d.performance(), self.nnr))
 
     def plot(self):
-        plot(self.data)
+        plot(self.data, label=self.desc)
 
 class Experiment:
     def __init__(self, series, steps):
-        self.series = map(lambda s: Series('phtrain/'+s, steps), series)
+        self.series = map(lambda s: Series('phtrain/'+s[0], steps, s[1]), series)
         
     def plot(self):
         for s in self.series:
             s.plot()
+        legend(loc='lower right')
 
 def run():
-    experiment = Experiment(['test', 'fourmom'], 12)
+    experiment = Experiment([('fourmom', 'momentum=0.4'), ('test', 'momentum=0.2')], 12)
     experiment.plot()
     return experiment
