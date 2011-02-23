@@ -79,7 +79,7 @@ The results I was looking for were the percentages of correct matches over the t
 \begin{enumerate}
 \item Train the network on the training set for 2000 cycles.
 \item Take a snapshot of the network.
-\item Repeat training process.
+\item Repeat training process until 30000 cycles have been reached.
 \item Go through all the snapshots and test the performance using both recall and generalization of unseen i/o pairs, outputting the results to a .nnr file.
 \item Parse and analyze the each set of .nnr files for each set of network parameters, identifying correct matches for each one.
 \item Plot all of the learning curves for each network, so that their performance can be compared relative to one another.

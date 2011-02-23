@@ -35,7 +35,7 @@ class Series:
         self.steps = steps
         self.desc = desc
 
-        self.nnr = map(lambda x: NNR(base+suffix(x)+'.nnr'), range(steps))
+        self.nnr = map(lambda x: NNR(base+suffix(x)), range(steps))
         self.data = array(map(lambda d: d.performance(), self.nnr))
 
     def plot(self):
