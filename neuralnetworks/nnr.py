@@ -48,9 +48,15 @@ class Experiment:
     def plot(self):
         for s in self.series:
             s.plot()
-        legend(loc='lower right')
+        legend(loc='middle right')
 
 def run():
-    experiment = Experiment([('fourmom', 'momentum=0.4'), ('test', 'momentum=0.2')], 12)
+    experiment = Experiment([('fourmom', 'momentum=0.4'), 
+                             ('twomom', 'momentum=0.2'),
+                             ('epoch64', 'epoch=64'),
+                             ('highlcoef', 'lcoef=0.75'),
+                             ('sine', 'sine transfer'),
+                             ('quickprop', 'quickprop')], 16)
+
     experiment.plot()
     return experiment

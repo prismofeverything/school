@@ -1,0 +1,95 @@
+\title{Neural Networks - Log Book}
+\author{Ryan Spangler}
+\date{\today}
+
+\documentclass[12pt]{article}
+
+\usepackage{commath}
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage{amsfonts}
+
+% python highlighting ----------
+\usepackage{color}
+\usepackage{listings}
+\usepackage{textcomp}
+\usepackage{setspace}
+%\usepackage{palatino}
+
+\renewcommand{\lstlistlistingname}{Code Listings}
+\renewcommand{\lstlistingname}{Code Listing}
+\definecolor{gray}{gray}{0.6}
+\definecolor{green}{rgb}{0.1,0.6,0.3}
+\definecolor{orange}{rgb}{0.9,0.7,0.1}
+\definecolor{blue}{rgb}{0,0.6,0.8}
+
+\lstnewenvironment{python}[1][]{
+\lstset{
+language=python,
+basicstyle=\ttfamily\footnotesize\setstretch{1},
+stringstyle=\color{red},
+showstringspaces=false,
+alsoletter={1234567890},
+otherkeywords={\ , \}, \{},
+keywordstyle=\color{blue},
+emph={access,and,break,class,continue,def,del,elif,else,%
+except,exec,finally,for,from,global,if,import,in,is,%
+lambda,not,or,pass,print,raise,return,try,while},
+emphstyle=\color{gray}\bfseries,
+emph={[2]True, False, None, self},
+emphstyle=[2]\color{orange},
+emph={[3]from, import, as},
+emphstyle=[3]\color{blue},
+upquote=true,
+morecomment=[s]{"""}{"""},
+commentstyle=\color{gray}\slshape,
+emph={[4]1, 2, 3, 4, 5, 6, 7, 8, 9, 0},
+emphstyle=[4]\color{blue},
+literate=*{:}{{\textcolor{blue}:}}{1}%
+	{=}{{\textcolor{blue}=}}{1}%
+	{-}{{\textcolor{blue}-}}{1}%
+	{+}{{\textcolor{blue}+}}{1}%
+	{*}{{\textcolor{blue}*}}{1}%
+	{!}{{\textcolor{blue}!}}{1}%
+	{(}{{\textcolor{blue}(}}{1}%
+	{)}{{\textcolor{blue})}}{1}%
+	{[}{{\textcolor{blue}[}}{1}%
+	{]}{{\textcolor{blue}]}}{1}%
+	{<}{{\textcolor{blue}<}}{1}%
+	{>}{{\textcolor{blue}>}}{1},%
+    frame=fullbox, rulesepcolor=\color{gray},#1
+%framexleftmargin=1mm, framextopmargin=1mm, frame=shadowbox, rulesepcolor=\color{blue},#1
+}}{}
+
+\setcounter{secnumdepth}{0}
+
+\begin{document}
+\maketitle
+
+\section{Preamble}
+
+It was asked that this log book be a document of my \emph{thought process}.  I know that is probably intended to be more official than it will turn out to be, but for this assignment I am choosing to take the duty faithfully, and maintain this as an \emph{unedited, stream of consciousness} account of my thought process while conducting this research project.  It may contain swaring.  It may contain completely unrelated tangents that have nothing to do with the experiment at hand.  It may contain offensive or unpopular opinions, or pure nonsense.  In accepting the charge to document such an intimate and fundamental thing as my ``thought process'' I take it as a personal challenge to most clearly capture with words the actual thoughts I am having while I am having them.  In as far as this is actually impossible, it will reflect the nature of the channel between my raw thoughts as they occur (in whatever physical medium is really at the heart of thought) and my ability to enunciate and elucidate these incorporeal entities with language.  
+
+You have been warned.
+
+\section{Log}
+
+\subsection{Before the Experiment Begins}
+
+\subsubsection{The Pain and Pointlessness of NeuralWare}
+
+First off I must get this out of the way: I am frustrated with NeuralWare.  
+
+I am puzzled what it is the goal of NeuralWare truly was as intended by its makers, as none of the possible roles of software I can imagine is it even remotely suited to filling.  It is dense and full of an endlessly cryptic labyrinth of menus and fields and dialog boxes, so it can't be intended as an educational tool.  It is clumsy to actually accomplish a task as each act requires multiple navigations, and bulk tasks like running fifteen trials and comparing them each require multiple mechanical steps and external computation and graphing to process the information, so it can't be intended as an actual productive tool that humans are supposed to use.  At the same time, there is no way to use NW as a component in other toolchains, from other programming languages for instance, without manually doing the steps yourself to process the inputs and obtain the outputs.  There is no way to automate tasks programmatically or access functionality thanks to its closed source proprietary nature, and the manual labor of getting results is laborious, so it can't be intended as a programming tool that could be used in conjunction with other computational environments except in the most superficial sense.  Also, it does not appear to have been updated since 2001 (a whole decade!) and the owners are still charging comparable rates to a time when they were actually working on it.  In the meantime many things have happened in ten years, and there are open source tools freely available which are libraries that can be included in other projects, that are readable and editable by anyone (and therefore open to academic inquiry and useful for education), and have thriving contributor bases from all over the world and are being actively maintained (FANN comes to mind, but there are many others).  I am baffled as to how NW can be considered a legitimate platform for anything beyond tinkering and experimentation, and am equally baffled as to why using NW is considered an engineering endeavor.  
+
+I am also frustrated that I asked to be able to develop my own algorithm for the LVQ, which would have been far more instructive and useful than merely creating something through InstaNet, and was refused.  Using NW is painful and not conducive to learning or productively conducting research.  I feel that the inability to programmatically conduct research and compose functionality in novel ways is a huge obstacle to obtaining results, and renders what could be an enjoyable endeavor into a task of suffering and exasperation.  
+
+I came into this class excited about learning about neural networks and putting this material to use, but have found the presence of NW to be nothing but an impediment to developing the skills and aptitude for working with neural networks in a way I would actually apply in a real world problem.  I have enjoyed the lectures and come away with good insights, but the real meat is in the practice, and in NW I have found nothing redeeming or applicable to my life outside this class (except possibly as a potent example of how *not* to develop software).  If I ever use neural networks in real life, it will be with libraries that I can use in concert with other tools, or with algorithms I code myself.  Maybe at that point I can gain some actual experience working with neural networks in some meaningful way that I was unable to with NW.
+
+\subsubsection{Life After the NeuralWorks Rant}
+
+Okay, now that I have that off my chest, I can get started.  
+
+
+\end{document}  
+
