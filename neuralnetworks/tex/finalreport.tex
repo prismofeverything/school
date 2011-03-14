@@ -68,17 +68,23 @@ literate=*{:}{{\textcolor{blue}:}}{1}%
 
 \section{Abstract}
 
-
+This paper explores the Linear Vector Quantization (LVQ) neural network paradigm and its application to a real world problem.  Given a set of training data about land use, this experiment proceeds to train the network to optimal performance, then progressively remove features until only the essential features remain.  Using this subset of features, the network is able to be trained to high optimality.  
 
 \section{Introdution/Background on LVQ}
 
+The LVQ is a supervised training algorithm that relies on competition between its PEs to attain a classification of inputs according to a scheme it discovers through training.  During training the incoming vectors are compared against the vectors represented by each PE.  The closest one is considered the ``winner'' and its output is transmitted to the next layer to determine which class the input vector belongs to.  If it is the correct class, the PE is moved closer to the input vector, and if not it is moved away (this is known as ``repulsion'').  After the network has been trained, it performs classification according to the same principles, only the vectors for each PE are no longer moved.  Each pass through the network at this point represents a classification of the vector to one of a certain number of classes, determined by the number of output elements chosen before training.  
 
+The overall effect of the LVQ is ``as if'' the network is optimized to classify its set of presented data according to the classes associated with them, regardless of the nature of the data and without having to have any specific knowledge about the data outside of what classes each training vector belongs to. 
 
 \section{Problem Statement}
 
 The problem for this project is, given the training data set of 52 features and using the LVQ neural network paradigm, discover the smallest subset of features that enables the network to correctly classify the data above 90\% of the time.  It is claimed that 9 features is sufficient for the network to achieve these results, and that even smaller subsets are possible.  My task is to find this minimal subset.
 
 \section{Experimental Process}
+
+
+
+\subsection{Results}
 
 
 
@@ -89,8 +95,6 @@ The problem for this project is, given the training data set of 52 features and 
 \begin{center}
 \includegraphics[scale=0.3]{lvq.png}
 \end{center}
-
-\subsection{Results}
 
 
 
