@@ -5,6 +5,14 @@ def suffix(n):
     p = '0' * (3-len(s))
     return p + s
 
+def pull(filename):
+    contents = open(filename).read()
+    lines = contents.split("\n")
+    lines.pop()
+    data = array(map(lambda line: map(lambda x: float(x), line.split(" ")[1:]), lines))
+
+    return data
+
 class NNR:
     def __init__(self, filename):
         self.filename = filename

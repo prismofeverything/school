@@ -1,0 +1,5 @@
+rmserr,RMS Error,0,1
+corrout,Correlation,0,1
+clssrate,Classification Rate,0,1
+cnfusmat,Confusion Matrices,1,1
+protowts,Kohonen Weights,1,1
