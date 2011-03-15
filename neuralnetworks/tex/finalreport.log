@@ -2,8 +2,8 @@ This is pdfTeX, Version 3.1415926-1.40.11 (TeX Live 2010/MacPorts 2010_0) (forma
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**logbook.tex
-(./logbook.tex
+**finalreport.tex
+(./finalreport.tex
 LaTeX2e <2009/09/24>
 Babel <v3.8l> and hyphenation patterns for english, dumylang, nohyphenation, lo
 aded.
@@ -225,8 +225,8 @@ Package: `setspace' 6.7 <2000/12/01>
 )
 Package color Info: Redefining color green on input line 22.
 Package color Info: Redefining color blue on input line 24.
- (./logbook.aux)
-\openout1 = `logbook.aux'.
+ (./finalreport.aux)
+\openout1 = `finalreport.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 66.
 LaTeX Font Info:    ... okay on input line 66.
@@ -242,11 +242,13 @@ LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 66.
 LaTeX Font Info:    ... okay on input line 66.
 LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 66.
 LaTeX Font Info:    Try loading font information for TS1+cmr on input line 66.
- (/opt/local/share/texmf-texlive-dist/tex/latex/base/ts1cmr.fd
+
+(/opt/local/share/texmf-texlive-dist/tex/latex/base/ts1cmr.fd
 File: ts1cmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    ... okay on input line 66.
- (/opt/local/share/texmf-texlive-dist/tex/context/base/supp-pdf.mkii
+
+(/opt/local/share/texmf-texlive-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count108
 \scratchdimen=\dimen118
@@ -316,27 +318,26 @@ LaTeX Font Info:    Try loading font information for U+msb on input line 67.
 File: umsb.fd 2009/06/22 v3.00 AMS symbols B
 ) [1
 
-{/opt/local/var/db/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2] [3] [4] (./lo
-gbook.aux) ) 
+{/opt/local/var/db/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2] [3] (./finalr
+eport.aux) ) 
 Here is how much of TeX's memory you used:
- 3772 strings out of 495074
+ 3769 strings out of 495074
  53107 string characters out of 3182082
- 114007 words of memory out of 3000000
- 6904 multiletter control sequences out of 15000+200000
- 8740 words of font info for 33 fonts, out of 3000000 for 9000
+ 109041 words of memory out of 3000000
+ 6902 multiletter control sequences out of 15000+200000
+ 8086 words of font info for 31 fonts, out of 3000000 for 9000
  14 hyphenation exceptions out of 8191
- 38i,6n,32p,2558b,219s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 38i,6n,32p,915b,219s stack positions out of 5000i,500n,10000p,200000b,50000s
 {/opt/local/share/texmf-texlive-dist/fonts/enc/dvips/cm-super/cm-su
 per-ts1.enc}</opt/local/share/texmf-texlive-dist/fonts/type1/public/amsfonts/cm
 /cmbx12.pfb></opt/local/share/texmf-texlive-dist/fonts/type1/public/amsfonts/cm
 /cmr12.pfb></opt/local/share/texmf-texlive-dist/fonts/type1/public/amsfonts/cm/
-cmr17.pfb></opt/local/share/texmf-texlive-dist/fonts/type1/public/amsfonts/cm/c
-mti12.pfb></opt/local/share/texmf-texlive-dist/fonts/type1/public/cm-super/sfrm
+cmr17.pfb></opt/local/share/texmf-texlive-dist/fonts/type1/public/cm-super/sfrm
 1200.pfb>
-Output written on logbook.pdf (4 pages, 68908 bytes).
+Output written on finalreport.pdf (3 pages, 53819 bytes).
 PDF statistics:
- 38 PDF objects out of 1000 (max. 8388607)
- 26 compressed objects within 1 object stream
+ 31 PDF objects out of 1000 (max. 8388607)
+ 21 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 
