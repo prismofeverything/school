@@ -61,9 +61,18 @@ class Experiment:
         legend(loc='center')
 
 def run():
-    experiment5 = Experiment([('5features', 'critical five features'), 
-                              ('5control', 'arbitrary five features')], 12)
-    experiment52 = Experiment([('52features50PE', '50 PEs'), 
-                               ('52features15PE', '15 PEs')], 12)
-    experiment5.plot()
+    experiment = Experiment([('5features', 'critical five features'), 
+                             ('5control', 'arbitrary five features')], 12)
+
+    # experiment = Experiment([('52features50PE', '50 PEs'), 
+    #                          ('52features15PE', '15 PEs')], 12)
+
+    # experiment = Experiment([('fourmom', 'momentum=0.4'), 
+    #                          ('twomom', 'momentum=0.2'),
+    #                          ('epoch64', 'epoch=64'),
+    #                          ('highlcoef', 'lcoef=0.75'),
+    #                          ('sine', 'sine transfer'),
+    #                          ('quickprop', 'quickprop')], 16)
+
+    experiment.plot()
     return experiment
