@@ -135,10 +135,10 @@ And here is the same network with only 15 PE's:
 When the percentage of correctly identified inputs is tracked for each network and overlayed, not much difference is noted:
 
 \begin{center}
-\includegraphics[scale=0.7]{52features.png}
+\includegraphics[scale=0.6]{52features.png}
 \end{center}
 
-It seems arbitrary that the network with 50 PE's ends lower than the one with 15, as it outperforms it for much of the trial.  The network with 15 PE's attained an even 93\% accuracy in test data classification after 11000 presentations of input vectors.  In the rest of the experiments I use 15 PE's exclusively.
+It seems arbitrary that the network with 50 PE's ends lower than the one with 15, as it outperforms it for much of the trial.  The network with 15 PE's attained an even 93\% accuracy in test data classification after 11000 presentations of input vectors, whereas the network with 50 PE's reaches only 92.3\%.  In the rest of the experiments I use 15 PE's exclusively.
 
 Numbering the 52 features from 0-51 in the order given in the test data, the critical five features that attained almost 92\% (91.61\%) classification accuracy were:
 
@@ -177,6 +177,90 @@ The random assortment of features reaches only a 79\% classification rate, where
 Ultimately, finding the ideal subset of five features from the full set of 52 depended on deciphering the message encoded in the values of the weights from each input to the competitive PEs.  The network naturally excluded features that did not contribute to the classification through inhibitory weight modifications.  Only the features that actually correlated to the desired classification scheme were encouraged through weight increases, the others were effectively rendered irrelevant.  
 
 It makes me wonder what the process was for obtaining these features in the first place.  It would be interesting to note what kind of bearing these five critical features had on the categories they were attempting to identify, and why they were so much more effective than any of the other features.  It seems the process of making distinctions among the original data would have a great influence on the applicability of the feature in question.  
+
+I was expecting to have to take many pains to find the relevant nine features required by the assignment, but an early insight allowed me to avoid all of these steps and proceed directly to the critical five, far lower than the nine expected of me!  I feel that the innate architecture of the LVQ was advantageous in this regard, in that it made the weights of the contributing features almost obvious, once the realization was made about how to look at them.  
+
+\section{Data Processing and Plotting Program}
+
+This is the python code I used to process the weights and outputs and plot the performance of the various networks:
+
+\begin{python}[]
+
+from pylab import *
+
+def suffix(n):
+    s = str(n)
+    p = '0' * (3-len(s))
+    return p + s
+
+def pull(filename):
+    contents = open(filename).read()
+    lines = contents.split("\n")
+    lines.pop()
+    data = array(map(lambda line: map(lambda x: 
+        float(x), line.split(" ")[1:]), lines))
+
+    return data
+
+class NNR:
+    def __init__(self, filename):
+        self.filename = filename
+
+        contents = open(filename).read()
+        lines = contents.split("\n")
+        lines.pop()
+
+        self.data = array(map(lambda line: 
+            map(lambda x: float(x), line.split("\t")[1:]), lines))
+
+        self.outputs = self.data.shape[1] / 2
+        self.expected = self.data[:,:self.outputs]
+        self.results = self.data[:,self.outputs:]
+        self.diff = self.expected - self.results
+        self.mask = self.expected * self.results
+
+        self.strict = map(lambda p: all(map(lambda x: 
+            abs(x) < 0.2, p)), self.diff)
+        self.loose = map(lambda p: abs(sum(p) - 1.0) < 0.2, self.mask)
+
+        self.error = sum(self.diff)
+
+    def performance(self):
+        return float(sum(self.loose)) / float(len(self.loose))
+
+class Series:
+    def __init__(self, base, steps, desc):
+        self.base = base
+        self.steps = steps
+        self.desc = desc
+
+        self.nnr = map(lambda x: NNR(base+suffix(x)), range(steps))
+        self.data = array(map(lambda d: d.performance(), self.nnr))
+
+    def plot(self):
+        plot(self.data, label=self.desc)
+
+class Experiment:
+    def __init__(self, series, steps):
+        self.series = map(lambda s: 
+            Series('phtrain/'+s[0], steps, s[1]), series)
+        
+    def plot(self):
+        xlabel('trials')
+        ylabel('percent correct')
+        for s in self.series:
+            s.plot()
+        legend(loc='center')
+
+def run():
+    experiment5 = Experiment([('5features', 'critical five'), 
+                              ('5control', 'arbitrary five')], 12)
+    experiment52 = Experiment([('52features50PE', '50 PEs'), 
+                               ('52features15PE', '15 PEs')], 12)
+    experiment5.plot()
+    return experiment
+
+\end{python}
 
 \end{document}  
 
