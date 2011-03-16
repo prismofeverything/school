@@ -76,21 +76,43 @@ You have been warned.
 
 \subsection{Before the Experiment Begins}
 
-\subsubsection{The Pain and Pointlessness of NeuralWorks}
+\subsubsection{The Pain of NeuralWorks}
 
 First off I must get this out of the way: I am frustrated with NeuralWorks.  
 
-I am puzzled what it is the goal of NeuralWorks truly was as intended by its makers, as none of the possible roles of software I can imagine is it even remotely suited to filling.  It is dense and full of an endlessly cryptic labyrinth of menus and fields and dialog boxes, so it can't be intended as an educational tool.  It is clumsy to actually accomplish a task as each act requires multiple navigations, and bulk tasks like running fifteen trials and comparing them each require multiple mechanical steps and external computation and graphing to process the information, so it can't be intended as an actual productive tool that humans are supposed to use.  At the same time, there is no way to use NW as a component in other toolchains, from other programming languages for instance, without manually doing the steps yourself to process the inputs and obtain the outputs (I found the User-Defined Input and Output feature it offers, but this is only to build functions that can be run from \emph{within} NW, you still have to navigate through the menus and interact with the GUI frontend to get any work done.  Also, you must operate within NW's traditional initialization and training cycle, performing functions though callbacks that are called only at certain times under certain conditions.  There is no way to use any NW functionality from a program external to NW, which is what would actually be useful).  There is no way to automate tasks programmatically or access functionality thanks to its closed source proprietary nature, and the manual labor of getting results is laborious, so it can't be intended as a programming tool that could be used in conjunction with other computational environments except in the most superficial sense.  Also, it does not appear to have been updated since 2001 (a whole decade!) and the owners are still charging comparable rates to a time when they were actually working on it.  In the meantime many things have happened in ten years, and there are open source tools freely available which are libraries that can be included in other projects, that are readable and editable by anyone (and therefore open to academic inquiry and useful for education), and have thriving contributor bases from all over the world and are being actively maintained (FANN comes to mind, but there are many others).  I am baffled as to how NW can be considered a legitimate platform for anything beyond tinkering and experimentation, and am equally baffled as to why using NW is considered an engineering endeavor.  
+I am puzzled what it is the goal of NeuralWorks truly was as intended by its makers, as none of the possible roles of software I can imagine is it even remotely suited to filling.  It is dense and full of an cryptic labyrinth of menus and fields and dialog boxes, so it can't be intended as an educational tool.  It is clumsy to actually accomplish a task as each act requires multiple navigations, and bulk tasks like running fifteen trials and comparing them each require multiple mechanical steps and external computation and graphing to process the information, so it can't be intended as an actual productive tool that humans are supposed to use.  At the same time, there is no way to use NW as a component in other toolchains, from other programming languages for instance, without manually doing the steps yourself to process the inputs and obtain the outputs (I found the User-Defined Input and Output feature it offers, but this is only to build functions that can be run from \emph{within} NW, you still have to navigate through the menus and interact with the GUI frontend to get any work done.  Also, you must operate within NW's traditional initialization and training cycle, performing functions though callbacks that are called only at certain times under certain conditions.  There is no way to use any NW functionality from a program external to NW, which is what would actually be useful).  There is no way to automate tasks programmatically or access functionality thanks to its closed source proprietary nature, and the manual labor of getting results is laborious, so it can't be intended as a programming tool that could be used in conjunction with other computational environments except in the most superficial sense.  Also, it does not appear to have been updated since 2001 (a whole decade!) and the owners are still charging comparable rates to a time when they were actually working on it.  In the meantime many things have happened in ten years, and there are open source tools freely available which are libraries that can be included in other projects, that are readable and editable by anyone (and therefore open to academic inquiry and useful for education), and have thriving contributor bases from all over the world and are being actively maintained (FANN comes to mind, but there are others).  I am baffled as to how NW can be considered a legitimate platform for anything beyond tinkering and experimentation, and am equally baffled as to why using NW is considered an engineering endeavor.  
 
 I am also frustrated that I asked to be able to develop my own algorithm for the LVQ, which would have been far more instructive and useful than merely creating something through InstaNet, and was refused.  Using NW is painful and not conducive to learning or productively conducting research.  I feel that the inability to programmatically conduct research and compose functionality in novel ways is a huge obstacle to obtaining results, and renders what could be an enjoyable endeavor into a task of suffering and exasperation.  
-
-I came into this class excited about learning about neural networks and putting this material to use, but have found the presence of NW to be nothing but an impediment to developing the skills and aptitude for working with neural networks in a way I would actually apply in a real world problem.  I have enjoyed the lectures and come away with good insights, but the real meat is in the practice, and in NW I have found nothing redeeming or applicable to my life outside this class (except possibly as a potent example of how *not* to develop software).  If I ever use neural networks in real life, it will be with libraries that I can use in concert with other tools, or with algorithms I code myself.  Maybe at that point I can gain some actual experience working with neural networks in some meaningful way that I was unable to with NW.
 
 \subsubsection{Life After the NeuralWorks Rant}
 
 Okay, now that I have that off my chest, I can get started.  The first step is to learn about the LVQ sufficiently to know what it is I am doing.  The similarity between the LVQ and SOM (and common heritage) means that many of the resources for the LVQ also overlap with those for the SOM.  
 
-Now that that is done, the task is to actually run the first set of experiments with all 52 of the available features.  
+Now that that is done, the task is to actually run the first set of experiments with all 52 of the available features.  This is easy, and as expected the performance converges at around 93\%.  The only consideration is in how many hidden layer PE to use.  Since there are 5 outputs and the definition of LVQ is to have the same number of hidden competitive PE's per output, I choose 50, just to be safe.  
 
-\end{document}  
+This leads to a consideration of what experiments to run.  Do I want to just accept 50 as a good number, or should I do some comparative runs to make sure 50 is optimal?  Probably should.  So here is an outline of potential experiments to get the most thorough range of results:
+
+\begin{itemize}
+
+\item All 52 features, 50 hidden PEs.
+\item All 52 features, 25 hidden PEs.
+\item All 52 features, 10 hidden PEs.
+\item Most salient 15 features, optimal number of PEs found before.
+\item Critical 5 features, optimal number of PEs found before.
+
+\end{itemize}
+
+\subsection{Running Experiments}
+
+
+
+\subsection{Reflections}
+
+\subsubsection{Forgiving and Accepting NeuralWorks}
+
+Ultimately, NeuralWorks does do the job of executing various neural network paradigms, so it is legitimate in that regard.  My main complaint can be boiled down to that I still must execute many mechanical repetitive steps in order to get anything done, which is what the computer is supposed to be doing for you.  The advantage of being able to use NW from a programming language would be that as I learned more and used the software in real applications I could progressively automate more and more of the operations I previously had to perform manually.  This would lead to my ability to harness the tool with ever increasing usefulness.  The inability to perform more functionality than the designers built into the software means that there is a hard limit to what is achievable through the program alone.  
+
+Regardless, some measure of work can still be done in this limited framework, and I was able to complete the assignment as given (with the help of an external programming environment to actually process the weights and the outputs for the various runs).  
+
+\end{document} 
 

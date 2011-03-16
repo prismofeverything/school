@@ -82,21 +82,36 @@ The problem for this project is, given the training data set of 52 features and 
 
 \section{Experimental Process}
 
+The first step was to train an LVQ network with the full set of 52 features.  This was done by creating an LVQ network in NeuralWorks (NW) from the InstaNet menu.  The parameters were as follows:
+
+\begin{center}
+\includegraphics[scale=0.3]{52parameters.png}
+\end{center}
+
+
 
 
 \subsection{Results}
 
+Numbering the 52 features from 0-51 in the order given in the test data, the critical 5 features that attained almost 92\% classification accuracy were
 
+\begin{itemize}
+\item 13
+\item 44
+\item 45
+\item 46
+\item 49
+\end{itemize}
+
+The other features were more or less irrelevant, or at best redundant.  The presence of all the other features combined contributed only a 1-2\% increase in classification performance.
 
 \section{Conclusion}
 
-
+Ultimately, finding the ideal subset of 5 features that could be used to adequately classify the vectors from the test set was not difficult, as their relative applicability was encoded in the values of the weights from each input to the competitive PEs.  The network naturally excluded features that did not contribute to the classification through inhibitory weight modifications.  Only the features that actually correlated to the desired classification scheme were encouraged through weight increases, the others were effectively rendered irrelevant.  
 
 \begin{center}
 \includegraphics[scale=0.3]{lvq.png}
 \end{center}
-
-
 
 \end{document}  
 
