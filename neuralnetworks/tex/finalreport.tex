@@ -96,6 +96,8 @@ The parameters for this experiment are given below:
 \includegraphics[scale=0.7]{parameters52features15PE.png}
 \end{center}
 
+These two runs are compared in order to see what effect having a lower number of PE's has on the effectiveness of the training.  It could be that having too many PE's dilutes the effectiveness of any one PE in making a distinction among data, but on the other hand more PE's could enable the network to perform a wider range of more discriminatory classifications.  
+
 The weight matrix can be viewed in two ways.  In the first, and how the network is trained, the value for each feature is applied to each PE.  These features form an instar, and the PE receives one input from each feature, multiplied by the corresponding weight for that feature to that PE.  So in training, the weight matrix is sliced along the rows to make vectors of distinct feature weights, each of which is then multiplied by the input vector to get the input to each PE.
 
 The other way to look at the weight matrix is to slice it along its columns into vectors of values adopted by a single feature across all presentations.  These vectors supply a complementary perspective, where each of the features is portrayed independently of their relationship to other features.  
