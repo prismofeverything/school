@@ -68,13 +68,13 @@ literate=*{:}{{\textcolor{blue}:}}{1}%
 
 \section{Abstract}
 
-This paper explores the Linear Vector Quantization (LVQ) neural network paradigm and its application to a real world problem.  Given a set of training data about land use, this experiment proceeds to train the network to optimal performance, then progressively remove features until only the essential features remain.  Using this subset of features, the network is able to be trained to high optimality.  
+This paper explores the Linear Vector Quantization (LVQ) neural network paradigm and its application to a real world problem.  Given a set of training data about land use, this experiment proceeds to train the network to optimal performance, then progressively remove features until only the essential features remain.  Using this subset of features, the network is able to be trained to high optimality ($>$ 90\% classification accuracy).  
 
 \section{Introdution/Background on LVQ}
 
-The LVQ is a supervised training algorithm that relies on competition between its PEs to attain a classification of inputs according to a scheme it discovers through training.  During training the incoming vectors are compared against the vectors represented by each PE.  The closest one is considered the ``winner'' and its output is transmitted to the next layer to determine which class the input vector belongs to.  If it is the correct class, the PE is moved closer to the input vector, and if not it is moved away (this is known as ``repulsion'').  After the network has been trained, it performs classification according to the same principles, only the vectors for each PE are no longer moved.  Each pass through the network at this point represents a classification of the vector to one of a certain number of classes, determined by the number of output elements chosen before training.  
+The LVQ is a supervised training algorithm that relies on competition between its PEs to attain a classification of inputs into a predefined set of classes.  During training the incoming vectors are compared against the vectors represented by each PE.  The closest one is considered the ``winner'' and its output is transmitted to the next layer to determine which class the input vector belongs to.  If it is the correct class, the PE is moved closer to the input vector, and if not it is moved away (this is known as ``repulsion'').  After the network has been trained, it performs classification according to the same principles, only the vectors for each PE are no longer moved.  Each pass through the network at this point represents a classification of the vector to one of a certain number of classes, determined by the number of output elements chosen before training.  
 
-The overall effect of the LVQ is ``as if'' the network is optimized to classify its set of presented data according to the classes associated with them, regardless of the nature of the data and without having to have any specific knowledge about the data outside of what classes each training vector belongs to. 
+The overall effect of the LVQ is ``as if'' the network is optimized to classify its set of presented data according to the classes associated with them, regardless of the nature of the data and without having to have any specific knowledge about the data outside of what classes each training vector belongs to.  
 
 \section{Problem Statement}
 
@@ -135,10 +135,10 @@ And here is the same network with only 15 PE's:
 When the percentage of correctly identified inputs is tracked for each network and overlayed, not much difference is noted:
 
 \begin{center}
-\includegraphics[scale=0.6]{52features.png}
+\includegraphics[scale=0.55]{52features.png}
 \end{center}
 
-It seems arbitrary that the network with 50 PE's ends lower than the one with 15, as it outperforms it for much of the trial.  The network with 15 PE's attained an even 93\% accuracy in test data classification after 11000 presentations of input vectors, whereas the network with 50 PE's reaches only 92.3\%.  In the rest of the experiments I use 15 PE's exclusively.
+For these graphs, ``trials'' represents the number of snapshots I took of the data.  I sampled the outputs of the network every 2000 training cycles to see how the performance had improved.  It seems arbitrary that the network with 50 PE's ends lower than the one with 15, as it outperforms it for much of the trial.  The network with 15 PE's attained an even 93\% accuracy in test data classification after 11000 presentations of input vectors, whereas the network with 50 PE's reaches only 92.3\%.  In the rest of the experiments I use 15 PE's exclusively.
 
 Numbering the 52 features from 0-51 in the order given in the test data, the critical five features that attained almost 92\% (91.61\%) classification accuracy were:
 

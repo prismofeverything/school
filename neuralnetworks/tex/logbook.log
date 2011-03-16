@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.11 (TeX Live 2010/MacPorts 2010_0) (format=pdflatex 2010.12.8)  14 MAR 2011 14:05
+This is pdfTeX, Version 3.1415926-1.40.11 (TeX Live 2010/MacPorts 2010_0) (format=pdflatex 2010.12.8)  16 MAR 2011 13:02
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -321,11 +321,11 @@ gbook.aux) )
 Here is how much of TeX's memory you used:
  3772 strings out of 495074
  53107 string characters out of 3182082
- 114007 words of memory out of 3000000
+ 115007 words of memory out of 3000000
  6904 multiletter control sequences out of 15000+200000
  8740 words of font info for 33 fonts, out of 3000000 for 9000
  14 hyphenation exceptions out of 8191
- 38i,6n,32p,2558b,219s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 38i,6n,32p,2677b,219s stack positions out of 5000i,500n,10000p,200000b,50000s
 {/opt/local/share/texmf-texlive-dist/fonts/enc/dvips/cm-super/cm-su
 per-ts1.enc}</opt/local/share/texmf-texlive-dist/fonts/type1/public/amsfonts/cm
 /cmbx12.pfb></opt/local/share/texmf-texlive-dist/fonts/type1/public/amsfonts/cm
@@ -333,7 +333,7 @@ per-ts1.enc}</opt/local/share/texmf-texlive-dist/fonts/type1/public/amsfonts/cm
 cmr17.pfb></opt/local/share/texmf-texlive-dist/fonts/type1/public/amsfonts/cm/c
 mti12.pfb></opt/local/share/texmf-texlive-dist/fonts/type1/public/cm-super/sfrm
 1200.pfb>
-Output written on logbook.pdf (4 pages, 68908 bytes).
+Output written on logbook.pdf (4 pages, 70778 bytes).
 PDF statistics:
  38 PDF objects out of 1000 (max. 8388607)
  26 compressed objects within 1 object stream
