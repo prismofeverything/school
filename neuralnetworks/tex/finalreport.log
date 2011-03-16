@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.11 (TeX Live 2010/MacPorts 2010_0) (format=pdflatex 2010.12.8)  15 MAR 2011 23:55
+This is pdfTeX, Version 3.1415926-1.40.11 (TeX Live 2010/MacPorts 2010_0) (format=pdflatex 2010.12.8)  16 MAR 2011 01:58
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -323,33 +323,68 @@ File: umsb.fd 2009/06/22 v3.00 AMS symbols B
 File: parameters52features.png Graphic file (type png)
 
 <use parameters52features.png> [2 <./parameters52features.png (PNG copy)>]
-<parameters5features.png, id=13, 530.98375pt x 259.97125pt>
+<parameters52features15PE.png, id=13, 528.97626pt x 257.96375pt>
+File: parameters52features15PE.png Graphic file (type png)
+
+<use parameters52features15PE.png> [3 <./parameters52features15PE.png (PNG copy
+)>] <parameters5features.png, id=17, 530.98375pt x 259.97125pt>
 File: parameters5features.png Graphic file (type png)
 
-<use parameters5features.png> [3]
-<parameters5control.png, id=17, 526.96875pt x 225.84375pt>
+<use parameters5features.png>
+<parameters5control.png, id=18, 526.96875pt x 225.84375pt>
 File: parameters5control.png Graphic file (type png)
 
-<use parameters5control.png> [4 <./parameters5features.png (PNG copy)> <./param
-eters5control.png (PNG copy)>] [5] (./finalreport.aux) ) 
+<use parameters5control.png> [4 <./parameters5features.png (PNG copy)>]
+<52f50kweights.png, id=22, 367.3725pt x 354.32375pt>
+File: 52f50kweights.png Graphic file (type png)
+ <use 52f50kweights.png>
+[5 <./parameters5control.png (PNG copy)>]
+<52f15kweights.png, id=26, 369.38pt x 109.40875pt>
+File: 52f15kweights.png Graphic file (type png)
+ <use 52f15kweights.png>
+<52features.png, id=27, 585.18625pt x 441.65pt>
+File: 52features.png Graphic file (type png)
+ <use 52features.png>
+Overfull \hbox (19.62758pt too wide) in paragraph at lines 138--139
+ [] 
+ []
+
+[6 <./52f50kweights.png (PNG copy)> <./52f15kweights.png (PNG copy)>] [7 <./52f
+eatures.png (PNG copy)>]
+<5featuresweights.png, id=36, 143.53625pt x 106.3975pt>
+File: 5featuresweights.png Graphic file (type png)
+
+<use 5featuresweights.png>
+<5controlweights.png, id=37, 144.54pt x 107.40125pt>
+File: 5controlweights.png Graphic file (type png)
+ <use 5controlweights.png>
+<5features.png, id=38, 597.23125pt x 442.65375pt>
+File: 5features.png Graphic file (type png)
+ <use 5features.png>
+Overfull \hbox (28.05902pt too wide) in paragraph at lines 170--171
+ [] 
+ []
+
+[8 <./5featuresweights.png (PNG copy)> <./5controlweights.png (PNG copy)>]
+[9 <./5features.png (PNG copy)>] [10] (./finalreport.aux) ) 
 Here is how much of TeX's memory you used:
- 3785 strings out of 495074
- 53513 string characters out of 3182082
+ 3820 strings out of 495074
+ 54286 string characters out of 3182082
  109041 words of memory out of 3000000
- 6914 multiletter control sequences out of 15000+200000
+ 6942 multiletter control sequences out of 15000+200000
  8086 words of font info for 31 fonts, out of 3000000 for 9000
  14 hyphenation exceptions out of 8191
  38i,6n,32p,915b,219s stack positions out of 5000i,500n,10000p,200000b,50000s
-{/opt/local/share/texmf
--texlive-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}</opt/local/share/texmf
--texlive-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></opt/local/share/texmf
--texlive-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></opt/local/share/texmf-
-texlive-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></opt/local/share/texmf-t
-exlive-dist/fonts/type1/public/cm-super/sfrm1200.pfb>
-Output written on finalreport.pdf (5 pages, 86622 bytes).
+{/opt/local/share/te
+xmf-texlive-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}</opt/local/share/te
+xmf-texlive-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></opt/local/share/te
+xmf-texlive-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></opt/local/share/tex
+mf-texlive-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></opt/local/share/texm
+f-texlive-dist/fonts/type1/public/cm-super/sfrm1200.pfb>
+Output written on finalreport.pdf (10 pages, 163301 bytes).
 PDF statistics:
- 40 PDF objects out of 1000 (max. 8388607)
- 25 compressed objects within 1 object stream
+ 64 PDF objects out of 1000 (max. 8388607)
+ 37 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 16 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 51 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -104,7 +104,7 @@ The other way to look at the weight matrix is to slice it along its columns into
 
 The discovery of the critical five features was due to a fortuitous insight.  Since all of the data from the training set was in the positive range, training of salient features (which involved moving the vector for the PE towards the input vector upon winning the competition) would on average increase the weight vector for that feature, if the feature contributed to correctly classifying the input.  Therefore, when I subtract the weight vectors of an untrained network from those of its weights after training, the features corresponding to weight vectors with a positive overall change (sum of elements) were the ones that were critical for the correct classification of the input data.    
 
-Performing this analysis on the data I revealed five features whose total sum of the change in feature-related weights was positive, the rest were all negative.  Reducing the feature set to only these five, I started from a fresh network with only five inputs and trained it from this limited set.  
+Performing this analysis on the data I revealed five features whose total sum of the change in feature-related weights was positive, the rest were all negative.  Reducing the feature set to only these five, I started from a fresh network with only five inputs and trained it from this limited set.  It was unnecessary to go through any intermediate steps as the five presented themselves directly from the study of the change in weights during training.
 
 \begin{center}
 \includegraphics[scale=0.7]{parameters5features.png}
@@ -120,7 +120,27 @@ The performance of these two runs was then compared to determine the relative ef
 
 \subsection{Results}
 
-Numbering the 52 features from 0-51 in the order given in the test data, the critical five features that attained almost 92\% classification accuracy were
+To compare the performance of the networks with different numbers of competitive layer PE's, the run with 50 PE's is compared to the run using only 15 PE's.  Here is NeuralWorks representation of the weight matrix after 11000 learning cycles using 50 PE's with all 52 features:
+
+\begin{center}
+\includegraphics[scale=0.8]{52f50kweights.png}
+\end{center}
+
+And here is the same network with only 15 PE's:
+
+\begin{center}
+\includegraphics[scale=0.9]{52f15kweights.png}
+\end{center}
+
+When the percentage of correctly identified inputs is tracked for each network and overlayed, not much difference is noted:
+
+\begin{center}
+\includegraphics[scale=0.7]{52features.png}
+\end{center}
+
+It seems arbitrary that the network with 50 PE's ends lower than the one with 15, as it outperforms it for much of the trial.  The network with 15 PE's attained an even 93\% accuracy in test data classification after 11000 presentations of input vectors.  In the rest of the experiments I use 15 PE's exclusively.
+
+Numbering the 52 features from 0-51 in the order given in the test data, the critical five features that attained almost 92\% (91.61\%) classification accuracy were:
 
 \begin{itemize}
 \item 13
@@ -132,9 +152,31 @@ Numbering the 52 features from 0-51 in the order given in the test data, the cri
 
 The other features were more or less irrelevant, or at best redundant.  The presence of all the other features combined contributed only a 1-2\% increase in classification performance.
 
+The five critical features that were discovered were compared with five of the other features to get some kind of sense for how much better the network performed with the critical features than just a random assortment.  The trained weights for the critical features look like this:
+
+\begin{center}
+\includegraphics[scale=1.2]{5featuresweights.png}
+\end{center}
+
+Whereas for the random assortment of features the weight matrix turned out like this:
+
+\begin{center}
+\includegraphics[scale=1.2]{5controlweights.png}
+\end{center}
+
+When compared, it is obvious the five features perform better:
+
+\begin{center}
+\includegraphics[scale=0.7]{5features.png}
+\end{center}
+
+The random assortment of features reaches only a 79\% classification rate, whereas the network trained with the critical five features attains a 91.6\% under the exact same conditions.  This is almost identical to using the entire feature set of 52 values!  It is remarkable that such a high rate can be achieved with such a limited subset of the feature set, though it does take the entire 11000 cycles to raise to that level (which is why I use 11000 cycles for all of the other experiments).  
+
 \section{Conclusion}
 
-Ultimately, finding the ideal subset of five features that could be used to adequately classify the vectors from the test set was not difficult, as their relative applicability was encoded in the values of the weights from each input to the competitive PEs.  The network naturally excluded features that did not contribute to the classification through inhibitory weight modifications.  Only the features that actually correlated to the desired classification scheme were encouraged through weight increases, the others were effectively rendered irrelevant.  
+Ultimately, finding the ideal subset of five features from the full set of 52 depended on deciphering the message encoded in the values of the weights from each input to the competitive PEs.  The network naturally excluded features that did not contribute to the classification through inhibitory weight modifications.  Only the features that actually correlated to the desired classification scheme were encouraged through weight increases, the others were effectively rendered irrelevant.  
+
+It makes me wonder what the process was for obtaining these features in the first place.  It would be interesting to note what kind of bearing these five critical features had on the categories they were attempting to identify, and why they were so much more effective than any of the other features.  It seems the process of making distinctions among the original data would have a great influence on the applicability of the feature in question.  
 
 \end{document}  
 
