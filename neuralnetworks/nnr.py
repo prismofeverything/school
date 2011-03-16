@@ -54,6 +54,8 @@ class Experiment:
         self.series = map(lambda s: Series('phtrain/'+s[0], steps, s[1]), series)
         
     def plot(self):
+        xlabel('trials')
+        ylabel('percent correct')
         for s in self.series:
             s.plot()
         legend(loc='middle right')
