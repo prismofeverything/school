@@ -85,11 +85,36 @@ The problem for this project is, given the training data set of 52 features and 
 The first step was to train an LVQ network with the full set of 52 features.  This was done by creating an LVQ network in NeuralWorks (NW) from the InstaNet menu.  The parameters were as follows:
 
 \begin{center}
-\includegraphics[scale=0.3]{52parameters.png}
+\includegraphics[scale=0.7]{parameters52features.png}
 \end{center}
 
+The main notable parameter in this table is the number of Kohonen PE's, which I chose to be 50.  In the documentation of the LVQ it says there must be the same number of competitive layer PE's for each output, so I chose for this experiment to have 10 PE for each of the 5 outputs.  I was suspicious of this however, so I tried again with 15 to see if this made any difference in the results.  
+
+The parameters for this experiment are given below:
 
 
+
+
+
+The weight matrix can be viewed in two ways.  In the first, and how the network is trained, the value for each feature is applied to each PE.  These features form an instar, and the PE receives one input from each feature, multiplied by the corresponding weight for that feature to that PE.  So in training, the weight matrix is spliced along the rows to make vectors of distinct feature weights, each of which is then multiplied by the input vector to get the input to each PE.
+
+The other way to look at the weight matrix is to splice it along its columns into vectors of values adopted by a single feature across all presentations.  These vectors supply a complementary perspective, where each of the features is portrayed independently of their relationship to other features.  
+
+The discovery of the critical 5 features was due to a fortuitous insight.  Since all of the data from the training set was in the positive range, training of salient features (which involved moving the vector for the PE towards the input vector upon winning the competition) would on average increase the weight vector for that feature, if the feature contributed to correctly classifying the input.  Therefore, when I subtract the weight vectors of an untrained network from those of its weights after training, the features corresponding to weight vectors with a positive overall change (sum of elements) were the ones that were critical for the correct classification of the input data.    
+
+Performing this analysis on the data I revealed five features whose total sum of the change in feature-related weights was positive, the rest were all negative.  Reducing the feature set to only these five, I started from a fresh network with only five inputs and trained it from this limited set.  
+
+\begin{center}
+\includegraphics[scale=0.7]{parameters5features.png}
+\end{center}
+
+To ensure that this was indeed the correct set of 5 features I took a control group of 5 features that all showed negative total weight modification (actually, simply the first 5 features from the training set) to compare the performance against the 5 with positive weight modification.  For this run, all parameters were identical except the training and testing data sets:
+
+\begin{center}
+\includegraphics[scale=0.7]{parameters5control.png}
+\end{center}
+
+I found these sufficient steps to uncover the critical 5 features necessary to correctly classify the test data with a performance greater than 90\%.  
 
 \subsection{Results}
 
@@ -108,10 +133,6 @@ The other features were more or less irrelevant, or at best redundant.  The pres
 \section{Conclusion}
 
 Ultimately, finding the ideal subset of 5 features that could be used to adequately classify the vectors from the test set was not difficult, as their relative applicability was encoded in the values of the weights from each input to the competitive PEs.  The network naturally excluded features that did not contribute to the classification through inhibitory weight modifications.  Only the features that actually correlated to the desired classification scheme were encouraged through weight increases, the others were effectively rendered irrelevant.  
-
-\begin{center}
-\includegraphics[scale=0.3]{lvq.png}
-\end{center}
 
 \end{document}  
 
