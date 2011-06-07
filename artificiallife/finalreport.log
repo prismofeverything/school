@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.11 (TeX Live 2010/MacPorts 2010_4) (format=pdflatex 2011.5.3)  6 JUN 2011 16:46
+This is pdfTeX, Version 3.1415926-1.40.11 (TeX Live 2010/MacPorts 2010_4) (format=pdflatex 2011.5.3)  7 JUN 2011 16:23
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -320,28 +320,43 @@ File: umsb.fd 2009/06/22 v3.00 AMS symbols B
 {/opt/local/var/db/texmf/fonts/map/pdftex/updmap/pdftex.map}]
 <newton.png, id=9, 246.9225pt x 226.8475pt>
 File: newton.png Graphic file (type png)
- <use newton.png> [2 <./newton.png (PNG copy)>] <rosen.png, id=13, 342.27875pt 
-x 297.11pt>
+ <use newton.png> [2]
+<rosen.png, id=13, 334.24875pt x 287.0725pt>
 File: rosen.png Graphic file (type png)
- <use rosen.png> [3 <./rosen.png (PNG copy)>] [4] (./finalreport.bbl [5]) [6] (
-./finalreport.aux) ) 
+ <use rosen.png> [3 <./newton.png (PNG copy)> <./rosen.png (PNG copy)>]
+<treerainbow.png, id=17, 614.295pt x 794.97pt>
+File: treerainbow.png Graphic file (type png)
+ <use treerainbow.png> [4]
+[5 <./treerainbow.png>] [6] [7]
+<treecode.png, id=33, 406.51875pt x 781.92125pt>
+File: treecode.png Graphic file (type png)
+ <use treecode.png> [8]
+<treegrowth.png, id=37, 1092.08pt x 654.445pt>
+File: treegrowth.png Graphic file (type png)
+ <use treegrowth.png>
+Overfull \hbox (46.82426pt too wide) in paragraph at lines 99--100
+ [] 
+ []
+
+[9 <./treecode.png (PNG copy)>] [10 <./treegrowth.png (PNG copy)>]
+(./finalreport.bbl [11]) [12] (./finalreport.aux) ) 
 Here is how much of TeX's memory you used:
- 3777 strings out of 494770
- 53208 string characters out of 3171404
- 109252 words of memory out of 3000000
- 6949 multiletter control sequences out of 15000+200000
+ 3794 strings out of 494770
+ 53480 string characters out of 3171404
+ 110258 words of memory out of 3000000
+ 6963 multiletter control sequences out of 15000+200000
  7789 words of font info for 30 fonts, out of 3000000 for 9000
  134 hyphenation exceptions out of 8191
- 38i,6n,32p,1283b,219s stack positions out of 5000i,500n,10000p,200000b,50000s
-</opt/local/share/texmf-texlive-dist/fonts/type1/public/ams
-fonts/cm/cmbx12.pfb></opt/local/share/texmf-texlive-dist/fonts/type1/public/ams
-fonts/cm/cmr12.pfb></opt/local/share/texmf-texlive-dist/fonts/type1/public/amsf
-onts/cm/cmr17.pfb></opt/local/share/texmf-texlive-dist/fonts/type1/public/amsfo
-nts/cm/cmti12.pfb>
-Output written on finalreport.pdf (6 pages, 83571 bytes).
+ 38i,6n,32p,1316b,219s stack positions out of 5000i,500n,10000p,200000b,50000s
+</opt/local/share/texmf-texl
+ive-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></opt/local/share/texmf-texl
+ive-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></opt/local/share/texmf-texli
+ve-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></opt/local/share/texmf-texliv
+e-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb>
+Output written on finalreport.pdf (12 pages, 315714 bytes).
 PDF statistics:
- 41 PDF objects out of 1000 (max. 8388607)
- 26 compressed objects within 1 object stream
+ 66 PDF objects out of 1000 (max. 8388607)
+ 41 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 11 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 26 words of extra memory for PDF output out of 10000 (max. 10000000)
 
