@@ -1,29 +1,15 @@
+var globalFontSize = 14;
+var globalWidth = 50;
+var globalHeight = 30;
+
 Raphael.fn.arrow = function (path, x1, y1, x2, y2, size) {
-  // var xa = x1+100, ya = y1+10;
-  // var xb = x2-100, yb = y2-10;
   var point = path.getPointAtLength(path.getTotalLength()-5);
-  var angle = point.alpha < 0 ? point.alpha + 180 : point.alpha;// + 180;
-
-  // var angle = Math.atan2(x1-x2,y2-y1);
-  // angle = (angle / (2 * Math.PI)) * 360;
-
+  var angle = point.alpha;
   var arrowString = 'M' + x2 + ' ' + y2 + ' L' + (x2 - size) + ' ' + (y2 - size) + ' L' + (x2 - size) + ' ' + (y2 + size) + ' L' + x2 + ' ' + y2;
   return {path: arrowString, angle: angle};
-
-  // var arrowPath = this.path('M' + x2 + ' ' + y2 + ' L' + (x2 - size) + ' ' + (y2 - size) + ' L' + (x2 - size) + ' ' + (y2 + size) + ' L' + x2 + ' ' + y2 ).attr({fill: color, stroke: color}).rotate((angle),x2,y2);
-  // return arrowPath;
 }
 
-// Raphael.fn.arrow = function (color, x1, y1, x2, y2, size) {
-//   var xa = x1+100, ya = y1+10;
-//   var xb = x2-100, yb = y2-10;
-//   var angle = Math.atan2(x1-x2,y2-y1);
-//   angle = (angle / (2 * Math.PI)) * 360;
-//   var arrowPath = this.path('M' + x2 + ' ' + y2 + ' L' + (x2 - size) + ' ' + (y2 - size) + ' L' + (x2 - size) + ' ' + (y2 + size) + ' L' + x2 + ' ' + y2 ).attr({fill: color, stroke: color}).rotate((90+angle),x2,y2);
-//   return arrowPath;
-// }
-
-Raphael.fn.connection = function (obj1, obj2, line, bg) {
+Raphael.fn.connection = function (obj1, obj2, line, bg, info) {
   if (obj1.line && obj1.from && obj1.to) {
     line = obj1;
     obj1 = line.from;
@@ -70,19 +56,28 @@ Raphael.fn.connection = function (obj1, obj2, line, bg) {
     line.bg && line.bg.attr({path: path});
     line.line.attr({path: path});
     var arrow = this.arrow(line.line, x1, y1, x4, y4, 7);
-    line.arrow.attr({path: arrow.path}).rotate(arrow.angle, x4, y4);
+    var color = line.line.attr('stroke');
+    var labelshift = line.sign > 0 ? 0.7 : 0.6;
+    line.arrow.remove();
+    line.arrow = this.path(arrow.path).attr({stroke: color, fill: color}).rotate(arrow.angle, x4, y4);
+    var point = line.line.getPointAtLength(line.line.getTotalLength()*labelshift);
+    line.label.remove();
+    line.label = this.text(point.x, point.y, line.labeltext).attr({stroke: color, fill: color, 'font-size': globalFontSize});
   } else {
     var color = typeof line == "string" ? line : "#000";
     var bgline = bg && bg.split && this.path(path).attr({stroke: bg.split("|")[0], fill: "none", "stroke-width": bg.split("|")[1] || 3});
     var mainline = this.path(path).attr({stroke: color, fill: "none", 'stroke-width': 3});
+    var labelshift = info.sign > 0 ? 0.7 : 0.6;
+    var point = mainline.getPointAtLength(mainline.getTotalLength()*labelshift);
     var arrow = this.arrow(mainline, x1, y1, x4, y4, 7);
     var arrowPath = this.path(arrow.path).attr({stroke: color, fill: color}).rotate(arrow.angle, x4, y4);
     return {
       bg: bgline,
       line: mainline,
       arrow: arrowPath,
-      // bg: bg && bg.split && this.path(path).attr({stroke: bg.split("|")[0], fill: "none", "stroke-width": bg.split("|")[1] || 3, 'arrow-end': 'classic'}),
-      // line: this.path(path).attr({stroke: color, fill: "none", 'stroke-width': 3, 'arrow-end': 'classic'}),
+      label: this.text(point.x, point.y, info.name).attr({fill: color, stroke: color, 'font-size': globalFontSize}),
+      labeltext: info.name,
+      sign: info.sign,
       from: obj1,
       to: obj2
     };
@@ -117,18 +112,16 @@ var midterm = function() {
   var dragShape = function () {
     this.ox = this.type == "rect" ? this.attr("x") : this.attr("cx");
     this.oy = this.type == "rect" ? this.attr("y") : this.attr("cy");
-    this.label.ox = this.ox;
-    this.label.oy = this.oy;
-//    this.animate({"fill-opacity": .2}, 500);
+//     this.label.ox = this.ox;
+//     this.label.oy = this.oy;
+// //    this.animate({"fill-opacity": .2}, 500);
   };
 
   var moveShape = function (dx, dy) {
     var att = this.type == "rect" ? {x: this.ox + dx, y: this.oy + dy} : {cx: this.ox + dx, cy: this.oy + dy};
+    var latt = this.type == "rect" ? {x: this.ox + dx + globalWidth, y: this.oy + dy + globalHeight} : {x: this.ox + dx, y: this.oy + dy};
     this.attr(att);
-    console.log(this);
-    console.log(this.label);
-    this.label.ox = this.ox + dx;
-    this.label.oy = this.oy + dy;
+    this.label.attr(latt);
     for (var i = connections.length; i--;) {
       rr.connection(connections[i]);
     }
@@ -140,13 +133,13 @@ var midterm = function() {
   };
 
   var components = {
-    project: {type: 'concrete', x: 400, y: 400, w: 40, h: 30},
-    users: {type: 'concrete', x: 600, y: 300, w: 40, h: 30},
-    contributors: {type: 'concrete', x: 500, y: 600, w: 40, h: 30},
-    'related projects': {type: 'concrete', x: 100, y: 100, w: 40, h: 30},
-    need: {type: 'abstract', x: 100, y: 500, w: 40, h: 30},
-    'available time': {type: 'abstract', x: 300, y: 700, w: 40, h: 30},
-    'other priorities': {type: 'abstract', x: 700, y: 600, w: 40, h: 30}
+    project: {type: 'concrete', x: 400, y: 200, w: globalWidth, h: globalHeight},
+    users: {type: 'concrete', x: 600, y: 250, w: globalWidth, h: globalHeight},
+    contributors: {type: 'concrete', x: 500, y: 300, w: globalWidth, h: globalHeight},
+    'related projects': {type: 'concrete', x: 100, y: 100, w: globalWidth, h: globalHeight},
+    need: {type: 'abstract', x: 100, y: 300, w: globalWidth, h: globalHeight},
+    'available time': {type: 'abstract', x: 300, y: 350, w: globalWidth, h: globalHeight},
+    'other priorities': {type: 'abstract', x: 700, y: 350, w: globalWidth, h: globalHeight}
   };
 
   var typeShapes = {
@@ -154,7 +147,7 @@ var midterm = function() {
       var ell = rr.ellipse(x, y, w, h);
       ell.attr('fill', '#eedd77');
       ell.attr('stroke', '#000');
-      ell.label = rr.text(x, y, key);
+      ell.label = rr.text(x, y, key).attr({'font-size': globalFontSize});
       ell.drag(moveShape, dragShape, releaseShape);
       return ell;
     },
@@ -163,7 +156,7 @@ var midterm = function() {
       var rec = rr.rect(x-w, y-h, w*2, h*2, 5);
       rec.attr('fill', '#ddccee');
       rec.attr('stroke', '#000');
-      rec.label = rr.text(x, y, key);
+      rec.label = rr.text(x, y, key).attr({'font-size': globalFontSize});
       rec.drag(moveShape, dragShape, releaseShape);
       return rec;
     },
@@ -203,8 +196,6 @@ var midterm = function() {
     var com = components[key];
     map[key] = {
       shape: typeShapes[com.type](key, com.x, com.y, com.w, com.h),
-//      name: rr.text(com.x, com.y, key)
-//      name: rr.print(com.x, com.y, key, rr.getFont('Helvetica'), 12)//.attr({fill: '#fff'})
     };
     return map;
   }, {});
@@ -215,7 +206,8 @@ var midterm = function() {
       shapes[arrow.from].shape, 
       shapes[arrow.to].shape, 
       color,
-      '#fff|5'
+      '#fff|5',
+      arrow
     );
   });
 };

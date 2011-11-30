@@ -989,7 +989,8 @@
             cx = t1 * c2x + t * p2x,
             cy = t1 * c2y + t * p2y,
             alpha = (90 - math.atan2(mx - nx, my - ny) * 180 / PI);
-        (mx > nx || my < ny) && (alpha += 180);
+//        (mx > nx || my < ny) && (alpha += 180);
+        alpha += 180;
         return {
             x: x,
             y: y,

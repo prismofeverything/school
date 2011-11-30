@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.11 (TeX Live 2010/MacPorts 2010_4) (format=pdflatex 2011.5.3)  23 OCT 2011 19:07
+This is pdfTeX, Version 3.1415926-1.40.11 (TeX Live 2010/MacPorts 2010_4) (format=pdflatex 2011.5.3)  23 OCT 2011 23:45
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -11,8 +11,8 @@ ech, slovak, dutch, ukenglish, usenglishmax, basque, french, german-x-2009-06-1
 ese, spanish, catalan, galician, loaded.
 (/opt/local/share/texmf-texlive-dist/tex/latex/base/article.cls
 Document Class: article 2007/10/19 v1.4h Standard LaTeX document class
-(/opt/local/share/texmf-texlive-dist/tex/latex/base/size12.clo
-File: size12.clo 2007/10/19 v1.4h Standard LaTeX file (size option)
+(/opt/local/share/texmf-texlive-dist/tex/latex/base/size10.clo
+File: size10.clo 2007/10/19 v1.4h Standard LaTeX file (size option)
 )
 \c@part=\count79
 \c@section=\count80
@@ -315,23 +315,34 @@ LaTeX Font Info:    Try loading font information for U+msb on input line 24.
 File: umsb.fd 2009/06/22 v3.00 AMS symbols B
 ) [1
 
-{/opt/local/var/db/texmf/fonts/map/pdftex/updmap/pdftex.map}] (./midterm.aux) )
- 
+{/opt/local/var/db/texmf/fonts/map/pdftex/updmap/pdftex.map}]
+<clear.png, id=11, 741.77126pt x 448.67625pt>
+File: clear.png Graphic file (type png)
+ <use clear.png>
+Overfull \hbox (100.0662pt too wide) in paragraph at lines 66--67
+ [] 
+ []
+
+[2] [3 <./clear.png (PNG copy)>] [4] (./midterm.aux) ) 
 Here is how much of TeX's memory you used:
- 3759 strings out of 494770
- 52964 string characters out of 3171404
- 106202 words of memory out of 3000000
- 6938 multiletter control sequences out of 15000+200000
- 7442 words of font info for 29 fonts, out of 3000000 for 9000
+ 3781 strings out of 494770
+ 53167 string characters out of 3171404
+ 109177 words of memory out of 3000000
+ 6950 multiletter control sequences out of 15000+200000
+ 9524 words of font info for 36 fonts, out of 3000000 for 9000
  134 hyphenation exceptions out of 8191
- 38i,6n,32p,327b,219s stack positions out of 5000i,500n,10000p,200000b,50000s
-</opt/local/share/texmf-texlive-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb>
-</opt/local/share/texmf-texlive-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb><
-/opt/local/share/texmf-texlive-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb>
-Output written on midterm.pdf (1 page, 35675 bytes).
+ 38i,6n,32p,859b,219s stack positions out of 5000i,500n,10000p,200000b,50000s
+{/opt/local/share/texmf-t
+exlive-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}</opt/local/share/texmf-t
+exlive-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></opt/local/share/texmf-t
+exlive-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></opt/local/share/texmf-te
+xlive-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></opt/local/share/texmf-tex
+live-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></opt/local/share/texmf-texl
+ive-dist/fonts/type1/public/cm-super/sfrm1000.pfb>
+Output written on midterm.pdf (4 pages, 148876 bytes).
 PDF statistics:
- 20 PDF objects out of 1000 (max. 8388607)
- 13 compressed objects within 1 object stream
+ 39 PDF objects out of 1000 (max. 8388607)
+ 26 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 1 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 6 words of extra memory for PDF output out of 10000 (max. 10000000)
 
