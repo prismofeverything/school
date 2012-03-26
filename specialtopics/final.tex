@@ -1,0 +1,76 @@
+\title{Special Topics in Systems Science}
+\author{Ryan Spangler}
+\date{\today}
+
+\documentclass[12pt]{article}
+
+\usepackage{commath}
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage{amsfonts}
+
+% python highlighting ----------
+\usepackage{color}
+\usepackage{listings}
+\usepackage{textcomp}
+\usepackage{setspace}
+%\usepackage{palatino}
+
+\renewcommand{\lstlistlistingname}{Code Listings}
+\renewcommand{\lstlistingname}{Code Listing}
+\definecolor{gray}{gray}{0.6}
+\definecolor{green}{rgb}{0.1,0.6,0.3}
+\definecolor{orange}{rgb}{0.9,0.7,0.1}
+\definecolor{blue}{rgb}{0,0.6,0.8}
+
+\lstnewenvironment{python}[1][]{
+\lstset{
+language=python,
+basicstyle=\ttfamily\footnotesize\setstretch{1},
+stringstyle=\color{red},
+showstringspaces=false,
+alsoletter={1234567890},
+otherkeywords={\ , \}, \{},
+keywordstyle=\color{blue},
+emph={access,and,break,class,continue,def,del,elif,else,%
+except,exec,finally,for,from,global,if,import,in,is,%
+lambda,not,or,pass,print,raise,return,try,while},
+emphstyle=\color{gray}\bfseries,
+emph={[2]True, False, None, self},
+emphstyle=[2]\color{orange},
+emph={[3]from, import, as},
+emphstyle=[3]\color{blue},
+upquote=true,
+morecomment=[s]{"""}{"""},
+commentstyle=\color{gray}\slshape,
+emph={[4]1, 2, 3, 4, 5, 6, 7, 8, 9, 0},
+emphstyle=[4]\color{blue},
+literate=*{:}{{\textcolor{blue}:}}{1}%
+	{=}{{\textcolor{blue}=}}{1}%
+	{-}{{\textcolor{blue}-}}{1}%
+	{+}{{\textcolor{blue}+}}{1}%
+	{*}{{\textcolor{blue}*}}{1}%
+	{!}{{\textcolor{blue}!}}{1}%
+	{(}{{\textcolor{blue}(}}{1}%
+	{)}{{\textcolor{blue})}}{1}%
+	{[}{{\textcolor{blue}[}}{1}%
+	{]}{{\textcolor{blue}]}}{1}%
+	{<}{{\textcolor{blue}<}}{1}%
+	{>}{{\textcolor{blue}>}}{1},%
+    frame=fullbox, rulesepcolor=\color{gray},#1
+%framexleftmargin=1mm, framextopmargin=1mm, frame=shadowbox, rulesepcolor=\color{blue},#1
+}}{}
+
+\setcounter{secnumdepth}{0}
+
+\begin{document}
+\maketitle
+
+\section{Reflections on Boulding and Simon}
+
+I appreciated witnessing some of the formative ideas of systems science take shape in the work of these two individuals.  Their perspectives were refreshingly divergent, which ties back into the recurring theme that the more perspectives you can have on any subject the greater the ability to perceive the essence of that subject below any single outlook.  The approach took in this seminar really took that to heart it seems in the selection of these two authors.
+
+I had trouble with the Simon material at first because of his conflation of what he was doing with something on the level of human discovery.  Humans take an undefined situation and establish a model to make sense of it, whereas Simon's system was simply exploring a pre-established space for a fitting solution.  This is not to say that machines are incapable of discoveries of the kind humans make, just that Simon's creations were not doing that.  This would be fine except that he saw fit to dismiss the complexity of human discovery in order to equate what he was doing with human discovery, which he clearly did not understand.  Once I got past that however, I could see that he was doing valuable work.  I see what he was trying to do as something on the level of what happened when we took the transition from a Computer being a human occupation to being a mechanical one.  Now when people say ``computer'', we are clearly talking about a machine, but there was a point in history not long ago where ``computer'' referred to a human job!  Rooms of people sitting at desks adding huge reams of numbers to calculate something or other.  We automated this menial aspect of computation, but still require humans to decide \emph{what to compute!}  I see the recent attempts at automating the discovery of scientific knowledge (those by the Adam and Eve readings given in class) to be on the same level.  The solution is in some known space, but carrying out all the experimental laboratory processes by hand is tedious.  So we automated that.  But we still need to decide what experiements are available for the process to search through, and design the laboratory in such a way as the process can perform operations to test the combinations it has at its disposal.  When an automated process is able to make these kinds of decisions, then it will be on the same level as human discovery.  
+
+\end{document} 
+
