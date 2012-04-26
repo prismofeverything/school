@@ -1,0 +1,67 @@
+$$ L^2(m_j)=1.3863nI(m_o->m_j) $$
+
+you want error to be small
+but want complexity(m_j) small
+this provides a balancing feedback between error and complexity.
+
+! Reference is the top !
+
+null hypothesis --> m_j = m_o
+want to not reject the null hypothesis
+
+Type I error: reject null incorrectly
+Type II error: accept null incorrectly
+
+m_o ----------
+|              ^
+|              | reject null, go back up
+|
+m_j ----------
+|                
+|              | accept null, go lower down
+|              v 
+m_ind --------
+
+
+accept null --> try lower model, but if it doesn't get better you know m_j is a good enough model.
+
+reject null --> if you do this incorrectly, your model is more complex than you need.
+
+                 correctly       incorrectly
+     
+reject null        fine       your model is too complex
+
+accept null        fine       you accepted a model that is too simple
+                                    (your model is wrong)
+
+
+p cutoff of 0.05 -> go down until probability of making an error by saying m_j =/= m_o is 0.05 (I am very certain this model is different from the data!)  === I am very certain this model is wrong. 
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+We need a high p value so that there is a higher probability that the model is correct!
+
+--------------------------------------------
+
+! reference is the bottom !
+
+
+null --> m_j = m_ind
+
+m_j ---------------     we want to reject the null
+|
+|
+|
+m_ind -------------
+
+
+reject null incorrectly --> positing constraints that are not 
+ (type I)                     statistically justified.
+
+accept null incorrectly --> didn't detect a constraint that was
+ (type II)                    statistically apparent.
+
+$$ AIC=-2n\sigma p\ln q + 2\delta f $$
+akaike information criterion
+$$ BIC=-2n\sigma p\ln q + \ln(n)\delta f $$
+bayesian information criterion 

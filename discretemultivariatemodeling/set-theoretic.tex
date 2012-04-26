@@ -1,0 +1,32 @@
+ABC  AB*  A*C  (ABxC)intersect(ACxB) = 000 001 010 011 110 111 = 6
+---  ---  ---
+000  00*  0*0
+010  01*  0*1
+011  11*  1*0
+110       1*1
+111
+
+reconstruction and identification -- identification is taking the data as separate bits and combining them.
+
+
+xy*   *yz   x*z
+---   ---   ---
+01*   *00   0*0
+10*   *01   0*1
+      *11   1*1
+
+
+000 x
+001 x
+010 x
+011 ------>  011
+100 x
+101 ------>  101
+110 x
+111 x
+
+When we reproject, we don't get all of the data back.
+(missing *00 and 0*0)
+
+--- AWESOME CUBE DIAGRAM OF PROJECTIONS ---
+

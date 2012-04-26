@@ -1,0 +1,123 @@
+Unlike, say, Chopin's piano pieces, J. S. Bach's Well-Tempered Clavier is not
+a cycle written to exploit the capabilities of 'a' particular instrument.
+Instead these pieces are a mind-bogging record of sheer human ingenuity:
+Striking as they may be, individually, taken as a whole they embody an
+unparalleled record of never-ending novelties... If not an even more striking
+novelty than the one before it, at the very least every piece makes you
+scratch your head as to how Bach could have yet come up with one more such
+wondrous a curiosity--Not merely as in the complete conception of each piece
+but also in the case of almost every musical phrase after musical phrase
+throughout all the works in the assembly. And still there are pieces here
+which are beatiful beyond telling.
+
+COPYRIGHT NOTICE: Copyright (P) 1997-1999 Mr. S. D. Rodrian
+
+Although any transcription of Bach's music is by definition in the Public
+Domain, these 'interpretations' ARE copyrighted: This music may not be
+reproduced by any means without the expressed written permission of S. D.
+Rodrian... with the one exception that these Midi files (either in the ZIPped
+"JSB_WTC.ZIP" file or individually) may be freely distributed through the WWW
+as long as they are not modified in any way: You can always use Bach's notes,
+of course, but NOT my 'performance' of them.
+
+NOTE that these files have a 'clean' tempo map (so they can be played
+extremely accurately by almost any midi player, regardless of its quality).
+Therefore my 'performance' is embodied in the notes themselves.
+
+J.S.Bach's Well-Tempered Clavier Book ONE: 24 Preludes & Fugues.
+
+file ------------------- work  
+
+R-PF01.MID  Prelude and Fugue in C BWV 846  
+R-PF02.MID  Prelude and Fugue in cm BWV 847  
+R-PF03.MID  Prelude and Fugue in C# BWV 848  
+R-PF04.MID  Prelude and Fugue in c#m BWV 849  
+R-PF05.MID  Prelude and Fugue in D BWV 850  
+R-PF06.MID  Prelude and Fugue in dm BWV 851  
+R-PF07.MID  Prelude and Fugue in Eb BWV 852  
+R-PF08.MID  Prelude and Fugue in d#m BWV 853  
+R-PF09.MID  Prelude and Fugue in E BWV 854  
+R-PF10.MID  Prelude and Fugue in em BWV 855  
+R-PF11.MID  Prelude and Fugue in F BWV 856  
+R-PF12.MID  Prelude and Fugue in fm BWV 857  
+R-PF13.MID  Prelude and Fugue in F# BWV 858  
+R-PF14.MID  Prelude and Fugue in f#m BWV 859  
+R-PF15.MID  Prelude and Fugue in G BWV 860  
+R-PF16.MID  Prelude and Fugue in gm BWV 861  
+R-PF17.MID  Prelude and Fugue in Ab BWV 862  
+R-PF18.MID  Prelude and Fugue in g#m BWV 863  
+R-PF19.MID  Prelude and Fugue in A BWV 864  
+R-PF20.MID  Prelude and Fugue in am BWV 865  
+R-PF21.MID  Prelude and Fugue in Bb BWV 866  
+R-PF22.MID  Prelude and Fugue in bbm BWV 867  
+R-PF23.MID  Prelude and Fugue in B BWV 868  
+R-PF24.MID  Prelude and Fugue in bm BWV 869
+
+J.S.Bach's Well-Tempered Clavier Book TWO: 24 Preludes & Fugues.
+
+file ------------------- work 
+
+R-PFII01.MID  Prelude and Fugue in C BWV 870  
+R-PFII02.MID  Prelude and Fugue in cm BWV 871  
+R-PFII03.MID  Prelude and Fugue in C# BWV 872  
+R-PFII04.MID  Prelude and Fugue in c#m BWV 873  
+R-PFII05.MID  Prelude and Fugue in D BWV 874  
+R-PFII06.MID  Prelude and Fugue in dm BWV 875  
+R-PFII07.MID  Prelude and Fugue in Eb BWV 876  
+R-PFII08.MID  Prelude and Fugue in d#m BWV 877  
+R-PFII09.MID  Prelude and Fugue in E BWV 878  
+R-PFII10.MID  Prelude and Fugue in em BWV 879  
+R-PFII11.MID  Prelude and Fugue in F BWV 880  
+R-PFII12.MID  Prelude and Fugue in fm BWV 881  
+R-PFII13.MID  Prelude and Fugue in F# BWV 882  
+R-PFII14.MID  Prelude and Fugue in f#m BWV 883  
+R-PFII15.MID  Prelude and Fugue in G BWV 884  
+R-PFII16.MID  Prelude and Fugue in gm BWV 885  
+R-PFII17.MID  Prelude and Fugue in Ab BWV 886  
+R-PFII18.MID  Prelude and Fugue in g#m BWV 887  
+R-PFII19.MID  Prelude and Fugue in A BWV 888  
+R-PFII20.MID  Prelude and Fugue in am BWV 889  
+R-PFII21.MID  Prelude and Fugue in Bb BWV 890  
+R-PFII22.MID  Prelude and Fugue in bbm BWV 891  
+R-PFII23.MID  Prelude and Fugue in B BWV 892  
+R-PFII24.MID  Prelude and Fugue in bm BWV 893
+
+I am making these files available now (rather than later) because I have
+reached a point of diminishing returns in their editing. That is,
+theoretically the pieces can always come closer still to the way I think they
+ought to be interpreted --but not by so much that it justifies my spending
+all that much more effort on it. Although it was fun while it lasted, it's
+time to work on something else now.
+
+As a point of departure you must understand that I use the SoundBlaster AWE32
+card (on a P.120 PC): This card comes with digitally sampled instruments. [I
+use Master Tracks Pro.]
+
+On other software (provided the hardware is capable of digitally-sampled
+instruments), if you don't know how to avoid the FM banks of
+computer-generated instruments try the Midi Mapper (which might have been
+properly programmed with your card's wave table instruments).
+
+These files are set to a minimum 'stereo' pan. The following set of
+'controls' instructions are for the AWE32 card, but users of other cards may
+deduce the effect I'm after from them...
+
+for the CREATIVE MIXER: set the Treble, Bass, and MIDI Volumes to their
+loudest possible settings. Then set MAIN VOLUME to play at your own paticular
+comfort level. NOTE that the note 'velocities' in these files are set to the
+loudest possible setting (whenever and wherever possible).  Set all
+right/left 'balances' as close as possible to the center.
+
+for the AWE32 CONTROL PANEL: Use the Qsound (not Reverb and Chorus).
+
+for the BOB (break-out box): Make sure all the controller 'boxes' (under the
+M's) are unchecked... Save this setting to the default.bob file if need be:
+When any box is 'checked' it interferes with the controller information sent
+by the midi files for proper playback.
+
+All               Copyright (P) 1997-99         Mr. S. D. Rodrian
+                                                626 Lalor Street
+                                                Trenton NJ 08611
+                           SDRodrian@aol.com or SDR@t-three.com
+     You can visit me at http://www.geocities.com/Paris/LeftBank/3214
+ 
