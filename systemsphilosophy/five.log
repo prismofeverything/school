@@ -1,9 +1,9 @@
-This is XeTeX, Version 3.1415926-2.3-0.9997.5 (TeX Live 2011/MacPorts 2011_5) (format=xelatex 2012.3.1)  18 JUN 2012 02:07
+This is XeTeX, Version 3.1415926-2.3-0.9997.5 (TeX Live 2011/MacPorts 2011_5) (format=xelatex 2012.3.1)  18 JUN 2012 02:02
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**autopoiesis.tex
-(./autopoiesis.tex
+**five.tex
+(./five.tex
 LaTeX2e <2009/09/24>
 Babel <v3.8l> and hyphenation patterns for english, dumylang, nohyphenation, cz
 ech, slovak, dutch, ukenglish, usenglishmax, basque, french, german-x-2009-06-1
@@ -324,64 +324,62 @@ Package: titlesec 2007/08/12 v2.8 Sectioning titles
 \titlewidthlast=\dimen121
 \titlewidthfirst=\dimen122
 )
-(./autopoiesis.aux)
-\openout1 = `autopoiesis.aux'.
+(./five.aux)
+\openout1 = `five.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 29.
-LaTeX Font Info:    ... okay on input line 29.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 29.
-LaTeX Font Info:    ... okay on input line 29.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 29.
-LaTeX Font Info:    ... okay on input line 29.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 29.
-LaTeX Font Info:    ... okay on input line 29.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 29.
-LaTeX Font Info:    ... okay on input line 29.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 29.
-LaTeX Font Info:    ... okay on input line 29.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 29.
-LaTeX Font Info:    Try loading font information for TS1+cmr on input line 29.
-
-(/opt/local/share/texmf-texlive-dist/tex/latex/base/ts1cmr.fd
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 28.
+LaTeX Font Info:    ... okay on input line 28.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 28.
+LaTeX Font Info:    ... okay on input line 28.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 28.
+LaTeX Font Info:    ... okay on input line 28.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 28.
+LaTeX Font Info:    ... okay on input line 28.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 28.
+LaTeX Font Info:    ... okay on input line 28.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 28.
+LaTeX Font Info:    ... okay on input line 28.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 28.
+LaTeX Font Info:    Try loading font information for TS1+cmr on input line 28.
+ (/opt/local/share/texmf-texlive-dist/tex/latex/base/ts1cmr.fd
 File: ts1cmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
-LaTeX Font Info:    ... okay on input line 29.
-LaTeX Font Info:    Try loading font information for OT1+ppl on input line 29.
+LaTeX Font Info:    ... okay on input line 28.
+LaTeX Font Info:    Try loading font information for OT1+ppl on input line 28.
 
 (/opt/local/share/texmf-texlive-dist/tex/latex/psnfss/ot1ppl.fd
 File: ot1ppl.fd 2001/06/04 font definitions for OT1/ppl.
 )
 \c@lstlisting=\count109
-LaTeX Font Info:    Try loading font information for U+msa on input line 31.
+LaTeX Font Info:    Try loading font information for U+msa on input line 30.
 
 (/opt/local/share/texmf-texlive-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2009/06/22 v3.00 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 31.
+LaTeX Font Info:    Try loading font information for U+msb on input line 30.
 
 (/opt/local/share/texmf-texlive-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2009/06/22 v3.00 AMS symbols B
 )
-LaTeX Font Info:    Try loading font information for OT1+phv on input line 32.
+LaTeX Font Info:    Try loading font information for OT1+phv on input line 31.
 
 (/opt/local/share/texmf-texlive-dist/tex/latex/psnfss/ot1phv.fd
 File: ot1phv.fd 2001/06/04 scalable font definitions for OT1/phv.
 )
 LaTeX Font Info:    Font shape `OT1/phv/bx/n' in size <12> not available
-(Font)              Font shape `OT1/phv/b/n' tried instead on input line 32.
+(Font)              Font shape `OT1/phv/b/n' tried instead on input line 31.
  [1
 
 
-] [2]
-[3] [4] [5] [6] [7] [8] [9] [10] [11] [12] [13] [14] [15] [16] [17] [18]
-[19] (./autopoiesis.bbl [20]) [21] (./autopoiesis.aux) ) 
+]
+(./five.aux) ) 
 Here is how much of TeX's memory you used:
- 4840 strings out of 495441
- 68082 string characters out of 3179638
- 147782 words of memory out of 3000000
- 7969 multiletter control sequences out of 15000+200000
- 13498 words of font info for 47 fonts, out of 3000000 for 9000
+ 4803 strings out of 495441
+ 67632 string characters out of 3179638
+ 144728 words of memory out of 3000000
+ 7946 multiletter control sequences out of 15000+200000
+ 9562 words of font info for 33 fonts, out of 3000000 for 9000
  134 hyphenation exceptions out of 8191
- 38i,7n,35p,2375b,245s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 38i,7n,35p,1334b,220s stack positions out of 5000i,500n,10000p,200000b,50000s
 
-Output written on autopoiesis.pdf (21 pages).
+Output written on five.pdf (1 page).
