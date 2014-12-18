@@ -1,2 +1,5 @@
 latestpassword
-resume.tex
+*.log
+*.out
+*.aux
+*.sty

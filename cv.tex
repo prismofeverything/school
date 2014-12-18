@@ -1,0 +1,232 @@
+\RequirePackage{filecontents}
+\begin{filecontents*}{moderncvcolorburgundy.sty}
+
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{moderncvcolorburgundy}[2013/02/09 v1.3.0 modern curriculum vitae and letter color scheme: burgundy]
+
+\definecolor{color0}{rgb}{0,0,0}% black
+%\definecolor{color1}{rgb}{0.5647,0.3647,0.5882}% burgundy
+%\definecolor{color1}{rgb}{0.4509804,0.27450982,0.5294118}% burgundy
+\definecolor{color1}{rgb}{0.49,0.29,0.57}% burgundy
+\definecolor{color2}{rgb}{0.45,0.45,0.45}% dark grey
+\endinput
+
+\end{filecontents*}
+
+%% start of file `template.tex'.
+%% Copyright 2006-2013 Xavier Danaux (xdanaux@gmail.com).
+%
+% This work may be distributed and/or modified under the
+% conditions of the LaTeX Project Public License version 1.3c,
+% available at http://www.latex-project.org/lppl/.
+
+\documentclass[11pt,a4paper,sans]{moderncv}        % possible options include font size ('10pt', '11pt' and '12pt'), paper size ('a4paper', 'letterpaper', 'a5paper', 'legalpaper', 'executivepaper' and 'landscape') and font family ('sans' and 'roman')
+
+% moderncv themes
+\moderncvstyle{classic}                             % style options are 'casual' (default), 'classic', 'oldstyle' and 'banking'
+\moderncvcolor{burgundy}                               % color options 'blue' (default), 'orange', 'green', 'red', 'purple', 'grey' and 'black'
+%\renewcommand{\familydefault}{\sfdefault}         % to set the default font; use '\sfdefault' for the default sans serif font, '\rmdefault' for the default roman one, or any tex font name
+%\nopagenumbers{}                                  % uncomment to suppress automatic page numbering for CVs longer than one page
+
+% character encoding
+\usepackage[utf8]{inputenc}                       % if you are not using xelatex ou lualatex, replace by the encoding you are using
+%\usepackage{CJKutf8}                              % if you need to use CJK to typeset your resume in Chinese, Japanese or Korean
+
+% adjust the page margins
+\usepackage[scale=0.75]{geometry}
+%\setlength{\hintscolumnwidth}{3cm}                % if you want to change the width of the column with the dates
+%\setlength{\makecvtitlenamewidth}{10cm}           % for the 'classic' style, if you want to force the width allocated to your name and avoid line breaks. be careful though, the length is normally calculated to avoid any overlap with your personal info; use this at your own typographical risks...
+
+% personal data
+\name{Ryan}{Spangler}
+\title{Curriculum Vitae}                               % optional, remove / comment the line if not wanted
+\address{4235 SE 11th}{Portland OR 97202}% optional, remove / comment the line if not wanted; the "postcode city" and "country" arguments can be omitted or provided empty
+\phone[mobile]{+1~(503)~781~3891}                   % optional, remove / comment the line if not wanted; the optional "type" of the phone can be "mobile" (default), "fixed" or "fax"
+\email{ryan.spangler@gmail.com}                               % optional, remove / comment the line if not wanted
+\homepage{ryanspangler.com}                         % optional, remove / comment the line if not wanted
+\social[github]{prismofeverything}                              % optional, remove / comment the line if not wanted
+\social[linkedin]{ryankspangler}                        % optional, remove / comment the line if not wanted
+\social[twitter]{ryanspangler}                             % optional, remove / comment the line if not wanted
+%\extrainfo{additional information}                 % optional, remove / comment the line if not wanted
+%\photo[64pt][0.4pt]{picture}                       % optional, remove / comment the line if not wanted; '64pt' is the height the picture must be resized to, 0.4pt is the thickness of the frame around it (put it to 0pt for no frame) and 'picture' is the name of the picture file
+\quote{All things}                                 % optional, remove / comment the line if not wanted
+
+\definecolor{seagreen}{HTML}{23B886}% seagreen
+\definecolor{joy}{HTML}{6BB32B}
+\definecolor{level}{HTML}{5Ba31B}
+%% \definecolor{joy}{HTML}{5C942B}
+%% \definecolor{joy}{HTML}{95D45D}
+\AfterPreamble{\hypersetup{
+  pdfauthor={Ryan Spangler},
+  pdftitle={CV for Ryan Spangler},
+  pdfsubject={CV for Ryan Spangler},
+  colorlinks=true,
+  urlcolor=level,
+  %% urlcolor=seagreen,
+}}
+
+% to show numerical labels in the bibliography (default is to show no labels); only useful if you make citations in your resume
+%\makeatletter
+%\renewcommand*{\bibliographyitemlabel}{\@biblabel{\arabic{enumiv}}}
+%\makeatother
+%\renewcommand*{\bibliographyitemlabel}{[\arabic{enumiv}]}% CONSIDER REPLACING THE ABOVE BY THIS
+
+% bibliography with mutiple entries
+%\usepackage{multibib}
+%\newcites{book,misc}{{Books},{Others}}
+%----------------------------------------------------------------------------------
+%            content
+%----------------------------------------------------------------------------------
+\begin{document}
+%\begin{CJK*}{UTF8}{gbsn}                          % to typeset your resume in Chinese using CJK
+%-----       resume       ---------------------------------------------------------
+\makecvtitle
+
+\section{Technology}
+\cvitem{Languages}{Clojure, ClojureScript, JavaScript, Python, Ruby, C++, Java, Bash, SQL, Matlab}
+\cvitem{Areas}{Biological Modeling, 3D Animation, Machine Learning, Generative Music, Applied Mathematics, Web Sorcery}
+%% \cvitem{Skills}{Asynchronous Computation, Websockets, Unix/linux Server Administration, Distributed Version Control}
+
+\section{Relevant Experience}
+%\subsection{Programming}
+\cventry{2007--2014}{Senior Developer}{Instrument}{Portland OR}{}{I work with the labs team to invent constantly --- be it creating flexible tools other teams use to build projects, prototyping and executing interactive experiences or simply pure experimentation.\newline{}
+I explore novel approaches using code that demonstrate previously unknown possibilities and then facilitate how they can be harnessed for practical applications.\newline{}%
+%% \newline{}
+\textbf{Achievements}:%
+\begin{itemize}%
+\item Created Caribou --- an open source Clojure web ecosystem for building large high-performance web applications with great alacrity:
+\url{http://let-caribou.in}
+  \begin{itemize}%
+  \item Lead an interdisciplinary team in developing a large open source project
+  \item Managed an open source community by constructively listening to feedback and reviewing and merging pull requests
+%  \item Constantly evaluating and simplifying the code base while making it more flexible and useful to everyone
+  \item Modularized the code base by extracting useful features into stand alone libraries
+  \item Mediated and communicated effectively between technical and non-technical individuals
+  \end{itemize}
+\item Created Cyclops --- a tool for interpolating data for use in programmatically driven animations:  %\newline{}
+\url{http://cyclops.weareinstrument.com}
+  \begin{itemize}%
+  \item Applied a variety of mathematical methods to a practical problem
+  \item Eliminated the need for developers to recreate the work of motion designers
+  %% \item Built a general tool for interpolation and animation
+  \end{itemize}
+\item Built Schmetterling --- a browser-based debugger for inspecting running Clojure programs:  %\newline{}
+\url{http://github.com/prismofeverything/schmetterling}
+  \begin{itemize}%
+  \item Gained insight into the methods of controlling and manipulating a running process
+  \item Built an asynchronous browser-based websockets interface to a service running on the backend
+  \end{itemize}
+\item Pioneered a workshop for learning 3D programming:  %, developing a new process for collaboratively learning code: 
+\url{http://weareinstrument.com/3d-workshop/index.html}
+  \begin{itemize}%
+%  \item Guiding the learning of developers of many skill levels in a way that is effective for everyone;
+  \item Innovated new processes for learning and collaborative development for developers from a spectrum of skill levels
+  \item Focused activities to produce libraries and practical applications that find use beyond the workshop
+  \end{itemize}
+\end{itemize}}
+\cventry{2006--2007}{Programmer}{Performance Logic}{Portland OR}{}{I learned the fundamentals of real world development using C++ while simplifying and modularizing a large legacy code base.\newline{}
+\textbf{Achievements}:%
+\begin{itemize}%
+\item Built a variety of visualization methods for generating reports from large data sets
+\item Enhanced the custom scripting language with features from functional programming
+\item Gathered sprawling instances of similar functionality and consolidated into clear, simple modules that could be reused everywhere
+\end{itemize}}
+
+\section{Education}
+\cventry{2009--2012}{Master of Science, Systems Science}{Portland State University}{Portland OR}{}{Computational Neuroscience, System Dynamics}  % arguments 3 to 6 can be left empty
+\cventry{2002--2005}{Bachelor of the Arts}{The Evergreen State College}{Olympia WA}{}{Math, Performance, Computer Science}
+\cventry{1999--2001}{Undergraduate Study}{Oberlin College}{Oberlin OH}{}{Cognitive Science, Computer Science}
+
+\section{Relevant Activities}
+\cvitem{2013}{EuroClojure - Attended international conference in Berlin for all things Clojure}
+\cvitem{2013}{Portland Clojure User Group - Member of a local community meetup for discussing and sharing Clojure knowledge}
+\cvitem{2012}{Systems Science Seminar - Gave talk on the Nature of Assumptions}
+\cvitem{2011}{OSCON - Attended convention for open source software in Portland OR}
+\cvitem{2011}{Codex - Co-lead community workshop on creative coding and programming art}
+
+\section{Interests}
+\cvitem{Music}{Piano Tuning, Music Theory, Performance: Exploring the space of all possible musical events and relationships.}
+\cvitem{Biology}{Molecular Biology, Cell Biology, Systems Biology: How does life work?  How is this possible?}
+\cvitem{Go}{The ancient game of life and death.  I have learned many things about life from Go.}
+\cvitem{Naming}{Word Creation:  Words have to come from somewhere.  How about the Omnivoplax?} %nothingness?}
+%% \cvitem{Cognition}{Awareness examining itself:  Appreciating and unraveling the mystery of the nature of existence.}
+
+\section{References}
+\begin{cvcolumns}
+  \cvcolumn{Name}{\begin{itemize}\item Martin Linde\item Patrick Roberts\end{itemize}}
+  %% \cvcolumn{Area}{\begin{itemize}\item Creative Designer\item Person 2\end{itemize}(more upon request)}
+  \cvcolumn[0.75]{Contact}{\begin{itemize}\item Phone: (503) 250-4844 Email: martin.linde01@gmail.com\item Phone: (503) 418-2620  Email: robertpa@ohsu.edu\end{itemize}(more upon request)}
+  %% \cvcolumn[0.5]{Contact}{\textit{That} person, and \textbf{those} also (all available upon request).}
+\end{cvcolumns}
+
+%% \section{Master thesis}
+%% \cvitem{title}{\emph{Title}}
+%% \cvitem{supervisors}{Supervisors}
+%% \cvitem{description}{Short thesis abstract}
+
+%% \section{Languages}
+%% \cvitemwithcomment{Language 1}{Skill level}{Comment}
+%% \cvitemwithcomment{Language 2}{Skill level}{Comment}
+%% \cvitemwithcomment{Language 3}{Skill level}{Comment}
+
+%% \section{Computer skills}
+%% \cvdoubleitem{category 1}{XXX, YYY, ZZZ}{category 4}{XXX, YYY, ZZZ}
+%% \cvdoubleitem{category 2}{XXX, YYY, ZZZ}{category 5}{XXX, YYY, ZZZ}
+%% \cvdoubleitem{category 3}{XXX, YYY, ZZZ}{category 6}{XXX, YYY, ZZZ}
+
+%% \section{Extra 1}
+%% \cvlistitem{Item 1}
+%% \cvlistitem{Item 2}
+%% \cvlistitem{Item 3. This item is particularly long and therefore normally spans over several lines. Did you notice the indentation when the line wraps?}
+
+%% \section{Extra 2}
+%% \cvlistdoubleitem{Item 1}{Item 4}
+%% \cvlistdoubleitem{Item 2}{Item 5\cite{book1}}
+%% \cvlistdoubleitem{Item 3}{Item 6. Like item 3 in the single column list before, this item is particularly long to wrap over several lines.}
+
+% Publications from a BibTeX file without multibib
+%  for numerical labels: \renewcommand{\bibliographyitemlabel}{\@biblabel{\arabic{enumiv}}}% CONSIDER MERGING WITH PREAMBLE PART
+%  to redefine the heading string ("Publications"): \renewcommand{\refname}{Articles}
+%% \nocite{*}
+%% \bibliographystyle{plain}
+%% \bibliography{publications}                        % 'publications' is the name of a BibTeX file
+
+% Publications from a BibTeX file using the multibib package
+%\section{Publications}
+%\nocitebook{book1,book2}
+%\bibliographystylebook{plain}
+%\bibliographybook{publications}                   % 'publications' is the name of a BibTeX file
+%\nocitemisc{misc1,misc2,misc3}
+%\bibliographystylemisc{plain}
+%\bibliographymisc{publications}                   % 'publications' is the name of a BibTeX file
+
+\clearpage
+%-----       letter       ---------------------------------------------------------
+% recipient data
+
+
+%% \recipient{Company Recruitment team}{Company, Inc.\\123 somestreet\\some city}
+%% \date{January 01, 1984}
+%% \opening{Dear Sir or Madam,}
+%% \closing{Yours faithfully,}
+%% \enclosure[Attached]{curriculum vit\ae{}}          % use an optional argument to use a string other than "Enclosure", or redefine \enclname
+%% \makelettertitle
+
+%% Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis ullamcorper neque sit amet lectus facilisis sed luctus nisl iaculis. Vivamus at neque arcu, sed tempor quam. Curabitur pharetra tincidunt tincidunt. Morbi volutpat feugiat mauris, quis tempor neque vehicula volutpat. Duis tristique justo vel massa fermentum accumsan. Mauris ante elit, feugiat vestibulum tempor eget, eleifend ac ipsum. Donec scelerisque lobortis ipsum eu vestibulum. Pellentesque vel massa at felis accumsan rhoncus.
+
+%% Suspendisse commodo, massa eu congue tincidunt, elit mauris pellentesque orci, cursus tempor odio nisl euismod augue. Aliquam adipiscing nibh ut odio sodales et pulvinar tortor laoreet. Mauris a accumsan ligula. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Suspendisse vulputate sem vehicula ipsum varius nec tempus dui dapibus. Phasellus et est urna, ut auctor erat. Sed tincidunt odio id odio aliquam mattis. Donec sapien nulla, feugiat eget adipiscing sit amet, lacinia ut dolor. Phasellus tincidunt, leo a fringilla consectetur, felis diam aliquam urna, vitae aliquet lectus orci nec velit. Vivamus dapibus varius blandit.
+
+%% Duis sit amet magna ante, at sodales diam. Aenean consectetur porta risus et sagittis. Ut interdum, enim varius pellentesque tincidunt, magna libero sodales tortor, ut fermentum nunc metus a ante. Vivamus odio leo, tincidunt eu luctus ut, sollicitudin sit amet metus. Nunc sed orci lectus. Ut sodales magna sed velit volutpat sit amet pulvinar diam venenatis.
+
+%% Albert Einstein discovered that $e=mc^2$ in 1905.
+
+%% \[ e=\lim_{n \to \infty} \left(1+\frac{1}{n}\right)^n \]
+
+%% \makeletterclosing
+
+
+%\clearpage\end{CJK*}                              % if you are typesetting your resume in Chinese using CJK; the \clearpage is required for fancyhdr to work correctly with CJK, though it kills the page numbering by making \lastpage undefined
+\end{document}
+
+
+%% end of file `template.tex'.
