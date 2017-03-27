@@ -49,7 +49,7 @@
 \social[twitter]{ryanspangler}                             % optional, remove / comment the line if not wanted
 %\extrainfo{additional information}                 % optional, remove / comment the line if not wanted
 %\photo[64pt][0.4pt]{picture}                       % optional, remove / comment the line if not wanted; '64pt' is the height the picture must be resized to, 0.4pt is the thickness of the frame around it (put it to 0pt for no frame) and 'picture' is the name of the picture file
-\quote{All things}                                 % optional, remove / comment the line if not wanted
+\quote{Patterns in Connections}                                 % optional, remove / comment the line if not wanted
 
 \definecolor{seagreen}{HTML}{23B886}% seagreen
 \definecolor{joy}{HTML}{6BB32B}
@@ -82,80 +82,117 @@
 %-----       resume       ---------------------------------------------------------
 \makecvtitle
 
+\section{Education}
+\cventry{2009--2012}{Master of Science, Systems Science}{Portland State University}{Portland OR}{}{Computational Neuroscience, System Dynamics, Systems Modeling, Information Theory, Agent Based Systems}
+\cventry{2002--2005}{Bachelor of the Arts}{The Evergreen State College}{Olympia WA}{}{Math, Performance, Computer Science}
+\cventry{1999--2001}{Undergraduate Study}{Oberlin College}{Oberlin OH}{}{Cognitive Science, Computer Science}
+
 \section{Technology}
-\cvitem{Languages}{Clojure, Python, JavaScript, C++, Ruby, Java, Bash, SQL, Matlab}
-\cvitem{Areas}{Biological Modeling, 3D Animation, Machine Learning, Generative Music, Applied Mathematics, Web Sorcery}
+\cvitem{Languages}{Scala, Clojure, Python, JavaScript, C++, Java, Bash, SQL}
+\cvitem{Tools}{Titan, Kafka, Postgresql, Git, Docker, Unix, Emacs, GLSL}
+\cvitem{Areas}{Biological Modeling, Graph Databases, Network Science, Machine Learning, Data Visualization, Generative Music}
 %% \cvitem{Skills}{Asynchronous Computation, Websockets, Unix/linux Server Administration, Distributed Version Control}
 
-\section{Relevant Experience}
+\section{Experience}
 %\subsection{Programming}
-\cventry{2007--2014}{Senior Developer}{Instrument}{Portland OR}{}{I work with the labs team to invent constantly --- be it creating flexible tools other teams use to build projects, prototyping and executing interactive experiences or simply pure experimentation.\newline{}
-I explore novel approaches using code that demonstrate previously unknown possibilities and then facilitate how they can be harnessed for practical applications.\newline{}%
-%% \newline{}
-\textbf{Achievements}:%
-\begin{itemize}%
-\item Created Caribou --- an open source Clojure web ecosystem for building large high-performance web applications with great alacrity:
-\url{http://let-caribou.in}
-  \begin{itemize}%
-  \item Lead an interdisciplinary team in developing a large open source project
-  \item Managed an open source community by constructively listening to feedback and reviewing and merging pull requests
-%  \item Constantly evaluating and simplifying the code base while making it more flexible and useful to everyone
-  \item Modularized the code base by extracting useful features into stand alone libraries
-  \item Mediated and communicated effectively between technical and non-technical individuals
-  \end{itemize}
-\item Created Cyclops --- a tool for interpolating data for use in programmatically driven animations:  %\newline{}
-\url{http://cyclops.weareinstrument.com}
-  \begin{itemize}%
-  \item Applied a variety of mathematical methods to a practical problem
-  \item Eliminated the need for developers to recreate the work of motion designers
-  %% \item Built a general tool for interpolation and animation
-  \end{itemize}
+
+\cventry{2016--Present}{Software Engineer}{Computational Biology at OHSU}{Portland OR}{}{At OHSU I work with scientists and engineers to determine what infrastructure and analysis is needed to support all of the various research efforts at the University. My main focus is the development of a large graph database to collect and integrate all of the isolated biological data silos throughout the world and provide a means to query, analyze and visualize this data as a whole.\newline{}
+\textbf{Achievements}:
+\begin{itemize}
+\item Engineered a large graph database system that automatically transforms and integrates all incoming data into a single graph.
+\item Created a schema to encode queries themselves as data so they can be programmatically generated, optimized and processed.
+\item Translated a series of requirements from researchers and scientists into a working system that provided these analyses.
+\item Developed systems of statistical analysis for existing experiments and data.
+\item Created a visualization framework to pull together all of the various visualization methods into a general and reusable package.
+\item Working on a distributed event system to trigger pattern-discovery analyses as data streams into the system.
+\end{itemize}}
+
+\cventry{2014--2016}{Lead Developer}{Little Bird Technologies}{Portland OR}{}{At Little Bird I take their mass of social network data and apply a variety of statistical, graph theoretical and machine learning approaches to find patterns and draw conclusions from that data.\newline{}
+\textbf{Achievements}:
+\begin{itemize}
+\item Used bayesian networks and decision trees to build a classification system for an initiative from the Gates Foundation.
+\item Built a 3d network visualization to explore and interact with vast amounds of network data.
+\item Migrated the flat document data model into a graph database oriented around the relationships between semantic terms and networks of people.
+\item Took a naive analysis algorithm and parallelized it to work over any sized cluster of independent workers.
+%% \item Built a recommendation engine based on Jaccard similarity.
+%% \item Identified and expunged a pre-existing and propagating data corruption, building an ongoing data validation system in the process.
+\item Instituted a workshop for collaboratively improving the whole team's coding and software development skills, starting by implementing well-known graph algorithms.
+\end{itemize}}
+
+\cventry{2007--2014}{Senior Developer}{Instrument}{Portland OR}{}{I worked with the labs team to invent constantly --- transforming concepts through code into practical applications.\newline{}
+% Turning impossible ideas into seamless experiences was a daily practice.\newline{}
+% I explored novel approaches using code that tapped previously unknown possibilities, ultimately finding ways to harness them for practical applications.
+\textbf{Achievements}:
+\begin{itemize}
+\item Created Caribou --- an open source Clojure web ecosystem for building large high-performance web applications with great alacrity.
+%% \url{http://let-caribou.in}
+%%   \begin{itemize}
+%%   \item Lead an interdisciplinary team in developing a large open source project
+%%   \item Managed an open source community by constructively listening to feedback and reviewing and merging pull requests
+%% %  \item Constantly evaluating and simplifying the code base while making it more flexible and useful to everyone
+%% %  \item Modularized the code base by extracting useful features into stand alone libraries
+%%   \item Mediated and communicated effectively between technical and non-technical individuals
+%%   \end{itemize}
+\item Created Cyclops --- a tool for interpolating data for use in programmatically driven animations:
+\url{http://weareinstrument.com/cyclops}
+  %% \begin{itemize}
+  %% \item Applied a variety of mathematical methods to a practical problem
+  %% \item Solved an industry wide problem in a creative and useful way
+  %% %% \item Built a general tool for interpolation and animation
+  %% \end{itemize}
 \item Built Schmetterling --- a browser-based debugger for inspecting running Clojure programs:  %\newline{}
 \url{http://github.com/prismofeverything/schmetterling}
-  \begin{itemize}%
-  \item Gained insight into the methods of controlling and manipulating a running process
-  \item Built an asynchronous browser-based websockets interface to a service running on the backend
-  \end{itemize}
-\item Pioneered a workshop for learning 3D programming:  %, developing a new process for collaboratively learning code: 
-\url{http://weareinstrument.com/3d-workshop/index.html}
-  \begin{itemize}%
-%  \item Guiding the learning of developers of many skill levels in a way that is effective for everyone;
-  \item Innovated new processes for learning and collaborative development for developers from a spectrum of skill levels
-  \item Focused activities to produce libraries and practical applications that find use beyond the workshop
-  \end{itemize}
+  %% \begin{itemize}%
+  %% \item Gained insight into the methods of controlling and manipulating a running JVM process
+  %% \item Built an asynchronous browser-based websockets interface to a service running on the backend
+  %% \end{itemize}
+\item Pioneered a weekly workshop for collaboratively learning 3D programming:  %, developing a new process for collaboratively learning code: 
+% \url{http://weareinstrument.com/3d-workshop/index.html}
+%%   \begin{itemize}
+%% %  \item Guiding the learning of developers of many skill levels in a way that is effective for everyone;
+%%   \item Innovated new processes for learning and software engineering for developers from a spectrum of skill levels
+%%   \item Focused activities to produce libraries and practical applications that find use beyond the workshop
+%%   \end{itemize}
 \end{itemize}}
+
 \cventry{2006--2007}{Programmer}{Performance Logic}{Portland OR}{}{I learned the fundamentals of real world development using C++ while simplifying and modularizing a large legacy code base.\newline{}
 \textbf{Achievements}:%
 \begin{itemize}%
 \item Built a variety of visualization methods for generating reports from large data sets
 \item Enhanced the custom scripting language with features from functional programming
-\item Gathered sprawling instances of similar functionality and consolidated into clear, simple modules that could be reused everywhere
+%% \item Gathered sprawling instances of similar functionality and consolidated into clear, simple modules that could be reused everywhere
 \end{itemize}}
 
-\section{Education}
-\cventry{2009--2012}{Master of Science, Systems Science}{Portland State University}{Portland OR}{}{Computational Neuroscience, System Dynamics}  % arguments 3 to 6 can be left empty
-\cventry{2002--2005}{Bachelor of the Arts}{The Evergreen State College}{Olympia WA}{}{Math, Performance, Computer Science}
-\cventry{1999--2001}{Undergraduate Study}{Oberlin College}{Oberlin OH}{}{Cognitive Science, Computer Science}
-
-\section{Relevant Activities}
-\cvitem{2013}{EuroClojure - Attended international conference in Berlin for all things Clojure}
-\cvitem{2013}{Portland Clojure User Group - Member of a local community meetup for discussing and sharing Clojure knowledge}
-\cvitem{2012}{Systems Science Seminar - Gave talk on the Nature of Assumptions}
-\cvitem{2011}{OSCON - Attended convention for open source software in Portland OR}
-\cvitem{2011}{Codex - Co-lead community workshop on creative coding and programming art}
+%% \section{Relevant Activities}
+%% \cvitem{2013-2014}{Portland Clojure User Group - Member of a local community meetup for discussing and sharing Clojure knowledge}
+%% \cvitem{2013}{EuroClojure - Attended international conference in Berlin for all things Clojure}
+%% \cvitem{2012}{Systems Science Seminar at PSU - Gave talk on the Nature of Assumptions}
+%% \cvitem{2011}{OSCON - Attended convention for open source software in Portland OR}
+%% \cvitem{2011}{Codex - Co-lead community workshop on creative coding and programming art}
 
 \section{Interests}
-\cvitem{Music}{Piano Tuning, Music Theory, Performance: Exploring the space of all possible musical events and relationships.}
 \cvitem{Biology}{Molecular Biology, Cell Biology, Systems Biology: How does life work?  How is this possible?}
+\cvitem{Music}{Piano Tuning, Music Theory, Performance: Exploring the space of all possible musical events and relationships.}
 \cvitem{Go}{The ancient game of life and death.  I have learned many things about life from Go.}
-\cvitem{Naming}{Word Creation:  Words have to come from somewhere.  How about the Omnivoplax?} %nothingness?}
+%% \cvitem{Naming}{Word Creation:  Words have to come from somewhere.  How about the Omnivoplax?} %nothingness?}
 %% \cvitem{Cognition}{Awareness examining itself:  Appreciating and unraveling the mystery of the nature of existence.}
 
 \section{References}
 \begin{cvcolumns}
-  \cvcolumn{Name}{\begin{itemize}\item Martin Linde\item Patrick Roberts\end{itemize}}
+  %% \cvcolumn{Name}{\begin{itemize}\item Patrick Roberts\item[] \emph{Professor OHSU BME}\item Martin Linde\item[] \emph{Associate Creative Director at Apple}\end{itemize}}
+  %% \cvcolumn{Contact}{\begin{itemize}\item[] (503) 418-2620 | robertpa@ohsu.edu\item[]\item[] (503) 250-4844 | martin.linde01@gmail.com\item[]\end{itemize}}
+
+  \cvcolumn{Name}{\begin{itemize}\item Patrick Roberts\item[] \emph{Professor OHSU BME}\item Martin Linde\item[] \emph{Associate Creative Director at Apple}\end{itemize}}
+  \cvcolumn{Contact}{\begin{itemize}\item[] (503) 418-2620\item[] robertpa@ohsu.edu\item[] (503) 250-4844\item[] martin.linde01@gmail.com\end{itemize}}
+
+  %% \cvcolumn{Name}{\begin{itemize}\item Patrick Roberts\item Martin Linde\end{itemize}}
+  %% \cvcolumn[0.75]{Contact}{\begin{itemize}\item Phone: (503) 418-2620  Email: robertpa@ohsu.edu\item Phone: (503) 250-4844 Email: martin.linde01@gmail.com\end{itemize}(more upon request)}
+
+  %% \cvcolumn{Name}{\begin{itemize}\item Patrick Roberts\item Martin Linde\end{itemize}}
+  %% \cvcolumn{Title}{\begin{itemize}\item[] \emph{Professor OHSU BME}\item[] \emph{Associate Creative Director at Apple}\end{itemize}}
+  %% \cvcolumn{Contact}{\begin{itemize}\item[] (503) 418-2620 | robertpa@ohsu.edu\item[] (503) 250-4844 | martin.linde01@gmail.com\end{itemize}}
+
   %% \cvcolumn{Area}{\begin{itemize}\item Creative Designer\item Person 2\end{itemize}(more upon request)}
-  \cvcolumn[0.75]{Contact}{\begin{itemize}\item Phone: (503) 250-4844 Email: martin.linde01@gmail.com\item Phone: (503) 418-2620  Email: robertpa@ohsu.edu\end{itemize}(more upon request)}
   %% \cvcolumn[0.5]{Contact}{\textit{That} person, and \textbf{those} also (all available upon request).}
 \end{cvcolumns}
 
