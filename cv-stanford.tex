@@ -1,0 +1,287 @@
+\RequirePackage{filecontents}
+\begin{filecontents*}{moderncvcolorburgundy.sty}
+
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{moderncvcolorburgundy}[2013/02/09 v1.3.0 modern curriculum vitae and letter color scheme: burgundy]
+
+\definecolor{color0}{rgb}{0,0,0}% black
+%\definecolor{color1}{rgb}{0.5647,0.3647,0.5882}% burgundy
+%\definecolor{color1}{rgb}{0.4509804,0.27450982,0.5294118}% burgundy
+\definecolor{color1}{rgb}{0.49,0.29,0.57}% burgundy
+\definecolor{color2}{rgb}{0.45,0.45,0.45}% dark grey
+\endinput
+
+\end{filecontents*}
+
+%% start of file `template.tex'.
+%% Copyright 2006-2013 Xavier Danaux (xdanaux@gmail.com).
+%
+% This work may be distributed and/or modified under the
+% conditions of the LaTeX Project Public License version 1.3c,
+% available at http://www.latex-project.org/lppl/.
+
+\documentclass[11pt,a4paper,sans]{moderncv}        % possible options include font size ('10pt', '11pt' and '12pt'), paper size ('a4paper', 'letterpaper', 'a5paper', 'legalpaper', 'executivepaper' and 'landscape') and font family ('sans' and 'roman')
+
+% moderncv themes
+\moderncvstyle{classic}                             % style options are 'casual' (default), 'classic', 'oldstyle' and 'banking'
+\moderncvcolor{burgundy}                               % color options 'blue' (default), 'orange', 'green', 'red', 'purple', 'grey' and 'black'
+%\renewcommand{\familydefault}{\sfdefault}         % to set the default font; use '\sfdefault' for the default sans serif font, '\rmdefault' for the default roman one, or any tex font name
+%\nopagenumbers{}                                  % uncomment to suppress automatic page numbering for CVs longer than one page
+
+% character encoding
+\usepackage[utf8]{inputenc}                       % if you are not using xelatex ou lualatex, replace by the encoding you are using
+%\usepackage{CJKutf8}                              % if you need to use CJK to typeset your resume in Chinese, Japanese or Korean
+
+% adjust the page margins
+\usepackage[scale=0.75]{geometry}
+%\setlength{\hintscolumnwidth}{3cm}                % if you want to change the width of the column with the dates
+%\setlength{\makecvtitlenamewidth}{10cm}           % for the 'classic' style, if you want to force the width allocated to your name and avoid line breaks. be careful though, the length is normally calculated to avoid any overlap with your personal info; use this at your own typographical risks...
+
+% personal data
+\name{Ryan}{Spangler}
+\title{Curriculum Vitae}                               % optional, remove / comment the line if not wanted
+% \address{2277 Williams Ave}{Palo Alto CA 94306}% optional, remove / comment the line if not wanted; the "postcode city" and "country" arguments can be omitted or provided empty
+\phone[mobile]{+1~(503)~781~3891}                   % optional, remove / comment the line if not wanted; the optional "type" of the phone can be "mobile" (default), "fixed" or "fax"
+\email{ryan.spangler@gmail.com}                               % optional, remove / comment the line if not wanted
+\homepage{elephantlaboratories.com}                         % optional, remove / comment the line if not wanted
+\social[github]{prismofeverything}                              % optional, remove / comment the line if not wanted
+\social[linkedin]{ryankspangler}                        % optional, remove / comment the line if not wanted
+\social[twitter]{elephantnahpele}                             % optional, remove / comment the line if not wanted
+%\extrainfo{additional information}                 % optional, remove / comment the line if not wanted
+%\photo[64pt][0.4pt]{picture}                       % optional, remove / comment the line if not wanted; '64pt' is the height the picture must be resized to, 0.4pt is the thickness of the frame around it (put it to 0pt for no frame) and 'picture' is the name of the picture file
+\quote{Patterns in Connections}                                 % optional, remove / comment the line if not wanted
+
+\definecolor{seagreen}{HTML}{23B886}% seagreen
+\definecolor{joy}{HTML}{6BB32B}
+\definecolor{level}{HTML}{5Ba31B}
+%% \definecolor{joy}{HTML}{5C942B}
+%% \definecolor{joy}{HTML}{95D45D}
+\AfterPreamble{\hypersetup{
+  pdfauthor={Ryan Spangler},
+  pdftitle={CV for Ryan Spangler},
+  pdfsubject={CV for Ryan Spangler},
+  colorlinks=true,
+  urlcolor=level,
+  %% urlcolor=seagreen,
+}}
+
+% to show numerical labels in the bibliography (default is to show no labels); only useful if you make citations in your resume
+%\makeatletter
+%\renewcommand*{\bibliographyitemlabel}{\@biblabel{\arabic{enumiv}}}
+%\makeatother
+%\renewcommand*{\bibliographyitemlabel}{[\arabic{enumiv}]}% CONSIDER REPLACING THE ABOVE BY THIS
+
+% bibliography with mutiple entries
+%\usepackage{multibib}
+%\newcites{book,misc}{{Books},{Others}}
+%----------------------------------------------------------------------------------
+%            content
+%----------------------------------------------------------------------------------
+\begin{document}
+%\begin{CJK*}{UTF8}{gbsn}                          % to typeset your resume in Chinese using CJK
+%-----       resume       ---------------------------------------------------------
+\makecvtitle
+
+\section{Education}
+\cventry{2009--2012}{Master of Science, Systems Science}{Portland State University}{Portland OR}{}{Computational Neuroscience, System Dynamics, Systems Modeling, Information Theory, Agent Based Systems}
+\cventry{2002--2005}{Bachelor of the Arts}{The Evergreen State College}{Olympia WA}{}{Math, Performance, Computer Science}
+\cventry{1999--2001}{Undergraduate Study}{Oberlin College}{Oberlin OH}{}{Cognitive Science, Computer Science}
+
+\section{Technology}
+\cvitem{Languages}{Clojure, Scala, JavaScript, Python, C/C++, Julia, Java, Bash, SQL}
+\cvitem{Tools}{Kafka, Docker, Postgresql, RabbitMQ, Mongo, Git, Unix, Emacs, GLSL}
+\cvitem{Areas}{Biological Modeling, Network Science, Graph Databases, Machine Learning, Data Visualization, Generative Music}
+%% \cvitem{Skills}{Asynchronous Computation, Websockets, Unix/linux Server Administration, Distributed Version Control}
+
+\section{Experience}
+%\subsection{Programming}
+
+\cventry{2018--present}{Software Engineer}{Stanford Bioengineering - Covert Lab}{Stanford CA}{}{At Stanford I work daily with researchers, students and postdocs to translate biological mechanisms and dynamics into runnable code, expanding on and integrating the effort of all of the lab members into a working whole-cell model. In addition, I conceive, develop and maintain the computational infrastructure and tools required by the various efforts around the lab. \newline{}
+\textbf{Achievements}:
+\begin{itemize}
+\item Created a platform for distributed multi-scale modeling of composable whole-cell simulations that exchange resources with a shared molecular environment, with a websockets-based interactive visualization:
+\url{http://github.com/CovertLab/Lens}
+\item Worked with graduate students and postdocs to provide computational support, design consultation, implementation strategies and pair programming mentorship and feedback.
+\item Built a workflow and execution system on Google Cloud to address the specific computational challenges of the lab:
+\url{http://github.com/CovertLab/sisyphus}
+\item Implemented a generalized version of the Gillespie algorithm in C to get around a critical performance bottleneck:
+\url{http://github.com/CovertLab/arrow}
+\item Optimized a complex parallel polymerization algorithm and expanded it to enable variable elongation rates.
+\item Lead a consistent and productive practice of code reviews, pull requests, continuous integration, version control and other software engineering best practices.
+\end{itemize}}
+
+\cventry{2016--2018}{Software Engineer}{OHSU - Computational Biology}{Portland OR}{}{At OHSU I work with scientists and engineers to determine what infrastructure and analysis is needed to support all of the different research efforts at the University. My main focus is the development of a graph database for cancer genomics to provide a means to query, analyze and visualize this data as a whole.\newline{}
+\textbf{Achievements}:
+\begin{itemize}
+\item Engineered a large graph database system that automatically transforms and integrates all incoming data into a single graph
+\url{http://bmeg.io/}
+\item Created a schema to encode queries themselves as data so they can be programmatically generated, optimized and processed.
+%% \item Translated a series of requirements from researchers and scientists into a working system that provided these analyses.
+%% \item Developed systems of statistical analysis for existing experiments and data.
+\item Created a visualization framework to synthesize our various visualization methods into a general and reusable package.
+\item Engineered a distributed event system to trigger pattern-discovery analyses as data streams into the system.
+\end{itemize}}
+
+\cventry{2014--2016}{Lead Developer}{Little Bird Technologies}{Portland OR}{}{At Little Bird I take their mass of social network data and apply graph theoretical, statistical and machine learning methods to find patterns and draw conclusions from that data.\newline{}
+\textbf{Achievements}:
+\begin{itemize}
+\item Built a 3d network visualization to explore and interact with vast, interconnected data.
+\item Used bayesian networks and random forest to build a classification system of user behavior.
+%% \item Migrated the flat document data model into a graph database oriented around the relationships between semantic terms and networks of people.
+%% \item Took a naive analysis algorithm and parallelized it to work over any sized cluster of independent workers.
+\item Open sourced much of the infrastructure that powers the application:
+\url{https://github.com/littlebird}
+%% \item Built a recommendation engine based on Jaccard similarity.
+%% \item Identified and expunged a pre-existing and propagating data corruption, building an ongoing data validation system in the process.
+\item Instituted a workshop for collaboratively improving the whole team's coding and software development skills, starting by implementing well-known graph algorithms.
+\end{itemize}}
+
+\cventry{2007--2014}{Senior Developer}{Instrument}{Portland OR}{}{I worked with the labs team to invent constantly --- transforming concepts through code into practical applications.\newline{}
+% Turning impossible ideas into seamless experiences was a daily practice.\newline{}
+% I explored novel approaches using code that tapped previously unknown possibilities, ultimately finding ways to harness them for practical applications.
+\textbf{Achievements}:
+\begin{itemize}
+\item Created Caribou --- an open source Clojure web ecosystem for building large high-performance web applications with great alacrity.
+\url{https://github.com/caribou}
+%%   \begin{itemize}
+%%   \item Lead an interdisciplinary team in developing a large open source project
+%%   \item Managed an open source community by constructively listening to feedback and reviewing and merging pull requests
+%% %  \item Constantly evaluating and simplifying the code base while making it more flexible and useful to everyone
+%% %  \item Modularized the code base by extracting useful features into stand alone libraries
+%%   \item Mediated and communicated effectively between technical and non-technical individuals
+%%   \end{itemize}
+\item Created Cyclops --- a tool for interpolating data for use in programmatically driven animations:
+\url{http://weareinstrument.com/cyclops}
+  %% \begin{itemize}
+  %% \item Applied a variety of mathematical methods to a practical problem
+  %% \item Solved an industry wide problem in a creative and useful way
+  %% %% \item Built a general tool for interpolation and animation
+  %% \end{itemize}
+\item Built Schmetterling --- a browser-based debugger for inspecting running Clojure programs:  %\newline{}
+\url{http://github.com/prismofeverything/schmetterling}
+  %% \begin{itemize}%
+  %% \item Gained insight into the methods of controlling and manipulating a running JVM process
+  %% \item Built an asynchronous browser-based websockets interface to a service running on the backend
+  %% \end{itemize}
+\item Pioneered a weekly workshop for collaboratively learning 3D programming:  %, developing a new process for collaboratively learning code: 
+% \url{http://weareinstrument.com/3d-workshop/index.html}
+%%   \begin{itemize}
+%% %  \item Guiding the learning of developers of many skill levels in a way that is effective for everyone;
+%%   \item Innovated new processes for learning and software engineering for developers from a spectrum of skill levels
+%%   \item Focused activities to produce libraries and practical applications that find use beyond the workshop
+%%   \end{itemize}
+\end{itemize}}
+
+\cventry{2006--2007}{Programmer}{Performance Logic}{Portland OR}{}{I learned the fundamentals of real world development using C++ while simplifying and modularizing a large legacy code base.\newline{}
+\textbf{Achievements}:%
+\begin{itemize}%
+\item Built a variety of visualization methods for generating reports from large data sets
+\item Enhanced the custom scripting language with features from functional programming
+%% \item Gathered sprawling instances of similar functionality and consolidated into clear, simple modules that could be reused everywhere
+\end{itemize}}
+
+%% \section{Relevant Activities}
+%% \cvitem{2013-2014}{Portland Clojure User Group - Member of a local community meetup for discussing and sharing Clojure knowledge}
+%% \cvitem{2013}{EuroClojure - Attended international conference in Berlin for all things Clojure}
+%% \cvitem{2012}{Systems Science Seminar at PSU - Gave talk on the Nature of Assumptions}
+%% \cvitem{2011}{OSCON - Attended convention for open source software in Portland OR}
+%% \cvitem{2011}{Codex - Co-lead community workshop on creative coding and programming art}
+
+\section{Interests}
+\cvitem{Biology}{Molecular Biology, Cell Biology, Systems Biology: How does life work?  How is this possible?}
+\cvitem{Music}{Piano Tuning, Music Theory, Performance: Exploring the space of all possible musical events and relationships.}
+\cvitem{Games}{I have published a board game - Sol: Last Days of a Star \url{http://elephantlaboratories.com/sol}}
+%%\cvitem{Go}{The ancient game of life and death.  I have learned many things about life from Go.}
+%% \cvitem{Naming}{Word Creation:  Words have to come from somewhere.  How about the Omnivoplax?} %nothingness?}
+%% \cvitem{Cognition}{Awareness examining itself:  Appreciating and unraveling the mystery of the nature of existence.}
+
+\section{References}
+\begin{cvcolumns}
+  %% \cvcolumn{Name}{\begin{itemize}\item Patrick Roberts\item[] \emph{Professor OHSU BME}\item Martin Linde\item[] \emph{Associate Creative Director at Apple}\end{itemize}}
+  %% \cvcolumn{Contact}{\begin{itemize}\item[] (503) 418-2620 | robertpa@ohsu.edu\item[]\item[] (503) 250-4844 | martin.linde01@gmail.com\item[]\end{itemize}}
+
+  \cvcolumn{Name}{\begin{itemize}\item Markus Covert\item[] \emph{Stanford Bioengineering}\item Jerry Morrison\item[] \emph{Allen Center}\end{itemize}}
+  \cvcolumn{Contact}{\begin{itemize}\item[] (650) 725-6615 \item[] mcovert@stanford.edu\item[] (650) 488-3541\item[] jerry.morrison@gmail.com\end{itemize}}
+
+  %% \cvcolumn{Name}{\begin{itemize}\item Patrick Roberts\item Martin Linde\end{itemize}}
+  %% \cvcolumn[0.75]{Contact}{\begin{itemize}\item Phone: (503) 418-2620  Email: robertpa@ohsu.edu\item Phone: (503) 250-4844 Email: martin.linde01@gmail.com\end{itemize}(more upon request)}
+
+  %% \cvcolumn{Name}{\begin{itemize}\item Patrick Roberts\item Martin Linde\end{itemize}}
+  %% \cvcolumn{Title}{\begin{itemize}\item[] \emph{Professor OHSU BME}\item[] \emph{Associate Creative Director at Apple}\end{itemize}}
+  %% \cvcolumn{Contact}{\begin{itemize}\item[] (503) 418-2620 | robertpa@ohsu.edu\item[] (503) 250-4844 | martin.linde01@gmail.com\end{itemize}}
+
+  %% \cvcolumn{Area}{\begin{itemize}\item Creative Designer\item Person 2\end{itemize}(more upon request)}
+  %% \cvcolumn[0.5]{Contact}{\textit{That} person, and \textbf{those} also (all available upon request).}
+\end{cvcolumns}
+
+%% \section{Master thesis}
+%% \cvitem{title}{\emph{Title}}
+%% \cvitem{supervisors}{Supervisors}
+%% \cvitem{description}{Short thesis abstract}
+
+%% \section{Languages}
+%% \cvitemwithcomment{Language 1}{Skill level}{Comment}
+%% \cvitemwithcomment{Language 2}{Skill level}{Comment}
+%% \cvitemwithcomment{Language 3}{Skill level}{Comment}
+
+%% \section{Computer skills}
+%% \cvdoubleitem{category 1}{XXX, YYY, ZZZ}{category 4}{XXX, YYY, ZZZ}
+%% \cvdoubleitem{category 2}{XXX, YYY, ZZZ}{category 5}{XXX, YYY, ZZZ}
+%% \cvdoubleitem{category 3}{XXX, YYY, ZZZ}{category 6}{XXX, YYY, ZZZ}
+
+%% \section{Extra 1}
+%% \cvlistitem{Item 1}
+%% \cvlistitem{Item 2}
+%% \cvlistitem{Item 3. This item is particularly long and therefore normally spans over several lines. Did you notice the indentation when the line wraps?}
+
+%% \section{Extra 2}
+%% \cvlistdoubleitem{Item 1}{Item 4}
+%% \cvlistdoubleitem{Item 2}{Item 5\cite{book1}}
+%% \cvlistdoubleitem{Item 3}{Item 6. Like item 3 in the single column list before, this item is particularly long to wrap over several lines.}
+
+% Publications from a BibTeX file without multibib
+%  for numerical labels: \renewcommand{\bibliographyitemlabel}{\@biblabel{\arabic{enumiv}}}% CONSIDER MERGING WITH PREAMBLE PART
+%  to redefine the heading string ("Publications"): \renewcommand{\refname}{Articles}
+%% \nocite{*}
+%% \bibliographystyle{plain}
+%% \bibliography{publications}                        % 'publications' is the name of a BibTeX file
+
+% Publications from a BibTeX file using the multibib package
+%\section{Publications}
+%\nocitebook{book1,book2}
+%\bibliographystylebook{plain}
+%\bibliographybook{publications}                   % 'publications' is the name of a BibTeX file
+%\nocitemisc{misc1,misc2,misc3}
+%\bibliographystylemisc{plain}
+%\bibliographymisc{publications}                   % 'publications' is the name of a BibTeX file
+
+\clearpage
+%-----       letter       ---------------------------------------------------------
+% recipient data
+
+
+%% \recipient{Company Recruitment team}{Company, Inc.\\123 somestreet\\some city}
+%% \date{January 01, 1984}
+%% \opening{Dear Sir or Madam,}
+%% \closing{Yours faithfully,}
+%% \enclosure[Attached]{curriculum vit\ae{}}          % use an optional argument to use a string other than "Enclosure", or redefine \enclname
+%% \makelettertitle
+
+%% Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis ullamcorper neque sit amet lectus facilisis sed luctus nisl iaculis. Vivamus at neque arcu, sed tempor quam. Curabitur pharetra tincidunt tincidunt. Morbi volutpat feugiat mauris, quis tempor neque vehicula volutpat. Duis tristique justo vel massa fermentum accumsan. Mauris ante elit, feugiat vestibulum tempor eget, eleifend ac ipsum. Donec scelerisque lobortis ipsum eu vestibulum. Pellentesque vel massa at felis accumsan rhoncus.
+
+%% Suspendisse commodo, massa eu congue tincidunt, elit mauris pellentesque orci, cursus tempor odio nisl euismod augue. Aliquam adipiscing nibh ut odio sodales et pulvinar tortor laoreet. Mauris a accumsan ligula. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Suspendisse vulputate sem vehicula ipsum varius nec tempus dui dapibus. Phasellus et est urna, ut auctor erat. Sed tincidunt odio id odio aliquam mattis. Donec sapien nulla, feugiat eget adipiscing sit amet, lacinia ut dolor. Phasellus tincidunt, leo a fringilla consectetur, felis diam aliquam urna, vitae aliquet lectus orci nec velit. Vivamus dapibus varius blandit.
+
+%% Duis sit amet magna ante, at sodales diam. Aenean consectetur porta risus et sagittis. Ut interdum, enim varius pellentesque tincidunt, magna libero sodales tortor, ut fermentum nunc metus a ante. Vivamus odio leo, tincidunt eu luctus ut, sollicitudin sit amet metus. Nunc sed orci lectus. Ut sodales magna sed velit volutpat sit amet pulvinar diam venenatis.
+
+%% Albert Einstein discovered that $e=mc^2$ in 1905.
+
+%% \[ e=\lim_{n \to \infty} \left(1+\frac{1}{n}\right)^n \]
+
+%% \makeletterclosing
+
+
+%\clearpage\end{CJK*}                              % if you are typesetting your resume in Chinese using CJK; the \clearpage is required for fancyhdr to work correctly with CJK, though it kills the page numbering by making \lastpage undefined
+\end{document}
+
+
+%% end of file `template.tex'.
