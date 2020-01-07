@@ -39,7 +39,7 @@
 
 % personal data
 \name{Ryan}{Spangler}
-\title{Curriculum Vitae}                               % optional, remove / comment the line if not wanted
+% \title{Curriculum Vitae}                               % optional, remove / comment the line if not wanted
 % \address{2277 Williams Ave}{Palo Alto CA 94306}% optional, remove / comment the line if not wanted; the "postcode city" and "country" arguments can be omitted or provided empty
 \phone[mobile]{+1~(503)~781~3891}                   % optional, remove / comment the line if not wanted; the optional "type" of the phone can be "mobile" (default), "fixed" or "fax"
 \email{ryan.spangler@gmail.com}                               % optional, remove / comment the line if not wanted
@@ -82,35 +82,39 @@
 %-----       resume       ---------------------------------------------------------
 \makecvtitle
 
-\section{Education}
-\cventry{2009--2012}{Master of Science, Systems Science}{Portland State University}{Portland OR}{}{Computational Neuroscience, System Dynamics, Systems Modeling, Information Theory, Agent Based Systems}
-\cventry{2002--2005}{Bachelor of the Arts}{The Evergreen State College}{Olympia WA}{}{Math, Performance, Computer Science}
-\cventry{1999--2001}{Undergraduate Study}{Oberlin College}{Oberlin OH}{}{Cognitive Science, Computer Science}
+\section{Summary of Qualifications}
 
-\section{Technology}
-\cvitem{Languages}{Clojure, Scala, JavaScript, Python, C/C++, Julia, Java, Bash, SQL}
-\cvitem{Tools}{Kafka, Docker, Postgresql, RabbitMQ, Mongo, Git, Unix, Emacs, GLSL}
-\cvitem{Areas}{Biological Modeling, Network Science, Graph Databases, Machine Learning, Data Visualization, Generative Music}
-%% \cvitem{Skills}{Asynchronous Computation, Websockets, Unix/linux Server Administration, Distributed Version Control}
+\begin{itemize}
+\item Software engineer specializing in computational infrastructure for biological modeling.
+\item 13 years of professional experience working in cancer genomics and proteomics, whole-cell modeling, workflow development and graph database design and implementation.
+\item Interested in working on biological discoveries, scientific research and applications for biologically inspired algorithms. 
+\end{itemize}
 
 \section{Experience}
 %\subsection{Programming}
 
-\cventry{2018--present}{Software Engineer}{Stanford Bioengineering - Covert Lab}{Stanford CA}{}{At Stanford I work daily with researchers, students and postdocs to translate biological mechanisms and dynamics into runnable code, expanding on and integrating the effort of all of the lab members into a working whole-cell model. In addition, I conceive, develop and maintain the computational infrastructure and tools required by the various efforts around the lab. \newline{}
+%% \cventry{2018--present}{Software Engineer}{Stanford Bioengineering - Covert Lab}{Stanford CA}{}{At Stanford I coordinate the efforts of building a whole-cell model. work daily with researchers, students and postdocs to translate biological mechanisms and dynamics into runnable code, expanding on and integrating the effort of all of the lab members into a working whole-cell model. In addition, I conceive, develop and maintain the computational infrastructure and tools required by the various efforts around the lab. \newline{}
+
+%% We translate biological mechanisms and dynamics into runnable code, expanding on and integrating the effort of all of the lab members into a working whole-cell model. In addition, I conceive, develop and maintain the computational infrastructure and tools required by the various efforts around the lab.
+
+%% \item Created a platform for distributed multi-scale modeling of composable whole-cell simulations that exchange resources with a shared molecular environment, with a websockets-based interactive visualization:
+
+
+\cventry{2018--present}{Software Engineer}{Stanford Bioengineering - Covert Lab}{Stanford CA}{}{At Stanford I coordinate the efforts of building a whole-cell model with graduate students, postdocs and PI's, here and in collaboration with other institutions. Beyond the code I provide computational support, design consultation, implementation strategies and pair programming mentorship and feedback. In addition, I lead a consistent and productive practice of code reviews, pull requests, continuous integration, version control and other software engineering best practices.\newline{}
 \textbf{Achievements}:
 \begin{itemize}
-\item Created a platform for distributed multi-scale modeling of composable whole-cell simulations that exchange resources with a shared molecular environment, with a websockets-based interactive visualization:
-\url{http://github.com/CovertLab/Lens}
-\item Worked with graduate students and postdocs to provide computational support, design consultation, implementation strategies and pair programming mentorship and feedback.
-\item Built a workflow and execution system on Google Cloud to address the specific computational challenges of the lab:
+\item Created a platform for distributed multi-scale modeling of whole-cell colonies in a shared molecular environment, with a websockets-based interactive visualization:
+\url{http://github.com/CovertLab/vivarium}
+%% \item Worked with graduate students and postdocs to provide computational support, design consultation, implementation strategies and pair programming mentorship and feedback.
+\item Built a workflow and execution system on Google Cloud to run whole-cell simulations and colony experiments:
 \url{http://github.com/CovertLab/sisyphus}
-\item Lead a consistent and productive practice of code reviews, pull requests, continuous integration, version control and other software engineering best practices.
+%% \item Lead a consistent and productive practice of code reviews, pull requests, continuous integration, version control and other software engineering best practices.
 \item Implemented a generalized version of the Gillespie algorithm in C to get around a critical performance bottleneck:
 \url{http://github.com/CovertLab/arrow}
-\item Optimized a complex parallel polymerization algorithm and expanded it to enable variable elongation rates.
+\item Worked with the whole-cell and live-cell teams to solve challenges of computational scale and organization.
 \end{itemize}}
 
-\cventry{2016--2018}{Software Engineer}{OHSU - Computational Biology}{Portland OR}{}{At OHSU I work with scientists and engineers to determine what infrastructure and analysis is needed to support all of the different research efforts at the University. My main focus is the development of a graph database for cancer genomics to provide a means to query, analyze and visualize this data as a whole.\newline{}
+\cventry{2016--2018}{Software Engineer}{OHSU - Computational Biology}{Portland OR}{}{At OHSU I worked with scientists and engineers to determine what infrastructure and analysis is needed to support all of the different research efforts at the University. My main focus was the development of a graph database for cancer genomics to provide a means to query, analyze and visualize this data as a whole.\newline{}
 \textbf{Achievements}:
 \begin{itemize}
 \item Engineered a large graph database system that automatically transforms and integrates all incoming data into a single graph
@@ -122,21 +126,21 @@
 \item Engineered a distributed event system to trigger pattern-discovery analyses as data streams into the system.
 \end{itemize}}
 
-\cventry{2014--2016}{Lead Developer}{Little Bird Technologies}{Portland OR}{}{At Little Bird I take their mass of social network data and apply graph theoretical, statistical and machine learning methods to find patterns and draw conclusions from that data.\newline{}
+\cventry{2014--2016}{Lead Developer}{Little Bird Technologies}{Portland OR}{}{At Little Bird I took their mass of social network data and apply graph theoretical, statistical and machine learning methods to find patterns and draw conclusions from that data.\newline{}
 \textbf{Achievements}:
 \begin{itemize}
 \item Built a 3d network visualization to explore and interact with vast, interconnected data.
 \item Used bayesian networks and random forest to build a classification system of user behavior.
 %% \item Migrated the flat document data model into a graph database oriented around the relationships between semantic terms and networks of people.
 %% \item Took a naive analysis algorithm and parallelized it to work over any sized cluster of independent workers.
-\item Open sourced much of the infrastructure that powers the application:
+\item Released much of the infrastructure as open source:
 \url{https://github.com/littlebird}
 %% \item Built a recommendation engine based on Jaccard similarity.
 %% \item Identified and expunged a pre-existing and propagating data corruption, building an ongoing data validation system in the process.
 \item Instituted a workshop for collaboratively improving the whole team's coding and software development skills, starting by implementing well-known graph algorithms.
 \end{itemize}}
 
-\cventry{2007--2014}{Senior Developer}{Instrument}{Portland OR}{}{I worked with the labs team to invent constantly --- transforming concepts through code into practical applications.\newline{}
+\cventry{2007--2014}{Senior Developer}{Instrument}{Portland OR}{}{I worked with the labs team to transform concepts through code into practical applications.\newline{}
 % Turning impossible ideas into seamless experiences was a daily practice.\newline{}
 % I explored novel approaches using code that tapped previously unknown possibilities, ultimately finding ways to harness them for practical applications.
 \textbf{Achievements}:
@@ -150,8 +154,8 @@
 %% %  \item Modularized the code base by extracting useful features into stand alone libraries
 %%   \item Mediated and communicated effectively between technical and non-technical individuals
 %%   \end{itemize}
-\item Created Cyclops --- a tool for interpolating data for use in programmatically driven animations:
-\url{http://weareinstrument.com/cyclops}
+%% \item Created Cyclops --- interpolating data for programmatic animations:
+%% \url{http://weareinstrument.com/cyclops}
   %% \begin{itemize}
   %% \item Applied a variety of mathematical methods to a practical problem
   %% \item Solved an industry wide problem in a creative and useful way
@@ -180,6 +184,17 @@
 %% \item Gathered sprawling instances of similar functionality and consolidated into clear, simple modules that could be reused everywhere
 \end{itemize}}
 
+\section{Education}
+\cventry{2009--2012}{Master of Science, Systems Science}{Portland State University}{Portland OR}{}{Computational Neuroscience, System Dynamics, Information Theory, Agent Based Systems}
+\cventry{2002--2005}{Bachelor of the Arts}{The Evergreen State College}{Olympia WA}{}{Math, Performance, Computer Science}
+\cventry{1999--2001}{Undergraduate Study}{Oberlin College}{Oberlin OH}{}{Cognitive Science, Computer Science}
+
+\section{Technology}
+\cvitem{Languages}{Clojure, Scala, JavaScript, Python, C/C++, Julia, Java, Bash, SQL}
+\cvitem{Tools}{Kafka, Docker, Postgresql, RabbitMQ, Mongo, Git, Unix, Emacs, GLSL}
+\cvitem{Areas}{Biological Modeling, Network Science, Graph Databases, Machine Learning, Data Visualization, Generative Music}
+%% \cvitem{Skills}{Asynchronous Computation, Websockets, Unix/linux Server Administration, Distributed Version Control}
+
 %% \section{Relevant Activities}
 %% \cvitem{2013-2014}{Portland Clojure User Group - Member of a local community meetup for discussing and sharing Clojure knowledge}
 %% \cvitem{2013}{EuroClojure - Attended international conference in Berlin for all things Clojure}
@@ -189,8 +204,8 @@
 
 \section{Interests}
 \cvitem{Biology}{Molecular Biology, Cell Biology, Systems Biology: How does life work?  How can these principles be discovered and applied to other realms?}
-\cvitem{Music}{Piano Tuning, Music Theory, Performance: Exploring the space of all possible musical events and relationships. \url{https://soundcloud.com/youdonotexist/sessessation}}
-\cvitem{Games}{I have designed and published a board game - Sol: Last Days of a Star \url{http://elephantlaboratories.com/sol}}
+\cvitem{Music}{Piano Tuning, Music Theory, Performance: Exploring the space of all possible musical spaces and relationships.} %\url{https://soundcloud.com/youdonotexist/sessessation}}
+\cvitem{Games}{I have designed and published an award-winning board game - Sol: Last Days of a Star \url{http://elephantlaboratories.com/sol}}
 %%\cvitem{Go}{The ancient game of life and death.  I have learned many things about life from Go.}
 %% \cvitem{Naming}{Word Creation:  Words have to come from somewhere.  How about the Omnivoplax?} %nothingness?}
 %% \cvitem{Cognition}{Awareness examining itself:  Appreciating and unraveling the mystery of the nature of existence.}
