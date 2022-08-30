@@ -1,4 +1,9 @@
+\makeatletter
+\let\oldfilec@ntents\filec@ntents
+\gdef\filec@ntents{\filec@ntents@overwrite\oldfilec@ntents}
+\makeatother
 \RequirePackage{filecontents}
+%% \begin{filecontents}[overwrite](moderncvcolorburgundy.sty)
 \begin{filecontents*}{moderncvcolorburgundy.sty}
 
 \NeedsTeXFormat{LaTeX2e}
@@ -39,17 +44,17 @@
 
 % personal data
 \name{Ryan}{Spangler}
-\title{Curriculum Vitae}                               % optional, remove / comment the line if not wanted
-\address{4235 SE 11th}{Portland OR 97202}% optional, remove / comment the line if not wanted; the "postcode city" and "country" arguments can be omitted or provided empty
+% \title{Curriculum Vitae}                               % optional, remove / comment the line if not wanted
+% \address{2277 Williams Ave}{Palo Alto CA 94306}% optional, remove / comment the line if not wanted; the "postcode city" and "country" arguments can be omitted or provided empty
 \phone[mobile]{+1~(503)~781~3891}                   % optional, remove / comment the line if not wanted; the optional "type" of the phone can be "mobile" (default), "fixed" or "fax"
 \email{ryan.spangler@gmail.com}                               % optional, remove / comment the line if not wanted
-\homepage{ryanspangler.com}                         % optional, remove / comment the line if not wanted
+%% \homepage{elephantlaboratories.com}                         % optional, remove / comment the line if not wanted
 \social[github]{prismofeverything}                              % optional, remove / comment the line if not wanted
 \social[linkedin]{ryankspangler}                        % optional, remove / comment the line if not wanted
 \social[twitter]{ryanspangler}                             % optional, remove / comment the line if not wanted
 %\extrainfo{additional information}                 % optional, remove / comment the line if not wanted
 %\photo[64pt][0.4pt]{picture}                       % optional, remove / comment the line if not wanted; '64pt' is the height the picture must be resized to, 0.4pt is the thickness of the frame around it (put it to 0pt for no frame) and 'picture' is the name of the picture file
-\quote{All things}                                 % optional, remove / comment the line if not wanted
+\quote{Assembling the Future of Biology}
 
 \definecolor{seagreen}{HTML}{23B886}% seagreen
 \definecolor{joy}{HTML}{6BB32B}
@@ -82,82 +87,147 @@
 %-----       resume       ---------------------------------------------------------
 \makecvtitle
 
-\section{Technology}
-\cvitem{Languages}{Clojure, Python, JavaScript, C++, Ruby, Java, Bash, SQL, Matlab}
-\cvitem{Areas}{Biological Modeling, 3D Animation, Machine Learning, Generative Music, Applied Mathematics, Web Sorcery}
-%% \cvitem{Skills}{Asynchronous Computation, Websockets, Unix/linux Server Administration, Distributed Version Control}
+\section{Summary of Qualifications}
 
-\section{Relevant Experience}
+\begin{itemize}
+\item Software engineer specializing in computational infrastructure for biological modeling and large-scale distributed simulations.
+\item 16 years of professional experience working in whole-cell modeling, multi-scale simulation, distributed systems, and process calculi. 
+\item Interested in developing computational frameworks for biological discovery, model integration and synthesis, and biologically inspired algorithms. 
+\end{itemize}
+
+\section{Experience}
 %\subsection{Programming}
-\cventry{2007--2014}{Senior Developer}{Instrument}{Portland OR}{}{I work with the labs team to invent constantly --- be it creating flexible tools other teams use to build projects, prototyping and executing interactive experiences or simply pure experimentation.\newline{}
-I explore novel approaches using code that demonstrate previously unknown possibilities and then facilitate how they can be harnessed for practical applications.\newline{}%
-%% \newline{}
-\textbf{Achievements}:%
-\begin{itemize}%
+
+\cventry{2020--present}{Machine Learning Engineer}{Allen Institute for Cell Science}{Seattle WA}{}{I develop models, infrastructure, tools, and systems to explore the organization and dynamics of human cell biology. I collaborate on a number of projects around the Institute, leading multiple group coding and learning sessions on a variety of biological, mathematical, and computational topics. \newline{}
+\textbf{Achievements}:
+\begin{itemize}
+\item Lead an ongoing collaborative effort building a multi-scale simulation of actin networks using Vivarium where different levels of detail (fiber and monomer) inform and relate to one another:
+\url{https://github.com/simularium/vivarium-models/tree/buckling}
+\item Created a library for programmatically generating bigraphical simulations, with a parser and interpreter for the ``big'' bigraphical language:
+\url{http://github.com/prismofeverything/bigraph}
+\item Contributed to the development of cellPACK, a tool for packing 3d molecular entities into biological membranes and meshes:
+\url{http://github.com/mesoscope/cellpack}
+\item Developed a server for running distributed Vivarium simulations that communicates with a websockets based visualization front-end (Simularium)
+\item Released Serotiny, a library for generating configurable and reproducible machine learning workflows: 
+\url{http://github.com/AllenCellModeling/serotiny}
+\end{itemize}}
+
+\cventry{2018--2020}{Software Engineer}{Stanford Bioengineering - Covert Lab}{Stanford CA}{}{I coordinated the efforts of the whole-cell modeling team with graduate students, postdocs and PI's, and in collaboration with other institutions. Beyond the code, I provided computational support, design consultation, implementation strategies and pair programming mentorship. In addition, I lead a consistent and productive practice of code reviews, pull requests, continuous integration, version control and other software engineering best practices.\newline{}
+\textbf{Achievements}:
+\begin{itemize}
+\item Created a platform for distributed multi-scale modeling of whole-cell colonies in a shared molecular environment, with a websockets-based interactive visualization:
+\url{http://github.com/CovertLab/vivarium}
+\item Built a workflow and execution system on Google Cloud to run whole-cell simulations and whole-colony experiments:
+\url{http://github.com/CovertLab/sisyphus}
+\item Implemented a generalized version of the Gillespie algorithm in C to get around a critical performance bottleneck:
+\url{http://github.com/CovertLab/arrow}
+\item Worked with the experimental teams to solve challenges of computational scale and organization for imaging and microscopy data.
+\end{itemize}}
+
+\cventry{2016--2018}{Software Engineer}{OHSU - Computational Biology}{Portland OR}{}{At OHSU I worked with scientists and engineers to build on infrastructure and analysis pipelines to support all of the different research efforts at the University. My main focus was the development of a graph database for cancer genomics to provide a means to query, analyze and visualize this data as a whole.\newline{}
+\textbf{Achievements}:
+\begin{itemize}
+\item Engineered a large graph database system that automatically transforms and integrates all incoming data into a single graph
+\url{http://bmeg.io/}
+\item Created a schema to encode queries themselves as data so they can be programmatically generated, optimized and processed.
+%% \item Translated a series of requirements from researchers and scientists into a working system that provided these analyses.
+%% \item Developed systems of statistical analysis for existing experiments and data.
+\item Created an interactive visualization for navigating and querying the live graph. 
+\item Engineered a distributed event system to trigger pattern-discovery analyses as data streams into the system.
+\end{itemize}}
+
+\cventry{2014--2016}{Lead Developer}{Little Bird Technologies}{Portland OR}{}{At Little Bird I took their mass of social network data and applied graph theoretical, statistical and machine learning methods to find patterns and draw conclusions from that data.\newline{}
+\textbf{Achievements}:
+\begin{itemize}
+\item Built a 3D network visualization to explore and interact with vast, interconnected data.
+\item Used Bayesian networks and random forest to build a classification system of user behavior.
+%% \item Migrated the flat document data model into a graph database oriented around the relationships between semantic terms and networks of people.
+%% \item Took a naive analysis algorithm and parallelized it to work over any sized cluster of independent workers.
+\item Released much of the infrastructure as open-source:
+\url{https://github.com/littlebird}
+%% \item Built a recommendation engine based on Jaccard similarity.
+%% \item Identified and expunged a pre-existing and propagating data corruption, building an ongoing data validation system in the process.
+\item Instituted a workshop for collaboratively improving the whole team's coding and software development skills, starting by implementing well-known graph algorithms.
+\end{itemize}}
+
+\cventry{2007--2014}{Senior Developer}{Instrument}{Portland OR}{}{I worked with the Labs team to transform concepts through code into practical applications.\newline{}
+% Turning impossible ideas into seamless experiences was a daily practice.\newline{}
+% I explored novel approaches using code that tapped previously unknown possibilities, ultimately finding ways to harness them for practical applications.
+\textbf{Achievements}:
+\begin{itemize}
 \item Created Caribou --- an open source Clojure web ecosystem for building large high-performance web applications with great alacrity:
-\url{http://let-caribou.in}
-  \begin{itemize}%
-  \item Lead an interdisciplinary team in developing a large open source project
-  \item Managed an open source community by constructively listening to feedback and reviewing and merging pull requests
-%  \item Constantly evaluating and simplifying the code base while making it more flexible and useful to everyone
-  \item Modularized the code base by extracting useful features into stand alone libraries
-  \item Mediated and communicated effectively between technical and non-technical individuals
-  \end{itemize}
-\item Created Cyclops --- a tool for interpolating data for use in programmatically driven animations:  %\newline{}
-\url{http://cyclops.weareinstrument.com}
-  \begin{itemize}%
-  \item Applied a variety of mathematical methods to a practical problem
-  \item Eliminated the need for developers to recreate the work of motion designers
-  %% \item Built a general tool for interpolation and animation
-  \end{itemize}
+\url{https://github.com/caribou}
+%%   \begin{itemize}
+%%   \item Lead an interdisciplinary team in developing a large open source project
+%%   \item Managed an open source community by constructively listening to feedback and reviewing and merging pull requests
+%% %  \item Constantly evaluating and simplifying the code base while making it more flexible and useful to everyone
+%% %  \item Modularized the code base by extracting useful features into stand alone libraries
+%%   \item Mediated and communicated effectively between technical and non-technical individuals
+%%   \end{itemize}
+%% \item Created Cyclops --- interpolating data for programmatic animations:
+%% \url{http://weareinstrument.com/cyclops}
+  %% \begin{itemize}
+  %% \item Applied a variety of mathematical methods to a practical problem
+  %% \item Solved an industry wide problem in a creative and useful way
+  %% %% \item Built a general tool for interpolation and animation
+  %% \end{itemize}
 \item Built Schmetterling --- a browser-based debugger for inspecting running Clojure programs:  %\newline{}
 \url{http://github.com/prismofeverything/schmetterling}
-  \begin{itemize}%
-  \item Gained insight into the methods of controlling and manipulating a running process
-  \item Built an asynchronous browser-based websockets interface to a service running on the backend
-  \end{itemize}
-\item Pioneered a workshop for learning 3D programming:  %, developing a new process for collaboratively learning code: 
-\url{http://weareinstrument.com/3d-workshop/index.html}
-  \begin{itemize}%
-%  \item Guiding the learning of developers of many skill levels in a way that is effective for everyone;
-  \item Innovated new processes for learning and collaborative development for developers from a spectrum of skill levels
-  \item Focused activities to produce libraries and practical applications that find use beyond the workshop
-  \end{itemize}
+  %% \begin{itemize}%
+  %% \item Gained insight into the methods of controlling and manipulating a running JVM process
+  %% \item Built an asynchronous browser-based websockets interface to a service running on the backend
+  %% \end{itemize}
+\item Pioneered a weekly workshop for collaboratively learning 3D graphics programming.  %, developing a new process for collaboratively learning code: 
+% \url{http://weareinstrument.com/3d-workshop/index.html}
+%%   \begin{itemize}
+%% %  \item Guiding the learning of developers of many skill levels in a way that is effective for everyone;
+%%   \item Innovated new processes for learning and software engineering for developers from a spectrum of skill levels
+%%   \item Focused activities to produce libraries and practical applications that find use beyond the workshop
+%%   \end{itemize}
 \end{itemize}}
+
 \cventry{2006--2007}{Programmer}{Performance Logic}{Portland OR}{}{I learned the fundamentals of real world development using C++ while simplifying and modularizing a large legacy code base.\newline{}
 \textbf{Achievements}:%
 \begin{itemize}%
-\item Built a variety of visualization methods for generating reports from large data sets
-\item Enhanced the custom scripting language with features from functional programming
-\item Gathered sprawling instances of similar functionality and consolidated into clear, simple modules that could be reused everywhere
+\item Built a variety of visualization methods for generating reports from large data sets.
+\item Enhanced the custom scripting language with features from functional programming.
+%% \item Gathered sprawling instances of similar functionality and consolidated into clear, simple modules that could be reused everywhere
 \end{itemize}}
 
 \section{Education}
-\cventry{2009--2012}{Master of Science, Systems Science}{Portland State University}{Portland OR}{}{Computational Neuroscience, System Dynamics}  % arguments 3 to 6 can be left empty
+\cventry{2009--2012}{Master of Science, Systems Science}{Portland State University}{Portland OR}{}{Computational Neuroscience, System Dynamics, Information Theory, Agent Based Systems}
 \cventry{2002--2005}{Bachelor of the Arts}{The Evergreen State College}{Olympia WA}{}{Math, Performance, Computer Science}
 \cventry{1999--2001}{Undergraduate Study}{Oberlin College}{Oberlin OH}{}{Cognitive Science, Computer Science}
 
-\section{Relevant Activities}
-\cvitem{2013}{EuroClojure - Attended international conference in Berlin for all things Clojure}
-\cvitem{2013}{Portland Clojure User Group - Member of a local community meetup for discussing and sharing Clojure knowledge}
-\cvitem{2012}{Systems Science Seminar - Gave talk on the Nature of Assumptions}
-\cvitem{2011}{OSCON - Attended convention for open source software in Portland OR}
-\cvitem{2011}{Codex - Co-lead community workshop on creative coding and programming art}
+\section{Technology}
+\cvitem{Languages}{Clojure, Python, JavaScript, C/C++, Julia, Java, Bash, SQL}
+\cvitem{Tools}{Kafka, Docker, Postgresql, RabbitMQ, Mongo, Git, Unix, Emacs, GLSL}
+\cvitem{Areas}{Biological Modeling, Network Science, Graph Databases, Machine Learning, Data Visualization, Generative Music}
+%% \cvitem{Skills}{Asynchronous Computation, Websockets, Unix/linux Server Administration, Distributed Version Control}
+
+%% \section{Relevant Activities}
+%% \cvitem{2013-2014}{Portland Clojure User Group - Member of a local community meetup for discussing and sharing Clojure knowledge}
+%% \cvitem{2013}{EuroClojure - Attended international conference in Berlin for all things Clojure}
+%% \cvitem{2012}{Systems Science Seminar at PSU - Gave talk on the Nature of Assumptions}
+%% \cvitem{2011}{OSCON - Attended convention for open source software in Portland OR}
+%% \cvitem{2011}{Codex - Co-lead community workshop on creative coding and programming art}
 
 \section{Interests}
-\cvitem{Music}{Piano Tuning, Music Theory, Performance: Exploring the space of all possible musical events and relationships.}
-\cvitem{Biology}{Molecular Biology, Cell Biology, Systems Biology: How does life work?  How is this possible?}
-\cvitem{Go}{The ancient game of life and death.  I have learned many things about life from Go.}
-\cvitem{Naming}{Word Creation:  Words have to come from somewhere.  How about the Omnivoplax?} %nothingness?}
+\cvitem{Biology}{Molecular Biology, Cell Biology, Systems Biology: How does life work?  How can these principles be discovered and applied to other realms?}
+\cvitem{Music}{Piano Tuning, Music Theory, Performance: Exploring the space of all possible musical structures and relationships.} %\url{https://soundcloud.com/youdonotexist/sessessation}}
+\cvitem{Games}{I have designed and published an award-winning board game - Sol: Last Days of a Star. \url{http://elephantlaboratories.com/sol}}
+%%\cvitem{Go}{The ancient game of life and death.  I have learned many things about life from Go.}
+%% \cvitem{Naming}{Word Creation:  Words have to come from somewhere.  How about the Omnivoplax?} %nothingness?}
 %% \cvitem{Cognition}{Awareness examining itself:  Appreciating and unraveling the mystery of the nature of existence.}
 
-\section{References}
-\begin{cvcolumns}
-  \cvcolumn{Name}{\begin{itemize}\item Martin Linde\item Patrick Roberts\end{itemize}}
+%% \section{References}
+%% \begin{cvcolumns}
+  %% \cvcolumn{Name}{\begin{itemize}\item Markus Covert\item[] \emph{Stanford Bioengineering}\item Jerry Morrison\item[] \emph{Allen Center}\end{itemize}}
+  %% \cvcolumn{Contact}{\begin{itemize}\item[] (650) 725-6615 \item[] mcovert@stanford.edu\item[] (650) 488-3541\item[] jerry.morrison@gmail.com\end{itemize}}
+
   %% \cvcolumn{Area}{\begin{itemize}\item Creative Designer\item Person 2\end{itemize}(more upon request)}
-  \cvcolumn[0.75]{Contact}{\begin{itemize}\item Phone: (503) 250-4844 Email: martin.linde01@gmail.com\item Phone: (503) 418-2620  Email: robertpa@ohsu.edu\end{itemize}(more upon request)}
   %% \cvcolumn[0.5]{Contact}{\textit{That} person, and \textbf{those} also (all available upon request).}
-\end{cvcolumns}
+%% \end{cvcolumns}
 
 %% \section{Master thesis}
 %% \cvitem{title}{\emph{Title}}
