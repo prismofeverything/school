@@ -6,6 +6,9 @@
 %% \begin{filecontents}[overwrite](moderncvcolorburgundy.sty)
 \begin{filecontents*}{moderncvcolorburgundy.sty}
 
+%% \usepackage{hyperref}
+\usepackage{enumitem}
+
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{moderncvcolorburgundy}[2013/02/09 v1.3.0 modern curriculum vitae and letter color scheme: burgundy]
 
@@ -54,7 +57,7 @@
 \social[twitter]{ryanspangler}                             % optional, remove / comment the line if not wanted
 %\extrainfo{additional information}                 % optional, remove / comment the line if not wanted
 %\photo[64pt][0.4pt]{picture}                       % optional, remove / comment the line if not wanted; '64pt' is the height the picture must be resized to, 0.4pt is the thickness of the frame around it (put it to 0pt for no frame) and 'picture' is the name of the picture file
-\quote{Assembling the Future of Biology}
+%% \quote{Assembling the Biology of the Future}
 
 \definecolor{seagreen}{HTML}{23B886}% seagreen
 \definecolor{joy}{HTML}{6BB32B}
@@ -198,6 +201,17 @@
 \cventry{2009--2012}{Master of Science, Systems Science}{Portland State University}{Portland OR}{}{Computational Neuroscience, System Dynamics, Information Theory, Agent Based Systems}
 \cventry{2002--2005}{Bachelor of the Arts}{The Evergreen State College}{Olympia WA}{}{Math, Performance, Computer Science}
 \cventry{1999--2001}{Undergraduate Study}{Oberlin College}{Oberlin OH}{}{Cognitive Science, Computer Science}
+
+\section{Publications}
+\begin{enumerate}%%[leftmargin=*, noitemsep]
+\item Skalnik, C.J., Agmon, E., \textbf{Spangler, R.K.}, Talman, L., Morrison, J.H., Peirce, S.M., and Covert, M.W. (in review). \href{https://www.biorxiv.org/content/10.1101/2021.04.27.441666v1}{Whole-Colony Modeling of \textit{Escherichia coli}.} \textit{bioRxiv}.
+\item Shaikh, B., Smith, L. P., Vasilescu, D., Marupilla, G., Wilson, M., Agmon, E., \textbf{Spangler, R.K.}, [...] and Karr, J. R. (2022). \href{https://doi.org/10.1093/nar/gkac331}{BioSimulators: a central registry of simulation engines and services for recommending specific tools.} \textit{Nucleic Acids Research}: https://doi.org/10.1093/nar/gkac331
+\item Agmon, E., \textbf{Spangler, R.K.}, Skalnik, C.J., Poole, W., Morrison, J.H., Peirce, S.M., and Covert, M.W. (2022). \href{https://academic.oup.com/bioinformatics/advance-article-abstract/doi/10.1093/bioinformatics/btac049/6522109}{Vivarium: an interface and engine for integrative multi-scale modeling in computational biology.} \textit{Bioinformatics}, 38(7), 1972-1979.
+\item Allison Creason, David Haan, Kristen Dang, Kami E. Chiotti, Matthew Inkman, Andrew Lamb, Thomas Yu, Yin Hu, Thea C. Norman, Alex Buchanan, Marijke J. van Baren, \textbf{Ryan Spangler}, [...] and Kyle Ellrott (2021). \href{https://www.sciencedirect.com/science/article/pii/S2405471221002076}{A community challenge to evaluate RNA-seq, fusion detection, and isoform quantification methods for cancer discovery.} \textit{Cell Systems}, Volume 12, Issue 8, 827-838.e5. 
+\item Agmon, E., and \textbf{Spangler, R.K.} (2020). \href{https://www.mdpi.com/1099-4300/22/10/1101}{A multi-scale approach to modeling \textit{E. coli} chemotaxis.} \textit{Entropy}, 22: 1101.
+\item Macklin, D.N., Ruggero, N.A., Carrera, J., Choi, H., Horst, T.A., Mason, J.C., Sun, G., Agmon, E., DeFelice, M.M., Maayan, I., Lane, K., \textbf{Spangler, R.K.}, Gillies, T.E., Paull, M.L., Akhter, S., Bray, S.R., Weaver, D.S., Keseler, I.M., Karp, P.D., Morrison, J.H., and Covert, M.W. (2020). \href{https://science.sciencemag.org/content/369/6502/eaav3751.abstract}{Simultaneous cross-evaluation of heterogeneous \textit{E. coli} datasets via mechanistic simulation.} \textit{Science}, 369, eaav3751.
+\item Adam Struck, Brian Walsh, Alexander Buchanan, Jordan A. Lee, \textbf{Ryan Spangler}, Joshua M. Stuart, and Kyle Ellrott (2020). \href{https://ascopubs.org/doi/full/10.1200/CCI.19.00110}{Exploring Integrative Analysis Using the BioMedical Evidence Graph.} \textit{JCO Clinical Cancer Informatics}, :4, 147-159.
+\end{enumerate}
 
 \section{Technology}
 \cvitem{Languages}{Clojure, Python, JavaScript, C/C++, Julia, Java, Bash, SQL}
