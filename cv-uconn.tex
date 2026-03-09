@@ -8,6 +8,7 @@
 
 %% \usepackage{hyperref}
 \usepackage{enumitem}
+\usepackage{anyfontsize}
 
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{moderncvcolorburgundy}[2013/02/09 v1.3.0 modern curriculum vitae and letter color scheme: burgundy]
@@ -64,11 +65,12 @@
 \definecolor{level}{HTML}{5Ba31B}
 %% \definecolor{joy}{HTML}{5C942B}
 %% \definecolor{joy}{HTML}{95D45D}
+\PassOptionsToPackage{colorlinks}{hyperref}
 \AfterPreamble{\hypersetup{
   pdfauthor={Ryan Spangler},
   pdftitle={CV for Ryan Spangler},
   pdfsubject={CV for Ryan Spangler},
-  colorlinks=true,
+  %% colorlinks=true,
   urlcolor=level,
   %% urlcolor=seagreen,
 }}
@@ -93,23 +95,27 @@
 \section{Summary of Qualifications}
 
 \begin{itemize}
-\item Software engineer specializing in computational infrastructure for biological modeling and large-scale distributed simulations.
-\item 19 years of professional experience working in whole-cell modeling, multi-scale simulation, distributed systems, machine learning, and process calculi. 
-\item Interested in developing computational frameworks for biological discovery, model integration and synthesis, and biologically inspired algorithms. 
+\item Researcher specializing in the intersection between computation and biology, biological modeling, process communication and emergence, and large-scale distributed simulations. 
+\item 19 years of professional and academic experience working in whole-cell modeling, multi-scale simulation, distributed systems, graph algorithms, machine learning, and process calculi. 
+\item Interested in developing computational systems for biological discovery, model integration and synthesis, and biologically inspired algorithms. 
 \end{itemize}
 
 \section{Experience}
 %\subsection{Programming}
 
-\cventry{2023--present}{Senior Research Software Engineer}{Altos Labs}{Redwood City}{}{I develop models, infrastructure, tools, and systems to explore the organization and dynamics of human cell biology. I collaborate on a number of projects around the Institute, leading multiple group coding and learning sessions on a variety of biological, mathematical, and computational topics. \newline{}
+
+
+
+\cventry{2023--present}{Senior Research Software Engineer}{Altos Labs}{Redwood City}{}{I design and implement systems in collaboration with computational and experimental scientists to synthesize diverse areas of data and knowledge into coherent multi-scale multi-modality models and executable simulations. I apply theoretical and computational methods to uncover the operation of cellular biology and its spatial and temporal relationships across scales and systems. \newline{}
+%% in order to provide insight into the operation of cellular biology and its spatial and temporal relationships across scales. \newline{}
+%% \cventry{2023--present}{Senior Research Software Engineer}{Altos Labs}{Redwood City}{}{I develop models, infrastructure, tools, and systems to explore the organization and dynamics of human cell biology. I collaborate on a number of projects around the Institute, leading multiple group coding and learning sessions on a variety of biological, mathematical, and computational topics. \newline{}
 \textbf{Achievements}:
 \begin{itemize}
-\item Lead an effort with a team of diverse computational scientists to compose a multitude of individual simulations together - assembling chromatin epigenetics, gene regulatory networks, signaling networks, and agent-based extracellular matrix simulations into a coherent model of rejuvenation.
-\item Designed and implemented a biological knowledge graph engine and query/traversal language for merging many sources of biological data into a single accessible and performant resource. 
-\item Created a system for generating dynamic biological simulations from traversals through the knowledge graph in conjunction with machine learning methods to parameterize them according to existing data. 
-\item Applied community network analysis to coarse-grain infeasible simulations into hypothesized equivalent simplifications that capture the essential structure of the original system and replace them during runtime. 
+\item Lead an effort with a team of diverse computational scientists to compose a multitude of previously unrelated simulations and modalities together - assembling chromatin epigenetics, gene regulatory networks, signaling networks, and agent-based extracellular matrix simulations into a unified model of cellular rejuvenation.
+\item Using time series data of single-cell rnaseq, a generative autoencoder, and a prior knowledge database of reaction and complex structure, created a system to generate simulations from any given set of genes and apply these models to predict the outcome of specific interventions in the pathway. 
+\item Designed and implemented a biological knowledge graph engine and query/traversal language for merging many sources of biological data into a single accessible and performant data resource. 
+\item Applied community network analysis to coarse-grain infeasible simulations into hypothesized equivalent simplified networks that capture the large-scale structure from the original system and functionally subtitute them during runtime. 
 \item Mentored computational scientists on engineering practices and empowered them to develop more flexible, robust, and performant code.
-\item Optimized an existing algorithm for calculating distance metrics by x1000000
 \end{itemize}}
 
 \cventry{2020--2023}{Machine Learning Engineer}{Allen Institute for Cell Science}{Seattle WA}{}{I developed models, infrastructure, tools, and systems to explore the organization and dynamics of human cell biology. I collaborated on a number of projects around the Institute, leading multiple group coding and learning sessions on a variety of biological, mathematical, and computational topics. \newline{}
@@ -117,6 +123,7 @@
 \begin{itemize}
 \item Lead an ongoing collaborative effort building a multi-scale simulation of actin networks using Vivarium where different levels of detail (fiber and monomer) inform and relate to one another:
 \url{https://github.com/simularium/vivarium-models/tree/buckling}
+\item Implemented a machine learning model for ``label-free'' prediction of cellular structures from brightfield images in pytorch. 
 \item Created a library for programmatically generating bigraphical simulations, with a parser and interpreter for the ``big'' bigraphical language:
 \url{http://github.com/prismofeverything/bigraph}
 \item Contributed to the development of cellPACK, a tool for packing 3d molecular entities into biological membranes and meshes:
@@ -215,7 +222,8 @@
 
 \section{Publications}
 \begin{enumerate}%%[leftmargin=*, noitemsep]
-\item Skalnik, C.J., Agmon, E., \textbf{Spangler, R.K.}, Talman, L., Morrison, J.H., Peirce, S.M., and Covert, M.W. (in review). \href{https://www.biorxiv.org/content/10.1101/2021.04.27.441666v1}{Whole-Colony Modeling of \textit{Escherichia coli}.} \textit{bioRxiv}.
+\item Christopher J Skalnik, Sean Y Cheah, Mica Y Yang, Mattheus B Wolff, \textbf{Ryan K Spangler}, Lee Talman, Jerry H Morrison, Shayn M Peirce, Eran Agmon, Markus W Covert. \href{https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1011232}{Whole-cell modeling of E. coli colonies enables quantification of single-cell heterogeneity in antibiotic responses} \textit{PLOS Computational Biology}
+%% \item Skalnik, C.J., Agmon, E., \textbf{Spangler, R.K.}, Talman, L., Morrison, J.H., Peirce, S.M., and Covert, M.W. (in review). \href{https://www.biorxiv.org/content/10.1101/2021.04.27.441666v1}{Whole-Colony Modeling of \textit{Escherichia coli}.} \textit{bioRxiv}.
 \item Shaikh, B., Smith, L. P., Vasilescu, D., Marupilla, G., Wilson, M., Agmon, E., \textbf{Spangler, R.K.}, [...] and Karr, J. R. (2022). \href{https://doi.org/10.1093/nar/gkac331}{BioSimulators: a central registry of simulation engines and services for recommending specific tools.} \textit{Nucleic Acids Research}: https://doi.org/10.1093/nar/gkac331
 \item Agmon, E., \textbf{Spangler, R.K.}, Skalnik, C.J., Poole, W., Morrison, J.H., Peirce, S.M., and Covert, M.W. (2022). \href{https://academic.oup.com/bioinformatics/advance-article-abstract/doi/10.1093/bioinformatics/btac049/6522109}{Vivarium: an interface and engine for integrative multi-scale modeling in computational biology.} \textit{Bioinformatics}, 38(7), 1972-1979.
 \item Allison Creason, David Haan, Kristen Dang, Kami E. Chiotti, Matthew Inkman, Andrew Lamb, Thomas Yu, Yin Hu, Thea C. Norman, Alex Buchanan, Marijke J. van Baren, \textbf{Ryan Spangler}, [...] and Kyle Ellrott (2021). \href{https://www.sciencedirect.com/science/article/pii/S2405471221002076}{A community challenge to evaluate RNA-seq, fusion detection, and isoform quantification methods for cancer discovery.} \textit{Cell Systems}, Volume 12, Issue 8, 827-838.e5. 
